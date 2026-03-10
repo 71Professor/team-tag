@@ -90,6 +90,13 @@
     text-transform: uppercase;
     padding: 5px 12px;
     border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .wf-tag:hover {
+    background: rgba(37,99,235,0.38);
+    border-color: rgba(37,99,235,0.75);
   }
   .hero-eyebrow span {
     font-size: 13px;
@@ -896,6 +903,36 @@
     .field-group { grid-template-columns: 1fr; }
     .persona-row { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ── Overview tab ── */
+  .wf-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px; margin-bottom: 32px;
+  }
+  .wf-tile {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 20px 18px;
+    transition: box-shadow 0.2s;
+  }
+  .wf-tile:hover { box-shadow: var(--shadow); }
+  .wf-tile.current { border-color: var(--blue); background: var(--blue-light); }
+  .wf-num {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: white;
+    margin-bottom: 10px;
+  }
+  .wf-tile h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .wf-tile p { font-size: 12px; color: var(--slate-soft); line-height: 1.55; }
+  .wf-tile-badge {
+    display: inline-block; margin-top: 10px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    padding: 2px 8px; border-radius: 100px;
+    background: var(--blue-light); color: var(--blue);
+  }
+  .wf-tile.current .wf-tile-badge { background: var(--blue); color: white; }
 </style>
 </head>
 <body>
@@ -907,7 +944,7 @@
   <div class="hero-glow2"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow">
-      <span class="wf-tag">Workflow 2 von 4</span>
+      <a href="index.html" class="wf-tag">← Zur Übersicht · Workflow 2 von 4</a>
       <span>KITA HUB · Pixelwerkstatt</span>
     </div>
     <h1>Teamsitzung<br><em>digital vorbereiten</em><br>und dokumentieren</h1>
@@ -949,6 +986,7 @@
     <button class="nav-btn" onclick="show('pitfalls', this)">⚠️ Stolpersteine</button>
     <button class="nav-btn" onclick="show('transfer', this)">🚀 Ab Montag</button>
     <button class="nav-btn" onclick="show('cheat', this)">📋 Cheat-Sheet</button>
+    <button class="nav-btn" onclick="show('overview', this)">🗺️ Alle 4 Workflows</button>
   </div>
 </nav>
 
@@ -1501,6 +1539,57 @@
       E-Mail: <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a><br>
       Telefon: <a href="tel:+4996219655219910">+49 9621 96552 1991</a>
     </p>
+  </div>
+</div>
+
+<div id="tab-overview" class="section">
+  <div class="sec-label">Abschluss</div>
+  <div class="sec-title">Alle vier Workflows im Überblick</div>
+  <p class="sec-sub">Der KITA HUB ist ein Ökosystem – der Nutzen entsteht in der Kombination der Dienste. Hier alle vier Workflows auf einen Blick.</p>
+
+  <div class="wf-overview">
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#2ec4a9">1</div>
+      <h4>Fachwissen ins Team bringen</h4>
+      <p>Medienecke → Kurzlink → Chat → Termine → Meeting</p>
+      <span class="wf-tile-badge">~15 Min.</span>
+    </div>
+    <div class="wf-tile current">
+      <div class="wf-num" style="background:#2563eb">2</div>
+      <h4>Teamsitzung digital vorbereiten</h4>
+      <p>Notizen → Kurzlink → Chat → Termine → (Meeting)</p>
+      <span class="wf-tile-badge">~20 Min.</span>
+    </div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#c2410c">3</div>
+      <h4>Elternabend hybrid organisieren</h4>
+      <p>Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat</p>
+      <span class="wf-tile-badge">~20 Min.</span>
+    </div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#4d7c5f">4</div>
+      <h4>Neue Kolleg:in einarbeiten</h4>
+      <p>Notizen → Medienecke → Kurzlink → Chat → Kurse → Lesezeichen</p>
+      <span class="wf-tile-badge">~20 Min.</span>
+    </div>
+  </div>
+
+  <div style="background:var(--slate); border-radius:20px; padding:32px 36px; color:white; position:relative; overflow:hidden; margin-bottom:32px;">
+    <div style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:100px; opacity:.05;">🌐</div>
+    <div style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-mid); margin-bottom:12px;">Gemeinsamer Kern</div>
+    <p style="font-size:20px; line-height:1.5; color:white; margin-bottom:16px; font-weight:600;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
+    <p style="font-size:14px; color:rgba(255,255,255,.55); line-height:1.7; font-weight:300;">Ein Team, das Workflow 1 beherrscht, hat Chat und Kurzlink bereits im Griff. Wer Workflow 2 umsetzt, kennt Notizen und Termine. So baut jeder Workflow auf dem vorherigen auf – und nach Workflow 4 nutzt das Team alle Dienste des KITA HUB sicher und regelmäßig.</p>
+    <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);">
+      <div style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px;">Starthilfe</div>
+      <p style="font-size:14px; color:rgba(255,255,255,.65);">
+        <a href="mailto:starthilfe@kita.bayern" style="color:var(--blue-mid); font-weight:700; text-decoration:none;">starthilfe@kita.bayern</a> &nbsp;·&nbsp;
+        <a href="tel:+4996219655219910" style="color:var(--blue-mid); font-weight:700; text-decoration:none;">+49 9621 96552 1991</a>
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="index.html" style="display:inline-block; background:var(--blue); color:white; text-decoration:none; font-weight:700; font-size:14px; padding:12px 28px; border-radius:100px;">← Zurück zur Übersicht</a>
   </div>
 </div>
 
