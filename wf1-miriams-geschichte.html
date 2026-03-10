@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miriams Geschichte – Workflow 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --mint: #2ec4a9;
@@ -17,18 +18,18 @@
     --green-light: #e8f7ee;
     --coral: #e8614a;
     --coral-light: #fdf0ee;
-    --ink: #1a2235;
-    --ink-soft: #3d4f6a;
-    --paper: #fafaf8;
-    --border: #e2e8f0;
-    --shadow: 0 4px 24px rgba(26,34,53,0.10);
-    --shadow-lg: 0 12px 48px rgba(26,34,53,0.16);
+    --ink: #1B3929;
+    --ink-soft: #3D5245;
+    --paper: #F2EDE4;
+    --border: #DDD8CF;
+    --shadow: 0 4px 24px rgba(27,57,41,0.10);
+    --shadow-lg: 0 12px 48px rgba(27,57,41,0.16);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--paper);
     color: var(--ink);
     min-height: 100vh;
@@ -81,9 +82,9 @@
     margin-bottom: 24px;
   }
   .hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(36px, 6vw, 58px);
-    font-weight: 900;
+    font-weight: 800;
     line-height: 1.08;
     margin-bottom: 20px;
   }
@@ -127,7 +128,7 @@
     animation: fadeUp 0.5s ease both;
   }
   .intro-card-header {
-    background: linear-gradient(135deg, var(--ink) 0%, #2a3a5a 100%);
+    background: linear-gradient(135deg, var(--ink) 0%, #2a4a35 100%);
     padding: 32px 36px;
     position: relative;
     overflow: hidden;
@@ -135,7 +136,7 @@
   .intro-card-header::before {
     content: '"';
     position: absolute;
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 200px;
     color: rgba(255,255,255,0.05);
     top: -30px; right: 16px;
@@ -155,7 +156,6 @@
     line-height: 1.7;
     color: rgba(255,255,255,0.82);
     font-style: italic;
-    font-family: 'Fraunces', serif;
     font-weight: 400;
   }
 
@@ -215,7 +215,7 @@
     margin-bottom: 8px;
   }
   .step-story-body h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -232,21 +232,19 @@
   /* Quote highlight */
   .thought-bubble {
     background: var(--ink);
-    color: white;
+    color: rgba(255,255,255,0.88);
     border-radius: 14px;
     padding: 16px 20px;
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-style: italic;
     font-size: 15px;
     line-height: 1.65;
-    color: rgba(255,255,255,0.88);
     margin: 14px 0;
     position: relative;
   }
   .thought-bubble::before {
     content: '💭';
     font-style: normal;
-    font-family: 'DM Sans', sans-serif;
     margin-right: 8px;
     font-size: 14px;
   }
@@ -311,7 +309,7 @@
     bottom: -20px;
   }
   .coda-card h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 12px;
@@ -354,7 +352,6 @@
     text-decoration: none;
     margin-bottom: 36px;
     transition: color 0.2s;
-    cursor: default;
   }
   .back-link:hover { color: var(--mint); }
 
@@ -445,7 +442,7 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">📖 KITA HUB · Workflow 1 · Geschichte</div>
+    <a href="wf1-fachwissen.html" class="hero-badge" style="text-decoration:none; cursor:pointer; transition: background 0.15s ease, border-color 0.15s ease;">← Workflow 1 · Geschichte</a>
     <h1>Miriams<br><span>Donnerstagabend</span></h1>
     <p class="hero-sub">Wie eine Fachkraft aus einem zufälligen Fund in der Medienecke in 15 Minuten einen Teammoment macht – erzählt, wie sie es ihrer besten Freundin erzählen würde.</p>
     <div class="hero-meta">
@@ -459,7 +456,7 @@
 <!-- MAIN -->
 <div class="main">
 
-  <a class="back-link">← Zurück zu Workflow 1</a>
+  <a class="back-link" href="wf1-fachwissen.html">← Zurück zu Workflow 1</a>
 
   <!-- Intro card -->
   <div class="intro-card">
