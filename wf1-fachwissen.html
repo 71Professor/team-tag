@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workflow 1 – Fachwissen ins Team bringen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --mint: #2ec4a9;
@@ -17,18 +18,18 @@
     --green-light: #e8f7ee;
     --coral: #e8614a;
     --coral-light: #fdf0ee;
-    --ink: #1a2235;
-    --ink-soft: #3d4f6a;
-    --paper: #fafaf8;
-    --border: #e2e8f0;
-    --shadow: 0 4px 24px rgba(26,34,53,0.10);
-    --shadow-lg: 0 12px 48px rgba(26,34,53,0.16);
+    --ink: #1B3929;
+    --ink-soft: #3D5245;
+    --paper: #F2EDE4;
+    --border: #DDD8CF;
+    --shadow: 0 4px 24px rgba(27,57,41,0.10);
+    --shadow-lg: 0 12px 48px rgba(27,57,41,0.16);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--paper);
     color: var(--ink);
     min-height: 100vh;
@@ -119,9 +120,9 @@
   .wf-tile.current .wf-tile-badge { background: var(--mint); color: white; }
   a.wf-tile { text-decoration: none; color: inherit; display: block; cursor: pointer; }
   .hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(36px, 6vw, 60px);
-    font-weight: 900;
+    font-weight: 800;
     line-height: 1.08;
     margin-bottom: 20px;
   }
@@ -190,7 +191,7 @@
     padding: 16px 20px;
     border: none;
     background: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: var(--ink-soft);
@@ -221,7 +222,7 @@
   }
 
   .section-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -236,7 +237,7 @@
   /* Story section */
   .story-card {
     background: white;
-    border-radius: 20px;
+    border-radius: 12px;
     border: 1px solid var(--border);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -252,14 +253,14 @@
   .story-header::before {
     content: '"';
     position: absolute;
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 180px;
     color: rgba(255,255,255,0.06);
     top: -20px; right: 20px;
     line-height: 1;
   }
   .story-header h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 20px;
     margin-bottom: 12px;
     color: var(--mint);
@@ -376,7 +377,7 @@
     margin-bottom: 8px;
   }
   .step-content h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -455,7 +456,7 @@
   .expand-btn {
     background: none;
     border: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--mint);
@@ -485,7 +486,7 @@
     background: var(--green-light);
     border: 1.5px solid var(--green);
     color: var(--green);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
     font-weight: 600;
     padding: 6px 16px;
@@ -546,7 +547,7 @@
   .role-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 28px 24px;
     text-align: center;
     box-shadow: var(--shadow);
@@ -554,7 +555,7 @@
   }
   .role-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
   .role-emoji { font-size: 40px; margin-bottom: 12px; }
-  .role-card h3 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+  .role-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; margin-bottom: 8px; }
   .role-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
 
   /* Artifacts section */
@@ -672,7 +673,7 @@
   .commitment-box {
     background: var(--ink);
     color: white;
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 32px;
     position: relative;
     overflow: hidden;
@@ -686,7 +687,7 @@
     bottom: -30px;
   }
   .commitment-box h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 22px;
     margin-bottom: 20px;
     color: var(--mint);
@@ -710,7 +711,7 @@
     border-radius: 10px;
     padding: 10px 14px;
     color: white;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s;
@@ -762,7 +763,7 @@
     border-radius: 6px;
     padding: 4px 8px;
     font-size: 11px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 600;
     color: var(--ink-soft);
     cursor: pointer;
@@ -1073,7 +1074,7 @@
 
   <div id="success-msg" style="display:none; background:linear-gradient(135deg,var(--green),var(--mint)); color:white; border-radius:20px; padding:28px 32px; text-align:center; margin-top:24px; animation: fadeUp 0.4s ease;">
     <div style="font-size:48px; margin-bottom:12px;">🎉</div>
-    <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:700; margin-bottom:8px;">Alle Schritte erledigt!</div>
+    <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:22px; font-weight:700; margin-bottom:8px;">Alle Schritte erledigt!</div>
     <div style="font-size:15px; opacity:0.9;">Das Team kennt das Material, der Termin steht, der Austausch findet statt.</div>
   </div>
 </div>
@@ -1152,7 +1153,7 @@
 
   <div style="background:var(--ink); color:white; border-radius:16px; padding:24px 28px;">
     <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--mint); margin-bottom:10px;">Nutzen in einem Satz</div>
-    <p style="font-family:'Fraunces',serif; font-size:18px; line-height:1.5;">Team kennt das Material, der Termin steht, der Austausch findet statt – der Träger ist eingebunden, ohne dass jemand extra einen Account braucht.</p>
+    <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:18px; line-height:1.5;">Team kennt das Material, der Termin steht, der Austausch findet statt – der Träger ist eingebunden, ohne dass jemand extra einen Account braucht.</p>
   </div>
 </div>
 
@@ -1403,7 +1404,7 @@
   <div style="background:var(--ink); border-radius:20px; padding:32px 36px; color:white; position:relative; overflow:hidden; margin-bottom:32px;">
     <div style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:100px; opacity:.05;">🌐</div>
     <div style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--mint); margin-bottom:12px;">Gemeinsamer Kern</div>
-    <p style="font-family:'Fraunces',serif; font-size:20px; line-height:1.5; color:white; margin-bottom:16px;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
+    <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:20px; line-height:1.5; color:white; margin-bottom:16px;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
     <p style="font-size:14px; color:rgba(255,255,255,.55); line-height:1.7; font-weight:300;">Ein Team, das Workflow 1 beherrscht, hat Chat und Kurzlink bereits im Griff. Wer Workflow 2 umsetzt, kennt Notizen und Termine. So baut jeder Workflow auf dem vorherigen auf – und nach Workflow 4 nutzt das Team alle Dienste des KITA HUB sicher und regelmäßig.</p>
     <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);">
       <div style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px;">Starthilfe</div>
