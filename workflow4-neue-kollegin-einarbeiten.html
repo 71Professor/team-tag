@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflow 4 – Neue Kolleg:in einarbeiten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #4d7c5f;
+    --sage-light: #f0f7f3;
+    --sage-mid:   #a3c9b0;
+    --sage-border:#c6e0ce;
+    --teal:       #0f766e;
+    --teal-light: #f0fdfa;
+    --teal-border:#99f6e4;
+    --plum:       #6d28d9;
+    --plum-light: #f5f3ff;
+    --plum-border:#ddd6fe;
+    --gold:       #b45309;
+    --gold-light: #fffbeb;
+    --gold-border:#fde68a;
+    --rose:       #be185d;
+    --rose-light: #fdf2f8;
+    --rose-border:#fbcfe8;
+    --sky:        #0369a1;
+    --sky-light:  #f0f9ff;
+    --sky-border: #bae6fd;
+    --ink:        #0f1923;
+    --ink-soft:   #4a5568;
+    --ink-muted:  #a0aec0;
+    --canvas:     #f7f9f7;
+    --white:      #ffffff;
+    --border:     #e2e8e4;
+    --sh:         0 4px 20px rgba(15,25,35,.09);
+    --sh-lg:      0 20px 60px rgba(15,25,35,.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--canvas);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(140deg, #0d2818 0%, #1a3d28 55%, #0d2818 100%);
+    color: white;
+    padding: 72px 32px 108px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.05) 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+  .hero-arc {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .arc1 {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(77,124,95,.35) 0%, transparent 60%);
+    top: -300px; right: -200px;
+  }
+  .arc2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(109,40,217,.2) 0%, transparent 60%);
+    bottom: -180px; left: -80px;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(77,124,95,.28);
+    border: 1px solid rgba(163,201,176,.4);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--sage-mid);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 6.5vw, 66px);
+    line-height: 1.08; font-weight: 400;
+    margin-bottom: 22px;
+  }
+  .hero h1 i {
+    font-style: italic;
+    color: var(--sage-mid);
+  }
+  .hero-lead {
+    font-size: 17px; line-height: 1.72;
+    color: rgba(255,255,255,.62);
+    max-width: 560px; margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .service-chain {
+    display: flex; flex-wrap: wrap;
+    align-items: stretch; gap: 0;
+    margin-bottom: 38px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px; overflow: hidden;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .sc-node {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 16px;
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,.85);
+    background: rgba(255,255,255,.06);
+    border-right: 1px solid rgba(255,255,255,.1);
+    white-space: nowrap;
+    position: relative;
+  }
+  .sc-node:last-child { border-right: none; }
+  .sc-node::after {
+    content: '›';
+    position: absolute; right: -8px;
+    color: rgba(255,255,255,.28);
+    font-size: 16px; z-index: 1;
+    display: none;
+  }
+  .sc-node:not(:last-child)::after { display: block; }
+  .sc-num {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; flex-shrink: 0;
+  }
+
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .hm {
+    font-size: 13px; color: rgba(255,255,255,.5);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .hm strong { color: white; font-weight: 600; }
+
+  /* ── NAV ── */
+  .nav-wrap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 8px rgba(0,0,0,.06);
+  }
+  .nav-outer {
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .nav-outer::after {
+    content: '';
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 48px;
+    background: linear-gradient(to right, transparent, white);
+    pointer-events: none;
+    display: none;
+  }
+  .nav-outer.has-overflow::after { display: block; }
+  .nav-scroll {
+    display: flex; overflow-x: auto;
+    scrollbar-width: none;
+    padding-right: 48px;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .ntab {
+    flex-shrink: 0; padding: 15px 16px;
+    border: none; background: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--ink-soft); cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all .18s; white-space: nowrap;
+  }
+  .ntab:hover { color: var(--ink); }
+  .ntab.on { color: var(--sage); border-bottom-color: var(--sage); font-weight: 700; }
+
+  /* ── SECTIONS ── */
+  .panel {
+    display: none; max-width: 1100px;
+    margin: 0 auto; padding: 52px 32px 90px;
+    animation: popIn .3s ease;
+  }
+  .panel.on { display: block; }
+  @keyframes popIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .kicker {
+    font-size: 11px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 6px;
+  }
+  .panel-h {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px; font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .panel-sub {
+    font-size: 15px; color: var(--ink-soft);
+    line-height: 1.68; margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  /* ── STORY ── */
+  .scenario {
+    background: var(--ink);
+    border-radius: 22px; overflow: hidden;
+    margin-bottom: 32px; box-shadow: var(--sh-lg);
+  }
+  .sc-head {
+    padding: 34px 36px 28px;
+    background: linear-gradient(135deg, #0d2818, #162d1e);
+    position: relative; overflow: hidden;
+  }
+  .sc-head::after {
+    content: '🌱';
+    position: absolute; font-size: 130px;
+    right: 24px; top: 50%; transform: translateY(-50%);
+    opacity: .07;
+  }
+  .sc-head .lbl {
+    font-size: 11px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sage-mid); margin-bottom: 12px;
+  }
+  .sc-head h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 21px; color: white;
+    margin-bottom: 14px; line-height: 1.3;
+  }
+  .sc-head p {
+    font-size: 15px; line-height: 1.74;
+    color: rgba(255,255,255,.68); font-weight: 300;
+    max-width: 500px;
+  }
+  .sc-body {
+    padding: 24px 36px 28px;
+    background: rgba(255,255,255,.03);
+  }
+  .sc-body p {
+    font-size: 14px; line-height: 1.76;
+    color: rgba(255,255,255,.55); font-weight: 300;
+  }
+  .sc-body p + p { margin-top: 12px; }
+  .sc-body strong { color: rgba(255,255,255,.9); font-weight: 600; }
+
+  .why-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px; margin-bottom: 32px;
+  }
+  .wy {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px 18px;
+    transition: all .2s;
+  }
+  .wy:hover { box-shadow: var(--sh); transform: translateY(-2px); }
+  .wy .wi { font-size: 26px; margin-bottom: 10px; }
+  .wy p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  .personas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px; margin-bottom: 32px;
+  }
+  .per {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 16px; transition: all .2s;
+  }
+  .per:hover { box-shadow: var(--sh); }
+  .per-av {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 10px;
+  }
+  .per-role {
+    font-size: 10px; font-weight: 800;
+    letter-spacing: .1em; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .per h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .per p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+  .ptag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 2px 9px; border-radius: 100px; margin-top: 8px;
+  }
+  .pt-a { background: var(--sage-light); color: var(--sage); }
+  .pt-n { background: var(--teal-light); color: var(--teal); }
+
+  /* ── STEPS ── */
+  .prog-bar {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 36px;
+  }
+  .pb-lbl { font-size: 13px; font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
+  .pb-track {
+    flex: 1; height: 7px; background: var(--border);
+    border-radius: 100px; overflow: hidden;
+  }
+  .pb-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sage), var(--teal));
+    border-radius: 100px; width: 0%;
+    transition: width .5s cubic-bezier(.4,0,.2,1);
+  }
+  .pb-ct { font-size: 13px; font-weight: 800; color: var(--sage); white-space: nowrap; }
+
+  .tl { display: flex; flex-direction: column; }
+  .tl-row { display: flex; }
+  .tl-spine {
+    display: flex; flex-direction: column;
+    align-items: center; width: 50px; flex-shrink: 0;
+  }
+  .tl-dot {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; color: white;
+    cursor: pointer; transition: all .2s;
+    flex-shrink: 0; z-index: 1;
+  }
+  .tl-dot:hover { border-radius: 14px; transform: scale(1.08); }
+  .tl-dot.ck { font-size: 18px; }
+  .tl-line {
+    width: 2px; flex: 1; min-height: 18px;
+    background: var(--border); margin: 3px 0;
+  }
+  .tl-row:last-child .tl-line { display: none; }
+  .tl-body { flex: 1; padding: 0 0 28px 18px; }
+
+  .svc {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 800;
+    letter-spacing: .09em; text-transform: uppercase;
+    padding: 3px 11px; border-radius: 6px;
+    margin-bottom: 7px;
+  }
+  .tl-body h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px; font-weight: 400;
+    cursor: pointer; transition: color .15s; margin-bottom: 5px;
+  }
+  .tl-body h3:hover { color: var(--sage); }
+  .tl-body .ld {
+    font-size: 14px; color: var(--ink-soft);
+    line-height: 1.65; font-weight: 300;
+  }
+  .toggle {
+    background: none; border: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--sage); cursor: pointer; padding: 0;
+    margin-top: 6px; display: inline-flex;
+    align-items: center; gap: 4px; transition: opacity .15s;
+  }
+  .toggle:hover { opacity: .72; }
+  .chevr { transition: transform .2s; display: inline-block; }
+  .toggle.open .chevr { transform: rotate(90deg); }
+
+  .detail { display: none; margin-top: 14px; animation: popIn .22s ease; }
+  .detail.open { display: block; }
+
+  .ext-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: white;
+    font-size: 13px; font-weight: 600;
+    padding: 8px 18px; border-radius: 8px;
+    text-decoration: none; margin-bottom: 14px;
+    transition: opacity .15s;
+  }
+  .ext-link:hover { opacity: .8; }
+
+  .how-box {
+    background: var(--canvas); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; margin-bottom: 12px;
+  }
+  .how-box ol { padding-left: 18px; }
+  .how-box li {
+    font-size: 14px; line-height: 1.7;
+    color: var(--ink-soft); margin-bottom: 4px;
+  }
+  .how-box li:last-child { margin-bottom: 0; }
+  .how-box li strong { color: var(--ink); }
+
+  .callout {
+    display: flex; gap: 9px; border-radius: 10px;
+    padding: 10px 14px; font-size: 13px;
+    line-height: 1.62; margin-bottom: 10px;
+  }
+  .callout .ic { flex-shrink: 0; }
+  .c-sage   { background: var(--sage-light); border: 1px solid var(--sage-border); color: #1a4028; }
+  .c-gold   { background: var(--gold-light); border: 1px solid var(--gold-border); color: #78350f; }
+  .c-plum   { background: var(--plum-light); border: 1px solid var(--plum-border); color: #3b0764; }
+  .c-sky    { background: var(--sky-light);  border: 1px solid var(--sky-border);  color: #0c4a6e; }
+  .c-warn   { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  .done-b {
+    margin-top: 10px;
+    background: transparent;
+    border: 1.5px solid var(--sage);
+    color: var(--sage);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px; font-weight: 700;
+    padding: 7px 18px; border-radius: 8px;
+    cursor: pointer; transition: all .2s;
+  }
+  .done-b:hover { background: var(--sage); color: white; }
+  .done-b.done { background: var(--teal); border-color: var(--teal); color: white; }
+  .done-lbl { display: none; font-size: 13px; font-weight: 700; color: var(--teal); margin-left: 10px; }
+  .done-lbl.show { display: inline; }
+
+  /* dot colors */
+  .d1 { background: var(--sage); }
+  .d2 { background: var(--gold); }
+  .d3 { background: var(--plum); }
+  .d4 { background: var(--teal); }
+  .d5 { background: var(--rose); }
+  .d6 { background: var(--sky); }
+
+  /* svc badge colors */
+  .sv1 { background: var(--sage-light); color: #1a4028; }
+  .sv2 { background: var(--gold-light); color: #78350f; }
+  .sv3 { background: var(--plum-light); color: #3b0764; }
+  .sv4 { background: var(--teal-light); color: #134e4a; }
+  .sv5 { background: var(--rose-light); color: #831843; }
+  .sv6 { background: var(--sky-light);  color: #0c4a6e; }
+
+  /* success */
+  #success {
+    display: none;
+    background: linear-gradient(135deg, var(--sage), var(--teal));
+    border-radius: 20px; padding: 32px;
+    text-align: center; color: white;
+    margin-top: 20px; animation: popIn .4s ease;
+  }
+  #success .sic { font-size: 48px; margin-bottom: 12px; }
+  #success h3 { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 8px; }
+  #success p { font-size: 15px; opacity: .85; font-weight: 300; }
+
+  /* ── ROLLEN ── */
+  .role-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px; margin-bottom: 32px;
+  }
+  .role-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 18px; padding: 26px 22px;
+    transition: all .2s; position: relative; overflow: hidden;
+  }
+  .role-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+  }
+  .rc1::before { background: var(--sage); }
+  .rc2::before { background: var(--plum); }
+  .role-card:hover { box-shadow: var(--sh); transform: translateY(-3px); }
+  .rem { font-size: 34px; margin-bottom: 12px; }
+  .role-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 8px; }
+  .role-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+  .rb {
+    display: inline-block; margin-top: 12px;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .07em;
+    padding: 3px 10px; border-radius: 100px;
+    background: var(--sage-light); color: var(--sage);
+  }
+
+  .art-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin-bottom: 28px;
+  }
+  .art {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 17px;
+    display: flex; gap: 12px; align-items: flex-start;
+    transition: all .18s;
+  }
+  .art:hover { box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+  .a-ico {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .art h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .art p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+  .nutzen {
+    border-left: 4px solid var(--sage);
+    background: var(--sage-light);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 24px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px; font-style: italic;
+    line-height: 1.6; color: #1a4028;
+  }
+
+  /* ── STOLPERSTEINE ── */
+  .pit-col { display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+  .pit {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    cursor: pointer; transition: box-shadow .18s;
+  }
+  .pit:hover { box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+  .pit-top {
+    display: flex; align-items: center; gap: 11px;
+    padding: 14px 18px; user-select: none;
+  }
+  .pi { font-size: 18px; }
+  .pit-top h4 { font-size: 14px; font-weight: 700; flex: 1; line-height: 1.4; }
+  .pa { font-size: 12px; color: var(--ink-muted); transition: transform .2s; }
+  .pit.open .pa { transform: rotate(90deg); }
+  .pit-ans { display: none; padding: 0 18px 18px 46px; }
+  .pit.open .pit-ans { display: block; animation: popIn .2s ease; }
+  .sol-tag { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .pit-ans p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+
+  .sc-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+    gap: 12px;
+  }
+  .sct {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 18px;
+  }
+  .sct-lbl { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 8px; }
+  .sct ul { padding-left: 16px; }
+  .sct li { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ── TRANSFER ── */
+  .cl { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .ci {
+    display: flex; align-items: flex-start; gap: 13px;
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 14px 17px;
+    cursor: pointer; transition: all .18s;
+  }
+  .ci:hover { border-color: var(--sage); }
+  .ci.ck { border-color: var(--teal); background: var(--teal-light); }
+  .ci-box {
+    width: 22px; height: 22px; border-radius: 5px;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; flex-shrink: 0;
+    transition: all .18s;
+  }
+  .ci.ck .ci-box { background: var(--teal); border-color: var(--teal); color: white; }
+  .ci p { font-size: 14px; line-height: 1.6; }
+  .ci.ck p { color: var(--ink-muted); text-decoration: line-through; }
+
+  .commit {
+    background: linear-gradient(140deg, #0d2818 0%, #1a3d28 100%);
+    border-radius: 22px; padding: 36px 32px;
+    color: white; position: relative; overflow: hidden;
+  }
+  .commit::after {
+    content: '🌱';
+    position: absolute; font-size: 160px;
+    right: -10px; bottom: -30px; opacity: .05;
+  }
+  .commit h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px; color: var(--sage-mid);
+    margin-bottom: 6px;
+  }
+  .commit > p { font-size: 14px; color: rgba(255,255,255,.48); margin-bottom: 24px; font-weight: 300; }
+  .fg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .fg2.w1 { grid-template-columns: 1fr; }
+  .cf label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 5px; }
+  .cf input {
+    width: 100%;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 8px; padding: 10px 13px;
+    color: white; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px; outline: none;
+    transition: border-color .15s;
+  }
+  .cf input::placeholder { color: rgba(255,255,255,.28); }
+  .cf input:focus { border-color: var(--sage-mid); }
+
+  /* ── CHEAT ── */
+  .cheat {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 13px; margin-bottom: 30px;
+  }
+  .cc {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 17px 17px 15px;
+    position: relative; transition: all .18s;
+  }
+  .cc:hover { box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+  .cc h4 { font-size: 14px; font-weight: 800; margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
+  .cc .u { font-size: 13px; color: var(--sage); font-weight: 700; display: block; margin-bottom: 6px; word-break: break-all; }
+  .cc .n { font-size: 12px; color: var(--ink-muted); }
+  .cp {
+    position: absolute; top: 13px; right: 13px;
+    background: none; border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 8px;
+    font-size: 11px; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700; color: var(--ink-soft);
+    cursor: pointer; transition: all .15s;
+  }
+  .cp:hover { background: var(--ink); color: white; border-color: var(--ink); }
+  .cp.ok { background: var(--teal); color: white; border-color: var(--teal); }
+
+  .help {
+    background: var(--sage-light); border: 1px solid var(--sage-border);
+    border-radius: 14px; padding: 22px 26px;
+  }
+  .help h4 { font-size: 15px; font-weight: 800; color: var(--sage); margin-bottom: 8px; }
+  .help p { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+  .help a { color: var(--sage); font-weight: 700; text-decoration: none; }
+
+  /* ── ALLE 4 ÜBERBLICK ── */
+  .wf-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px; margin-bottom: 32px;
+  }
+  .wf-tile {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px 18px;
+    transition: all .2s; cursor: default;
+  }
+  .wf-tile:hover { box-shadow: var(--sh); }
+  .wf-tile.current {
+    border-color: var(--sage);
+    background: var(--sage-light);
+  }
+  .wf-num {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: white;
+    margin-bottom: 10px;
+  }
+  .wf-tile h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .wf-tile p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+  .wf-tile .wf-badge {
+    display: inline-block; margin-top: 10px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    padding: 2px 8px; border-radius: 100px;
+    background: var(--sage-light); color: var(--sage);
+  }
+  .wf-tile.current .wf-badge {
+    background: var(--sage); color: white;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink); color: rgba(255,255,255,.4);
+    text-align: center; padding: 30px;
+    font-size: 13px; margin-top: 80px;
+  }
+  .footer a { color: var(--sage-mid); text-decoration: none; }
+
+  hr.hr { border: none; border-top: 1px solid var(--border); margin: 34px 0; }
+
+  @media (max-width: 700px) {
+    .hero { padding: 52px 20px 76px; }
+    .panel { padding: 36px 16px 64px; }
+    .fg2 { grid-template-columns: 1fr; }
+    .personas { grid-template-columns: 1fr 1fr; }
+    .service-chain { flex-wrap: wrap; border-radius: 10px; }
+    .role-row { grid-template-columns: 1fr; }
+    .wf-overview { grid-template-columns: 1fr 1fr; }
+    .sc-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 440px) {
+    .wf-overview { grid-template-columns: 1fr; }
+    .personas { grid-template-columns: 1fr; }
+    .why-cards { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ HERO ════ -->
+<div class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-arc arc1"></div>
+  <div class="hero-arc arc2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">🌱 Workflow 4 von 4 · KITA HUB</div>
+    <h1>Neue Kolleg:in<br><i>einarbeiten</i></h1>
+    <p class="hero-lead">Digitales Onboarding statt Zettelstapel – alle wichtigen Infos, Materialien und Kontakte an einem Ort. Die neue Kraft findet sich selbstständig zurecht.</p>
+    <div class="service-chain">
+      <div class="sc-node"><span class="sc-num">1</span>📝 Notizen</div>
+      <div class="sc-node"><span class="sc-num">2</span>🌿 Medienecke</div>
+      <div class="sc-node"><span class="sc-num">3</span>🔗 Kurzlink</div>
+      <div class="sc-node"><span class="sc-num">4</span>💬 Chat</div>
+      <div class="sc-node"><span class="sc-num">5</span>📚 Kurse</div>
+      <div class="sc-node"><span class="sc-num">6</span>🔖 Lesezeichen</div>
+    </div>
+    <div class="hero-meta">
+      <div class="hm">⏱ Dauer: <strong>~20 Min.</strong></div>
+      <div class="hm">✅ <strong>Kostenlos & datenschutzkonform</strong></div>
+      <div class="hm">🌱 <strong>Neuer Start leicht gemacht</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ NAV ════ -->
+<nav class="nav-wrap">
+  <div class="nav-outer" id="navOuter">
+    <div class="nav-scroll" id="navScroll">
+      <button class="ntab on"  onclick="go('story',this)">📖 Geschichte</button>
+      <button class="ntab" onclick="go('steps',this)">🪜 Schritte</button>
+      <button class="ntab" onclick="go('roles',this)">👥 Rollen & Output</button>
+      <button class="ntab" onclick="go('pitfalls',this)">⚠️ Stolpersteine</button>
+      <button class="ntab" onclick="go('transfer',this)">🚀 Ab Montag</button>
+      <button class="ntab" onclick="go('cheat',this)">📋 Cheat-Sheet</button>
+      <button class="ntab" onclick="go('overview',this)">🗺️ Alle 4 Workflows</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════ STORY ════ -->
+<div id="tab-story" class="panel on">
+  <div class="kicker">Kontext</div>
+  <div class="panel-h">Die Geschichte dahinter</div>
+  <p class="panel-sub">Warum lohnt sich dieser Workflow – und was macht er anders als eine normale Einführung?</p>
+
+  <div class="scenario">
+    <div class="sc-head">
+      <div class="lbl">Szenario</div>
+      <h3>Kita Sonnenschein – Lena beginnt am Montag</h3>
+      <p>Eine neue Ergänzungskraft startet. Das Team freut sich – aber wer erklärt ihr eigentlich alles? Wo stehen die Hausregeln? Wer ist wofür zuständig? Welche Fortbildungen gibt es?</p>
+    </div>
+    <div class="sc-body">
+      <p>Statt Lena am ersten Tag mit einem ausgedruckten Zettelstapel zu empfangen oder sie durch mündliche Erklärungen zu überfordern, baut Mentorin Petra in 20 Minuten ein digitales Willkommenspaket: ein Dokument mit allem Wichtigen, ein QR-Code an der Garderobe, eine persönliche Nachricht im Chat und eine Kursliste für die ersten Wochen.</p>
+      <p><strong>Das Ergebnis:</strong> Lena findet sich selbstständig zurecht. Weniger Erklärungsaufwand im Alltag. Und das Onboarding-Dokument ist beim nächsten Neuzugang sofort wieder nutzbar.</p>
+    </div>
+  </div>
+
+  <div class="why-cards">
+    <div class="wy">
+      <div class="wi">📄</div>
+      <p><strong>Alles an einem Ort</strong> – ein Dokument statt mündlicher Informationsflut am ersten Tag.</p>
+    </div>
+    <div class="wy">
+      <div class="wi">♻️</div>
+      <p><strong>Wiederverwendbar</strong> – das Willkommensdokument funktioniert bei jeder neuen Kollegin.</p>
+    </div>
+    <div class="wy">
+      <div class="wi">🎓</div>
+      <p><strong>Lernkultur fördern</strong> – passende Kurse und Materialien direkt beim Start empfehlen.</p>
+    </div>
+    <div class="wy">
+      <div class="wi">🏷️</div>
+      <p><strong>QR-Code am Eingang</strong> – Lena scannt, öffnet alle Infos – kein Suchen, kein Fragen.</p>
+    </div>
+  </div>
+
+  <div class="kicker" style="margin-bottom:8px">Beteiligte</div>
+  <p class="panel-sub" style="margin-bottom:20px">Drei Rollen – wer tut was, wer braucht was.</p>
+
+  <div class="personas">
+    <div class="per">
+      <div class="per-av" style="background:var(--sage-light)">🧑‍🏫</div>
+      <div class="per-role" style="color:var(--sage)">Mentorin</div>
+      <h4>Petra (Fachkraft)</h4>
+      <p>Erstellt das Willkommensdokument und begleitet die neue Kollegin.</p>
+      <span class="ptag pt-a">Account ✓</span>
+    </div>
+    <div class="per">
+      <div class="per-av" style="background:var(--plum-light)">👩‍💼</div>
+      <div class="per-role" style="color:var(--plum)">Leitung (Erstzugang)</div>
+      <h4>Sandra</h4>
+      <p>Richtet den Account ein, übernimmt ggf. Kurzlink und Lesezeichen.</p>
+      <span class="ptag pt-a">Account ✓</span>
+    </div>
+    <div class="per">
+      <div class="per-av" style="background:var(--teal-light)">🌱</div>
+      <div class="per-role" style="color:var(--teal)">Neue Kollegin</div>
+      <h4>Lena</h4>
+      <p>Empfängt alles über QR-Code und Chat-Direktnachricht – braucht nur Schritt für Schritt einen Account.</p>
+      <span class="ptag pt-n">Account folgt</span>
+    </div>
+  </div>
+
+  <div class="callout c-sage">
+    <div class="ic">💡</div>
+    <div><strong>Wichtig beim Kurs-Schritt:</strong> Darauf hinweisen, wo Lena einen eigenen KITA HUB Account beantragen kann – manche Kurse sind nur mit Account nutzbar. Das früh kommunizieren spart Fragen!</div>
+  </div>
+</div>
+
+<!-- ════ STEPS ════ -->
+<div id="tab-steps" class="panel">
+  <div class="kicker">Schritt für Schritt</div>
+  <div class="panel-h">Das digitale Willkommenspaket bauen</div>
+  <p class="panel-sub">Klappe jeden Schritt auf für Details. Markiere was erledigt ist – und am Ende habt ihr ein komplettes Onboarding-Paket.</p>
+
+  <div class="prog-bar">
+    <div class="pb-lbl">Fortschritt</div>
+    <div class="pb-track"><div class="pb-fill" id="pbf"></div></div>
+    <div class="pb-ct" id="pbc">0 / 6</div>
+  </div>
+
+  <div class="tl">
+
+    <!-- S1 -->
+    <div class="tl-row">
+      <div class="tl-spine">
+        <div class="tl-dot d1" onclick="xs(1)" id="dot1">1</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <span class="svc sv1">📝 Notizen</span>
+        <h3 onclick="xs(1)">Willkommensdokument erstellen</h3>
+        <p class="ld">Das Herzstück des Onboardings: ein strukturiertes Dokument mit allem, was Lena am ersten Tag braucht.</p>
+        <button class="toggle" onclick="xs(1)" id="tgl1"><span class="chevr">›</span> Details</button>
+        <div class="detail" id="det1">
+          <a class="ext-link" href="https://notizen.kita.bayern" target="_blank">🔗 notizen.kita.bayern öffnen</a>
+          <div class="how-box">
+            <ol>
+              <li><strong>Einloggen</strong> – mit Account, damit das Dokument dauerhaft gespeichert bleibt</li>
+              <li><strong>Neues Dokument anlegen</strong> – Titel: <em>„Willkommen in der Kita Sonnenschein 🌱"</em></li>
+              <li><strong>Struktur aufbauen:</strong>
+                <ul style="padding-left:18px; margin-top:4px">
+                  <li>Willkommenstext (persönlich!)</li>
+                  <li>Wichtige Ansprechpersonen (Wer ist wofür zuständig?)</li>
+                  <li>Abläufe des Alltags (Übergaben, Pausen, Dienstplan)</li>
+                  <li>Hausregeln & Wichtiges (Küche, Schlüssel, Ablage)</li>
+                  <li>Linksammlung (folgt in den nächsten Schritten)</li>
+                </ul>
+              </li>
+              <li><strong>Link kopieren</strong> – wird in Schritt 3 für den QR-Code gebraucht</li>
+            </ol>
+          </div>
+          <div class="callout c-sage">
+            <div class="ic">💡</div>
+            <div>Das Dokument ist <strong>wiederverwendbar</strong> – beim nächsten Onboarding einfach duplizieren und anpassen. Zeitinvestition lohnt sich sofort!</div>
+          </div>
+          <div class="callout c-warn">
+            <div class="ic">⚠️</div>
+            <div>Gastnotiz-Link <strong>immer direkt sichern</strong> und in den Chat-Kanal posten. Mit Account bleibt das Dokument dauerhaft im Dashboard.</div>
+          </div>
+          <button class="done-b" id="db1" onclick="md(1)">✓ Erledigt markieren</button>
+          <span class="done-lbl" id="dl1">✓ Erledigt!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="tl-row">
+      <div class="tl-spine">
+        <div class="tl-dot d2" onclick="xs(2)" id="dot2">2</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <span class="svc sv2">🌿 Medienecke</span>
+        <h3 onclick="xs(2)">Einarbeitungsmaterialien zusammenstellen</h3>
+        <p class="ld">Passende Fachimpulse, Praxisanleitungen und Grundlagenmaterial für den Start – als Sammlung mit Kurzlink direkt ins Willkommensdokument eingebaut.</p>
+        <button class="toggle" onclick="xs(2)" id="tgl2"><span class="chevr">›</span> Details</button>
+        <div class="detail" id="det2">
+          <a class="ext-link" href="https://mediensuche.kita.bayern" target="_blank">🔗 mediensuche.kita.bayern öffnen</a>
+          <div class="how-box">
+            <ol>
+              <li><strong>Suchbegriff eingeben:</strong> z. B. <em>„Einarbeitung"</em>, <em>„Grundlagen Kita"</em>, <em>„Beobachtung"</em>, <em>„Eingewöhnung"</em></li>
+              <li><strong>3–5 passende Materialien auswählen</strong> – die für neue Kräfte besonders hilfreich sind</li>
+              <li><strong>Links kopieren</strong> und direkt in die Linksammlung im Willkommensdokument einfügen</li>
+              <li><strong>Optional: Kurzlink zur Sammlung erstellen</strong> bei link.kita.bayern und in die Notiz einbauen</li>
+            </ol>
+          </div>
+          <div class="callout c-gold">
+            <div class="ic">🎯</div>
+            <div>Tipp: Materialien auswählen, die für <strong>alle Rollen</strong> (Fachkraft, Ergänzungskraft, Azubi) verständlich sind – so bleibt das Dokument flexibel einsetzbar.</div>
+          </div>
+          <button class="done-b" id="db2" onclick="md(2)">✓ Erledigt markieren</button>
+          <span class="done-lbl" id="dl2">✓ Erledigt!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="tl-row">
+      <div class="tl-spine">
+        <div class="tl-dot d3" onclick="xs(3)" id="dot3">3</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <span class="svc sv3">🔗 Kurzlink</span>
+        <h3 onclick="xs(3)">QR-Code zum Willkommensdokument</h3>
+        <p class="ld">Ein QR-Code an der Garderobe oder im Teamraum – Lena scannt, öffnet alles auf dem Handy. Kein Suchen, kein Fragen.</p>
+        <button class="toggle" onclick="xs(3)" id="tgl3"><span class="chevr">›</span> Details</button>
+        <div class="detail" id="det3">
+          <a class="ext-link" href="https://link.kita.bayern" target="_blank">🔗 link.kita.bayern öffnen</a>
+          <div class="how-box">
+            <ol>
+              <li><strong>Mit Account einloggen</strong> – für spätere Bearbeitbarkeit unbedingt nötig!</li>
+              <li><strong>Notizen-Link einfügen</strong> (aus Schritt 1)</li>
+              <li><strong>Sprechende Endung vergeben:</strong> z. B. <em>/willkommen</em> oder <em>/kita-start</em></li>
+              <li><strong>QR-Code als PNG herunterladen</strong> – ausdrucken und an der Garderobe / Pinnwand aufhängen</li>
+            </ol>
+          </div>
+          <div class="callout c-plum">
+            <div class="ic">📌</div>
+            <div>Der QR-Code bleibt dauerhaft nutzbar. Bei der nächsten neuen Kraft einfach das Dokument aktualisieren – der QR-Code und der Kurzlink bleiben gleich!</div>
+          </div>
+          <div class="callout c-warn">
+            <div class="ic">⚠️</div>
+            <div>Ohne Account nicht bearbeitbar. Immer mit Account anlegen – sonst müsst ihr beim nächsten Onboarding einen neuen QR-Code drucken.</div>
+          </div>
+          <button class="done-b" id="db3" onclick="md(3)">✓ Erledigt markieren</button>
+          <span class="done-lbl" id="dl3">✓ Erledigt!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="tl-row">
+      <div class="tl-spine">
+        <div class="tl-dot d4" onclick="xs(4)" id="dot4">4</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <span class="svc sv4">💬 Chat</span>
+        <h3 onclick="xs(4)">Direktnachricht mit Willkommenspaket</h3>
+        <p class="ld">Eine persönliche Nachricht an Lena – mit Willkommensgruß, allen Links und kurzen Erklärungen. Ihr erster Kontaktpunkt auf dem KITA HUB.</p>
+        <button class="toggle" onclick="xs(4)" id="tgl4"><span class="chevr">›</span> Details</button>
+        <div class="detail" id="det4">
+          <a class="ext-link" href="https://chat.kita.bayern" target="_blank">🔗 chat.kita.bayern öffnen</a>
+          <div class="how-box">
+            <ol>
+              <li><strong>Direktnachricht an Lena starten</strong> (sobald sie ihren Account hat)</li>
+              <li><strong>Nachricht aufbauen:</strong>
+                <ul style="padding-left:18px; margin-top:4px">
+                  <li>Herzlicher Willkommensgruß</li>
+                  <li>Link zum Willkommensdokument + kurze Erklärung</li>
+                  <li>Links zu den Medienecke-Materialien</li>
+                  <li>Kursempfehlung (aus Schritt 5)</li>
+                  <li>Angebot für Fragen: <em>„Schreib mir einfach hier!"</em></li>
+                </ul>
+              </li>
+              <li><strong>Optional: Ins Team-Kanal einladen</strong> – Lena als neues Mitglied hinzufügen und vorstellen</li>
+            </ol>
+          </div>
+          <div class="callout c-sky">
+            <div class="ic">💡</div>
+            <div>Die Direktnachricht ist Lenas erster Eindruck vom KITA HUB. <strong>Persönlich und einladend formulieren</strong> – das senkt die Hemmschwelle, die neue Plattform wirklich zu nutzen.</div>
+          </div>
+          <button class="done-b" id="db4" onclick="md(4)">✓ Erledigt markieren</button>
+          <span class="done-lbl" id="dl4">✓ Erledigt!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="tl-row">
+      <div class="tl-spine">
+        <div class="tl-dot d5" onclick="xs(5)" id="dot5">5</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <span class="svc sv5">📚 Kurse</span>
+        <h3 onclick="xs(5)">Passenden Einführungskurs empfehlen</h3>
+        <p class="ld">Ein niedrigschwelliger Kurs zum Start – manche sind offen, ohne dass ein Account nötig ist.</p>
+        <button class="toggle" onclick="xs(5)" id="tgl5"><span class="chevr">›</span> Details</button>
+        <div class="detail" id="det5">
+          <a class="ext-link" href="https://kurse.kita.bayern" target="_blank">🔗 kurse.kita.bayern öffnen</a>
+          <div class="how-box">
+            <ol>
+              <li><strong>Passenden Kurs suchen:</strong> z. B. Grundlagen der Frühpädagogik, Eingewöhnung, Beobachtung und Dokumentation</li>
+              <li><strong>Link zum Kurs kopieren</strong> und in die Chat-Nachricht + Willkommensdokument einfügen</li>
+              <li><strong>Account-Hinweis geben:</strong> Erklären, wie Lena einen KITA HUB Account beantragen kann – manche Kurse erfordern einen</li>
+              <li><strong>Offene Kurse bevorzugen</strong> für den allerersten Start – so gibt es keine Hürde</li>
+            </ol>
+          </div>
+          <div class="callout c-sage">
+            <div class="ic">🎓</div>
+            <div><strong>Account-Hinweis nicht vergessen!</strong> Früh erklären, wie Lena einen eigenen KITA HUB Account beantragt – das spart später viele Rückfragen und öffnet Zugang zu mehr Kursen.</div>
+          </div>
+          <div class="callout c-gold">
+            <div class="ic">💡</div>
+            <div>Offene Kurse ohne Registrierung sind ideal als <strong>erster Einstieg</strong> – Lena kann sofort loslegen, bevor der Account eingerichtet ist.</div>
+          </div>
+          <button class="done-b" id="db5" onclick="md(5)">✓ Erledigt markieren</button>
+          <span class="done-lbl" id="dl5">✓ Erledigt!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S6 -->
+    <div class="tl-row">
+      <div class="tl-spine">
+        <div class="tl-dot d6" onclick="xs(6)" id="dot6">6</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <span class="svc sv6">🔖 Lesezeichen</span>
+        <h3 onclick="xs(6)">Dashboard mit Lesezeichen personalisieren</h3>
+        <p class="ld">Die wichtigsten Seiten als Lesezeichen auf Lenas KITA HUB Dashboard – so findet sie sich sofort zurecht.</p>
+        <button class="toggle" onclick="xs(6)" id="tgl6"><span class="chevr">›</span> Details</button>
+        <div class="detail" id="det6">
+          <div class="how-box">
+            <ol>
+              <li><strong>Lenas Dashboard öffnen</strong> (gemeinsam oder mit Anleitung)</li>
+              <li><strong>Lesezeichen hinzufügen</strong> für:
+                <ul style="padding-left:18px; margin-top:4px">
+                  <li>Das Willkommensdokument (direkt erreichbar)</li>
+                  <li>Relevante Medienecke-Suche (z. B. mit Voreinstellung)</li>
+                  <li>Den Team-Chat-Kanal</li>
+                  <li>Den empfohlenen Einführungskurs</li>
+                </ul>
+              </li>
+              <li><strong>Kurze Erklärung geben:</strong> Was sind Lesezeichen, wie ergänzt man sie selbst?</li>
+            </ol>
+          </div>
+          <div class="callout c-sky">
+            <div class="ic">🔖</div>
+            <div>Lesezeichen brauchen einen Account und erscheinen <strong>nur auf Lenas eigenem Dashboard</strong>. Dieser Schritt ist ein Tipp, den ihr ihr zeigt – sie kann es dann selbst weiterentwickeln.</div>
+          </div>
+          <button class="done-b" id="db6" onclick="md(6)">✓ Erledigt markieren</button>
+          <span class="done-lbl" id="dl6">✓ Erledigt!</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tl -->
+
+  <div id="success">
+    <div class="sic">🎉</div>
+    <h3>Willkommenspaket fertig!</h3>
+    <p>Lena findet sich selbstständig zurecht – weniger Erklärungsaufwand, mehr Zeit für die Kinder.</p>
+  </div>
+</div>
+
+<!-- ════ ROLLEN ════ -->
+<div id="tab-roles" class="panel">
+  <div class="kicker">Rollen & Artefakte</div>
+  <div class="panel-h">Wer baut was – was entsteht?</div>
+  <p class="panel-sub">Klare Verantwortlichkeiten und sechs konkrete Outputs, die beim nächsten Onboarding wiederverwendet werden können.</p>
+
+  <div class="role-row">
+    <div class="role-card rc1">
+      <div class="rem">🧑‍🏫</div>
+      <h3>Mentorin</h3>
+      <p>Erstellt Willkommensdokument, sucht Materialien in der Medienecke, schreibt die persönliche Direktnachricht im Chat.</p>
+      <span class="rb">Schritte 1 · 2 · 4</span>
+    </div>
+    <div class="role-card rc2">
+      <div class="rem">👩‍💼</div>
+      <h3>Leitung (Erstzugang)</h3>
+      <p>Legt den Account für Lena an, richtet den Kurzlink/QR-Code ein, empfiehlt Einführungskurse, zeigt die Lesezeichen-Funktion.</p>
+      <span class="rb" style="background:var(--plum-light);color:var(--plum)">Schritte 3 · 5 · 6</span>
+    </div>
+  </div>
+
+  <div class="callout c-sage" style="margin-bottom:28px">
+    <div class="ic">🔄</div>
+    <div><strong>Nächstes Mal schneller:</strong> Das Willkommensdokument ist eine Vorlage – duplizieren, Namen anpassen, fertig. Der Kurzlink und QR-Code bleiben gleich. Der zweite Onboarding-Prozess dauert nur noch 5 Minuten.</div>
+  </div>
+
+  <hr class="hr">
+  <div class="kicker" style="margin-bottom:8px">Was entsteht</div>
+  <p class="panel-sub" style="margin-bottom:18px">Sechs Artefakte – alle beim nächsten Onboarding wieder einsetzbar.</p>
+
+  <div class="art-wrap">
+    <div class="art">
+      <div class="a-ico" style="background:var(--sage-light)">📄</div>
+      <div><h4>Willkommensdokument</h4><p>Alles Wichtige an einem Ort</p></div>
+    </div>
+    <div class="art">
+      <div class="a-ico" style="background:var(--gold-light)">🌿</div>
+      <div><h4>Medienecke-Sammlung</h4><p>Kuratierte Einarbeitungsmaterialien</p></div>
+    </div>
+    <div class="art">
+      <div class="a-ico" style="background:var(--plum-light)">🔗</div>
+      <div><h4>Kurzlink + QR-Code</h4><p>Zum Ausdrucken &amp; Aushängen</p></div>
+    </div>
+    <div class="art">
+      <div class="a-ico" style="background:var(--teal-light)">💬</div>
+      <div><h4>Direktnachricht im Chat</h4><p>Persönlicher Willkommensgruß</p></div>
+    </div>
+    <div class="art">
+      <div class="a-ico" style="background:var(--rose-light)">📚</div>
+      <div><h4>Kursliste / Empfehlung</h4><p>Passende Fortbildung für den Start</p></div>
+    </div>
+    <div class="art">
+      <div class="a-ico" style="background:var(--sky-light)">🔖</div>
+      <div><h4>Lesezeichen im Dashboard</h4><p>Wichtige Seiten immer griffbereit</p></div>
+    </div>
+  </div>
+
+  <div class="nutzen">
+    „Neue Kollegin findet sich selbstständig zurecht – weniger Erklärungsaufwand im Alltag. Und beim nächsten Onboarding: einfach duplizieren."
+  </div>
+</div>
+
+<!-- ════ STOLPERSTEINE ════ -->
+<div id="tab-pitfalls" class="panel">
+  <div class="kicker">Häufige Hürden</div>
+  <div class="panel-h">Stolpersteine & Lösungen</div>
+  <p class="panel-sub">Klicke auf eine Karte – und du siehst die Lösung. Besser vorbereitet als überrascht.</p>
+
+  <div class="pit-col">
+    <div class="pit" onclick="fp(this)">
+      <div class="pit-top">
+        <span class="pi">📝</span>
+        <h4>Gastnotiz-Link verloren – kein Zugriff mehr auf das Willkommensdokument</h4>
+        <span class="pa">›</span>
+      </div>
+      <div class="pit-ans">
+        <div class="sol-tag">✓ Lösung</div>
+        <p>Den Notizen-Link <strong>sofort nach dem Anlegen in den Chat posten</strong>. Mit Account ist das Dokument dauerhaft im Dashboard gespeichert. Für ein dauerhaft nutzbares Onboarding-Dokument unbedingt mit Account arbeiten!</p>
+      </div>
+    </div>
+    <div class="pit" onclick="fp(this)">
+      <div class="pit-top">
+        <span class="pi">🔗</span>
+        <h4>Kurzlink ohne Account – beim nächsten Onboarding nicht mehr änderbar</h4>
+        <span class="pa">›</span>
+      </div>
+      <div class="pit-ans">
+        <div class="sol-tag">✓ Lösung</div>
+        <p>Kurzlinks für das Onboarding immer <strong>mit Account anlegen</strong>. So kann das Linkziel aktualisiert werden, ohne einen neuen QR-Code drucken zu müssen – der ausgelegte QR-Code bleibt dauerhaft gültig.</p>
+      </div>
+    </div>
+    <div class="pit" onclick="fp(this)">
+      <div class="pit-top">
+        <span class="pi">🔐</span>
+        <h4>Neue Kollegin hat noch keinen Account – Chat und Kurse nicht zugänglich</h4>
+        <span class="pa">›</span>
+      </div>
+      <div class="pit-ans">
+        <div class="sol-tag">✓ Lösung</div>
+        <p>Schritte 1–3 funktionieren <strong>ohne Account</strong>: QR-Code scannen, Dokument lesen, Materialien anschauen. Die <strong>Account-Beantragung frühzeitig kommunizieren</strong> – am besten schon vor dem ersten Arbeitstag. Offene Kurse ohne Account als Einstieg nutzen.</p>
+      </div>
+    </div>
+    <div class="pit" onclick="fp(this)">
+      <div class="pit-top">
+        <span class="pi">💬</span>
+        <h4>Chat-Direktnachricht kommt nicht an – neue Kollegin sieht sie nicht</h4>
+        <span class="pa">›</span>
+      </div>
+      <div class="pit-ans">
+        <div class="sol-tag">✓ Lösung</div>
+        <p>Sicherstellen, dass Lena den Chat auf dem Gerät geöffnet hat und <strong>Benachrichtigungen aktiviert</strong> sind. Alternativ: Link zum Willkommensdokument auch als QR-Code aushängen – so ist der Zugang nicht vom Chat abhängig.</p>
+      </div>
+    </div>
+    <div class="pit" onclick="fp(this)">
+      <div class="pit-top">
+        <span class="pi">📱</span>
+        <h4>iPad: Chat-Nutzung eingeschränkt</h4>
+        <span class="pa">›</span>
+      </div>
+      <div class="pit-ans">
+        <div class="sol-tag">✓ Lösung</div>
+        <p>Die <strong>Element-App für iOS</strong> empfehlen oder den Chat browser-basiert nutzen. Der QR-Code-Aushang sorgt dafür, dass das Willkommensdokument unabhängig vom Chat erreichbar bleibt.</p>
+      </div>
+    </div>
+    <div class="pit" onclick="fp(this)">
+      <div class="pit-top">
+        <span class="pi">📚</span>
+        <h4>Kurs setzt Account voraus – Lena kommt nicht rein</h4>
+        <span class="pa">›</span>
+      </div>
+      <div class="pit-ans">
+        <div class="sol-tag">✓ Lösung</div>
+        <p>Für den Start <strong>offene Kurse ohne Registrierung</strong> bevorzugen. Gleichzeitig frühzeitig erklären, wie Lena ihren Account beantragt – dann kann sie später auch auf geschlossene Kurse zugreifen.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hr">
+  <div class="kicker" style="margin-bottom:12px">Skalierung</div>
+  <div class="sc-row">
+    <div class="sct">
+      <span class="sct-lbl" style="color:#b91c1c">⏱ Zu wenig Zeit?</span>
+      <ul>
+        <li>Nur Schritte 1 + 3 (Dokument + QR)</li>
+        <li>Materialien-Sammlung als TODO markieren</li>
+        <li>Lesezeichen als Selbstlernauftrag für Lena</li>
+      </ul>
+    </div>
+    <div class="sct">
+      <span class="sct-lbl" style="color:var(--sage)">🚀 Mehr Zeit?</span>
+      <ul>
+        <li>Dokument gemeinsam im Team gestalten</li>
+        <li>Vorlage für zukünftige Onboardings optimieren</li>
+        <li>Lena zeigt das Dokument selbst – Feedbackrunde</li>
+      </ul>
+    </div>
+    <div class="sct">
+      <span class="sct-lbl" style="color:var(--plum)">👥 Heterogene Gruppe?</span>
+      <ul>
+        <li>Schritte 1–2 angeleitetes Nachmachen</li>
+        <li>Schritte 3–6 selbstständig in Gruppen</li>
+        <li>Azubis übernehmen Medienecke-Recherche</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════ TRANSFER ════ -->
+<div id="tab-transfer" class="panel">
+  <div class="kicker">Umsetzung</div>
+  <div class="panel-h">Ab Montag – nächste neue Kollegin</div>
+  <p class="panel-sub">Hake ab, was bereits geklärt ist – und legt die Vorlage an, bevor die nächste Kraft beginnt.</p>
+
+  <div class="cl">
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Account-Check:</strong> Mentorin und Leitung haben einen KITA HUB Account, der Notizen, Kurzlinks und Chat ermöglicht.</p>
+    </div>
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Willkommensdokument-Vorlage anlegt:</strong> Struktur und Inhalt vorbereitet – beim nächsten Mal nur duplizieren und anpassen.</p>
+    </div>
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Medienecke durchsucht:</strong> 3–5 Materialien für neue Kräfte kuratiertausgewählt und verlinkt.</p>
+    </div>
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Kurzlink mit Account angelegt:</strong> QR-Code gedruckt und an Garderobe / Pinnwand aufgehängt.</p>
+    </div>
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Kursempfehlung ausgewählt:</strong> Link zum offenen Einführungskurs im Dokument und in der Chat-Nachricht hinterlegt.</p>
+    </div>
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Account-Antragsinfo bereit:</strong> Wir wissen, wie neue Kolleg:innen einen KITA HUB Account beantragen können – und kommunizieren das früh.</p>
+    </div>
+    <div class="ci" onclick="tc(this)">
+      <div class="ci-box"></div>
+      <p><strong>Chat-Direktnachricht vorformuliert:</strong> Herzlicher Willkommenstext mit allen Links – beim nächsten Mal nur Namen anpassen.</p>
+    </div>
+  </div>
+
+  <div class="commit">
+    <h3>Unser Team-Commitment</h3>
+    <p>Wir bauen die Onboarding-Vorlage bis zum nächsten Neuzugang.</p>
+    <div class="fg2">
+      <div class="cf">
+        <label>Nächste neue Kollegin / Startdatum</label>
+        <input type="text" placeholder="z. B. Lena, Start 07.04.">
+      </div>
+      <div class="cf">
+        <label>Mentorin</label>
+        <input type="text" placeholder="Name der Person">
+      </div>
+    </div>
+    <div class="fg2">
+      <div class="cf">
+        <label>Dokument-Vorlage fertig bis</label>
+        <input type="text" placeholder="z. B. Fr, 04.04. – 3 Tage vorher">
+      </div>
+      <div class="cf">
+        <label>Zuständig: Kurzlink & QR-Code</label>
+        <input type="text" placeholder="Name der Person">
+      </div>
+    </div>
+    <div class="fg2 w1">
+      <div class="cf">
+        <label>Was beobachten wir nach 14 Tagen?</label>
+        <input type="text" placeholder="z. B. Hat Lena weniger Fragen gestellt als bisherige neue Kräfte?">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CHEAT ════ -->
+<div id="tab-cheat" class="panel">
+  <div class="kicker">Alle Links</div>
+  <div class="panel-h">Cheat-Sheet</div>
+  <p class="panel-sub">Direkte Links zu allen Diensten dieses Workflows – kopieren und sofort loslegen.</p>
+
+  <div class="cheat">
+    <div class="cc">
+      <h4>📝 Notizen</h4>
+      <span class="u">notizen.kita.bayern</span>
+      <span class="n">Account: Speichern ✅ / Gast ❌</span>
+      <button class="cp" onclick="cpo(this,'https://notizen.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cc">
+      <h4>🌿 Medienecke</h4>
+      <span class="u">mediensuche.kita.bayern</span>
+      <span class="n">Account: ❌ Nein – frei nutzbar</span>
+      <button class="cp" onclick="cpo(this,'https://mediensuche.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cc">
+      <h4>🔗 Kurzlink / QR</h4>
+      <span class="u">link.kita.bayern</span>
+      <span class="n">Account: Kürzen ❌ / Verwalten ✅</span>
+      <button class="cp" onclick="cpo(this,'https://link.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cc">
+      <h4>💬 Chat</h4>
+      <span class="u">chat.kita.bayern</span>
+      <span class="n">Account: ✅ Ja</span>
+      <button class="cp" onclick="cpo(this,'https://chat.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cc">
+      <h4>📚 Kurse</h4>
+      <span class="u">kurse.kita.bayern</span>
+      <span class="n">Account: Teils offen ohne Account</span>
+      <button class="cp" onclick="cpo(this,'https://kurse.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cc">
+      <h4>🏠 KITA HUB Start</h4>
+      <span class="u">kita.bayern/webapp</span>
+      <span class="n">Einmal anmelden – alle Dienste</span>
+      <button class="cp" onclick="cpo(this,'https://www.kita.bayern/webapp')">Kopieren</button>
+    </div>
+  </div>
+
+  <div class="help">
+    <h4>📞 Starthilfe bei Fragen</h4>
+    <p>E-Mail: <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a><br>
+    Telefon: <a href="tel:+4996219655219910">+49 9621 96552 1991</a></p>
+  </div>
+</div>
+
+<!-- ════ OVERVIEW ════ -->
+<div id="tab-overview" class="panel">
+  <div class="kicker">Abschluss</div>
+  <div class="panel-h">Alle vier Workflows im Überblick</div>
+  <p class="panel-sub">Der KITA HUB ist ein Ökosystem – der Nutzen entsteht in der Kombination der Dienste. Hier alle vier Workflows auf einen Blick.</p>
+
+  <div class="wf-overview">
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#2ec4a9">1</div>
+      <h4>Fachwissen ins Team bringen</h4>
+      <p>Medienecke → Kurzlink → Chat → Termine → Meeting</p>
+      <span class="wf-badge">~15 Min.</span>
+    </div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#2563eb">2</div>
+      <h4>Teamsitzung digital vorbereiten</h4>
+      <p>Notizen → Kurzlink → Chat → Termine → (Meeting)</p>
+      <span class="wf-badge">~20 Min.</span>
+    </div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#c2410c">3</div>
+      <h4>Elternabend hybrid organisieren</h4>
+      <p>Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat</p>
+      <span class="wf-badge">~20 Min.</span>
+    </div>
+    <div class="wf-tile current">
+      <div class="wf-num" style="background:var(--sage)">4</div>
+      <h4>Neue Kolleg:in einarbeiten</h4>
+      <p>Notizen → Medienecke → Kurzlink → Chat → Kurse → Lesezeichen</p>
+      <span class="wf-badge">~20 Min.</span>
+    </div>
+  </div>
+
+  <div style="background:var(--ink); border-radius:20px; padding:32px 36px; color:white; position:relative; overflow:hidden;">
+    <div style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:100px; opacity:.05;">🌐</div>
+    <div class="kicker" style="color:var(--sage-mid)">Gemeinsamer Kern</div>
+    <p style="font-family:'DM Serif Display',serif; font-size:20px; line-height:1.5; color:white; margin-bottom:16px;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
+    <p style="font-size:14px; color:rgba(255,255,255,.55); line-height:1.7; font-weight:300;">Ein Team, das Workflow 1 beherrscht, hat Chat und Kurzlink bereits im Griff. Wer Workflow 2 umsetzt, kennt Notizen und Termine. So baut jeder Workflow auf dem vorherigen auf – und nach Workflow 4 nutzt das Team alle zehn Dienste des KITA HUB sicher und regelmäßig.</p>
+
+    <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);">
+      <div style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px;">Starthilfe</div>
+      <p style="font-size:14px; color:rgba(255,255,255,.65);">
+        <a href="mailto:starthilfe@kita.bayern" style="color:var(--sage-mid); font-weight:700; text-decoration:none;">starthilfe@kita.bayern</a> &nbsp;·&nbsp;
+        <a href="tel:+4996219655219910" style="color:var(--sage-mid); font-weight:700; text-decoration:none;">+49 9621 96552 1991</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Erstellt für die <strong style="color:white">Pixelwerkstatt</strong> · Team-Tag KITA HUB · Stand März 2026<br>
+  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a>
+</div>
+
+<script>
+  // ── Tabs ──
+  function go(name, btn) {
+    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('on'); });
+    document.querySelectorAll('.ntab').forEach(function(b) { b.classList.remove('on'); });
+    document.getElementById('tab-' + name).classList.add('on');
+    btn.classList.add('on');
+  }
+
+  // ── Nav overflow fade indicator ──
+  function checkNavOverflow() {
+    var scroll = document.getElementById('navScroll');
+    var outer  = document.getElementById('navOuter');
+    if (scroll && outer) {
+      outer.classList.toggle('has-overflow', scroll.scrollWidth > scroll.clientWidth + 4);
+    }
+  }
+  window.addEventListener('load', checkNavOverflow);
+  window.addEventListener('resize', checkNavOverflow);
+
+  // ── Steps expand/collapse ──
+  function xs(n) {
+    var det  = document.getElementById('det' + n);
+    var tgl  = document.getElementById('tgl' + n);
+    var open = det.classList.contains('open');
+    det.classList.toggle('open');
+    tgl.classList.toggle('open');
+    tgl.innerHTML = open
+      ? '<span class="chevr">\u203a</span> Details'
+      : '<span class="chevr" style="transform:rotate(90deg)">\u203a</span> Schlie\u00dfen';
+  }
+
+  // ── Mark step done ──
+  var dones = new Set();
+  function md(n) {
+    if (dones.has(n)) return;
+    dones.add(n);
+    var btn = document.getElementById('db' + n);
+    btn.textContent = '\u2713 Erledigt';
+    btn.classList.add('done');
+    btn.disabled = true;
+    document.getElementById('dl' + n).classList.add('show');
+    var dot = document.getElementById('dot' + n);
+    dot.textContent = '\u2713';
+    dot.classList.add('ck');
+    var pct = (dones.size / 6) * 100;
+    document.getElementById('pbf').style.width = pct + '%';
+    document.getElementById('pbc').textContent = dones.size + ' / 6';
+    if (dones.size === 6) {
+      document.getElementById('success').style.display = 'block';
+    }
+  }
+
+  // ── Pitfall accordion ──
+  function fp(el) { el.classList.toggle('open'); }
+
+  // ── Transfer checklist ──
+  function tc(el) {
+    el.classList.toggle('ck');
+    el.querySelector('.ci-box').textContent = el.classList.contains('ck') ? '\u2713' : '';
+  }
+
+  // ── Copy to clipboard ──
+  function cpo(btn, url) {
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = '\u2713 Kopiert';
+      btn.classList.add('ok');
+      setTimeout(function() { btn.textContent = 'Kopieren'; btn.classList.remove('ok'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

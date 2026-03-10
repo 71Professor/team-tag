@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflow 1 – Fachwissen ins Team bringen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #2ec4a9;
+    --mint-light: #e8faf7;
+    --mint-mid: #a8e8df;
+    --yellow: #f5c842;
+    --yellow-light: #fffbe8;
+    --green: #4caf78;
+    --green-light: #e8f7ee;
+    --coral: #e8614a;
+    --coral-light: #fdf0ee;
+    --ink: #1a2235;
+    --ink-soft: #3d4f6a;
+    --paper: #fafaf8;
+    --border: #e2e8f0;
+    --shadow: 0 4px 24px rgba(26,34,53,0.10);
+    --shadow-lg: 0 12px 48px rgba(26,34,53,0.16);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--ink);
+    color: white;
+    padding: 64px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(46,196,169,0.25) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,200,66,0.18) 0%, transparent 70%);
+    bottom: -150px; left: -80px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46,196,169,0.18);
+    border: 1px solid rgba(46,196,169,0.35);
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--mint); }
+  .hero p {
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+    max-width: 580px;
+    margin-bottom: 36px;
+  }
+  .hero-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .flow-chip {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .flow-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .flow-arrow { color: rgba(255,255,255,0.35); font-size: 18px; }
+  .hero-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+  }
+  .hero-meta-item span { color: white; font-weight: 500; }
+
+  /* Nav */
+  .nav-tabs {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-tabs-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 16px 20px;
+    border: none;
+    background: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active {
+    color: var(--mint);
+    border-bottom-color: var(--mint);
+    font-weight: 600;
+  }
+
+  /* Sections */
+  .section {
+    display: none;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    animation: fadeUp 0.35s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+
+  /* Story section */
+  .story-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 32px;
+  }
+  .story-header {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a3a5a 100%);
+    padding: 32px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .story-header::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: 180px;
+    color: rgba(255,255,255,0.06);
+    top: -20px; right: 20px;
+    line-height: 1;
+  }
+  .story-header h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--mint);
+  }
+  .story-header p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+  .story-body { padding: 32px; }
+  .story-body p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .story-body p:last-child { margin-bottom: 0; }
+
+  .personas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .persona-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  .persona-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+  .persona-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .persona-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .persona-card .role {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .persona-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+  .tag-account {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-top: 8px;
+  }
+  .tag-yes { background: #e8f4e8; color: var(--green); }
+  .tag-no { background: var(--mint-light); color: var(--mint); }
+
+  /* Steps section */
+  .step-list { display: flex; flex-direction: column; gap: 0; }
+  .step-item {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 56px;
+    flex-shrink: 0;
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  .step-item:hover .step-num { transform: scale(1.1); }
+  .step-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    margin: 4px 0;
+    min-height: 24px;
+  }
+  .step-item:last-child .step-line { display: none; }
+  .step-content {
+    flex: 1;
+    padding: 0 0 32px 20px;
+  }
+  .step-service {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+  .step-content h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .step-content h3:hover { color: var(--mint); }
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .step-actions {
+    display: none;
+    margin-top: 12px;
+  }
+  .step-actions.open { display: block; animation: fadeUp 0.25s ease; }
+  .step-url {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: opacity 0.15s;
+  }
+  .step-url:hover { opacity: 0.85; }
+  .sub-steps {
+    background: #f7f9fc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .sub-steps ol {
+    padding-left: 20px;
+    margin: 0;
+  }
+  .sub-steps li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .sub-steps li:last-child { margin-bottom: 0; }
+  .sub-steps li strong { color: var(--ink); }
+  .tip-box {
+    display: flex;
+    gap: 10px;
+    background: var(--yellow-light);
+    border: 1px solid #f0d870;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #7a6200;
+  }
+  .tip-box .tip-icon { flex-shrink: 0; font-size: 16px; }
+  .warn-box {
+    display: flex;
+    gap: 10px;
+    background: var(--coral-light);
+    border: 1px solid #f0c0b0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8a3020;
+    margin-top: 10px;
+  }
+  .expand-btn {
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mint);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .expand-btn:hover { opacity: 0.8; }
+  .expand-icon { transition: transform 0.2s; display: inline-block; }
+  .expand-btn.open .expand-icon { transform: rotate(90deg); }
+  .step-done {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+    margin-top: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .step-done.visible { opacity: 1; }
+  .done-btn {
+    background: var(--green-light);
+    border: 1.5px solid var(--green);
+    color: var(--green);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s;
+  }
+  .done-btn:hover { background: var(--green); color: white; }
+  .done-btn.done { background: var(--green); color: white; }
+
+  /* Colors per step */
+  .c1 { background: var(--mint); }
+  .c2 { background: var(--yellow); }
+  .c3 { background: var(--green); }
+  .c4 { background: #9b59b6; }
+  .c5 { background: var(--coral); }
+  .service-1 { background: var(--mint-light); color: #1a8a7a; }
+  .service-2 { background: var(--yellow-light); color: #8a6800; }
+  .service-3 { background: var(--green-light); color: #2a7a48; }
+  .service-4 { background: #f3eaff; color: #6b3fa0; }
+  .service-5 { background: var(--coral-light); color: #8a2a18; }
+
+  /* Progress bar */
+  .progress-wrap {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-bar-outer {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mint), var(--green));
+    border-radius: 100px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    width: 0%;
+  }
+  .progress-text { font-size: 14px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+
+  /* Roles section */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .role-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+  }
+  .role-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .role-emoji { font-size: 40px; margin-bottom: 12px; }
+  .role-card h3 { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 8px; }
+  .role-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* Artifacts section */
+  .artifacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .artifact-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all 0.2s;
+  }
+  .artifact-card:hover { box-shadow: var(--shadow); }
+  .artifact-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .artifact-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .artifact-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* Pitfalls section */
+  .pitfall-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .pitfall-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .pitfall-card:hover { box-shadow: var(--shadow); }
+  .pitfall-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .pitfall-icon { font-size: 20px; }
+  .pitfall-header h4 { font-size: 15px; font-weight: 600; flex: 1; }
+  .pitfall-chevron { transition: transform 0.2s; font-size: 14px; color: var(--ink-soft); }
+  .pitfall-card.open .pitfall-chevron { transform: rotate(90deg); }
+  .pitfall-body {
+    display: none;
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .pitfall-card.open .pitfall-body { display: block; animation: fadeUp 0.25s ease; }
+  .pitfall-body p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+  .solution-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+
+  /* Transfer section */
+  .checklist { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .checklist-item:hover { border-color: var(--mint); }
+  .checklist-item.checked {
+    border-color: var(--green);
+    background: var(--green-light);
+  }
+  .check-box {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    font-size: 14px;
+  }
+  .checklist-item.checked .check-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+  .checklist-item p { font-size: 14px; line-height: 1.6; color: var(--ink); }
+  .checklist-item.checked p { color: var(--ink-soft); text-decoration: line-through; }
+
+  .commitment-box {
+    background: var(--ink);
+    color: white;
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .commitment-box::before {
+    content: '🎯';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.06;
+    right: -20px;
+    bottom: -30px;
+  }
+  .commitment-box h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--mint);
+  }
+  .commit-field {
+    margin-bottom: 16px;
+  }
+  .commit-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+  .commit-field input {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .commit-field input::placeholder { color: rgba(255,255,255,0.35); }
+  .commit-field input:focus { border-color: var(--mint); }
+
+  /* Cheat sheet */
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .cheat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .cheat-card:hover { box-shadow: var(--shadow); }
+  .cheat-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .cheat-url {
+    font-size: 13px;
+    color: var(--mint);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
+  .cheat-account {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .copy-btn {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: var(--ink); color: white; border-color: var(--ink); }
+  .copy-btn.copied { background: var(--green); color: white; border-color: var(--green); }
+
+  /* Footer */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 32px;
+    font-size: 13px;
+    margin-top: 80px;
+  }
+  .footer a { color: var(--mint); text-decoration: none; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 60px; }
+    .section { padding: 32px 16px 60px; }
+    .personas { grid-template-columns: 1fr 1fr; }
+    .roles-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      🧠 KITA HUB · Workflow 1 von 4
+    </div>
+    <h1>Fachwissen ins<br><span>Team bringen</span></h1>
+    <p>Von der individuellen Entdeckung zum gemeinsamen Austausch – in fünf Schritten, komplett auf dem KITA HUB.</p>
+    <div class="hero-flow">
+      <div class="flow-chip"><span class="dot" style="background:#2ec4a9"></span>Medienecke</div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-chip"><span class="dot" style="background:#f5c842"></span>Kurzlink</div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-chip"><span class="dot" style="background:#4caf78"></span>Chat</div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-chip"><span class="dot" style="background:#9b59b6"></span>Termine</div>
+      <span class="flow-arrow">›</span>
+      <div class="flow-chip"><span class="dot" style="background:#e8614a"></span>Meeting</div>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">⏱ Dauer: <span>~15 Min.</span></div>
+      <div class="hero-meta-item">✅ <span>Kostenlos & datenschutzkonform</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-tabs">
+  <div class="nav-tabs-inner">
+    <button class="tab-btn active" onclick="showTab('story')">📖 Geschichte</button>
+    <button class="tab-btn" onclick="showTab('steps')">🪜 Schritte</button>
+    <button class="tab-btn" onclick="showTab('roles')">👥 Rollen</button>
+    <button class="tab-btn" onclick="showTab('pitfalls')">⚠️ Stolpersteine</button>
+    <button class="tab-btn" onclick="showTab('transfer')">🚀 Ab Montag</button>
+    <button class="tab-btn" onclick="showTab('cheatsheet')">📋 Cheat-Sheet</button>
+  </div>
+</nav>
+
+<!-- STORY -->
+<div id="tab-story" class="section active">
+  <div class="section-title">Die Geschichte dahinter</div>
+  <p class="section-subtitle">Warum dieser Workflow? Wer sind die Beteiligten?</p>
+
+  <div class="story-card">
+    <div class="story-header">
+      <h3>Kita Sonnenschein, Donnerstagabend</h3>
+      <p>Fachkraft Miriam stößt beim Stöbern in der Medienecke auf eine hochwertige Praxisanleitung zum Thema Inklusion. Das Material passt perfekt zur aktuellen Teamdiskussion. Miriam denkt: „Das muss das ganze Team sehen – aber wie bringe ich das schnell und strukturiert zu den Kolleginnen?"</p>
+    </div>
+    <div class="story-body">
+      <p>Statt das PDF per WhatsApp herumzuschicken oder auf die nächste Teamsitzung zu warten, nutzt Miriam die fünf Dienste des KITA HUB und legt in weniger als 15 Minuten alles an – inklusive eines Termins und eines Meeting-Raums.</p>
+      <p>Der Trick: Die Dienste greifen sinnvoll ineinander. <strong>Finden → Teilen → Besprechen → Abstimmen → Treffen.</strong> Und das alles kostenlos und datenschutzkonform – ohne WhatsApp oder E-Mail.</p>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:8px; font-size:20px;">Wer macht mit?</div>
+  <p class="section-subtitle">Vier Rollen – unterschiedliche Rechte und Aufgaben.</p>
+
+  <div class="personas">
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:#e8faf7">🧑‍🏫</div>
+      <div class="role" style="color:var(--mint)">Materialscout</div>
+      <h4>Miriam</h4>
+      <p>Fachkraft – hat das Material entdeckt und initiiert alles.</p>
+      <span class="tag-account tag-yes">Account ✓</span>
+    </div>
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:#e8f7ee">👩‍💼</div>
+      <div class="role" style="color:var(--green)">Moderator:in</div>
+      <h4>Sandra</h4>
+      <p>Kitaleitung – erstellt den Meeting-Raum und führt durch den Austausch.</p>
+      <span class="tag-account tag-yes">Account ✓</span>
+    </div>
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:#f3f0ff">🧑‍🤝‍🧑</div>
+      <div class="role" style="color:#9b59b6">Konsument:innen</div>
+      <h4>Team</h4>
+      <p>Alle Kolleg:innen – brauchen nur einen Link zum Abstimmen und Teilnehmen.</p>
+      <span class="tag-account tag-no">Kein Account nötig</span>
+    </div>
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:#fdf0ee">🏢</div>
+      <div class="role" style="color:var(--coral)">Gast (optional)</div>
+      <h4>Trägerleitung</h4>
+      <p>Nimmt per Meeting-Link teil – ganz ohne KITA HUB Account!</p>
+      <span class="tag-account tag-no">Kein Account nötig</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-icon">💡</div>
+    <div><strong>Warum dieser Workflow?</strong><br>Im Kita-Alltag landen viele Impulse bei Einzelpersonen und gehen im Tagesgeschäft verloren. Dieser Workflow macht aus einer individuellen Entdeckung ein Teamerlebnis – mit minimalem Aufwand.</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div id="tab-steps" class="section">
+  <div class="section-title">Schritt für Schritt</div>
+  <p class="section-subtitle">Klicke auf jeden Schritt, um die Details zu sehen. Markiere abgeschlossene Schritte mit ✓.</p>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-outer">
+      <div class="progress-bar-inner" id="progressBar"></div>
+    </div>
+    <div class="progress-text" id="progressText">0 / 5 Schritte</div>
+  </div>
+
+  <div class="step-list">
+
+    <div class="step-item">
+      <div class="step-left">
+        <div class="step-num c1" onclick="toggleStep(1)">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-service service-1">🌿 Medienecke</div>
+        <h3 onclick="toggleStep(1)">Material suchen &amp; Link sichern</h3>
+        <p class="step-desc">Passende Praxisanleitungen, Impulse oder Materialien kostenlos finden und den Link für die nächsten Schritte kopieren.</p>
+        <button class="expand-btn" onclick="toggleStep(1)" id="expand-1">
+          <span class="expand-icon">›</span> Details anzeigen
+        </button>
+        <div class="step-actions" id="actions-1">
+          <a class="step-url" href="https://mediensuche.kita.bayern" target="_blank">🔗 mediensuche.kita.bayern öffnen</a>
+          <div class="sub-steps">
+            <ol>
+              <li><strong>Seite öffnen:</strong> mediensuche.kita.bayern aufrufen – kein Account nötig!</li>
+              <li><strong>Suchen:</strong> Suchbegriff eingeben, z. B. <em>„Inklusion"</em> oder euer aktuelles Kita-Thema</li>
+              <li><strong>Auswählen:</strong> Passendes Material anklicken und prüfen</li>
+              <li><strong>Link kopieren:</strong> URL aus der Browserzeile kopieren und zwischenspeichern</li>
+            </ol>
+          </div>
+          <div class="tip-box">
+            <div class="tip-icon">💡</div>
+            <div>Materialien können auch ohne Account heruntergeladen und weitergegeben werden (OER-Lizenz beachten).</div>
+          </div>
+          <button class="done-btn" id="done-1" onclick="markDone(1)">✓ Schritt erledigt</button>
+          <div class="step-done" id="done-label-1">✓ Erledigt!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-left">
+        <div class="step-num c2" style="color:#1a2235" onclick="toggleStep(2)">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-service service-2">🔗 Kurzlink</div>
+        <h3 onclick="toggleStep(2)">Kurzlink &amp; QR-Code erstellen</h3>
+        <p class="step-desc">Den langen Medienecke-Link in einen sprechenden Kurzlink verwandeln und als QR-Code zum Aushängen herunterladen.</p>
+        <button class="expand-btn" onclick="toggleStep(2)" id="expand-2">
+          <span class="expand-icon">›</span> Details anzeigen
+        </button>
+        <div class="step-actions" id="actions-2">
+          <a class="step-url" href="https://link.kita.bayern" target="_blank">🔗 link.kita.bayern öffnen</a>
+          <div class="sub-steps">
+            <ol>
+              <li><strong>Einloggen:</strong> Mit KITA HUB Account anmelden (damit der Link später bearbeitet werden kann!)</li>
+              <li><strong>Link einfügen:</strong> Den kopierten Medienecke-Link einfügen</li>
+              <li><strong>Namen vergeben:</strong> Sprechende Endung wählen, z. B. <code>/inklusion-material</code></li>
+              <li><strong>QR-Code herunterladen:</strong> Als PNG-Datei speichern → zum Ausdrucken &amp; Aushängen</li>
+            </ol>
+          </div>
+          <div class="warn-box">
+            <div class="tip-icon">⚠️</div>
+            <div><strong>Stolperstein:</strong> Ohne Account kann der Kurzlink nicht nachträglich bearbeitet werden. Immer mit Account anlegen!</div>
+          </div>
+          <button class="done-btn" id="done-2" onclick="markDone(2)">✓ Schritt erledigt</button>
+          <div class="step-done" id="done-label-2">✓ Erledigt!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-left">
+        <div class="step-num c3" onclick="toggleStep(3)">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-service service-3">💬 Chat</div>
+        <h3 onclick="toggleStep(3)">Themenkanal anlegen &amp; alles posten</h3>
+        <p class="step-desc">Einen eigenen Kanal für das Thema erstellen, alle einladen und Material + QR-Code mit kurzer Beschreibung teilen.</p>
+        <button class="expand-btn" onclick="toggleStep(3)" id="expand-3">
+          <span class="expand-icon">›</span> Details anzeigen
+        </button>
+        <div class="step-actions" id="actions-3">
+          <a class="step-url" href="https://chat.kita.bayern" target="_blank">🔗 chat.kita.bayern öffnen</a>
+          <div class="sub-steps">
+            <ol>
+              <li><strong>Neuen Kanal erstellen:</strong> z. B. <em>„Inklusion im Kita-Alltag"</em></li>
+              <li><strong>Alle einladen:</strong> Alle Teammitglieder hinzufügen und als Moderator:in setzen</li>
+              <li><strong>Kurzlink posten:</strong> Den erstellten Kurzlink mit kurzer Beschreibung teilen</li>
+              <li><strong>QR-Code teilen:</strong> Als Bild posten – oder für den Teamraum ausdrucken</li>
+            </ol>
+          </div>
+          <div class="tip-box">
+            <div class="tip-icon">💡</div>
+            <div>Alle Mitglieder als Moderator:in einzusetzen schafft Augenhöhe im Team – jede:r kann den Kanal mitgestalten.</div>
+          </div>
+          <button class="done-btn" id="done-3" onclick="markDone(3)">✓ Schritt erledigt</button>
+          <div class="step-done" id="done-label-3">✓ Erledigt!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-left">
+        <div class="step-num c4" onclick="toggleStep(4)">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-service service-4">📅 Termine</div>
+        <h3 onclick="toggleStep(4)">Terminumfrage für Austausch erstellen</h3>
+        <p class="step-desc">Einen Abstimmungstermin anlegen – ohne Account, auch für externe Beteiligte nutzbar.</p>
+        <button class="expand-btn" onclick="toggleStep(4)" id="expand-4">
+          <span class="expand-icon">›</span> Details anzeigen
+        </button>
+        <div class="step-actions" id="actions-4">
+          <a class="step-url" href="https://termine.kita.bayern" target="_blank">🔗 termine.kita.bayern öffnen</a>
+          <div class="sub-steps">
+            <ol>
+              <li><strong>Neue Terminumfrage anlegen</strong></li>
+              <li><strong>3–4 Optionen anbieten:</strong> z. B. Mo 14 Uhr, Mi 13 Uhr, Fr 14 Uhr</li>
+              <li><strong>Link kopieren</strong> und in den Chat-Kanal posten</li>
+              <li><strong>Nach 48h auswerten:</strong> Den Termin mit ⭐ als beste Option markieren</li>
+            </ol>
+          </div>
+          <div class="tip-box">
+            <div class="tip-icon">💡</div>
+            <div>Kein Account nötig – auch Eltern oder Träger können abstimmen, ohne sich anzumelden.</div>
+          </div>
+          <button class="done-btn" id="done-4" onclick="markDone(4)">✓ Schritt erledigt</button>
+          <div class="step-done" id="done-label-4">✓ Erledigt!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-left">
+        <div class="step-num c5" onclick="toggleStep(5)">5</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-service service-5">🎥 Meeting</div>
+        <h3 onclick="toggleStep(5)">Meeting-Link erstellen &amp; Träger einladen</h3>
+        <p class="step-desc">Den Meetingraum anlegen, den Link im Kanal fixieren und auch externe Gäste per Link einbinden.</p>
+        <button class="expand-btn" onclick="toggleStep(5)" id="expand-5">
+          <span class="expand-icon">›</span> Details anzeigen
+        </button>
+        <div class="step-actions" id="actions-5">
+          <a class="step-url" href="https://meeting.kita.bayern" target="_blank">🔗 meeting.kita.bayern öffnen</a>
+          <div class="sub-steps">
+            <ol>
+              <li><strong>Meeting-Raum erstellen</strong> (braucht Account – vorab klären, wer das übernimmt!)</li>
+              <li><strong>Link im Chat fixieren:</strong> z. B. <em>„Dieser Link gilt für unser Austauschtreffen"</em></li>
+              <li><strong>Träger einladen:</strong> Per Einladungslink – <strong>kein Account nötig!</strong></li>
+              <li><strong>Browser-Hinweis:</strong> Chrome oder Firefox empfehlen (kein Safari/Edge!)</li>
+            </ol>
+          </div>
+          <div class="warn-box">
+            <div class="tip-icon">⚠️</div>
+            <div><strong>Wichtig:</strong> Meeting-Raum erstellen braucht Account. Teilnahme per Link funktioniert <strong>ohne Account</strong> – auch für Eltern und Träger!</div>
+          </div>
+          <button class="done-btn" id="done-5" onclick="markDone(5)">✓ Schritt erledigt</button>
+          <div class="step-done" id="done-label-5">✓ Erledigt!</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="success-msg" style="display:none; background:linear-gradient(135deg,var(--green),var(--mint)); color:white; border-radius:20px; padding:28px 32px; text-align:center; margin-top:24px; animation: fadeUp 0.4s ease;">
+    <div style="font-size:48px; margin-bottom:12px;">🎉</div>
+    <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:700; margin-bottom:8px;">Alle Schritte erledigt!</div>
+    <div style="font-size:15px; opacity:0.9;">Das Team kennt das Material, der Termin steht, der Austausch findet statt.</div>
+  </div>
+</div>
+
+<!-- ROLES -->
+<div id="tab-roles" class="section">
+  <div class="section-title">Rollen im Workflow</div>
+  <p class="section-subtitle">Drei Rollen – klar verteilt, aber rotierbar. Beim nächsten Thema kann eine andere Person übernehmen.</p>
+
+  <div class="roles-grid">
+    <div class="role-card">
+      <div class="role-emoji">🔍</div>
+      <h3>Materialscout</h3>
+      <p>Findet das Material in der Medienecke und erstellt den Kurzlink + QR-Code. Initiiert den gesamten Workflow.</p>
+      <div style="margin-top:14px; font-size:12px; font-weight:700; color:var(--mint); text-transform:uppercase; letter-spacing:.05em;">Schritte 1 & 2</div>
+    </div>
+    <div class="role-card">
+      <div class="role-emoji">🎙️</div>
+      <h3>Moderator:in</h3>
+      <p>Legt den Chat-Kanal an, postet alle Infos und führt später durch den Austausch. Braucht Account.</p>
+      <div style="margin-top:14px; font-size:12px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.05em;">Schritt 3</div>
+    </div>
+    <div class="role-card">
+      <div class="role-emoji">📌</div>
+      <h3>Organizer</h3>
+      <p>Erstellt Terminumfrage und Meeting-Link, beobachtet die Beteiligung und kommuniziert mit dem Träger.</p>
+      <div style="margin-top:14px; font-size:12px; font-weight:700; color:#9b59b6; text-transform:uppercase; letter-spacing:.05em;">Schritte 4 & 5</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-icon">🔄</div>
+    <div><strong>Rollen rotieren lassen!</strong> Beim nächsten Thema übernimmt eine andere Person die Materialsuche – so entsteht eine Lernkultur im Team und alle kennen alle Dienste.</div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title" style="font-size:20px; margin-bottom:16px;">Was entsteht (Artefakte)</div>
+
+  <div class="artifacts-grid">
+    <div class="artifact-card">
+      <div class="artifact-icon" style="background:var(--green-light)">💬</div>
+      <div>
+        <h4>1 Chat-Kanal</h4>
+        <p>Themenraum mit allen Teammitgliedern</p>
+      </div>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-icon" style="background:var(--yellow-light)">🔗</div>
+      <div>
+        <h4>1 Kurzlink</h4>
+        <p>Sprechender Link zum Material</p>
+      </div>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-icon" style="background:var(--mint-light)">📱</div>
+      <div>
+        <h4>1 QR-Code</h4>
+        <p>PNG zum Ausdrucken &amp; Aushängen</p>
+      </div>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-icon" style="background:#f3eaff">📅</div>
+      <div>
+        <h4>1 Terminumfrage</h4>
+        <p>Link zur Abstimmung über den Termin</p>
+      </div>
+    </div>
+    <div class="artifact-card">
+      <div class="artifact-icon" style="background:var(--coral-light)">🎥</div>
+      <div>
+        <h4>1 Meeting-Link</h4>
+        <p>Stabiler Link (auch für Träger ohne Account)</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--ink); color:white; border-radius:16px; padding:24px 28px;">
+    <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--mint); margin-bottom:10px;">Nutzen in einem Satz</div>
+    <p style="font-family:'Fraunces',serif; font-size:18px; line-height:1.5;">Team kennt das Material, der Termin steht, der Austausch findet statt – der Träger ist eingebunden, ohne dass jemand extra einen Account braucht.</p>
+  </div>
+</div>
+
+<!-- PITFALLS -->
+<div id="tab-pitfalls" class="section">
+  <div class="section-title">Stolpersteine &amp; Lösungen</div>
+  <p class="section-subtitle">Klicke auf einen Stolperstein, um die Lösung zu sehen. Typische Hürden – und wie ihr sie umgeht.</p>
+
+  <div class="pitfall-list">
+    <div class="pitfall-card" onclick="togglePitfall(this)">
+      <div class="pitfall-header">
+        <div class="pitfall-icon">🔐</div>
+        <h4>Meeting-Raum erstellen braucht Account</h4>
+        <span class="pitfall-chevron">›</span>
+      </div>
+      <div class="pitfall-body">
+        <div class="solution-tag">✓ Lösung</div>
+        <p>Vorab klären, wer im Team den Meeting-Raum erstellt – diese Person braucht einen Account. Eltern und Träger können dem Meeting jedoch per Einladungslink beitreten, <strong>ohne sich anzumelden</strong>.</p>
+      </div>
+    </div>
+    <div class="pitfall-card" onclick="togglePitfall(this)">
+      <div class="pitfall-header">
+        <div class="pitfall-icon">✏️</div>
+        <h4>Kurzlink ohne Account nicht bearbeitbar</h4>
+        <span class="pitfall-chevron">›</span>
+      </div>
+      <div class="pitfall-body">
+        <div class="solution-tag">✓ Lösung</div>
+        <p>Kurzlinks immer <strong>mit Account anlegen</strong>, damit das Ziel nachträglich geändert werden kann. Ohne Account: den Link sorgfältig notieren und nie überschreiben.</p>
+      </div>
+    </div>
+    <div class="pitfall-card" onclick="togglePitfall(this)">
+      <div class="pitfall-header">
+        <div class="pitfall-icon">📝</div>
+        <h4>Gastnotiz-Link verlieren</h4>
+        <span class="pitfall-chevron">›</span>
+      </div>
+      <div class="pitfall-body">
+        <div class="solution-tag">✓ Lösung</div>
+        <p>Gastnotiz-Links <strong>immer sofort kopieren</strong> und z. B. in den Chat-Kanal einfügen. Mit Account ist die Notiz dauerhaft gespeichert und jederzeit wieder auffindbar.</p>
+      </div>
+    </div>
+    <div class="pitfall-card" onclick="togglePitfall(this)">
+      <div class="pitfall-header">
+        <div class="pitfall-icon">🌐</div>
+        <h4>Browser-Probleme beim Meeting</h4>
+        <span class="pitfall-chevron">›</span>
+      </div>
+      <div class="pitfall-body">
+        <div class="solution-tag">✓ Lösung</div>
+        <p>Für das Meeting immer <strong>Chrome oder Firefox</strong> verwenden. Safari und Edge können Probleme machen. Bei iPads darauf besonders hinweisen!</p>
+      </div>
+    </div>
+    <div class="pitfall-card" onclick="togglePitfall(this)">
+      <div class="pitfall-header">
+        <div class="pitfall-icon">📱</div>
+        <h4>iPad: Chat-Nutzung eingeschränkt</h4>
+        <span class="pitfall-chevron">›</span>
+      </div>
+      <div class="pitfall-body">
+        <div class="solution-tag">✓ Lösung</div>
+        <p>Die <strong>Element-App für iOS</strong> empfehlen oder den Chat browser-basiert nutzen. Der QR-Code hilft beim schnellen Zugang über ein anderes Gerät.</p>
+      </div>
+    </div>
+    <div class="pitfall-card" onclick="togglePitfall(this)">
+      <div class="pitfall-header">
+        <div class="pitfall-icon">🏢</div>
+        <h4>Träger hat keinen KITA HUB Account</h4>
+        <span class="pitfall-chevron">›</span>
+      </div>
+      <div class="pitfall-body">
+        <div class="solution-tag">✓ Lösung</div>
+        <p>Meeting-Teilnahme per Einladungslink funktioniert <strong>ohne Account</strong>. Diesen Hinweis aktiv kommunizieren – viele wissen das nicht und zögern deshalb.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title" style="font-size:20px; margin-bottom:16px;">Variationen &amp; Skalierung</div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+    <div style="background:white; border:1px solid var(--border); border-radius:16px; padding:20px;">
+      <div style="font-weight:700; font-size:14px; color:var(--coral); margin-bottom:10px;">⏱ Zu wenig Zeit?</div>
+      <ul style="padding-left:18px; font-size:14px; color:var(--ink-soft); line-height:1.7;">
+        <li>Schritt 5 (Meeting) weglassen – Terminumfrage reicht für den Start</li>
+        <li>Chat-Kanal vorab anlegen</li>
+      </ul>
+    </div>
+    <div style="background:white; border:1px solid var(--border); border-radius:16px; padding:20px;">
+      <div style="font-weight:700; font-size:14px; color:var(--green); margin-bottom:10px;">🚀 Mehr Zeit?</div>
+      <ul style="padding-left:18px; font-size:14px; color:var(--ink-soft); line-height:1.7;">
+        <li>Eigene Kurzlinks mit sprechendem Namen im Peer-Review vergleichen</li>
+        <li>Stolpersteine gezielt provozieren</li>
+      </ul>
+    </div>
+    <div style="background:white; border:1px solid var(--border); border-radius:16px; padding:20px;">
+      <div style="font-weight:700; font-size:14px; color:var(--mint); margin-bottom:10px;">👥 Heterogene Gruppe?</div>
+      <ul style="padding-left:18px; font-size:14px; color:var(--ink-soft); line-height:1.7;">
+        <li>Schritte 1–3 angeleitetes Nachmachen</li>
+        <li>Schritte 4–5 selbstständig</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSFER -->
+<div id="tab-transfer" class="section">
+  <div class="section-title">Ab Montag</div>
+  <p class="section-subtitle">Hake die Schritte ab, die ihr für die Umsetzung in eurer Kita bereits erledigt habt.</p>
+
+  <div class="checklist" id="checklist">
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Account-Check:</strong> Die Person, die den Meeting-Raum erstellt, hat einen KITA HUB Account.</p>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Thema wählen:</strong> Wir haben entschieden, welches aktuelle Kita-Thema als erstes Pilotbeispiel dient.</p>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Material finden:</strong> 15 Minuten in der Medienecke – ein Material gefunden, das das Team weiterbringt.</p>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Kurzlink anlegen:</strong> Mit Account erstellt – damit der Link später bearbeitet werden kann.</p>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Chat-Kanal:</strong> Es gibt bereits einen passenden Kanal oder wir haben einen neuen angelegt.</p>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Terminumfrage:</strong> 3 Optionen erstellt, Ergebnis nach 48 Stunden ausgewertet.</p>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p><strong>Meeting:</strong> Link fixiert, Träger aktiv per Einladung eingebunden.</p>
+    </div>
+  </div>
+
+  <div class="commitment-box">
+    <h3>Unser Team-Commitment</h3>
+    <p style="font-size:14px; color:rgba(255,255,255,0.65); margin-bottom:20px;">Wir pilotieren diesen Workflow in den nächsten 14 Tagen.</p>
+    <div class="commit-field">
+      <label>Unser Thema</label>
+      <input type="text" placeholder="z. B. Inklusion, Sprachförderung, Medienerziehung …">
+    </div>
+    <div class="commit-field">
+      <label>Materialscout</label>
+      <input type="text" placeholder="Name der Person">
+    </div>
+    <div class="commit-field">
+      <label>Termin Austausch</label>
+      <input type="text" placeholder="Datum & Uhrzeit">
+    </div>
+    <div class="commit-field">
+      <label>Was wollen wir in 14 Tagen beobachten?</label>
+      <input type="text" placeholder="Unsere Beobachtungsfrage …">
+    </div>
+  </div>
+</div>
+
+<!-- CHEAT SHEET -->
+<div id="tab-cheatsheet" class="section">
+  <div class="section-title">Cheat-Sheet</div>
+  <p class="section-subtitle">Alle Links auf einen Blick – zum Kopieren und Weiterschicken.</p>
+
+  <div class="cheat-grid">
+    <div class="cheat-card">
+      <h4>🌿 Medienecke</h4>
+      <span class="cheat-url">mediensuche.kita.bayern</span>
+      <span class="cheat-account">Account: ❌ Nein – frei nutzbar</span>
+      <button class="copy-btn" onclick="copyUrl(this, 'https://mediensuche.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cheat-card">
+      <h4>🔗 Kurzlink / QR</h4>
+      <span class="cheat-url">link.kita.bayern</span>
+      <span class="cheat-account">Account: Kürzen ❌ / Verwalten ✅</span>
+      <button class="copy-btn" onclick="copyUrl(this, 'https://link.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cheat-card">
+      <h4>💬 Chat</h4>
+      <span class="cheat-url">chat.kita.bayern</span>
+      <span class="cheat-account">Account: ✅ Ja</span>
+      <button class="copy-btn" onclick="copyUrl(this, 'https://chat.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cheat-card">
+      <h4>📅 Termine</h4>
+      <span class="cheat-url">termine.kita.bayern</span>
+      <span class="cheat-account">Account: ❌ Nein – auch für Externe</span>
+      <button class="copy-btn" onclick="copyUrl(this, 'https://termine.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cheat-card">
+      <h4>🎥 Meeting (BBB)</h4>
+      <span class="cheat-url">meeting.kita.bayern</span>
+      <span class="cheat-account">Account: Erstellen ✅ / Teilnehmen ❌</span>
+      <button class="copy-btn" onclick="copyUrl(this, 'https://meeting.kita.bayern')">Kopieren</button>
+    </div>
+    <div class="cheat-card">
+      <h4>🏠 KITA HUB Start</h4>
+      <span class="cheat-url">kita.bayern/webapp</span>
+      <span class="cheat-account">Einmal anmelden – alle Dienste</span>
+      <button class="copy-btn" onclick="copyUrl(this, 'https://www.kita.bayern/webapp')">Kopieren</button>
+    </div>
+  </div>
+
+  <div style="background:var(--mint-light); border:1px solid var(--mint-mid); border-radius:16px; padding:24px 28px;">
+    <div style="font-weight:700; font-size:15px; margin-bottom:8px; color:#1a8a7a;">📞 Starthilfe</div>
+    <p style="font-size:14px; color:var(--ink-soft); line-height:1.7;">
+      E-Mail: <a href="mailto:starthilfe@kita.bayern" style="color:var(--mint); font-weight:600;">starthilfe@kita.bayern</a><br>
+      Telefon: <a href="tel:+4996219655219910" style="color:var(--mint); font-weight:600;">+49 9621 96552 1991</a>
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Erstellt für die <strong style="color:white">Pixelwerkstatt</strong> · Team-Tag KITA HUB · Stand März 2026<br>
+  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a></p>
+</div>
+
+<script>
+  // Tab navigation
+  function showTab(name) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Step expand/collapse
+  function toggleStep(n) {
+    const actions = document.getElementById('actions-' + n);
+    const btn = document.getElementById('expand-' + n);
+    const isOpen = actions.classList.contains('open');
+    actions.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.innerHTML = isOpen
+      ? '<span class="expand-icon">›</span> Details anzeigen'
+      : '<span class="expand-icon" style="transform:rotate(90deg)">›</span> Schließen';
+  }
+
+  // Mark step done
+  let doneSteps = new Set();
+  function markDone(n) {
+    doneSteps.add(n);
+    const btn = document.getElementById('done-' + n);
+    btn.classList.add('done');
+    btn.textContent = '✓ Erledigt';
+    btn.disabled = true;
+    document.getElementById('done-label-' + n).classList.add('visible');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const pct = (doneSteps.size / 5) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressText').textContent = doneSteps.size + ' / 5 Schritte';
+    if (doneSteps.size === 5) {
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  }
+
+  // Pitfalls
+  function togglePitfall(card) {
+    card.classList.toggle('open');
+  }
+
+  // Checklist
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    const box = item.querySelector('.check-box');
+    box.textContent = item.classList.contains('checked') ? '✓' : '';
+  }
+
+  // Copy URL
+  function copyUrl(btn, url) {
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = '✓ Kopiert!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Kopieren';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
