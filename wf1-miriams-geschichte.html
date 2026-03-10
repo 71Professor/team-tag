@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miriams Geschichte – Workflow 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #2ec4a9;
+    --mint-light: #e8faf7;
+    --mint-mid: #a8e8df;
+    --yellow: #f5c842;
+    --yellow-light: #fffbe8;
+    --green: #4caf78;
+    --green-light: #e8f7ee;
+    --coral: #e8614a;
+    --coral-light: #fdf0ee;
+    --ink: #1a2235;
+    --ink-soft: #3d4f6a;
+    --paper: #fafaf8;
+    --border: #e2e8f0;
+    --shadow: 0 4px 24px rgba(26,34,53,0.10);
+    --shadow-lg: 0 12px 48px rgba(26,34,53,0.16);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--ink);
+    color: white;
+    padding: 64px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(46,196,169,0.25) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,200,66,0.18) 0%, transparent 70%);
+    bottom: -150px; left: -80px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46,196,169,0.18);
+    border: 1px solid rgba(46,196,169,0.35);
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--mint); }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+  }
+  .hero-meta-item span { color: rgba(255,255,255,0.88); font-weight: 500; }
+
+  /* Main layout */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  /* Intro block */
+  .intro-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .intro-card-header {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a3a5a 100%);
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card-header::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.05);
+    top: -30px; right: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .intro-location {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mint);
+    margin-bottom: 12px;
+  }
+  .intro-card-header p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+  }
+
+  /* Story blocks */
+  .story-section {
+    margin-bottom: 40px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .step-story {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .step-story-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 44px;
+  }
+  .step-bubble {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-story-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    margin: 6px 0 0;
+    min-height: 32px;
+  }
+  .step-story:last-of-type .step-story-line { display: none; }
+
+  .step-story-body {
+    flex: 1;
+    padding-bottom: 4px;
+  }
+  .step-service-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 3px 11px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+  .step-story-body h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .step-story-body p {
+    font-size: 15px;
+    line-height: 1.78;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .step-story-body p:last-child { margin-bottom: 0; }
+
+  /* Quote highlight */
+  .thought-bubble {
+    background: var(--ink);
+    color: white;
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.88);
+    margin: 14px 0;
+    position: relative;
+  }
+  .thought-bubble::before {
+    content: '💭';
+    font-style: normal;
+    font-family: 'DM Sans', sans-serif;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+
+  /* Tip / insight boxes */
+  .tip-box {
+    display: flex;
+    gap: 10px;
+    background: var(--yellow-light);
+    border: 1px solid #f0d870;
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #7a6200;
+    margin: 14px 0;
+  }
+  .tip-box .tip-icon { flex-shrink: 0; font-size: 16px; }
+  .insight-box {
+    display: flex;
+    gap: 10px;
+    background: var(--mint-light);
+    border: 1px solid var(--mint-mid);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1a7a6a;
+    margin: 14px 0;
+  }
+  .insight-box .tip-icon { flex-shrink: 0; font-size: 16px; }
+
+  /* Step colors */
+  .c1 { background: var(--mint); }
+  .c2 { background: var(--yellow); }
+  .c3 { background: var(--green); }
+  .c4 { background: #9b59b6; }
+  .c5 { background: var(--coral); }
+  .service-1 { background: var(--mint-light); color: #1a8a7a; }
+  .service-2 { background: var(--yellow-light); color: #8a6800; }
+  .service-3 { background: var(--green-light); color: #2a7a48; }
+  .service-4 { background: #f3eaff; color: #6b3fa0; }
+  .service-5 { background: var(--coral-light); color: #8a2a18; }
+
+  /* Coda / final card */
+  .coda-card {
+    background: linear-gradient(135deg, var(--green) 0%, var(--mint) 100%);
+    color: white;
+    border-radius: 20px;
+    padding: 36px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+  .coda-card::before {
+    content: '🎉';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.08;
+    right: -10px;
+    bottom: -20px;
+  }
+  .coda-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .coda-card p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.88);
+    max-width: 560px;
+  }
+  .coda-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    margin-top: 20px;
+    color: white;
+  }
+
+  /* Section divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 36px;
+    transition: color 0.2s;
+    cursor: default;
+  }
+  .back-link:hover { color: var(--mint); }
+
+  /* Personas strip */
+  .personas-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s ease both;
+  }
+  .persona-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    flex: 1;
+    min-width: 160px;
+  }
+  .persona-mini .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .persona-mini h4 { font-size: 14px; font-weight: 600; margin-bottom: 1px; }
+  .persona-mini p { font-size: 12px; color: var(--ink-soft); }
+  .persona-mini.active { border-color: var(--mint); background: var(--mint-light); }
+  .personas-intro {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    width: 100%;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .footer a { color: var(--mint); text-decoration: none; }
+
+  /* Animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-story:nth-child(1) { animation-delay: 0.05s; }
+  .step-story:nth-child(2) { animation-delay: 0.12s; }
+  .step-story:nth-child(3) { animation-delay: 0.19s; }
+  .step-story:nth-child(4) { animation-delay: 0.26s; }
+  .step-story:nth-child(5) { animation-delay: 0.33s; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 60px; }
+    .main { padding: 36px 16px 72px; }
+    .personas-strip { flex-direction: column; }
+    .persona-mini { min-width: unset; }
+    .step-story { gap: 16px; }
+    .step-story-left { width: 36px; }
+    .step-bubble { width: 36px; height: 36px; font-size: 15px; }
+    .intro-card-header { padding: 24px 24px; }
+    .coda-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📖 KITA HUB · Workflow 1 · Geschichte</div>
+    <h1>Miriams<br><span>Donnerstagabend</span></h1>
+    <p class="hero-sub">Wie eine Fachkraft aus einem zufälligen Fund in der Medienecke in 15 Minuten einen Teammoment macht – erzählt, wie sie es ihrer besten Freundin erzählen würde.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">🏡 <span>Kita Sonnenschein</span></div>
+      <div class="hero-meta-item">⏱ <span>~15 Minuten</span></div>
+      <div class="hero-meta-item">🧩 <span>5 Dienste, 1 Abend</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <a class="back-link">← Zurück zu Workflow 1</a>
+
+  <!-- Intro card -->
+  <div class="intro-card">
+    <div class="intro-card-header">
+      <div class="intro-location">Kita Sonnenschein · Donnerstagabend · irgendwann nach 21 Uhr</div>
+      <p>Also, ich sitz heute Abend noch kurz am Laptop, weißt du, so wie ich das manchmal mache bevor ich ins Bett geh – eigentlich wollte ich nur kurz was nachschauen.</p>
+    </div>
+    <div style="padding: 28px 36px; background: white;">
+      <p style="font-size:15px; line-height:1.78; color:var(--ink-soft); margin-bottom: 14px;">Und dann bin ich in der <strong style="color:var(--ink)">Medienecke</strong> gelandet. Das ist die Materialsuche für Kitas auf dem KITA HUB – komplett kostenlos, kein Anmelden oder so. Und ich geb da „Inklusion" ein, weil wir das gerade im Team haben, dieses ewige Hin und Her ob wir das Konzept nochmal überarbeiten.</p>
+      <p style="font-size:15px; line-height:1.78; color:var(--ink-soft);">Und dann find ich diese Praxisanleitung. Richtig gut gemacht, klar strukturiert, mit konkreten Beispielen aus dem Kita-Alltag. Ich dachte sofort:</p>
+      <div class="thought-bubble">„Das muss Sandra sehen. Das müssen <em>alle</em> sehen."</div>
+    </div>
+  </div>
+
+  <!-- Personas -->
+  <div class="personas-strip">
+    <div class="personas-intro">Die Beteiligten in dieser Geschichte</div>
+    <div class="persona-mini active">
+      <div class="avatar" style="background:var(--mint-light)">🧑‍🏫</div>
+      <div>
+        <h4>Miriam</h4>
+        <p>Fachkraft · Materialscout</p>
+      </div>
+    </div>
+    <div class="persona-mini">
+      <div class="avatar" style="background:var(--green-light)">👩‍💼</div>
+      <div>
+        <h4>Sandra</h4>
+        <p>Kitaleitung · Moderatorin</p>
+      </div>
+    </div>
+    <div class="persona-mini">
+      <div class="avatar" style="background:#f3eaff">🧑‍🤝‍🧑</div>
+      <div>
+        <h4>Das Team</h4>
+        <p>Kolleg:innen · kein Account nötig</p>
+      </div>
+    </div>
+    <div class="persona-mini">
+      <div class="avatar" style="background:var(--coral-light)">🏢</div>
+      <div>
+        <h4>Frau Bergmann</h4>
+        <p>Trägerleitung · per Link dabei</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c1">🌿</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-1">Schritt 1 · Medienecke</div>
+      <h3>Material finden – und kurz denken: Wow.</h3>
+      <p>Früher hätte ich jetzt einfach den Link in die WhatsApp-Gruppe geworfen und gehofft, dass ihn jemand anklickt. Aber du weißt ja, wie das endet – der Link versinkt zwischen den Geburtstagsglückwünschen und dem Foto von Lenas Hund, und drei Wochen später hat ihn niemand mehr gefunden.</p>
+      <p>Also: Diesmal anders. Ich hab den Link aus der Browserzeile kopiert und mir gedacht – der ist lang und hässlich, den kann ich so nicht ins Team schicken. Ich brauch was Handlicheres.</p>
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div><strong>Für alle, die's nachmachen:</strong> mediensuche.kita.bayern – kein Account, kein Login. Einfach Suche eingeben, Material finden, Link kopieren. Fertig.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c2" style="color:#1a2235">🔗</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-2">Schritt 2 · Kurzlink</div>
+      <h3>Aus hässlich mach sprechend – und einen QR-Code obendrauf</h3>
+      <p>Ich bin also zu <strong>link.kita.bayern</strong> gegangen. Das ist der Kurzlink-Dienst vom KITA HUB. Du kannst dort aus einem langen Link einen kurzen, sprechenden machen. Ich hab getippt: so was wie <em>link.kita.bayern/inklusion-praxis</em>. Schon ist der Link merkbar.</p>
+      <p>Und dann – das ist das Coole – hat er mir direkt einen <strong>QR-Code</strong> dazu ausgespuckt. Als PNG. Den kann ich ausdrucken, in den Teamraum hängen, und jeder kann mit dem Handy draufhalten und ist sofort beim Material.</p>
+      <div class="thought-bubble">„Okay, <em>das</em> ist eigentlich simpel. Warum machen wir das nicht schon längst so?"</div>
+      <div class="insight-box">
+        <div class="tip-icon">🔑</div>
+        <div>Kurzlinks kürzen geht ohne Account. Aber wer die Links später bearbeiten oder umleiten will, braucht einen KITA HUB Account – lohnt sich also, den einmalig anzulegen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c3">💬</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-3">Schritt 3 · Chat</div>
+      <h3>Ein Kanal, der dem Team gehört – nicht nur mir</h3>
+      <p>Dann hab ich mich bei <strong>chat.kita.bayern</strong> eingeloggt – da hab ich schon seit letztem Herbst einen Account, weißt du noch, beim Workshop damals. Ich hab einen neuen Kanal angelegt: <em>„Inklusion im Kita-Alltag"</em>.</p>
+      <p>Alle Kolleginnen eingeladen. Und dann hab ich alle gleich als <strong>Moderatorin</strong> eingestellt. Der Gedanke dahinter: Nicht ich entscheide, was in dem Kanal passiert, sondern alle können mitgestalten. Den Kurzlink hab ich gepostet, mit einem kurzen Text – so was wie: <em>„Hey, hab das grad entdeckt, passt super zu unserem Thema, schaut mal rein."</em> Und den QR-Code noch als Bild dazu.</p>
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div>Alle Mitglieder als Moderator:in einzusetzen schafft Augenhöhe im Team – jede:r kann den Kanal mitgestalten, Nachrichten anpinnen, neue Mitglieder hinzufügen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c4">📅</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-4">Schritt 4 · Termine</div>
+      <h3>Weil Impulse ohne Termin verdampfen</h3>
+      <p>Aber ich wollte das nicht dabei belassen. Wir reden im Team seit Wochen über Inklusion und es passiert irgendwie... nichts. Es bleibt alles im Ungefähren. Also bin ich zu <strong>termine.kita.bayern</strong> gegangen – das geht auch ohne Account, das kann jeder nutzen, auch externe Leute.</p>
+      <p>Terminumfrage angelegt, drei Optionen: <em>Montag 14 Uhr, Mittwoch 13 Uhr, Freitag 14 Uhr.</em> Den Link direkt in den neuen Chat-Kanal gepostet. In 48 Stunden werte ich aus, welcher Termin am meisten Stimmen hat – und dann ist der fix.</p>
+      <div class="insight-box">
+        <div class="tip-icon">✨</div>
+        <div>Kein Account nötig – auch Eltern oder die Trägerleitung können abstimmen, ohne sich irgendwo registrieren zu müssen. Einfach Link anklicken, Termin wählen, fertig.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c5">🎥</div>
+      <!-- kein line da letzter step -->
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-5">Schritt 5 · Meeting</div>
+      <h3>Und dann noch der Moment mit Frau Bergmann</h3>
+      <p>Dann – und da hat mich Sandra eigentlich drauf hingewiesen, die hatte ich kurz angeschrieben – hab ich noch einen Meeting-Raum angelegt. <strong>meeting.kita.bayern</strong>, das ist BigBlueButton. Für den Raum brauchst du einen Account, das hab ich also mit meinem gemacht.</p>
+      <p>Der entscheidende Trick: <strong>Teilnehmen können alle per Link – auch ohne Account.</strong> Das heißt, ich kann den Link an Frau Bergmann vom Träger schicken, und die kann einfach so joinen, ohne sich irgendwo registrieren zu müssen.</p>
+      <p>Sandra hatte das nämlich öfter angesprochen, dass Frau Bergmann nie bei solchen Sachen dabei ist, weil „sie keinen Zugang hat". Jetzt hat sie einen – nämlich diesen Link.</p>
+      <div class="thought-bubble">Den Meeting-Link hab ich dann im Chat-Kanal oben angepinnt. So findet ihn jeder, wenn's soweit ist.</div>
+      <div class="tip-box">
+        <div class="tip-icon">⚠️</div>
+        <div><strong>Wichtig für den Praxistest:</strong> Für das Meeting Chrome oder Firefox empfehlen – kein Safari, kein Edge. Und auf iPads geht's am besten über die Element-App oder den Browser.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Coda -->
+  <div class="coda-card">
+    <h3>Keine fünfzehn Minuten.</h3>
+    <p>Ich hab auf die Uhr geschaut, weil ich's selbst nicht geglaubt hab. Und das Schöne ist: Jetzt gibt's einen Ort, wo das alles zusammenläuft. Einen Kanal, wo das Material ist. Einen Termin, über den wir abstimmen. Einen Meeting-Raum, der schon wartet. Kein WhatsApp, kein verlorenes PDF, kein „ich hab die Mail nicht gefunden".</p>
+    <p style="margin-top:14px;">Ich weiß, das klingt jetzt total unaufgeregt. Aber für mich war das heute Abend so ein Moment – wo ich gedacht hab: Das geht ja eigentlich. <em>Man muss nur wissen, wie die Dienste zusammenspielen.</em></p>
+    <p style="margin-top:14px; color:rgba(255,255,255,0.72); font-size:14px;">Morgen beim Frühstück sag ich Sandra, dass sie beim Meeting moderiert. Und beim nächsten Thema übernimmt vielleicht Josi die Materialsuche. So dass wir das irgendwann alle können.</p>
+    <div class="coda-time">⏱ Gesamtzeit: ~15 Minuten · 5 Dienste · 1 Kita-Alltag verändert</div>
+  </div>
+
+  <!-- Flow summary -->
+  <div style="margin-top: 48px; background: white; border: 1px solid var(--border); border-radius: 20px; padding: 28px 32px; box-shadow: var(--shadow); animation: fadeUp 0.5s ease both; animation-delay: 0.2s;">
+    <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-soft); margin-bottom: 16px;">Der komplette Ablauf auf einen Blick</div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+      <div style="background: var(--mint-light); color: #1a8a7a; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 100px; border: 1px solid var(--mint-mid);">🌿 Medienecke finden</div>
+      <div style="color: var(--ink-soft); font-size: 18px;">›</div>
+      <div style="background: var(--yellow-light); color: #8a6800; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 100px; border: 1px solid #f0d870;">🔗 Kurzlink + QR</div>
+      <div style="color: var(--ink-soft); font-size: 18px;">›</div>
+      <div style="background: var(--green-light); color: #2a7a48; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 100px; border: 1px solid #b8dfc8;">💬 Chat-Kanal</div>
+      <div style="color: var(--ink-soft); font-size: 18px;">›</div>
+      <div style="background: #f3eaff; color: #6b3fa0; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 100px; border: 1px solid #d4b8f0;">📅 Terminumfrage</div>
+      <div style="color: var(--ink-soft); font-size: 18px;">›</div>
+      <div style="background: var(--coral-light); color: #8a2a18; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 100px; border: 1px solid #f0c0b0;">🎥 Meeting-Raum</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Erstellt für die <strong style="color:white">Pixelwerkstatt</strong> · Team-Tag KITA HUB · Stand März 2026<br>
+  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a></p>
+</div>
+
+</body>
+</html>
