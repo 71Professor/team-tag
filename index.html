@@ -41,7 +41,7 @@
   .hero {
     background: var(--ink);
     color: white;
-    padding: 72px 32px 96px;
+    padding: 72px clamp(20px, 4vw, 48px) 96px;
     position: relative;
     overflow: hidden;
   }
@@ -62,7 +62,7 @@
     pointer-events: none;
   }
   .hero-inner {
-    max-width: 860px;
+    max-width: 1200px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -150,9 +150,9 @@
 
   /* Main content */
   .main {
-    max-width: 860px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 64px 32px 80px;
+    padding: 64px clamp(20px, 4vw, 48px) 80px;
   }
 
   .section-header {
@@ -174,7 +174,7 @@
   /* Workflow Cards */
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
     margin-bottom: 64px;
   }
@@ -490,7 +490,7 @@
   <div class="cards-grid">
 
     <!-- Workflow 1 -->
-    <a href="workflow1-fachwissen-ins-team.html" class="workflow-card card-1 fade-in">
+    <a href="wf1-fachwissen.html" class="workflow-card card-1 fade-in">
       <div class="card-top">
         <div class="card-number">Workflow 01</div>
         <div class="card-icon">📚</div>
@@ -512,7 +512,7 @@
     </a>
 
     <!-- Workflow 2 -->
-    <a href="workflow2-teamsitzung-digital.html" class="workflow-card card-2 fade-in">
+    <a href="wf2-teamsitzung.html" class="workflow-card card-2 fade-in">
       <div class="card-top">
         <div class="card-number">Workflow 02</div>
         <div class="card-icon">📋</div>
@@ -534,7 +534,7 @@
     </a>
 
     <!-- Workflow 3 -->
-    <a href="workflow3-elternabend-hybrid.html" class="workflow-card card-3 fade-in">
+    <a href="wf3-elternabend.html" class="workflow-card card-3 fade-in">
       <div class="card-top">
         <div class="card-number">Workflow 03</div>
         <div class="card-icon">👨‍👩‍👧</div>
@@ -556,7 +556,7 @@
     </a>
 
     <!-- Workflow 4 -->
-    <a href="workflow4-neue-kollegin-einarbeiten.html" class="workflow-card card-4 fade-in">
+    <a href="wf4-einarbeiten.html" class="workflow-card card-4 fade-in">
       <div class="card-top">
         <div class="card-number">Workflow 04</div>
         <div class="card-icon">🤝</div>
