@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drei Stimmen – Workflow 3: Elternabend hybrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --warm: #c2410c;
+    --warm-mid: #ea580c;
+    --warm-light: #fff7ed;
+    --warm-border: #fed7aa;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --amber-border: #fde68a;
+    --forest: #15803d;
+    --forest-light: #f0fdf4;
+    --forest-border: #bbf7d0;
+    --sky: #0369a1;
+    --sky-light: #f0f9ff;
+    --sky-border: #bae6fd;
+    --violet: #7c3aed;
+    --violet-light: #f5f3ff;
+    --ink: #1c1917;
+    --ink-soft: #57534e;
+    --ink-muted: #a8a29e;
+    --surface: #fafaf9;
+    --white: #ffffff;
+    --border: #e7e5e4;
+    --shadow: 0 4px 20px rgba(28,25,23,0.09);
+    --shadow-lg: 0 16px 56px rgba(28,25,23,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--warm);
+    color: white;
+    padding: 68px 32px 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .blob1 {
+    width: 560px; height: 560px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%);
+    top: -180px; right: -120px;
+  }
+  .blob2 {
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(234,88,12,0.6) 0%, transparent 65%);
+    bottom: -120px; left: -60px;
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: rgba(255,255,255,0.92);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #fed7aa;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    max-width: 540px;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+  }
+  .hero-meta-item span { color: white; font-weight: 700; }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 24px 100px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 36px;
+    transition: color 0.2s;
+    cursor: default;
+  }
+  .back-link:hover { color: var(--warm); }
+
+  /* ── INTRO CARD ── */
+  .intro-card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 44px;
+    animation: fadeUp 0.45s ease both;
+  }
+  .intro-card-header {
+    background: linear-gradient(135deg, #431407 0%, var(--ink) 100%);
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card-header::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Lora', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.05);
+    top: -30px; right: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .intro-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #fed7aa;
+    margin-bottom: 12px;
+  }
+  .intro-card-header p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    font-style: italic;
+    font-family: 'Lora', serif;
+    font-weight: 500;
+  }
+  .intro-card-body {
+    padding: 24px 36px;
+  }
+  .intro-card-body p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  /* ── PERSONAS ── */
+  .personas-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+    padding: 22px 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.45s ease both;
+    animation-delay: 0.06s;
+  }
+  .personas-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .persona-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    flex: 1;
+    min-width: 160px;
+  }
+  .persona-mini .av {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .persona-mini h4 { font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+  .persona-mini p { font-size: 12px; color: var(--ink-soft); }
+  .pm-orange { border-color: var(--warm-border); background: var(--warm-light); }
+  .pm-sky    { border-color: var(--sky-border);  background: var(--sky-light); }
+  .pm-amber  { border-color: var(--amber-border); background: var(--amber-light); }
+  .pm-forest { border-color: var(--forest-border); background: var(--forest-light); }
+
+  /* ── SPEAKER SECTION ── */
+  .speaker-section {
+    margin-bottom: 52px;
+    animation: fadeUp 0.45s ease both;
+  }
+  .speaker-section:nth-child(3) { animation-delay: 0.08s; }
+  .speaker-section:nth-child(4) { animation-delay: 0.14s; }
+  .speaker-section:nth-child(5) { animation-delay: 0.20s; }
+
+  .speaker-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .speaker-avatar {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .sa-orange { background: var(--warm-light); border: 2px solid var(--warm-border); }
+  .sa-sky    { background: var(--sky-light);  border: 2px solid var(--sky-border); }
+  .sa-amber  { background: var(--amber-light); border: 2px solid var(--amber-border); }
+
+  .speaker-meta {}
+  .speaker-role {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 3px;
+  }
+  .sr-orange { color: var(--warm); }
+  .sr-sky    { color: var(--sky); }
+  .sr-amber  { color: var(--amber); }
+
+  .speaker-meta h2 {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .speaker-steps-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 6px;
+  }
+  .ssb-orange { background: var(--warm-light); color: #9a3412; }
+  .ssb-sky    { background: var(--sky-light); color: #0c4a6e; }
+  .ssb-amber  { background: var(--amber-light); color: #78350f; }
+
+  /* ── STEP STORY ── */
+  .step-story {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 30px;
+  }
+  .step-story-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 42px;
+  }
+  .step-bubble {
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+    color: white;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+  }
+  .sb-forest  { background: var(--forest); }
+  .sb-sky     { background: var(--sky); }
+  .sb-warm    { background: var(--warm); }
+  .sb-amber   { background: var(--amber); }
+  .sb-violet  { background: var(--violet); }
+  .sb-cyan    { background: #0891b2; }
+
+  .step-story-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    margin: 5px 0 0;
+    min-height: 24px;
+  }
+  .step-story:last-of-type .step-story-line { display: none; }
+
+  .step-story-body { flex: 1; padding-bottom: 2px; }
+
+  .svc-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 7px;
+  }
+  .st-forest { background: var(--forest-light); color: #14532d; }
+  .st-sky    { background: var(--sky-light); color: #0c4a6e; }
+  .st-warm   { background: var(--warm-light); color: #9a3412; }
+  .st-amber  { background: var(--amber-light); color: #78350f; }
+  .st-violet { background: var(--violet-light); color: #5b21b6; }
+  .st-cyan   { background: #ecfeff; color: #164e63; }
+
+  .step-story-body h3 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .step-story-body p {
+    font-size: 15px;
+    line-height: 1.78;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .step-story-body p:last-child { margin-bottom: 0; }
+
+  /* ── QUOTE / THOUGHT ── */
+  .thought {
+    background: var(--ink);
+    color: rgba(255,255,255,0.88);
+    border-radius: 14px;
+    padding: 15px 20px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 12px 0;
+  }
+  .thought::before {
+    content: '💭 ';
+    font-style: normal;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+  }
+
+  /* ── TIPS ── */
+  .tip {
+    display: flex;
+    gap: 10px;
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 12px 0;
+  }
+  .tip .ti { flex-shrink: 0; font-size: 15px; }
+  .tip-orange { background: var(--warm-light); border: 1px solid var(--warm-border); color: #9a3412; }
+  .tip-green  { background: var(--forest-light); border: 1px solid var(--forest-border); color: #14532d; }
+  .tip-sky    { background: var(--sky-light); border: 1px solid var(--sky-border); color: #0c4a6e; }
+  .tip-amber  { background: var(--amber-light); border: 1px solid var(--amber-border); color: #78350f; }
+  .tip-warn   { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 2px dashed var(--border);
+    margin: 48px 0;
+  }
+
+  /* ── CODA CARD ── */
+  .coda-card {
+    background: linear-gradient(135deg, #431407 0%, var(--ink) 100%);
+    color: white;
+    border-radius: 22px;
+    padding: 40px 38px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.3s;
+  }
+  .coda-card::before {
+    content: '👨‍👩‍👧';
+    position: absolute;
+    font-size: 160px;
+    opacity: 0.06;
+    right: -10px;
+    bottom: -20px;
+  }
+  .coda-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #fed7aa;
+    margin-bottom: 12px;
+  }
+  .coda-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .coda-card p {
+    font-size: 15px;
+    line-height: 1.78;
+    color: rgba(255,255,255,0.82);
+    max-width: 580px;
+    margin-bottom: 13px;
+    font-weight: 300;
+  }
+  .coda-card p:last-of-type { margin-bottom: 0; }
+  .coda-card strong { color: white; font-weight: 700; }
+
+  .coda-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .coda-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 16px;
+    color: white;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.38);
+    text-align: center;
+    padding: 28px;
+    font-size: 13px;
+    margin-top: 80px;
+  }
+  .footer a { color: #fed7aa; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 50px 20px 68px; }
+    .main { padding: 36px 16px 72px; }
+    .intro-card-header { padding: 24px; }
+    .intro-card-body { padding: 20px 24px; }
+    .coda-card { padding: 28px 24px; }
+    .speaker-header { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">📖 Praxisbericht · Workflow 3 · KITA HUB</div>
+    <h1>Drei Stimmen –<br><em>ein hybrider Elternabend</em></h1>
+    <p class="hero-sub">Wie eine Fachkraft, eine Kitaleitung und eine digital-affine Kollegin gemeinsam einen Elternabend organisiert haben, an dem wirklich alle teilnehmen konnten.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">🏠 Thema: <span>Medienerziehung</span></div>
+      <div class="hero-meta-item">⏱ Vorbereitung: <span>~20 Minuten</span></div>
+      <div class="hero-meta-item">🔓 Eltern: <span>kein Account nötig</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <a class="back-link" href="workflow3-elternabend-hybrid.html">← Zurück zu Workflow 3</a>
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <div class="intro-card-header">
+      <div class="intro-eyebrow">📣 Fortbildung · Multiplikator-Idee</div>
+      <p>Wir haben diesen Workflow gemeinsam als Team durchgeführt – und heute erzählen wir euch, wie das konkret bei uns ausgesehen hat. Nicht als Theorie. Sondern so, wie es wirklich war.</p>
+    </div>
+    <div class="intro-card-body">
+      <p>Wir arbeiten in der Kita Sonnenschein und hatten einen Elternabend zum Thema Medienerziehung geplant. Das Besondere: Wir wollten diesmal auch die Eltern erreichen, die sonst nie dabei sind – ein Vater im Schichtdienst, eine Mutter, die getrennt lebt und weit weg wohnt, und ein paar Eltern, die sich in der Gruppe nicht trauen zu fragen. Dieser Workflow hat uns gezeigt, wie das geht.</p>
+    </div>
+  </div>
+
+  <!-- PERSONAS -->
+  <div class="personas-strip">
+    <div class="personas-label">Wer spricht heute</div>
+    <div class="persona-mini pm-orange">
+      <div class="av">📣</div>
+      <div>
+        <h4>Fachkraft</h4>
+        <p>Elternkommunikation · Schritte 1 & 3</p>
+      </div>
+    </div>
+    <div class="persona-mini pm-sky">
+      <div class="av">🎙️</div>
+      <div>
+        <h4>Kitaleitung</h4>
+        <p>Moderation · Schritte 2, 5 & 6</p>
+      </div>
+    </div>
+    <div class="persona-mini pm-amber">
+      <div class="av">🔧</div>
+      <div>
+        <h4>Digital-affine Kollegin</h4>
+        <p>Technikbegleitung · Schritte 4 & 6</p>
+      </div>
+    </div>
+    <div class="persona-mini pm-forest">
+      <div class="av">👨‍👩‍👧</div>
+      <div>
+        <h4>Eltern (Gäste)</h4>
+        <p>Abstimmen & teilnehmen – kein Account</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ STIMME 1: FACHKRAFT ════ -->
+  <div class="speaker-section">
+    <div class="speaker-header">
+      <div class="speaker-avatar sa-orange">📣</div>
+      <div class="speaker-meta">
+        <div class="speaker-role sr-orange">Stimme 1 · Fachkraft</div>
+        <h2>Elternkommunikation & QR-Code</h2>
+        <div class="speaker-steps-badge ssb-orange">Schritte 1 · 3</div>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-forest">1</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-forest">🌿 Medienecke</div>
+        <h3>Material für Eltern finden</h3>
+        <p>Ich war bei uns diejenige, die den Kontakt zu den Eltern koordiniert und die Einladungen schreibt. Und ehrlich gesagt haben wir das früher sehr gemischt gemacht – irgendwas per E-Mail, ein Zettel im Garderobenfach, und am Ende fragten doch alle in der privaten WhatsApp-Gruppe, wann der Termin ist.</p>
+        <p>Diesmal habe ich als erstes die <strong>Medienecke</strong> aufgerufen: mediensuche.kita.bayern. Kein Account, einfach suchen. Ich habe „Medienerziehung Familie" eingegeben – und tatsächlich sofort zwei sehr gute Materialien gefunden, die direkt für Eltern gemacht waren. Verständlich, fachlich geprüft, OER-lizenziert.</p>
+        <div class="tip tip-green">
+          <div class="ti">💡</div>
+          <div>OER-Materialien bedeutet: <strong>rechtssicher weitergeben und anpassen</strong> – ohne irgendwo fragen zu müssen. Das war mir vorher gar nicht so bewusst.</div>
+        </div>
+        <p>Zwei Links kopiert: einen für unser internes Planungsdokument, einen für den QR-Code. Fertig.</p>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-warm">3</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-warm">🔗 Kurzlink / QR-Code</div>
+        <h3>Den Eltern-QR erstellen</h3>
+        <p>Dann bin ich zu link.kita.bayern gegangen und habe aus dem Medienecke-Link einen Kurzlink gemacht – und daraus einen QR-Code generiert. Der QR-Code kam als Aushang an die Eingangstür und in die schriftliche Einladung.</p>
+        <div class="thought">Ich dachte erst: Kurzlink, ist das wirklich nötig? Aber dann habe ich gesehen, wie lang die originale URL war. Da macht so ein QR-Code schon Sinn.</div>
+        <p>Eltern konnten einfach mit dem Handy draufhalten – und waren sofort beim Elternmaterial. Kein PDF-Anhang, keine verlorene E-Mail, kein Link, der nicht klickt. Für diesen dauerhaften Kurzlink habe ich meinen KITA-HUB-Account genutzt, damit der Link auch in drei Monaten noch funktioniert.</p>
+        <div class="tip tip-orange">
+          <div class="ti">⚠️</div>
+          <div>Ohne Account bleibt der Kurzlink zwar nutzbar – aber er lässt sich nicht mehr verwalten oder aktualisieren. <strong>Account lohnt sich hier wirklich.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /speaker 1 -->
+
+  <div class="divider"></div>
+
+  <!-- ════ STIMME 2: KITALEITUNG ════ -->
+  <div class="speaker-section">
+    <div class="speaker-header">
+      <div class="speaker-avatar sa-sky">🎙️</div>
+      <div class="speaker-meta">
+        <div class="speaker-role sr-sky">Stimme 2 · Kitaleitung</div>
+        <h2>Agenda, Meeting & Moderation</h2>
+        <div class="speaker-steps-badge ssb-sky">Schritte 2 · 5 · 6</div>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-sky">2</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-sky">📝 Notizen</div>
+        <h3>Das Planungsdokument anlegen</h3>
+        <p>Ich bin die Leitung und habe in diesem Workflow die Moderation übernommen – Agenda, Meeting, und dann den Abend selbst eröffnen.</p>
+        <p>Als erstes habe ich bei notizen.kita.bayern eingeloggt ein Planungsdokument angelegt. Titel: „Elternabend Medienerziehung – [Datum]". Dann eine klare Struktur: Begrüßung, fachlicher Impuls, Diskussionsrunde, Abschluss. Wer moderiert, wer ist Technik. Materialliste mit den Links meiner Kollegin aus der Medienecke. Und Platz für die Links, die noch kommen würden.</p>
+        <div class="tip tip-warn">
+          <div class="ti">⚠️</div>
+          <div><strong>Wichtig:</strong> Als Gast verliert man den Zugriff, wenn man den Link nicht sofort sichert. Das haben wir beim ersten Mal gelernt – machen wir nicht nochmal.</div>
+        </div>
+        <p>Den Dokumentlink habe ich dann direkt in den Chat-Kanal gepostet – damit alle im Team sofort Zugriff hatten und ich nicht ständig weiterschicken musste.</p>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-violet">5</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-violet">🎥 Meeting (BBB)</div>
+        <h3>Den Meeting-Raum einrichten</h3>
+        <p>Den <strong>Meeting-Raum</strong> habe ich über meeting.kita.bayern erstellt. Dafür braucht man einen Account – das war ich. Eltern hingegen brauchen keinen: Die kommen einfach per Einladungslink rein. Kein Zoom, kein Microsoft Teams, kein US-Server. Das ist datenschutzrechtlich ein echter Vorteil – und ich muss das den Eltern auch nicht mehr erklären.</p>
+        <div class="tip tip-sky">
+          <div class="ti">🔒</div>
+          <div>BigBlueButton läuft auf Servern der Landesregierung. <strong>Kein Account für Eltern, keine Datenweitergabe an Drittanbieter</strong> – das ist bei Zoom oder Teams anders.</div>
+        </div>
+        <p>Was ich davor noch ausdrücklich geübt habe – und das empfehle ich wirklich jedem – ist die <strong>Stummschalten-Funktion</strong>. Beim Start habe ich alle zugeschalteten Eltern zunächst stumm geschalten. Hintergrundgeräusche aus Kinderzimmern, Küchen, laufenden Fernsehern – das kennt ihr. Ich habe das am Anfang kurz erklärt und bei Bedarf einzelne Eltern freigeschaltet. Das hat den Abend deutlich ruhiger und professioneller gemacht.</p>
+        <div class="thought">Ich hatte vorher Respekt vor der Technik. Aber BigBlueButton ist eigentlich sehr intuitiv – und wenn man die Stummschalten-Funktion einmal verstanden hat, ist das schon fast der wichtigste Kniff des ganzen Abends.</div>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-cyan">6</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-cyan">💬 Chat</div>
+        <h3>Alles im Team-Kanal bündeln</h3>
+        <p>Den Chat-Kanal habe ich gemeinsam mit meiner Kollegin aus der Technikbegleitung befüllt. Ich habe die Agenda-Notiz und den Meeting-Link gepostet – sie hat den Rest hinzugefügt. Das Ergebnis: ein Kanal, der alles enthält. Angepinnt, für alle sichtbar, immer abrufbar.</p>
+        <div class="tip tip-sky">
+          <div class="ti">📌</div>
+          <div>Der angepinnte Chat-Post wurde zum <strong>Lagebuch</strong> für unseren Elternabend – kein Suchen mehr, kein „Wo war das nochmal?"</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /speaker 2 -->
+
+  <div class="divider"></div>
+
+  <!-- ════ STIMME 3: TECHNIKBEGLEITUNG ════ -->
+  <div class="speaker-section">
+    <div class="speaker-header">
+      <div class="speaker-avatar sa-amber">🔧</div>
+      <div class="speaker-meta">
+        <div class="speaker-role sr-amber">Stimme 3 · Digital-affine Kollegin</div>
+        <h2>Terminumfrage, Chat & Eltern-Support</h2>
+        <div class="speaker-steps-badge ssb-amber">Schritte 4 · 6</div>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-amber">4</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-amber">📅 Terminumfrage</div>
+        <h3>Den Termin mit den Eltern abstimmen</h3>
+        <p>Ich bin bei uns diejenige, die am schnellsten mit dem Laptop umgeht. Technikbegleitung – das klang erstmal nach viel Aufwand. War es aber nicht.</p>
+        <p>Die <strong>Terminumfrage</strong> habe ich über termine.kita.bayern angelegt. Drei Optionen eingetragen – Wochentage und Uhrzeiten, die für Eltern mit Kinderbetreuungszeiten sinnvoll sind. Dann den Abstimmungslink kopiert und eine Frist gesetzt: „Bis Freitag abstimmen, dann legen wir den Termin fest."</p>
+        <div class="tip tip-green">
+          <div class="ti">✅</div>
+          <div><strong>Kein Account nötig</strong> – weder für mich zum Erstellen noch für die Eltern zum Abstimmen. Eltern konnten direkt vom Handy abstimmen, einfach per Link.</div>
+        </div>
+        <p>Den Abstimmungslink habe ich an meine Kollegin für die Agenda weitergegeben und ihn sofort in den Chat-Kanal gepostet. So war er für alle sichtbar – auch bevor wir den Chat fertig befüllt hatten.</p>
+      </div>
+    </div>
+
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-cyan">6</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-cyan">💬 Chat</div>
+        <h3>Das Lagebuch zusammenstellen</h3>
+        <p>Dann war meine zentrale Aufgabe: alles im Team-Kanal bündeln. Wir haben einen eigenen Kanal „Elternabend Medienerziehung" angelegt. Dort habe ich nacheinander gepostet: das QR-Code-Bild aus Schritt 3, den Terminumfrage-Link, den Link zur Agenda-Notiz meiner Leitungskollegin, und den Meeting-Link. Und dann das Wichtigste: <strong>anpinnen</strong>. Damit nichts in der Timeline verschwindet.</p>
+        <p>Dazu habe ich eine kurze Zusammenfassung geschrieben: Was steht wo, was muss noch jemand tun, bis wann. Sowas wie ein internes Briefing – in zwei Sätzen.</p>
+        <div class="tip tip-amber">
+          <div class="ti">📋</div>
+          <div>Die angepinnte Nachricht im Chat war unser <strong>Rückgrat für den ganzen Elternabend</strong>. Auch morgens um 7 Uhr, wenn eine Kollegin kurz reinschauen wollte – alles da.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eltern-Support -->
+    <div class="step-story">
+      <div class="step-story-left">
+        <div class="step-bubble sb-forest">👨‍👩‍👧</div>
+        <div class="step-story-line"></div>
+      </div>
+      <div class="step-story-body">
+        <div class="svc-tag st-forest">👨‍👩‍👧 Eltern</div>
+        <h3>Eltern beim Beitritt begleiten</h3>
+        <p>Vor und während des Abends war ich auch Ansprechpartnerin für technische Fragen der Eltern. Das klingt aufwändig – war es aber nicht. Wir haben der Einladung eine kurze Beitrittserklärung mitgeschickt:</p>
+        <div class="thought">„Klicke auf den Link, gib deinen Namen ein, und du bist dabei – kein Passwort, kein Account nötig."</div>
+        <p>Das hat fast allen gereicht. Wer ein iPad hatte, hat entweder die Element-App genutzt oder den Browser – beides klappt. Das haben wir als kurzen Hinweis auch in den Aushang an der Tür geschrieben.</p>
+        <div class="tip tip-sky">
+          <div class="ti">📱</div>
+          <div>Ein Tipp für iPads: <strong>Chrome oder Firefox</strong> statt Safari empfehlen – das vermeidet die meisten kleinen Kompatibilitätsprobleme bei BigBlueButton.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /speaker 3 -->
+
+  <!-- ════ CODA ════ -->
+  <div class="coda-card">
+    <div class="coda-eyebrow">🎉 Was wir mitgenommen haben</div>
+    <h3>Was uns wirklich überrascht hat</h3>
+    <p>Nach dem Elternabend haben wir kurz reflektiert. <strong>Deutlich mehr Eltern haben teilgenommen als sonst.</strong> Darunter ein Vater, der schichtarbeitet und sonst nie dabei sein kann. Und eine Mutter, die immer sehr zurückhaltend war – die hat im Chat eine Frage gestellt, die sie persönlich wohl nie gestellt hätte.</p>
+    <p>Der Aufwand für die Vorbereitung war überschaubar. Wir haben zu dritt in einer kleinen Teamsitzung die sechs Schritte durchgezogen – Medienecke, Notizen, Kurzlink, Terminumfrage, Meeting, Chat. <strong>Insgesamt etwa zwanzig Minuten.</strong></p>
+    <p>Was wir für die nächste Runde noch vorhaben: die Rollen rotieren lassen. Nicht immer die gleiche Person macht die Technik. So lernt das ganze Team alle Dienste kennen – und wir sind nicht abhängig davon, dass eine bestimmte Person da ist.</p>
+    <p>Das hier ist kein Hexenwerk. Es braucht keine großen Budgets, keine IT-Abteilung, keine speziellen Geräte. Es braucht einen KITA-HUB-Account, einen Browser – und die Bereitschaft, es einmal auszuprobieren.</p>
+    <div class="coda-badges">
+      <div class="coda-badge">⏱ ~20 Min. Vorbereitung</div>
+      <div class="coda-badge">🔓 Eltern brauchen keinen Account</div>
+      <div class="coda-badge">🔄 Rollen können rotieren</div>
+      <div class="coda-badge">✅ Kostenlos & datenschutzkonform</div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<div class="footer">
+  Erstellt für die <strong style="color:white">Pixelwerkstatt</strong> · Team-Tag KITA HUB · Stand März 2026<br>
+  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a>
+</div>
+
+</body>
+</html>
