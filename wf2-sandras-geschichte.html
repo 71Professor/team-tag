@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandras Geschichte – Workflow 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --blue-mid: #bfdbfe;
+    --indigo: #4f46e5;
+    --indigo-light: #eef2ff;
+    --teal: #0d9488;
+    --teal-light: #f0fdfa;
+    --teal-mid: #99f6e4;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --rose: #e11d48;
+    --rose-light: #fff1f2;
+    --violet: #7c3aed;
+    --violet-light: #f5f3ff;
+    --slate: #1e293b;
+    --slate-soft: #475569;
+    --slate-muted: #94a3b8;
+    --paper: #f8fafc;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --shadow: 0 4px 24px rgba(30,41,59,0.10);
+    --shadow-lg: 0 12px 48px rgba(30,41,59,0.16);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--paper);
+    color: var(--slate);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 60%, #0f172a 100%);
+    color: white;
+    padding: 64px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.28) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79,70,229,0.2) 0%, transparent 70%);
+    bottom: -150px; left: -80px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37,99,235,0.22);
+    border: 1px solid rgba(37,99,235,0.4);
+    color: #93c5fd;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: #93c5fd; }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.62);
+    max-width: 520px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.52);
+  }
+  .hero-meta-item span { color: rgba(255,255,255,0.88); font-weight: 500; }
+
+  /* ─── LINKEDIN-LABEL ─── */
+  .linkedin-strip {
+    background: #0a66c2;
+    padding: 11px 0;
+    text-align: center;
+  }
+  .linkedin-strip-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── MAIN ─── */
+  .main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  /* ─── BACK LINK ─── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--slate-soft);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 36px;
+    transition: color 0.2s;
+    cursor: default;
+  }
+  .back-link:hover { color: var(--blue); }
+
+  /* ─── INTRO CARD ─── */
+  .intro-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .intro-card-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 100%);
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card-header::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.05);
+    top: -30px; right: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .intro-location {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #93c5fd;
+    margin-bottom: 12px;
+  }
+  .intro-card-header p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+
+  /* ─── PERSONAS ─── */
+  .personas-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding: 24px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.05s;
+  }
+  .personas-intro {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate-soft);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    width: 100%;
+  }
+  .persona-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    flex: 1;
+    min-width: 160px;
+  }
+  .persona-mini .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .persona-mini h4 { font-size: 14px; font-weight: 600; margin-bottom: 1px; }
+  .persona-mini p { font-size: 12px; color: var(--slate-soft); }
+  .persona-mini.active { border-color: var(--blue); background: var(--blue-light); }
+
+  /* ─── STEP STORY ─── */
+  .step-story {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .step-story-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 44px;
+  }
+  .step-bubble {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+  .step-story-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    margin: 6px 0 0;
+    min-height: 32px;
+  }
+
+  .step-story-body {
+    flex: 1;
+    padding-bottom: 4px;
+  }
+  .step-service-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 3px 11px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+  .step-story-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .step-story-body p {
+    font-size: 15px;
+    line-height: 1.78;
+    color: var(--slate-soft);
+    margin-bottom: 14px;
+  }
+  .step-story-body p:last-child { margin-bottom: 0; }
+
+  /* Step bubble colors */
+  .c1 { background: var(--blue); }
+  .c2 { background: var(--indigo); }
+  .c3 { background: var(--teal); }
+  .c4 { background: var(--amber); }
+  .c5 { background: var(--violet); }
+  .c6 { background: var(--rose); }
+
+  /* Service tag colors */
+  .service-1 { background: var(--blue-light); color: #1d4ed8; }
+  .service-2 { background: var(--indigo-light); color: #4338ca; }
+  .service-3 { background: var(--teal-light); color: var(--teal); }
+  .service-4 { background: var(--amber-light); color: var(--amber); }
+  .service-5 { background: var(--violet-light); color: #6d28d9; }
+  .service-6 { background: var(--rose-light); color: var(--rose); }
+
+  /* ─── QUOTE / THOUGHT ─── */
+  .thought-bubble {
+    background: var(--slate);
+    color: white;
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.88);
+    margin: 14px 0;
+    position: relative;
+  }
+  .thought-bubble::before {
+    content: '💭';
+    font-style: normal;
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+
+  /* ─── TIP BOXES ─── */
+  .tip-box {
+    display: flex;
+    gap: 10px;
+    background: var(--blue-light);
+    border: 1px solid var(--blue-mid);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #1e40af;
+    margin: 14px 0;
+  }
+  .tip-box .tip-icon { flex-shrink: 0; font-size: 16px; }
+
+  .insight-box {
+    display: flex;
+    gap: 10px;
+    background: var(--teal-light);
+    border: 1px solid var(--teal-mid);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #0f5449;
+    margin: 14px 0;
+  }
+  .insight-box .tip-icon { flex-shrink: 0; font-size: 16px; }
+
+  .warn-box {
+    display: flex;
+    gap: 10px;
+    background: var(--amber-light);
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #78350f;
+    margin: 14px 0;
+  }
+  .warn-box .tip-icon { flex-shrink: 0; font-size: 16px; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ─── CODA ─── */
+  .coda-card {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 100%);
+    color: white;
+    border-radius: 20px;
+    padding: 36px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+  .coda-card::before {
+    content: '📋';
+    position: absolute;
+    font-size: 140px;
+    opacity: 0.06;
+    right: -10px;
+    bottom: -20px;
+  }
+  .coda-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #93c5fd;
+  }
+  .coda-card p {
+    font-size: 15px;
+    line-height: 1.78;
+    color: rgba(255,255,255,0.85);
+    max-width: 580px;
+    margin-bottom: 12px;
+  }
+  .coda-card p:last-of-type { margin-bottom: 0; }
+  .coda-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    margin-top: 20px;
+    color: white;
+  }
+
+  /* ─── HASHTAG BLOCK ─── */
+  .hashtag-block {
+    margin-top: 48px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 32px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.2s;
+  }
+  .hashtag-block .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--slate-soft);
+    margin-bottom: 16px;
+  }
+  .hashtag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hashtag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-light);
+    border: 1px solid var(--blue-mid);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  /* ─── FLOW SUMMARY ─── */
+  .flow-summary {
+    margin-top: 32px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 32px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.15s;
+  }
+  .flow-summary .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--slate-soft);
+    margin-bottom: 16px;
+  }
+  .flow-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .flow-pill {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+  }
+  .fp1 { background: var(--blue-light); color: #1d4ed8; border-color: var(--blue-mid); }
+  .fp2 { background: var(--indigo-light); color: #4338ca; border-color: #c7d2fe; }
+  .fp3 { background: var(--teal-light); color: var(--teal); border-color: var(--teal-mid); }
+  .fp4 { background: var(--amber-light); color: var(--amber); border-color: #fde68a; }
+  .fp5 { background: var(--violet-light); color: #6d28d9; border-color: #ddd6fe; }
+  .fp6 { background: var(--rose-light); color: var(--rose); border-color: #fecdd3; }
+  .flow-arrow { color: var(--slate-muted); font-size: 18px; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--slate);
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 80px;
+  }
+  .footer a { color: #93c5fd; text-decoration: none; }
+  .footer strong { color: white; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-story:nth-child(1) { animation-delay: 0.08s; }
+  .step-story:nth-child(2) { animation-delay: 0.15s; }
+  .step-story:nth-child(3) { animation-delay: 0.22s; }
+  .step-story:nth-child(4) { animation-delay: 0.29s; }
+  .step-story:nth-child(5) { animation-delay: 0.36s; }
+  .step-story:nth-child(6) { animation-delay: 0.43s; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 60px; }
+    .main { padding: 36px 16px 72px; }
+    .personas-strip { flex-direction: column; }
+    .persona-mini { min-width: unset; }
+    .step-story { gap: 16px; }
+    .step-story-left { width: 36px; }
+    .step-bubble { width: 36px; height: 36px; font-size: 15px; }
+    .intro-card-header { padding: 24px 24px; }
+    .coda-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">📖 KITA HUB · Workflow 2 · Geschichte</div>
+    <h1>Sandras<br><span>20-Minuten-Morgen</span></h1>
+    <p class="hero-sub">Wie eine Kitaleitung die Teamsitzung digital vorbereitet – erzählt so, wie sie es stolz auf LinkedIn posten würde.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">🏡 <span>Kita Sonnenschein</span></div>
+      <div class="hero-meta-item">⏱ <span>~20 Minuten</span></div>
+      <div class="hero-meta-item">🧩 <span>5 Dienste, 1 Workflow</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN LABEL -->
+<div class="linkedin-strip">
+  <div class="linkedin-strip-inner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    Dieser Beitrag wurde so geschrieben, als würde Sandra ihn auf LinkedIn teilen
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <a class="back-link">← Zurück zu Workflow 2</a>
+
+  <!-- Intro card -->
+  <div class="intro-card">
+    <div class="intro-card-header">
+      <div class="intro-location">Kita Sonnenschein · 5 Tage vor der Teamsitzung</div>
+      <p>Teamsitzungen ohne Chaos? Das war mal ein frommer Wunsch. Heute ist es unser Alltag.</p>
+    </div>
+    <div style="padding: 28px 36px; background: white;">
+      <p style="font-size:15px; line-height:1.78; color:var(--slate-soft); margin-bottom: 14px;">Ich bin Kitaleitung bei der <strong style="color:var(--slate)">Kita Sonnenschein</strong> – und ich erinnere mich noch gut daran, wie eine Teamsitzung früher begann: mit dem Zettelchaos aus der Garderobe, Themenvorschlägen per Zuruf zwischen zwei Wicklungen, einem Word-Dokument, das als E-Mail-Anhang kursierte und das hinterher niemand mehr wiederfand.</p>
+      <p style="font-size:15px; line-height:1.78; color:var(--slate-soft);">Letzte Woche habe ich es anders gemacht. Komplett anders. Hier ist, was passiert ist.</p>
+      <div class="thought-bubble">„Das Schöne: Es hat nicht mal eine halbe Stunde gedauert."</div>
+    </div>
+  </div>
+
+  <!-- Personas -->
+  <div class="personas-strip">
+    <div class="personas-intro">Die Beteiligten in dieser Geschichte</div>
+    <div class="persona-mini active">
+      <div class="avatar" style="background:var(--blue-light)">👩‍💼</div>
+      <div>
+        <h4>Sandra</h4>
+        <p>Kitaleitung · Organisatorin</p>
+      </div>
+    </div>
+    <div class="persona-mini">
+      <div class="avatar" style="background:var(--teal-light)">🧑‍🤝‍🧑</div>
+      <div>
+        <h4>Das Team</h4>
+        <p>Kolleg:innen · Gast möglich</p>
+      </div>
+    </div>
+    <div class="persona-mini">
+      <div class="avatar" style="background:#fef3c7">💬</div>
+      <div>
+        <h4>Jule</h4>
+        <p>Fachkraft · fragt nach dem Account</p>
+      </div>
+    </div>
+    <div class="persona-mini">
+      <div class="avatar" style="background:var(--rose-light)">📱</div>
+      <div>
+        <h4>Miriam</h4>
+        <p>Teilzeit · nimmt remote teil</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schritt 1 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c1">📝</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-1">Schritt 1 · Notizen · notizen.kita.bayern</div>
+      <h3>Das Protokoll steht, bevor die Sitzung beginnt</h3>
+      <p>Fünf Tage vor der Sitzung öffne ich <strong>notizen.kita.bayern</strong>, logge mich mit meinem KITA HUB Account ein und lege ein neues Dokument an: „Teamsitzung 18.03.2026". Ich richte die Struktur ein – Tagesordnungspunkte, einen Block für Entscheidungen, eine Aufgabentabelle mit den Spalten <em>Wer / Was / Bis wann</em> und eine kleine Linksammlung am Ende.</p>
+      <p>Das dauert sieben Minuten. Kein Word, kein E-Mail-Anhang, kein „Wer hat denn zuletzt die Vorlage?" Ich kopiere den Bearbeitungslink sofort. Der ist entscheidend – er ist das Tor, durch das alle ins Dokument kommen.</p>
+      <div class="warn-box">
+        <div class="tip-icon">⚠️</div>
+        <div><strong>Wichtiger Hinweis:</strong> Den Bearbeitungslink sofort sichern! Wer ohne Account arbeitet, verliert ihn beim Schließen des Browsers – der KITA HUB Account verhindert genau das.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schritt 2 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c2">🔗</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-2">Schritt 2 · Kurzlink · link.kita.bayern</div>
+      <h3>Der Link wird kürzer – und bekommt einen QR-Code</h3>
+      <p>Auf <strong>link.kita.bayern</strong> kürze ich den langen Notizen-Link zu etwas Lesbarem: <em>/sitzung-maerz</em>. Dann lade ich den QR-Code als PNG herunter. Der landet als Ausdruck an unserer Pinnwand im Teamraum.</p>
+      <p>Wer an der Kaffeemaschine steht, kann jetzt mit dem Handy direkt ins Protokoll. Kein Suchen, kein Tippen, kein „Schick mir nochmal den Link".</p>
+      <div class="thought-bubble">„Okay, das ist eigentlich simpel. Warum machen wir das nicht schon längst so?"</div>
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div>Wer den Kurzlink später auf eine neue Sitzung umleiten will, braucht den KITA HUB Account – dann bleibt der QR-Code an der Pinnwand dauerhaft aktuell. Einmal drucken, immer nutzen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schritt 3 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c3">💬</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-3">Schritt 3 · Chat · chat.kita.bayern</div>
+      <h3>Das Team wird eingeladen – per Chat, nicht per E-Mail</h3>
+      <p>Im Teamkanal auf <strong>chat.kita.bayern</strong> poste ich den Kurzlink mit einem einzigen Satz: <em>„Hier ist die Agenda zur nächsten Sitzung – tragt bis Freitag eure Themenvorschläge ein!"</em> Die Nachricht pinne ich an. So verschwindet sie nicht im Chatverlauf.</p>
+      <p>Meine Kollegin Jule fragt kurz nach, ob sie auch ohne Account mitschreiben kann. Ja, kann sie – als Gast. Das ist genau der Punkt: Der KITA HUB zwingt niemanden zu einem Account, wenn es nicht notwendig ist. Niedrigschwellig von Anfang an.</p>
+      <div class="insight-box">
+        <div class="tip-icon">✨</div>
+        <div>Eine angepinnte Nachricht in Element/Matrix ist für alle im Kanal dauerhaft sichtbar – ideal für wiederkehrende Dokumente wie Protokolle oder Dienstpläne.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schritt 4 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c4">✍️</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-4">Schritt 4 · Notizen · kollaborativ</div>
+      <h3>Das Protokoll füllt sich – ohne mein Zutun</h3>
+      <p>Was dann passiert, ist für mich jedes Mal wieder ein kleines Wunder: Innerhalb von zwei Stunden haben fünf Kolleginnen eigene Themenvorschläge direkt ins Dokument eingetragen. Gleichzeitig. In Echtzeit.</p>
+      <p>Kein Zusammenführen, kein „Warte mal, ich hab das gerade auch bearbeitet". Ich muss nichts eintippen, nichts zusammenfassen, nichts koordinieren. Das Dokument ist bereits ein lebendiges Team-Artefakt, bevor wir auch nur im selben Raum sitzen.</p>
+      <div class="thought-bubble">„Das Team schreibt das Protokoll. Ich lege nur den Rahmen. Das ist eigentlich genau die Rollenverteilung, die ich mir immer gewünscht habe."</div>
+    </div>
+  </div>
+
+  <!-- Schritt 5 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c5">📅</div>
+      <div class="step-story-line"></div>
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-5">Schritt 5 · Termine · termine.kita.bayern</div>
+      <h3>Der Termin wird demokratisch gefunden</h3>
+      <p>Auf <strong>termine.kita.bayern</strong> lege ich eine Terminumfrage mit drei Optionen an – kein Account erforderlich, auch für neue Kolleginnen oder Aushilfskräfte kein Problem. Der Link geht in den Chat, Deadline 48 Stunden.</p>
+      <p>Am nächsten Abend markiere ich die beliebteste Option mit einem Stern. Fertig. Keine zehn Nachrichten, kein „Ich kann Dienstag nicht, aber Mittwoch auch erst ab 14 Uhr". Wir haben einen Termin – und alle haben mitentschieden.</p>
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div>Kein Account nötig – Teammitglieder ohne Account, neue Kolleg:innen und sogar externe Beteiligte können einfach abstimmen. Der Link reicht.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schritt 6 -->
+  <div class="step-story">
+    <div class="step-story-left">
+      <div class="step-bubble c6">🎥</div>
+      <!-- letzter step, keine Linie -->
+    </div>
+    <div class="step-story-body">
+      <div class="step-service-tag service-6">Schritt 6 · Meeting · meeting.kita.bayern</div>
+      <h3>Und dann: Miriam kann doch dabei sein</h3>
+      <p>Unsere Kollegin Miriam arbeitet Teilzeit und hat am Sitzungstag Frühdienst. Ich erstelle auf <strong>meeting.kita.bayern</strong> einen BigBlueButton-Raum – dafür brauche ich meinen Account – und trage den Link direkt in die Tagesordnung ein und pinne ihn im Chat an.</p>
+      <p>Miriam braucht keinen Account. Sie klickt auf den Link, Chrome ist offen, und sie ist dabei. Kein Zoom, kein Teams, keine DSGVO-Grauzone. Die Infrastruktur gehört dem Freistaat Bayern und läuft vollständig datenschutzkonform.</p>
+      <p>Miriam hatte uns öfter gefehlt bei solchen Terminen – wegen Schicht, wegen Teilzeit, wegen „ich hab keinen Zugang". Jetzt hat sie einen. Nämlich diesen Link.</p>
+      <div class="insight-box">
+        <div class="tip-icon">✔️</div>
+        <div><strong>Praxistipp:</strong> Chrome oder Firefox für das Meeting empfehlen – kein Safari, kein Edge. Auf iPads geht's am besten über die Element-App oder den Browser direkt.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Coda -->
+  <div class="coda-card">
+    <h3>Unter 20 Minuten. Und das Protokoll war schon halb fertig.</h3>
+    <p>Ich hab auf die Uhr geschaut und es selbst nicht geglaubt. Ein kollaboratives Protokoll, das alle gleichzeitig bearbeiten können. Aufgaben mit Namen und Fristen. Ein QR-Code an der Wand. Ein Teamkanal, in dem alles verlinkt ist. Ein Meeting-Raum für die, die nicht vor Ort sein können.</p>
+    <p>Das ist kein Hexenwerk. Das ist der KITA HUB – kostenlos, datenschutzkonform, und für genau unseren Alltag gemacht. Man muss nur wissen, wie die Dienste zusammenspielen.</p>
+    <p style="color:rgba(255,255,255,0.65); font-size:14px; margin-top: 4px;">Wenn ihr als Kita-Leitung noch immer Protokolle per E-Mail-Anhang verschickt: Ich verstehe euch. Ich war da auch. Aber es geht anders – und es geht schneller als ihr denkt.</p>
+    <div class="coda-time">⏱ Gesamtzeit: ~20 Minuten · 5 Dienste · 1 Teamsitzung transformiert</div>
+  </div>
+
+  <!-- Flow Summary -->
+  <div class="flow-summary">
+    <div class="label">Der komplette Ablauf auf einen Blick</div>
+    <div class="flow-pills">
+      <div class="flow-pill fp1">📝 Protokoll anlegen</div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-pill fp2">🔗 Kurzlink + QR</div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-pill fp3">💬 Im Chat teilen</div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-pill fp4">✍️ Kollaborativ befüllen</div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-pill fp5">📅 Terminumfrage</div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-pill fp6">🎥 Meeting-Link</div>
+    </div>
+  </div>
+
+  <!-- Hashtags -->
+  <div class="hashtag-block">
+    <div class="label">🏷 Wie Sandra es auf LinkedIn getaggt hätte</div>
+    <div class="hashtag-wrap">
+      <span class="hashtag">#KitaDigital</span>
+      <span class="hashtag">#KITAHUBBayern</span>
+      <span class="hashtag">#Kitaleitung</span>
+      <span class="hashtag">#Frühpädagogik</span>
+      <span class="hashtag">#DigitalTransformation</span>
+      <span class="hashtag">#Teamarbeit</span>
+      <span class="hashtag">#Pixelwerkstatt</span>
+      <span class="hashtag">#KollaborativesArbeiten</span>
+      <span class="hashtag">#KitaAlltag</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Erstellt für die <strong>Pixelwerkstatt</strong> · Team-Tag KITA HUB · Stand März 2026<br>
+  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a></p>
+</div>
+
+</body>
+</html>
