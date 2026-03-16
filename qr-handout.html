@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dienste-Quickref – KITA HUB</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 10.5pt;
+    color: #000;
+    background: #fff;
+    /* DIN lang = 99mm × 210mm, but we do A5 landscape for easy printing */
+    width: 210mm;
+    min-height: 148mm;
+    padding: 10mm 14mm;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 13pt;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .intro {
+    font-size: 9pt;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  /* Services table */
+  table.services {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    font-size: 9pt;
+  }
+  table.services th {
+    background: #000;
+    color: #fff;
+    padding: 4px 6px;
+    text-align: left;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+  table.services td {
+    border: 1px solid #bbb;
+    padding: 4px 6px;
+    vertical-align: top;
+  }
+  table.services tr:nth-child(even) td { background: #f8f8f8; }
+  .col-dienst { width: 18%; font-weight: 700; }
+  .col-url    { width: 28%; font-family: monospace; font-size: 8.5pt; }
+  .col-func   { width: 38%; }
+  .col-acc    { width: 16%; text-align: center; }
+  .acc-no     { color: #555; }
+  .acc-yes    { font-weight: 600; }
+
+  /* Stolpersteine */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .box {
+    border: 1.5px solid #000;
+    border-radius: 4px;
+    padding: 6px 9px;
+  }
+  .box-title {
+    font-size: 9pt;
+    font-weight: 700;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+  }
+  .box ul {
+    padding-left: 15px;
+    font-size: 8.5pt;
+  }
+  .box ul li { margin-bottom: 3px; }
+
+  .start-url {
+    font-size: 10pt;
+    font-weight: 700;
+    text-align: center;
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+  .start-url span { font-family: monospace; }
+
+  .footer {
+    font-size: 8pt;
+    color: #666;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    body { padding: 8mm 12mm; }
+    @page { size: A5 landscape; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>KITA HUB — Dienste auf einen Blick</h1>
+<div class="intro">
+  <strong>Single Sign-On:</strong> Einmal anmelden auf <strong>kita.bayern/webapp</strong> → alle Dienste nutzen.
+  &nbsp;|&nbsp; Browser: Chrome oder Firefox empfohlen (besonders für Meeting).
+</div>
+
+<div class="start-url">Start: <span>https://www.kita.bayern/webapp</span></div>
+
+<table class="services">
+  <thead>
+    <tr>
+      <th class="col-dienst">Dienst</th>
+      <th class="col-url">URL</th>
+      <th class="col-func">Funktion</th>
+      <th class="col-acc">Account nötig?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="col-dienst">Chat</td>
+      <td class="col-url">chat.kita.bayern</td>
+      <td class="col-func">Teamkommunikation in Kanälen &amp; Direktnachrichten</td>
+      <td class="col-acc acc-yes">Ja</td>
+    </tr>
+    <tr>
+      <td class="col-dienst">Meeting</td>
+      <td class="col-url">meeting.kita.bayern</td>
+      <td class="col-func">Videokonferenzen (BigBlueButton). Erstellen: Account · Teilnehmen: per Link</td>
+      <td class="col-acc acc-yes">Erstellen: Ja<br>Beitreten: Nein</td>
+    </tr>
+    <tr>
+      <td class="col-dienst">Termine</td>
+      <td class="col-url">termine.kita.bayern</td>
+      <td class="col-func">Terminumfragen &amp; Abstimmungen (auch für Eltern/Externe)</td>
+      <td class="col-acc acc-no">Nein</td>
+    </tr>
+    <tr>
+      <td class="col-dienst">Kurzlink</td>
+      <td class="col-url">link.kita.bayern</td>
+      <td class="col-func">Links kürzen + QR-Codes erstellen. Ohne Account: kein nachträgliches Bearbeiten!</td>
+      <td class="col-acc">Verwalten: Ja<br>Kürzen: Nein</td>
+    </tr>
+    <tr>
+      <td class="col-dienst">Notizen</td>
+      <td class="col-url">notizen.kita.bayern</td>
+      <td class="col-func">Kollaborative Dokumente &amp; Protokolle. Gastlink sofort sichern!</td>
+      <td class="col-acc">Speichern: Ja<br>Gast: Nein</td>
+    </tr>
+    <tr>
+      <td class="col-dienst">Medienecke</td>
+      <td class="col-url">mediensuche.kita.bayern</td>
+      <td class="col-func">Geprüfte OER-Materialien finden und teilen</td>
+      <td class="col-acc acc-no">Nein</td>
+    </tr>
+    <tr>
+      <td class="col-dienst">Kurse</td>
+      <td class="col-url">kurse.kita.bayern</td>
+      <td class="col-func">Online-Fortbildungen, teils offen ohne Registrierung</td>
+      <td class="col-acc acc-no">Teils nein</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="two-col">
+  <div class="box">
+    <div class="box-title">Häufige Stolpersteine</div>
+    <ul>
+      <li><strong>Notiz-Link verlieren</strong> → sofort kopieren &amp; sichern</li>
+      <li><strong>Kurzlink ohne Account</strong> → nachträgliches Bearbeiten nicht möglich</li>
+      <li><strong>Meeting erstellen</strong> braucht Account; Teilnahme per Link ohne Account</li>
+      <li><strong>Browser</strong>: Chrome oder Firefox für Meeting verwenden</li>
+    </ul>
+  </div>
+  <div class="box">
+    <div class="box-title">Vier Workflows im Überblick</div>
+    <ul>
+      <li><strong>WF 1</strong> – Fachwissen ins Team bringen</li>
+      <li><strong>WF 2</strong> – Teamsitzung digital vorbereiten</li>
+      <li><strong>WF 3</strong> – Elternabend hybrid organisieren</li>
+      <li><strong>WF 4</strong> – Neue Kolleg:in einarbeiten</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Starthilfe: starthilfe@kita.bayern &nbsp;·&nbsp; +49 9621 96552 1991</span>
+  <span>Team-Tag KITA HUB · Pixelwerkstatt</span>
+</div>
+
+</body>
+</html>

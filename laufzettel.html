@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laufzettel – Team-Tag KITA HUB</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+    padding: 16mm 16mm 12mm 16mm;
+  }
+
+  h1 {
+    font-size: 16pt;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+  }
+
+  .meta {
+    font-size: 9.5pt;
+    color: #444;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 24px;
+  }
+
+  /* ── TAGESPLAN ── */
+  table.agenda {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+  }
+  table.agenda th {
+    background: #000;
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 600;
+    padding: 4px 6px;
+    text-align: left;
+  }
+  table.agenda td {
+    border: 1px solid #bbb;
+    vertical-align: top;
+    padding: 4px 6px;
+    font-size: 9.5pt;
+  }
+  table.agenda tr.pause td {
+    background: #f4f4f4;
+    color: #555;
+    font-style: italic;
+    font-size: 9pt;
+  }
+  table.agenda tr.highlight td {
+    font-weight: 600;
+  }
+  .note-cell {
+    height: 18px; /* space to write */
+    min-width: 120px;
+    border-left: 1px solid #bbb;
+  }
+  .col-time  { width: 13%; }
+  .col-block { width: 12%; }
+  .col-inhalt{ width: 40%; }
+  .col-notiz { width: 35%; }
+
+  /* ── DIENSTEPASS ── */
+  .section-title {
+    font-size: 12pt;
+    font-weight: 700;
+    border-bottom: 1.5px solid #000;
+    margin: 14px 0 8px 0;
+    padding-bottom: 3px;
+  }
+
+  .pass-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .pass-item {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 5px 7px;
+    font-size: 9pt;
+  }
+  .pass-item .check {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #000;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  .pass-item .service {
+    font-weight: 600;
+  }
+  .pass-item .task {
+    font-size: 8.5pt;
+    color: #333;
+    margin-top: 2px;
+  }
+  .pass-item .link-line {
+    border-bottom: 1px solid #aaa;
+    margin-top: 5px;
+    height: 1px;
+  }
+  .pass-item .link-label {
+    font-size: 7.5pt;
+    color: #666;
+  }
+
+  /* ── TRANSFER ── */
+  .transfer-box {
+    border: 1.5px solid #000;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+  }
+  .transfer-box .label {
+    font-size: 9pt;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .transfer-box .wf-options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .transfer-box .wf-opt {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9pt;
+  }
+  .transfer-box .wf-opt .check {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid #000;
+    border-radius: 2px;
+  }
+  .write-line {
+    border-bottom: 1px solid #aaa;
+    height: 20px;
+    margin-bottom: 6px;
+  }
+  .write-label {
+    font-size: 8pt;
+    color: #555;
+    margin-bottom: 2px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    font-size: 8pt;
+    color: #555;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { padding: 12mm 14mm 10mm 14mm; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Laufzettel — Team-Tag KITA HUB</h1>
+<div class="meta">
+  <span>📅 Pixelwerkstatt &nbsp;·&nbsp; 09:30–15:30 Uhr</span>
+  <span>Name: __________________________________</span>
+</div>
+
+<!-- TAGESPLAN -->
+<div class="section-title">Tagesplan &amp; Notizen</div>
+<table class="agenda">
+  <thead>
+    <tr>
+      <th class="col-time">Zeit</th>
+      <th class="col-block">Block</th>
+      <th class="col-inhalt">Inhalt</th>
+      <th class="col-notiz">Meine Notiz</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="highlight">
+      <td>09:30–09:45</td>
+      <td>Block 1</td>
+      <td>Ankommen &amp; Erwartungsabfrage</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr>
+      <td>09:45–10:30</td>
+      <td>Block 2</td>
+      <td>KITA HUB: Alle Dienste kennenlernen (Demo)</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr>
+      <td>10:30–10:55</td>
+      <td>Block 3</td>
+      <td>Dienstepass: Kernhandlungen ausprobieren <em>(→ unten)</em></td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr class="pause">
+      <td>10:55–11:10</td>
+      <td></td>
+      <td>☕ Kaffeepause</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>11:10–11:20</td>
+      <td>Block 3b</td>
+      <td>Lab-Briefing: Gruppen bilden, Alltagsanker setzen</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr class="highlight">
+      <td>11:20–12:05</td>
+      <td>Block 4</td>
+      <td>Workflow-Lab I — WF 1 &amp; WF 2 (geführt)</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr class="pause">
+      <td>12:05–13:05</td>
+      <td></td>
+      <td>🍽 Mittagspause</td>
+      <td></td>
+    </tr>
+    <tr class="highlight">
+      <td>13:05–14:05</td>
+      <td>Block 5</td>
+      <td>Workflow-Lab II — WF 3 &amp; WF 4 (eigenständig)</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr>
+      <td>14:05–14:20</td>
+      <td>Block 5b</td>
+      <td>Lab-Debrief: Erkenntnisse &amp; Querverbindungen</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr class="pause">
+      <td>14:20–14:35</td>
+      <td></td>
+      <td>☕ Kaffeepause</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>14:35–14:50</td>
+      <td>Block 6</td>
+      <td>Gallery Walk — Dot-Voting</td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr class="highlight">
+      <td>14:50–15:20</td>
+      <td>Block 7</td>
+      <td>Transfer: „Ab Montag" + Team-Commitment <em>(→ unten)</em></td>
+      <td class="note-cell"></td>
+    </tr>
+    <tr>
+      <td>15:20–15:30</td>
+      <td>Block 8</td>
+      <td>Abschluss, Fragen &amp; Blitzlicht</td>
+      <td class="note-cell"></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- DIENSTEPASS -->
+<div class="section-title">Dienstepass (Block 3) — Hake ab, was du erledigt hast</div>
+<div class="pass-grid">
+
+  <div class="pass-item">
+    <span class="check"></span><span class="service">1 · Medienecke</span>
+    <div class="task">Material suchen → Link kopieren</div>
+    <div class="link-line"></div>
+    <div class="link-label">mein Link:</div>
+  </div>
+
+  <div class="pass-item">
+    <span class="check"></span><span class="service">2 · Kurzlink</span>
+    <div class="task">Link kürzen → QR-Code herunterladen</div>
+    <div class="link-line"></div>
+    <div class="link-label">mein Kurzlink:</div>
+  </div>
+
+  <div class="pass-item">
+    <span class="check"></span><span class="service">3 · Termine</span>
+    <div class="task">Mini-Terminabfrage (3 Optionen) erstellen</div>
+    <div class="link-line"></div>
+    <div class="link-label">mein Terminlink:</div>
+  </div>
+
+  <div class="pass-item">
+    <span class="check"></span><span class="service">4 · Notizen</span>
+    <div class="task">Gastnotiz anlegen → Link sichern</div>
+    <div class="link-line"></div>
+    <div class="link-label">mein Notiz-Link:</div>
+  </div>
+
+  <div class="pass-item">
+    <span class="check"></span><span class="service">5 · Meeting</span>
+    <div class="task">Test-Raum beitreten → Audio &amp; Chat testen</div>
+    <div class="task" style="margin-top:4px;color:#666;">✓ Kein Link nötig</div>
+  </div>
+
+  <div class="pass-item">
+    <span class="check"></span><span class="service">6 · Chat</span>
+    <div class="task">Kanal finden → Nachricht senden <em>(nur mit Account)</em></div>
+    <div class="link-line"></div>
+    <div class="link-label">Kanal-Name:</div>
+  </div>
+
+</div>
+
+<!-- TRANSFER -->
+<div class="section-title">Transfer: Mein nächster Schritt (Block 7)</div>
+<div class="transfer-box">
+  <div class="label">Welchen Workflow setze ich als Erstes in meiner Kita um?</div>
+  <div class="wf-options">
+    <div class="wf-opt"><span class="check"></span> WF 1 — Fachwissen ins Team bringen</div>
+    <div class="wf-opt"><span class="check"></span> WF 2 — Teamsitzung digital vorbereiten</div>
+    <div class="wf-opt"><span class="check"></span> WF 3 — Elternabend hybrid organisieren</div>
+    <div class="wf-opt"><span class="check"></span> WF 4 — Neue Kolleg:in einarbeiten</div>
+  </div>
+  <div class="write-label">Was brauche ich dafür (Account, Kolleg:in, Zeit …)?</div>
+  <div class="write-line"></div>
+  <div class="write-label">Mein erster konkreter Schritt bis ________________:</div>
+  <div class="write-line"></div>
+  <div class="write-label">Wer hilft mir dabei?</div>
+  <div class="write-line"></div>
+</div>
+
+<div class="footer">
+  <span>Starthilfe: starthilfe@kita.bayern &nbsp;·&nbsp; Tel. +49 9621 96552 1991</span>
+  <span>Team-Tag KITA HUB · Pixelwerkstatt</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transfer-Planer – KITA HUB Team-Tag</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 10.5pt;
+    color: #000;
+    background: #fff;
+    width: 148mm;
+    min-height: 210mm;
+    padding: 10mm 12mm;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 13pt;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 9pt;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  .name-line {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+    font-size: 9pt;
+    padding-bottom: 2px;
+    color: #666;
+  }
+
+  .section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-bottom: 1.5px solid #000;
+    margin: 12px 0 7px 0;
+    padding-bottom: 2px;
+  }
+  .section-title:first-of-type { margin-top: 0; }
+
+  /* WF choice */
+  .wf-choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .wf-opt {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 5px 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 9pt;
+  }
+  .check {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #000;
+    border-radius: 2px;
+    margin-top: 2px;
+  }
+  .wf-opt .wf-label { font-weight: 600; display: block; }
+  .wf-opt .wf-desc  { font-size: 8pt; color: #444; }
+
+  /* Write lines */
+  .write-group { margin-bottom: 8px; }
+  .write-label {
+    font-size: 9pt;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .write-line {
+    border-bottom: 1px solid #aaa;
+    height: 20px;
+    margin-bottom: 4px;
+  }
+
+  /* Team commitment box */
+  .team-box {
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+  }
+  .team-box .tb-title {
+    font-size: 10pt;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+  }
+  .team-table th {
+    background: #000;
+    color: #fff;
+    padding: 3px 6px;
+    text-align: left;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+  .team-table td {
+    border: 1px solid #bbb;
+    padding: 3px 6px;
+    height: 22px;
+    vertical-align: bottom;
+  }
+  .col-wf   { width: 35%; }
+  .col-wer  { width: 25%; }
+  .col-was  { width: 25%; }
+  .col-bis  { width: 15%; }
+
+  .next-step {
+    border: 1.5px dashed #000;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    font-size: 9pt;
+  }
+  .next-step .ns-label { font-weight: 700; margin-bottom: 4px; }
+  .next-step .ns-line  { border-bottom: 1px solid #aaa; height: 22px; margin-bottom: 5px; }
+
+  .footer {
+    font-size: 7.5pt;
+    color: #666;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    margin-top: 10px;
+  }
+
+  @media print {
+    body { padding: 8mm 10mm; }
+    @page { size: A5; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Transfer-Planer</h1>
+<div class="subtitle">Block 7 (14:50–15:20) · Schritt 1: Einzelarbeit (8 Min.)</div>
+<div class="name-line">Name: ___________________________________________</div>
+
+<!-- TEIL 1: Individuell -->
+<div class="section-title">Mein Pilot-Workflow</div>
+<div class="wf-choice">
+  <div class="wf-opt">
+    <span class="check"></span>
+    <div>
+      <span class="wf-label">WF 1</span>
+      <span class="wf-desc">Fachwissen ins Team bringen</span>
+    </div>
+  </div>
+  <div class="wf-opt">
+    <span class="check"></span>
+    <div>
+      <span class="wf-label">WF 2</span>
+      <span class="wf-desc">Teamsitzung digital vorbereiten</span>
+    </div>
+  </div>
+  <div class="wf-opt">
+    <span class="check"></span>
+    <div>
+      <span class="wf-label">WF 3</span>
+      <span class="wf-desc">Elternabend hybrid organisieren</span>
+    </div>
+  </div>
+  <div class="wf-opt">
+    <span class="check"></span>
+    <div>
+      <span class="wf-label">WF 4</span>
+      <span class="wf-desc">Neue Kolleg:in einarbeiten</span>
+    </div>
+  </div>
+</div>
+
+<div class="write-group">
+  <div class="write-label">Wann setze ich ihn ein? (konkrete Situation)</div>
+  <div class="write-line"></div>
+  <div class="write-line"></div>
+</div>
+
+<div class="write-group">
+  <div class="write-label">Was brauche ich dafür? (Account, Kolleg:in, Zeit …)</div>
+  <div class="write-line"></div>
+  <div class="write-line"></div>
+</div>
+
+<div class="write-group">
+  <div class="write-label">Wer hilft mir dabei?</div>
+  <div class="write-line"></div>
+</div>
+
+<!-- TEIL 2: Partneraustausch -->
+<div class="section-title">Partneraustausch (Schritt 2 · 7 Min.)</div>
+<div class="write-group">
+  <div class="write-label">Was fehlt mir noch? Was rät meine:r Partner:in?</div>
+  <div class="write-line"></div>
+  <div class="write-line"></div>
+</div>
+
+<!-- TEIL 3: Team-Commitment -->
+<div class="section-title">Team-Commitment (Schritt 3 · Plenum)</div>
+<div class="team-box">
+  <div class="tb-title">Unser Team-Plan für die nächsten 14 Tage</div>
+  <table class="team-table">
+    <thead>
+      <tr>
+        <th class="col-wf">Pilot-Workflow</th>
+        <th class="col-wer">Wer?</th>
+        <th class="col-was">Erster Schritt</th>
+        <th class="col-bis">Bis wann?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Sofort-Aktion -->
+<div class="next-step">
+  <div class="ns-label">Sofort-Aktion jetzt: Terminumfrage für den Folgetermin erstellen</div>
+  <div class="ns-line"></div>
+  <div style="font-size:8pt;color:#555;">Kurz-URL unserer Terminumfrage:</div>
+</div>
+
+<div class="footer">
+  Starthilfe: starthilfe@kita.bayern · +49 9621 96552 1991 &nbsp;|&nbsp; Team-Tag KITA HUB · Pixelwerkstatt
+</div>
+
+</body>
+</html>
