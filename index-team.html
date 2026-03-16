@@ -218,6 +218,31 @@ body {
   color: white;
 }
 .ts-icon { font-size: 18px; margin-bottom: 3px; }
+
+/* ── CAROUSEL NAV ── */
+.carousel-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--ink-soft);
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.carousel-arrow:hover { background: #f0ede8; color: var(--ink); }
+.carousel-arrow.hidden { visibility: hidden; pointer-events: none; }
+.carousel-wrapper .timeline-strip { flex: 1; }
 .b0 { background: #7A8589; }
 .b1 { background: #7A9C87; }
 .b2 { background: #6E89A4; }
@@ -787,7 +812,9 @@ footer strong { color: white; }
   <!-- TAGESÜBERSICHT -->
   <div class="overview">
     <div class="overview-title">Tagesübersicht auf einen Blick</div>
-    <div class="timeline-strip">
+    <div class="carousel-wrapper">
+    <button class="carousel-arrow hidden" id="ts-prev" onclick="tsNav(-1)" aria-label="Zurück">&#8592;</button>
+    <div class="timeline-strip" id="timeline-strip">
       <div class="ts-block b0">
         <div class="ts-time">09:00</div>
         <div class="ts-icon">🔧</div>
@@ -878,6 +905,8 @@ footer strong { color: white; }
         <div class="ts-label">Nachbereitung</div>
         <div class="ts-dur">30'</div>
       </div>
+    </div>
+    <button class="carousel-arrow" id="ts-next" onclick="tsNav(1)" aria-label="Weiter">&#8594;</button>
     </div>
   </div>
 
@@ -1659,6 +1688,38 @@ function toggle(id) {
   const card = document.getElementById(id);
   if (card) card.classList.toggle('open');
 }
+
+// ── TIMELINE CAROUSEL ──
+(function() {
+  const PAGE_SIZE = 5;
+  let page = 0;
+
+  function render() {
+    const strip = document.getElementById('timeline-strip');
+    if (!strip) return;
+    const blocks = Array.from(strip.querySelectorAll('.ts-block'));
+    const totalPages = Math.ceil(blocks.length / PAGE_SIZE);
+    const start = page * PAGE_SIZE;
+    blocks.forEach(function(b, i) {
+      b.style.display = (i >= start && i < start + PAGE_SIZE) ? '' : 'none';
+    });
+    const prev = document.getElementById('ts-prev');
+    const next = document.getElementById('ts-next');
+    if (prev) prev.classList.toggle('hidden', page === 0);
+    if (next) next.classList.toggle('hidden', page >= totalPages - 1);
+  }
+
+  window.tsNav = function(dir) {
+    const strip = document.getElementById('timeline-strip');
+    if (!strip) return;
+    const blocks = strip.querySelectorAll('.ts-block');
+    const totalPages = Math.ceil(blocks.length / PAGE_SIZE);
+    page = Math.max(0, Math.min(page + dir, totalPages - 1));
+    render();
+  };
+
+  document.addEventListener('DOMContentLoaded', render);
+})();
 </script>
 
 <!-- FOOTER -->
