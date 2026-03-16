@@ -300,6 +300,21 @@
   }
   .thought p { padding-left: 18px; color: rgba(255,255,255,.9); font-weight: 300; }
 
+  /* ── BACK LINK ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 36px;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .back-link:hover { color: #3a8c5a; }
+
   /* ── TIP / WARN / INSIGHT ── */
   .callout {
     display: flex; gap: 10px;
@@ -518,6 +533,8 @@
 
 <!-- MAIN -->
 <div class="main">
+
+  <a class="back-link" href="wf4-einarbeiten.html">← Zurück zu Workflow 4</a>
 
   <!-- INTRO -->
   <div class="intro-card">
