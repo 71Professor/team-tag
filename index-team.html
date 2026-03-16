@@ -33,9 +33,12 @@
   --wf2: #3a5fa8;  /* WF2 navy */
   --wf3: #d4623a;  /* WF3 terracotta */
   --wf4: #3a8c5a;  /* WF4 forest */
+  --c3b: #4a78d4;  /* Lab-Briefing – mid blue */
+  --c5b: #5c6abf;  /* Lab-Debrief – blue-purple */
   --c6: #7c5cbf;   /* Gallery Walk – purple */
   --c7: #f5a623;   /* Transfer – amber */
   --c8: #2ec4a9;   /* Abschluss – mint */
+  --c9: #4a5568;   /* Nachbereitung – slate */
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -759,15 +762,15 @@ footer strong { color: white; }
     <p class="hero-sub">Moderationsablauf für den Team-Tag in der Pixelwerkstatt — mit vier live erarbeiteten Workflows und echten, sofort nutzbaren Artefakten.</p>
     <div class="hero-stats">
       <div class="stat">
-        <span class="num">09:30</span>
+        <span class="num">09:00</span>
         <span class="label">Beginn</span>
       </div>
       <div class="stat">
-        <span class="num">15:30</span>
+        <span class="num">16:00</span>
         <span class="label">Ende</span>
       </div>
       <div class="stat">
-        <span class="num">4 h</span>
+        <span class="num">4:30 h</span>
         <span class="label">Arbeitszeit</span>
       </div>
       <div class="stat">
@@ -807,55 +810,73 @@ footer strong { color: white; }
         <div class="ts-time">10:30</div>
         <div class="ts-icon">🎫</div>
         <div class="ts-label">Dienstepass</div>
-        <div class="ts-dur">30'</div>
+        <div class="ts-dur">25'</div>
       </div>
       <div class="ts-block bp">
-        <div class="ts-time">11:00</div>
+        <div class="ts-time">10:55</div>
         <div class="ts-icon">☕</div>
         <div class="ts-label">Pause</div>
         <div class="ts-dur">15'</div>
       </div>
+      <div class="ts-block" style="background:linear-gradient(135deg,#eef4ff 0%,#e8f0fb 100%); border-top:3px solid #4a78d4;">
+        <div class="ts-time">11:10</div>
+        <div class="ts-icon">🧩</div>
+        <div class="ts-label">Lab-Briefing</div>
+        <div class="ts-dur">10'</div>
+      </div>
       <div class="ts-block b4">
-        <div class="ts-time">11:15</div>
+        <div class="ts-time">11:20</div>
         <div class="ts-icon">🗂</div>
         <div class="ts-label">WF 1 + 2</div>
         <div class="ts-dur">45'</div>
       </div>
       <div class="ts-block bmit">
-        <div class="ts-time">12:00</div>
+        <div class="ts-time">12:05</div>
         <div class="ts-icon">🍽</div>
         <div class="ts-label">Mittagspause</div>
         <div class="ts-dur">60'</div>
       </div>
       <div class="ts-block bwf">
-        <div class="ts-time">13:00</div>
+        <div class="ts-time">13:05</div>
         <div class="ts-icon">⚙️</div>
         <div class="ts-label">WF 3 + 4</div>
         <div class="ts-dur">60'</div>
       </div>
+      <div class="ts-block" style="background:linear-gradient(135deg,#eef2ff 0%,#e8ecf8 100%); border-top:3px solid #5c6abf;">
+        <div class="ts-time">14:05</div>
+        <div class="ts-icon">💬</div>
+        <div class="ts-label">Lab-Debrief</div>
+        <div class="ts-dur">15'</div>
+      </div>
       <div class="ts-block bp">
-        <div class="ts-time">14:00</div>
+        <div class="ts-time">14:20</div>
         <div class="ts-icon">☕</div>
         <div class="ts-label">Pause</div>
         <div class="ts-dur">15'</div>
       </div>
       <div class="ts-block b5">
-        <div class="ts-time">14:15</div>
+        <div class="ts-time">14:35</div>
         <div class="ts-icon">🖼</div>
         <div class="ts-label">Gallery Walk</div>
-        <div class="ts-dur">20'</div>
+        <div class="ts-dur">15'</div>
       </div>
       <div class="ts-block b6">
-        <div class="ts-time">14:35</div>
+        <div class="ts-time">14:50</div>
         <div class="ts-icon">📅</div>
         <div class="ts-label">Transfer</div>
-        <div class="ts-dur">40'</div>
+        <div class="ts-dur">30'</div>
       </div>
       <div class="ts-block b7">
-        <div class="ts-time">15:15</div>
+        <div class="ts-time">15:20</div>
         <div class="ts-icon">🌟</div>
         <div class="ts-label">Abschluss</div>
-        <div class="ts-dur">15'</div>
+        <div class="ts-dur">10'</div>
+      </div>
+      <div class="ts-block b0">
+        <div class="ts-time">15:30</div>
+        <div class="ts-icon">📦</div>
+        <div class="ts-label">Nachbereitung</div>
+        <div class="ts-dur">30'</div>
       </div>
     </div>
   </div>
@@ -1019,7 +1040,7 @@ footer strong { color: white; }
       <div class="block-meta">
         <div class="block-time-row">
           <span class="block-time">10:30</span>
-          <span class="block-dur">30 Min.</span>
+          <span class="block-dur">25 Min.</span>
           <span class="block-method-tag" style="background:#f4f0fb; color:#4a2880; border:1px solid #c8b8f0;">Einzelarbeit</span>
         </div>
         <div class="block-title">Dienstepass: Kernhandlungen ausprobieren</div>
@@ -1064,13 +1085,6 @@ footer strong { color: white; }
           </div>
           <div class="phase-time">5'</div>
         </div>
-        <div class="phase-row">
-          <div class="phase-num" style="background:var(--ink-faint);">+</div>
-          <div class="phase-content">
-            <div class="phase-name">Kurzaustausch: Was war einfach, was nicht?</div>
-          </div>
-          <div class="phase-time">5'</div>
-        </div>
       </div>
       <div class="tip-box tip-blue">
         <div class="ti">🌀</div>
@@ -1078,7 +1092,7 @@ footer strong { color: white; }
       </div>
       <div class="tip-box tip-amber">
         <div class="ti">⚡</div>
-        <div><strong>Bei Zeitdruck:</strong> Aufgabe E (Medienecke) weglassen oder nur zeigen, nicht selbst ausprobieren.</div>
+        <div><strong>Bei Zeitdruck:</strong> Aufgabe E (Medienecke) weglassen oder nur zeigen, nicht selbst ausprobieren. Der Kurzaustausch findet im anschließenden Lab-Briefing statt.</div>
       </div>
     </div>
   </div>
@@ -1087,8 +1101,57 @@ footer strong { color: white; }
   <div class="pause-card">
     <div class="pause-icon">☕</div>
     <div>
-      <div class="pause-time">11:00 – 11:15</div>
-      <div class="pause-label">Pause (15 Min.) — Kaffee, Getränke, kurze Bewegung</div>
+      <div class="pause-time">10:55 – 11:10</div>
+      <div class="pause-label">Kaffeepause 1 (15 Min.) — Kaffee, Getränke, kurze Bewegung</div>
+    </div>
+  </div>
+
+  <!-- BLOCK 3b: Lab-Briefing (NEU) -->
+  <div class="block-card" id="card-3b">
+    <div class="block-header" onclick="toggle('card-3b')">
+      <div class="block-accent" style="background:var(--c3b);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">11:10</span>
+          <span class="block-dur">10 Min.</span>
+          <span class="block-method-tag" style="background:#eef4ff; color:#1a3d80; border:1px solid #b8d0f8;">Team-Bildung</span>
+        </div>
+        <div class="block-title">Lab-Briefing: Gruppen bilden &amp; Alltagsbezug herstellen</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px;">Kurze Vorbereitung vor dem Workflow-Lab I: Gruppen finden sich, lesen ihre Workflow-Karte und setzen einen Alltagsanker — damit das Lab sofort greift.</p>
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3b);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Gruppen bilden &amp; Rollenkarten ziehen</div>
+            <div class="phase-desc">2–3 Personen je Gruppe. Rollenkarten ziehen: Moderator:in, Protokollant:in, Ausprobier-Person. Tanja erklärt das Lab-Format in zwei Sätzen.</div>
+          </div>
+          <div class="phase-time">3'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3b);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Workflow-Karte lesen &amp; Alltagssituation finden</div>
+            <div class="phase-desc">Jede Gruppe liest das Szenario auf ihrer Workflow-Karte. Leitfrage: „Wann wäre dieser Workflow bei euch hilfreich — konkret, letzte Woche?"</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3b);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Kurzcheck: Frage &amp; Workflow-Name im Plenum</div>
+            <div class="phase-desc">Jede Gruppe nennt in einem Satz: Workflow-Titel + eigene Alltagssituation. Kein Kommentar — nur hören.</div>
+          </div>
+          <div class="phase-time">2'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <div class="ti">🧩</div>
+        <div>Das Lab-Briefing ersetzt den Kurzaustausch aus dem Dienstepass und macht ihn konkreter: statt „Was war schwer?" jetzt direkt „Wofür brauche ich es?"</div>
+      </div>
     </div>
   </div>
 
@@ -1098,7 +1161,7 @@ footer strong { color: white; }
       <div class="block-accent" style="background:var(--c5);"></div>
       <div class="block-meta">
         <div class="block-time-row">
-          <span class="block-time">11:15</span>
+          <span class="block-time">11:20</span>
           <span class="block-dur">45 Min.</span>
           <span class="block-method-tag" style="background:#eef4ff; color:#1a3d80; border:1px solid #b8d0f8;">Angeleitete Praxis</span>
         </div>
@@ -1191,7 +1254,7 @@ footer strong { color: white; }
   <div class="pause-card" style="border-color:#b8d0e0; background:#f0f5f8;">
     <div class="pause-icon">🍽</div>
     <div>
-      <div class="pause-time">12:00 – 13:00</div>
+      <div class="pause-time">12:05 – 13:05</div>
       <div class="pause-label" style="color:var(--ink-soft);">Mittagspause (60 Min.) — Mittagessen, Erholung, informeller Austausch</div>
     </div>
   </div>
@@ -1202,7 +1265,7 @@ footer strong { color: white; }
       <div class="block-accent" style="background: linear-gradient(180deg, var(--wf3) 50%, var(--wf4) 50%);"></div>
       <div class="block-meta">
         <div class="block-time-row">
-          <span class="block-time">13:00</span>
+          <span class="block-time">13:05</span>
           <span class="block-dur">60 Min.</span>
           <span class="block-method-tag" style="background:#fdf2ee; color:#8a3010; border:1px solid #f0c0a0;">Eigenständige Gruppen</span>
         </div>
@@ -1318,12 +1381,66 @@ footer strong { color: white; }
     </div>
   </div>
 
+  <!-- BLOCK 5b: Lab-Debrief (NEU) -->
+  <div class="block-card" id="card-5b">
+    <div class="block-header" onclick="toggle('card-5b')">
+      <div class="block-accent" style="background:var(--c5b);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">14:05</span>
+          <span class="block-dur">15 Min.</span>
+          <span class="block-method-tag" style="background:#eef2ff; color:#2a3580; border:1px solid #b8c0f0;">Gruppen-Debrief</span>
+        </div>
+        <div class="block-title">Lab-Debrief: Erkenntnisse &amp; Querverbindungen sichtbar machen</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px;">Alle vier Workflow-Gruppen kommen zusammen: Artefakte zeigen, Überraschungen benennen, Stolpersteine sichern — bevor die Kaffeepause alles verwischt.</p>
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5b);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Lieblings-Artefakt je Gruppe (alle vier)</div>
+            <div class="phase-desc">Jede Gruppe hält kurz ihr bestes Ergebnis hoch oder zeigt es am Bildschirm: QR-Code, Chat-Kanal, Protokolldokument, Willkommenspaket. Je 1–2 Sätze — keine Diskussion.</div>
+          </div>
+          <div class="phase-time">6'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5b);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Querverbindungen: Der KITA HUB als Ökosystem</div>
+            <div class="phase-desc">Tanja markiert auf dem Übersichts-Poster: Chat, Kurzlink und Termine tauchen in allen vier Workflows auf. „Nicht vier isolierte Tools — ein durchgängiges Ökosystem."</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5b);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Stolpersteine sichern</div>
+            <div class="phase-desc">Jede Gruppe notiert blitzschnell 1 Hürde auf eine Karte (z. B. „Account-Einladung", „QR-Code drucken"). Karten werden sichtbar aufgehängt — Kaffeepause als Frage-Zeit.</div>
+          </div>
+          <div class="phase-time">4'</div>
+        </div>
+      </div>
+      <div class="output-row">
+        <span class="output-tag">🗺 Ökosystem-Poster</span>
+        <span class="output-tag">📌 Stolpersteine-Karten</span>
+        <span class="output-tag">💡 WF-Highlights aller Gruppen</span>
+      </div>
+      <div class="tip-box tip-purple">
+        <div class="ti">🔗</div>
+        <div>Der Lab-Debrief macht sichtbar, was im Gallery Walk sonst erst mühsam rekonstruiert werden muss. Der Gallery Walk kann dadurch schlanker und fokussierter werden.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- PAUSE 2 -->
   <div class="pause-card">
     <div class="pause-icon">☕</div>
     <div>
-      <div class="pause-time">14:00 – 14:15</div>
-      <div class="pause-label">Pause (15 Min.) — Erholung nach intensiver Gruppenarbeit</div>
+      <div class="pause-time">14:20 – 14:35</div>
+      <div class="pause-label">Kaffeepause 2 (15 Min.) — Erholung &amp; informelle Fragen zu den Stolpersteinen</div>
     </div>
   </div>
 
@@ -1333,8 +1450,8 @@ footer strong { color: white; }
       <div class="block-accent" style="background:var(--c6);"></div>
       <div class="block-meta">
         <div class="block-time-row">
-          <span class="block-time">14:15</span>
-          <span class="block-dur">20 Min.</span>
+          <span class="block-time">14:35</span>
+          <span class="block-dur">15 Min.</span>
           <span class="block-method-tag" style="background:#f4f0fb; color:#4a2880; border:1px solid #c8b8f0;">Gallery Walk</span>
         </div>
         <div class="block-title">Gallery Walk: Alle vier Workflows im Überblick</div>
@@ -1364,9 +1481,9 @@ footer strong { color: white; }
           <div class="phase-num" style="background:var(--c6);">3</div>
           <div class="phase-content">
             <div class="phase-name">Kurze Auswertung im Plenum</div>
-            <div class="phase-desc">Welche Workflows haben die meisten Punkte? Was überrascht? Tanja moderiert 3–4 kurze Statements.</div>
+            <div class="phase-desc">Welche Workflows haben die meisten Punkte? Tanja moderiert 2–3 knappe Statements — die Tiefe kommt bereits aus dem Lab-Debrief.</div>
           </div>
-          <div class="phase-time">10'</div>
+          <div class="phase-time">5'</div>
         </div>
       </div>
       <div class="tip-box tip-purple">
@@ -1382,8 +1499,8 @@ footer strong { color: white; }
       <div class="block-accent" style="background:var(--c7);"></div>
       <div class="block-meta">
         <div class="block-time-row">
-          <span class="block-time">14:35</span>
-          <span class="block-dur">40 Min.</span>
+          <span class="block-time">14:50</span>
+          <span class="block-dur">30 Min.</span>
           <span class="block-method-tag" style="background:#fff8e6; color:#8a6000; border:1px solid #fde08a;">Transfer + Commitment</span>
         </div>
         <div class="block-title">„Ab Montag" — Team-Commitment & Pilotplanung</div>
@@ -1396,9 +1513,9 @@ footer strong { color: white; }
           <div class="phase-num" style="background:var(--c7);">1</div>
           <div class="phase-content">
             <div class="phase-name">Einzelreflexion: Mein Transfer-Plan</div>
-            <div class="phase-desc">Jede Person schreibt auf eine Karte: „Einen Workflow, den ich nächste Woche erstmals nutze." — 5 Min. stille Arbeit.</div>
+            <div class="phase-desc">Jede Person schreibt auf eine Karte: „Einen Workflow, den ich nächste Woche erstmals nutze." — Stille Arbeit. Die Erkenntnisse aus dem Lab-Debrief sind noch frisch.</div>
           </div>
-          <div class="phase-time">10'</div>
+          <div class="phase-time">8'</div>
         </div>
         <div class="phase-row">
           <div class="phase-num" style="background:var(--c7);">2</div>
@@ -1406,28 +1523,20 @@ footer strong { color: white; }
             <div class="phase-name">Paar-Austausch: Pläne vorstellen</div>
             <div class="phase-desc">Zu zweit: Pläne gegenseitig vorstellen und Feedback geben. „Was brauche ich noch dafür?"</div>
           </div>
-          <div class="phase-time">10'</div>
+          <div class="phase-time">7'</div>
         </div>
         <div class="phase-row">
           <div class="phase-num" style="background:var(--c7);">3</div>
           <div class="phase-content">
-            <div class="phase-name">Team-Commitment im Plenum</div>
-            <div class="phase-desc">Das Team benennt gemeinsam: 1 Pilot-Workflow für 14 Tage · 3 konkrete Maßnahmen (Wer / Was / Bis wann) · 1 offene Frage als Experiment.</div>
+            <div class="phase-name">Team-Commitment &amp; erster Pilotschritt</div>
+            <div class="phase-desc">Das Team benennt gemeinsam: 1 Pilot-Workflow für 14 Tage · Wer / Was / Bis wann. Direkt im Anschluss: Terminumfrage für den Folgetermin live erstellen — erste echte Nutzung sofort.</div>
           </div>
           <div class="phase-time">15'</div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-num" style="background:var(--c7);">4</div>
-          <div class="phase-content">
-            <div class="phase-name">Terminumfrage live erstellen</div>
-            <div class="phase-desc">Das Team erstellt jetzt sofort eine echte Terminumfrage für den Folgetermin — das ist gleichzeitig die letzte Übung und das erste echte Artefakt.</div>
-          </div>
-          <div class="phase-time">5'</div>
         </div>
       </div>
       <div class="tip-box tip-mint">
         <div class="ti">💡</div>
-        <div>Team-Entscheid direkt als Notiz anlegen und per Kurzlink im Chat fixieren — Übung und erstes echtes Produktivitäts-Artefakt in einem.</div>
+        <div>Team-Entscheid direkt als kollaborative Notiz anlegen und per Kurzlink im Chat fixieren — Übung und erstes echtes Produktivitäts-Artefakt in einem.</div>
       </div>
     </div>
   </div>
@@ -1438,8 +1547,8 @@ footer strong { color: white; }
       <div class="block-accent" style="background:var(--c8);"></div>
       <div class="block-meta">
         <div class="block-time-row">
-          <span class="block-time">15:15</span>
-          <span class="block-dur">15 Min.</span>
+          <span class="block-time">15:20</span>
+          <span class="block-dur">10 Min.</span>
           <span class="block-method-tag" style="background:var(--mint-light); color:#1a6358; border:1px solid var(--mint-mid);">Plenum</span>
         </div>
         <div class="block-title">Abschluss, offene Fragen & Blitzlicht</div>
@@ -1451,24 +1560,16 @@ footer strong { color: white; }
         <div class="phase-row">
           <div class="phase-num" style="background:var(--c8);">1</div>
           <div class="phase-content">
-            <div class="phase-name">Vier Workflows im Überblick zeigen</div>
-            <div class="phase-desc">Querverbindungen visualisieren: Chat, Kurzlink und Termine verbinden alle Workflows — der KITA HUB ist ein Ökosystem.</div>
+            <div class="phase-name">Offene Fragen & Starthilfe</div>
+            <div class="phase-desc">Letzte Fragen aus dem Lab beantworten. Starthilfe-Kontakt nochmal deutlich zeigen: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91e2e5f0e3e5f9f8fdf7f4d1faf8e5f0bff3f0e8f4e3ff">[email&#160;protected]</a> / +49 9621 96552 1991</div>
           </div>
           <div class="phase-time">5'</div>
         </div>
         <div class="phase-row">
           <div class="phase-num" style="background:var(--c8);">2</div>
           <div class="phase-content">
-            <div class="phase-name">Offene Fragen & Starthilfe</div>
-            <div class="phase-desc">Letzte Fragen beantworten. Starthilfe-Kontakt nochmal deutlich zeigen: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91e2e5f0e3e5f9f8fdf7f4d1faf8e5f0bff3f0e8f4e3ff">[email&#160;protected]</a> / +49 9621 96552 1991</div>
-          </div>
-          <div class="phase-time">5'</div>
-        </div>
-        <div class="phase-row">
-          <div class="phase-num" style="background:var(--c8);">3</div>
-          <div class="phase-content">
             <div class="phase-name">Blitzlicht: Ein Wort, das den Tag beschreibt</div>
-            <div class="phase-desc">Jede Person sagt ein Wort. Tanja schließt mit einem kurzen Ausblick: „In 14 Tagen habt ihr ersten Praxis-Erfahrungen."</div>
+            <div class="phase-desc">Jede Person sagt ein Wort. Tanja schließt mit einem kurzen Ausblick: „In 14 Tagen habt ihr erste Praxis-Erfahrungen — meldet euch gerne."</div>
           </div>
           <div class="phase-time">5'</div>
         </div>
@@ -1477,6 +1578,38 @@ footer strong { color: white; }
         <div class="ti">🌱</div>
         <div>Hinweis auf Evaluierung mit Paul und LimeSurvey — kurze Info, dass Feedback den nächsten Durchlauf verbessert.</div>
       </div>
+    </div>
+  </div>
+
+  <!-- NACHBEREITUNG -->
+  <div class="block-card" id="card-nach">
+    <div class="block-header" onclick="toggle('card-nach')">
+      <div class="block-accent" style="background:var(--c9);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">15:30</span>
+          <span class="block-dur">30 Min.</span>
+          <span class="block-method-tag" style="background:#f0f2f8; color:#4a5568; border:1px solid #c8d0e0;">🔧 Organisation</span>
+        </div>
+        <div class="block-title">Nachbereitung & Abbau — Tanja</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="tip-box tip-amber">
+        <div class="ti">📋</div>
+        <div><strong>Für Tanja nach dem Tag:</strong> Kurzprotokoll, Materialien einsammeln, Evaluierung starten.</div>
+      </div>
+      <ul class="checklist" style="margin-top:16px;">
+        <li>Stolpersteine-Karten fotografieren und in Chat-Kanal posten (Dokumentation)</li>
+        <li>Team-Commitment-Notiz per Kurzlink im Chat fixieren (falls noch nicht geschehen)</li>
+        <li>Evaluierungslink (LimeSurvey) per Chat an alle Teilnehmenden senden</li>
+        <li>Poster abfotografieren und in geteiltem Notizen-Dokument ablegen</li>
+        <li>Geräte einsammeln, Raum aufräumen, Beamer ausschalten</li>
+        <li>Kurznotiz für Paul: Was lief gut, was anpassen — sofort während die Eindrücke frisch sind</li>
+        <li>Folgetermin-Terminumfrage prüfen (wurde im Transfer-Block erstellt)</li>
+        <li>Handouts und Kontaktkarten bei Teilnehmenden gelassen?</li>
+      </ul>
     </div>
   </div>
 
