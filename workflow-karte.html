@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflow-Karten – KITA HUB</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 10.5pt;
+    color: #000;
+    background: #fff;
+  }
+
+  /* Each page = one workflow card (A4 portrait) */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm 16mm;
+    page-break-after: always;
+    position: relative;
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  /* ── HEADER ── */
+  .wf-badge {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    border: 2px solid #000;
+    border-radius: 3px;
+    padding: 2px 8px;
+    margin-bottom: 4px;
+  }
+  h1 {
+    font-size: 15pt;
+    font-weight: 700;
+    border-bottom: 2.5px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 6px;
+  }
+  .szenario {
+    font-size: 9.5pt;
+    color: #333;
+    border-left: 3px solid #000;
+    padding-left: 8px;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  /* ── SCHRITTE ── */
+  .section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 6px;
+    padding-bottom: 2px;
+  }
+
+  table.steps {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+    font-size: 9.5pt;
+  }
+  table.steps th {
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    padding: 4px 6px;
+    text-align: left;
+    font-size: 9pt;
+  }
+  table.steps td {
+    border: 1px solid #bbb;
+    padding: 4px 6px;
+    vertical-align: top;
+  }
+  table.steps tr:nth-child(even) td { background: #f8f8f8; }
+  .col-nr    { width: 6%; text-align: center; font-weight: 700; }
+  .col-dienst{ width: 22%; font-weight: 600; }
+  .col-aktion{ width: 72%; }
+
+  /* ── ROLLEN ── */
+  .rollen-grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .rolle {
+    border: 1.5px solid #000;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 9pt;
+    flex: 1;
+    min-width: 100px;
+  }
+  .rolle strong { display: block; font-size: 9.5pt; }
+
+  /* ── OUTPUT ── */
+  .output-box {
+    background: #f4f4f4;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 9pt;
+    margin-bottom: 12px;
+  }
+  .output-box .label { font-weight: 700; margin-bottom: 3px; }
+
+  /* ── AUSFÜLLEN ── */
+  .fill-section { margin-bottom: 10px; }
+  .fill-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .fill-label {
+    font-size: 9pt;
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 130px;
+  }
+  .fill-line {
+    flex: 1;
+    border-bottom: 1px solid #aaa;
+    height: 18px;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .link-field {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 4px 7px;
+  }
+  .link-field .lf-label { font-size: 8pt; color: #555; }
+  .link-field .lf-line  { border-bottom: 1px solid #ccc; height: 16px; margin-top: 3px; }
+
+  .nutzen-box {
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+  }
+  .nutzen-box .label { font-size: 9pt; font-weight: 700; margin-bottom: 3px; }
+  .nutzen-box .line  { border-bottom: 1px solid #aaa; height: 20px; }
+
+  .footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 16mm;
+    right: 16mm;
+    font-size: 8pt;
+    color: #666;
+    border-top: 1px solid #ccc;
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 12mm 14mm 10mm 14mm; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     WORKFLOW 1
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="wf-badge">WF 1</div>
+  <h1>Fachwissen ins Team bringen</h1>
+  <div class="szenario">
+    Szenario: Eine Fachkraft entdeckt in der Medienecke spannendes Material zum Thema
+    „Inklusion" und möchte es mit dem Team teilen und besprechen.
+  </div>
+
+  <div class="section-title">Schritte</div>
+  <table class="steps">
+    <thead><tr><th class="col-nr">#</th><th class="col-dienst">Dienst</th><th class="col-aktion">Aktion</th></tr></thead>
+    <tbody>
+      <tr><td class="col-nr">1</td><td class="col-dienst">Medienecke</td><td class="col-aktion">Material zu „Inklusion" suchen → Link kopieren</td></tr>
+      <tr><td class="col-nr">2</td><td class="col-dienst">Kurzlink</td><td class="col-aktion">Sprechenden Kurzlink + QR-Code erstellen (z. B. link.kita.bayern/inklusion-material)</td></tr>
+      <tr><td class="col-nr">3</td><td class="col-dienst">Chat</td><td class="col-aktion">Neuen Kanal „Inklusion im Kita-Alltag" erstellen → QR + Link + kurze Beschreibung posten</td></tr>
+      <tr><td class="col-nr">4</td><td class="col-dienst">Termine</td><td class="col-aktion">Terminumfrage für ein 30-Min-Austauschtreffen erstellen → Link im Chat-Kanal teilen</td></tr>
+      <tr><td class="col-nr">5</td><td class="col-dienst">Meeting</td><td class="col-aktion">Zum vereinbarten Termin Meeting-Link erstellen und im Kanal fixieren</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Rollen</div>
+  <div class="rollen-grid">
+    <div class="rolle"><strong>Materialscout</strong>Sucht und bewertet Material in der Medienecke</div>
+    <div class="rolle"><strong>Moderator:in</strong>Erstellt Kanal, postet Links, kündigt Termin an</div>
+    <div class="rolle"><strong>Organizer</strong>Erstellt Terminumfrage und Meeting-Link</div>
+  </div>
+
+  <div class="output-box">
+    <div class="label">Ziel-Artefakte</div>
+    1 Chatraum &nbsp;·&nbsp; 1 Kurzlink &nbsp;·&nbsp; 1 QR-Code &nbsp;·&nbsp; 1 Terminumfrage &nbsp;·&nbsp; 1 Meeting-Link
+  </div>
+
+  <div class="section-title">Unsere Ergebnisse</div>
+  <div class="links-grid">
+    <div class="link-field"><div class="lf-label">Chatraum / Kanalname</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Kurzlink</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Terminumfrage-Link</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Meeting-Link</div><div class="lf-line"></div></div>
+  </div>
+
+  <div class="fill-section">
+    <div class="fill-row"><span class="fill-label">Stolpersteine:</span><div class="fill-line"></div></div>
+    <div class="fill-row"><span class="fill-label"></span><div class="fill-line"></div></div>
+  </div>
+
+  <div class="nutzen-box">
+    <div class="label">Nutzen in einem Satz:</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="footer">
+    <span>WF 1 — Fachwissen ins Team bringen</span>
+    <span>Team-Tag KITA HUB · Pixelwerkstatt</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     WORKFLOW 2
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="wf-badge">WF 2</div>
+  <h1>Teamsitzung digital vorbereiten</h1>
+  <div class="szenario">
+    Szenario: Die Kitaleitung bereitet die nächste Teamsitzung vor, sammelt vorab Themen
+    und protokolliert die Ergebnisse gemeinsam.
+  </div>
+
+  <div class="section-title">Schritte</div>
+  <table class="steps">
+    <thead><tr><th class="col-nr">#</th><th class="col-dienst">Dienst</th><th class="col-aktion">Aktion</th></tr></thead>
+    <tbody>
+      <tr><td class="col-nr">1</td><td class="col-dienst">Notizen</td><td class="col-aktion">Dokument „Teamsitzung [Datum]" anlegen: Tagesordnung, Entscheidungen, Aufgaben (Wer/Was/Bis)</td></tr>
+      <tr><td class="col-nr">2</td><td class="col-dienst">Kurzlink</td><td class="col-aktion">QR-Code zum Notizen-Dokument erstellen (optional: ausdrucken &amp; aushängen)</td></tr>
+      <tr><td class="col-nr">3</td><td class="col-dienst">Chat</td><td class="col-aktion">Link zur Agenda im Team-Kanal posten + Bitte um Themenvorschläge</td></tr>
+      <tr><td class="col-nr">4</td><td class="col-dienst">Notizen</td><td class="col-aktion">Kolleg:innen ergänzen Themenvorschläge direkt im Dokument (gleichzeitig)</td></tr>
+      <tr><td class="col-nr">5</td><td class="col-dienst">Termine</td><td class="col-aktion">Terminumfrage für die Sitzung erstellen → Link in den Chat</td></tr>
+      <tr><td class="col-nr">6</td><td class="col-dienst">Meeting</td><td class="col-aktion">Falls nötig (Teilzeit/Schicht): Meeting-Link erstellen, in Notiz + Chat ergänzen</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Rollen</div>
+  <div class="rollen-grid">
+    <div class="rolle"><strong>Orga (Leitung)</strong>Erstellt Dokument, Terminumfrage und Kanal-Post</div>
+    <div class="rolle"><strong>Alle</strong>Ergänzen Themenvorschläge im Notizen-Dokument</div>
+  </div>
+
+  <div class="output-box">
+    <div class="label">Ziel-Artefakte</div>
+    1 lebendes Protokoll &nbsp;·&nbsp; 1 Aufgabenliste &nbsp;·&nbsp; 1 Terminumfrage &nbsp;·&nbsp; Link-Hub im Chat
+  </div>
+
+  <div class="section-title">Unsere Ergebnisse</div>
+  <div class="links-grid">
+    <div class="link-field"><div class="lf-label">Notizen-Dokument (Link)</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Kurzlink / QR-Code</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Terminumfrage-Link</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Meeting-Link (optional)</div><div class="lf-line"></div></div>
+  </div>
+
+  <div class="fill-section">
+    <div class="fill-row"><span class="fill-label">Stolpersteine:</span><div class="fill-line"></div></div>
+    <div class="fill-row"><span class="fill-label"></span><div class="fill-line"></div></div>
+  </div>
+
+  <div class="nutzen-box">
+    <div class="label">Nutzen in einem Satz:</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="footer">
+    <span>WF 2 — Teamsitzung digital vorbereiten</span>
+    <span>Team-Tag KITA HUB · Pixelwerkstatt</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     WORKFLOW 3
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="wf-badge">WF 3</div>
+  <h1>Elternabend hybrid organisieren</h1>
+  <div class="szenario">
+    Szenario: Das Team plant einen thematischen Elternabend zum Thema „Medienerziehung"
+    und möchte Eltern vorab informieren und einbinden.
+  </div>
+
+  <div class="section-title">Schritte</div>
+  <table class="steps">
+    <thead><tr><th class="col-nr">#</th><th class="col-dienst">Dienst</th><th class="col-aktion">Aktion</th></tr></thead>
+    <tbody>
+      <tr><td class="col-nr">1</td><td class="col-dienst">Medienecke</td><td class="col-aktion">Material zu „Medienerziehung" für Eltern recherchieren</td></tr>
+      <tr><td class="col-nr">2</td><td class="col-dienst">Notizen</td><td class="col-aktion">Planungsdokument anlegen: Ablauf, Verantwortlichkeiten, Materialliste, Agenda</td></tr>
+      <tr><td class="col-nr">3</td><td class="col-dienst">Kurzlink</td><td class="col-aktion">QR-Code zu einer Eltern-Ressource aus der Medienecke erstellen</td></tr>
+      <tr><td class="col-nr">4</td><td class="col-dienst">Termine</td><td class="col-aktion">Terminumfrage für den Elternabend erstellen (kein Account nötig — auch Eltern können abstimmen)</td></tr>
+      <tr><td class="col-nr">5</td><td class="col-dienst">Meeting</td><td class="col-aktion">Meeting-Link erstellen (Eltern nehmen per Link teil, kein Account nötig)</td></tr>
+      <tr><td class="col-nr">6</td><td class="col-dienst">Chat</td><td class="col-aktion">Alles im Team-Kanal bündeln: QR-Code, Terminlink, Planungsdokument, Meeting-Link</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Rollen</div>
+  <div class="rollen-grid">
+    <div class="rolle"><strong>Elternkommunikation</strong>Recherche, Terminumfrage, QR-Code</div>
+    <div class="rolle"><strong>Moderator:in</strong>Planungsdokument und Kanalkoordination</div>
+    <div class="rolle"><strong>Technikbegleitung</strong>Meeting-Link und technische Vorbereitung</div>
+  </div>
+
+  <div class="output-box">
+    <div class="label">Ziel-Artefakte</div>
+    1 Terminlink &nbsp;·&nbsp; 1 Agenda-Notiz &nbsp;·&nbsp; 1 Meeting-Link &nbsp;·&nbsp; 2 Kurzlinks &nbsp;·&nbsp; 2 QR-Codes
+  </div>
+
+  <div class="section-title">Unsere Ergebnisse</div>
+  <div class="links-grid">
+    <div class="link-field"><div class="lf-label">Planungsdokument (Link)</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Terminumfrage-Link</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Eltern-Ressource QR / Kurzlink</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Meeting-Link</div><div class="lf-line"></div></div>
+  </div>
+
+  <div class="fill-section">
+    <div class="fill-row"><span class="fill-label">Stolpersteine:</span><div class="fill-line"></div></div>
+    <div class="fill-row"><span class="fill-label"></span><div class="fill-line"></div></div>
+  </div>
+
+  <div class="nutzen-box">
+    <div class="label">Nutzen in einem Satz:</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="footer">
+    <span>WF 3 — Elternabend hybrid organisieren</span>
+    <span>Team-Tag KITA HUB · Pixelwerkstatt</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     WORKFLOW 4
+════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="wf-badge">WF 4</div>
+  <h1>Neue Kolleg:in einarbeiten</h1>
+  <div class="szenario">
+    Szenario: Eine neue Ergänzungskraft beginnt. Das Team möchte ihr den Einstieg
+    erleichtern und wichtige Informationen digital bündeln.
+  </div>
+
+  <div class="section-title">Schritte</div>
+  <table class="steps">
+    <thead><tr><th class="col-nr">#</th><th class="col-dienst">Dienst</th><th class="col-aktion">Aktion</th></tr></thead>
+    <tbody>
+      <tr><td class="col-nr">1</td><td class="col-dienst">Notizen</td><td class="col-aktion">Willkommensdokument erstellen: wichtige Infos, Ansprechpersonen, Abläufe, Hausregeln</td></tr>
+      <tr><td class="col-nr">2</td><td class="col-dienst">Kurzlink</td><td class="col-aktion">QR-Code zum Willkommensdokument erstellen (z. B. ausdrucken &amp; aushängen)</td></tr>
+      <tr><td class="col-nr">3</td><td class="col-dienst">Chat</td><td class="col-aktion">Direktnachricht an die neue Kolleg:in: Willkommensgruß + alle Links + kurze Erklärungen</td></tr>
+      <tr><td class="col-nr">4</td><td class="col-dienst">Medienecke</td><td class="col-aktion">Relevante Einarbeitungsmaterialien und Fortbildungsempfehlungen raussuchen</td></tr>
+      <tr><td class="col-nr">5</td><td class="col-dienst">Kurse</td><td class="col-aktion">Passenden Einführungskurs empfehlen → Link teilen</td></tr>
+      <tr><td class="col-nr">6</td><td class="col-dienst">Lesezeichen</td><td class="col-aktion">Wichtige Seiten als Lesezeichen im Dashboard anlegen (Tipp zeigen)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Rollen</div>
+  <div class="rollen-grid">
+    <div class="rolle"><strong>Mentorin</strong>Erstellt Willkommensdokument und DM im Chat, empfiehlt Kurse</div>
+    <div class="rolle"><strong>Leitung</strong>Organisiert Erstzugang zum KITA HUB, zeigt Lesezeichen</div>
+  </div>
+
+  <div class="output-box">
+    <div class="label">Ziel-Artefakte</div>
+    1 Willkommensdokument &nbsp;·&nbsp; 1 QR-Code &nbsp;·&nbsp; 1 DM im Chat &nbsp;·&nbsp; Kursliste &nbsp;·&nbsp; Lesezeichen
+  </div>
+
+  <div class="section-title">Unsere Ergebnisse</div>
+  <div class="links-grid">
+    <div class="link-field"><div class="lf-label">Willkommensdokument (Link)</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Kurzlink / QR-Code</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Empfohlener Kurs (Link)</div><div class="lf-line"></div></div>
+    <div class="link-field"><div class="lf-label">Chat-DM / Kanal</div><div class="lf-line"></div></div>
+  </div>
+
+  <div class="fill-section">
+    <div class="fill-row"><span class="fill-label">Stolpersteine:</span><div class="fill-line"></div></div>
+    <div class="fill-row"><span class="fill-label"></span><div class="fill-line"></div></div>
+  </div>
+
+  <div class="nutzen-box">
+    <div class="label">Nutzen in einem Satz:</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="footer">
+    <span>WF 4 — Neue Kolleg:in einarbeiten</span>
+    <span>Team-Tag KITA HUB · Pixelwerkstatt</span>
+  </div>
+</div>
+
+</body>
+</html>

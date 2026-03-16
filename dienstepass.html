@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dienstepass – KITA HUB</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+    /* A5 = 148mm × 210mm */
+    width: 148mm;
+    min-height: 210mm;
+    padding: 10mm 12mm;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 14pt;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 9pt;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  .name-line {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+    font-size: 9pt;
+    padding-bottom: 2px;
+    color: #666;
+  }
+
+  .task {
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 6px 8px;
+    margin-bottom: 7px;
+  }
+  .task-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+  }
+  .check {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid #000;
+    border-radius: 2px;
+    margin-top: 1px;
+  }
+  .task-title {
+    font-weight: 600;
+    font-size: 10pt;
+  }
+  .task-url {
+    font-size: 8pt;
+    color: #555;
+  }
+  .task-desc {
+    font-size: 9pt;
+    color: #333;
+    margin: 4px 0 4px 22px;
+  }
+  .task-note {
+    margin-left: 22px;
+  }
+  .note-label {
+    font-size: 8pt;
+    color: #666;
+  }
+  .note-line {
+    border-bottom: 1px solid #aaa;
+    height: 14px;
+    margin-top: 2px;
+  }
+  .task.optional {
+    border-style: dashed;
+  }
+  .optional-badge {
+    font-size: 7.5pt;
+    border: 1px solid #aaa;
+    padding: 1px 4px;
+    border-radius: 10px;
+    color: #555;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .tip-box {
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 5px 8px;
+    margin-top: 8px;
+    font-size: 8.5pt;
+  }
+  .tip-box strong {
+    font-size: 9pt;
+  }
+
+  .footer {
+    font-size: 7.5pt;
+    color: #666;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    margin-top: 10px;
+  }
+
+  @media print {
+    body { width: 148mm; min-height: 210mm; padding: 8mm 10mm; margin: 0; }
+    @page { size: A5; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Dienstepass</h1>
+<div class="subtitle">Block 3 (10:30–10:55) · Ziel: 5 von 6 Aufgaben schaffen</div>
+<div class="name-line">Name: ___________________________________________</div>
+
+<!-- Aufgabe 1 -->
+<div class="task">
+  <div class="task-header">
+    <span class="check"></span>
+    <div>
+      <div class="task-title">1 · Medienecke</div>
+      <div class="task-url">mediensuche.kita.bayern</div>
+    </div>
+  </div>
+  <div class="task-desc">Material zum eigenen Kita-Thema suchen → Link kopieren</div>
+  <div class="task-note">
+    <div class="note-label">mein Link:</div>
+    <div class="note-line"></div>
+  </div>
+</div>
+
+<!-- Aufgabe 2 -->
+<div class="task">
+  <div class="task-header">
+    <span class="check"></span>
+    <div>
+      <div class="task-title">2 · Kurzlink &amp; QR-Code</div>
+      <div class="task-url">link.kita.bayern</div>
+    </div>
+  </div>
+  <div class="task-desc">Den Medienecke-Link kürzen → QR-Code als PNG herunterladen</div>
+  <div class="task-note">
+    <div class="note-label">mein Kurzlink:</div>
+    <div class="note-line"></div>
+  </div>
+</div>
+
+<!-- Aufgabe 3 -->
+<div class="task">
+  <div class="task-header">
+    <span class="check"></span>
+    <div>
+      <div class="task-title">3 · Termine</div>
+      <div class="task-url">termine.kita.bayern</div>
+    </div>
+  </div>
+  <div class="task-desc">Mini-Terminabfrage mit 3 Optionen erstellen → Link teilen</div>
+  <div class="task-note">
+    <div class="note-label">mein Terminlink:</div>
+    <div class="note-line"></div>
+  </div>
+</div>
+
+<!-- Aufgabe 4 -->
+<div class="task">
+  <div class="task-header">
+    <span class="check"></span>
+    <div>
+      <div class="task-title">4 · Notizen</div>
+      <div class="task-url">notizen.kita.bayern</div>
+    </div>
+  </div>
+  <div class="task-desc">Gastnotiz anlegen → Link in Notizen einfügen und <strong>sofort sichern!</strong></div>
+  <div class="task-note">
+    <div class="note-label">mein Notiz-Link:</div>
+    <div class="note-line"></div>
+  </div>
+</div>
+
+<!-- Aufgabe 5 -->
+<div class="task">
+  <div class="task-header">
+    <span class="check"></span>
+    <div>
+      <div class="task-title">5 · Meeting</div>
+      <div class="task-url">meeting.kita.bayern</div>
+    </div>
+  </div>
+  <div class="task-desc">Per Test-Link einem Meeting beitreten → Audio &amp; Chat kurz testen</div>
+  <div class="task-note">
+    <div class="note-label">Browser: Chrome oder Firefox empfohlen</div>
+  </div>
+</div>
+
+<!-- Aufgabe 6 -->
+<div class="task optional">
+  <div class="task-header">
+    <span class="check"></span>
+    <div>
+      <div class="task-title">6 · Chat <span class="optional-badge">nur mit Account</span></div>
+      <div class="task-url">chat.kita.bayern</div>
+    </div>
+  </div>
+  <div class="task-desc">Kanal finden oder beitreten → Nachricht senden</div>
+  <div class="task-note">
+    <div class="note-label">Kanal:</div>
+    <div class="note-line"></div>
+  </div>
+</div>
+
+<div class="tip-box">
+  <strong>Wichtig:</strong> Notiz-Link sofort kopieren und sichern — wer ihn verliert, hat keinen Zugriff mehr. Kurzlinks ohne Account können nachträglich nicht bearbeitet werden.
+</div>
+
+<div class="footer">
+  Starthilfe: starthilfe@kita.bayern · +49 9621 96552 1991 &nbsp;|&nbsp; Team-Tag KITA HUB · Pixelwerkstatt
+</div>
+
+</body>
+</html>
