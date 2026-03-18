@@ -3,638 +3,1726 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KITA HUB – Workflow-Übersicht</title>
+<title>Team-Tag KITA HUB – Pixelwerkstatt Amberg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --mint: #2ec4a9;
-    --mint-light: #e8faf7;
-    --mint-mid: #a8e8df;
-    --yellow: #f5c842;
-    --yellow-light: #fffbe8;
-    --green: #4caf78;
-    --green-light: #e8f7ee;
-    --coral: #e8614a;
-    --coral-light: #fdf0ee;
-    --purple: #7c6fcd;
-    --purple-light: #f0eefb;
-    --ink: #1B3929;
-    --ink-soft: #3D5245;
-    --paper: #F2EDE4;
-    --border: #DDD8CF;
-    --shadow: 0 4px 24px rgba(27,57,41,0.10);
-    --shadow-lg: 0 12px 48px rgba(27,57,41,0.16);
-  }
+:root {
+  --ink: #3A3A3A;
+  --ink-soft: #6A6A6A;
+  --ink-faint: #9A9A9A;
+  --paper: #F4EEE6;
+  --white: #ffffff;
+  --border: #BFC5C9;
+  --shadow: 0 4px 24px rgba(58,58,58,0.09);
+  --shadow-lg: 0 12px 48px rgba(58,58,58,0.15);
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* Brand colors – Salbeigrün als Primärfarbe */
+  --mint: #9DB8A5;
+  --mint-light: #E8F1EC;
+  --mint-mid: #9DB8A5;
 
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  /* Per-block accent colors */
+  --c0: #BFC5C9;   /* Vor dem Tag – Soft Grau */
+  --c1: #9DB8A5;   /* Block 1 – Salbeigrün */
+  --c2: #8FA9C4;   /* Block 2 – Staubiges Blau */
+  --c3: #C8927B;   /* Block 3 – Terrakotta */
+  --c4: #BFC5C9;   /* Pause 1 – Soft Grau */
+  --c5: #D4B46A;   /* Block 4 – Senf */
+  --wf1: #9DB8A5;  /* WF1 Salbeigrün */
+  --wf2: #8FA9C4;  /* WF2 Staubiges Blau */
+  --wf3: #C8927B;  /* WF3 Terrakotta */
+  --wf4: #D4B46A;  /* WF4 Senf */
+  --c3b: #8FA9C4;  /* Lab-Briefing – Staubiges Blau */
+  --c5b: #8FA9C4;  /* Lab-Debrief – Staubiges Blau */
+  --c6: #C8927B;   /* Gallery Walk – Terrakotta */
+  --c7: #D4B46A;   /* Transfer – Senf */
+  --c8: #9DB8A5;   /* Abschluss – Salbeigrün */
+  --c9: #BFC5C9;   /* Nachbereitung – Soft Grau */
+}
 
-  /* Hero */
-  .hero {
-    background: var(--ink);
-    color: white;
-    padding: 72px clamp(20px, 4vw, 48px) 96px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(46,196,169,0.22) 0%, transparent 70%);
-    top: -250px; right: -120px;
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(245,200,66,0.15) 0%, transparent 70%);
-    bottom: -200px; left: -100px;
-    pointer-events: none;
-  }
-  .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(46,196,169,0.15);
-    border: 1px solid rgba(46,196,169,0.3);
-    color: var(--mint);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin-bottom: 28px;
-  }
-  .hero-eyebrow .dot {
-    width: 6px; height: 6px;
-    background: var(--mint);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-  .hero h1 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(40px, 7vw, 68px);
-    font-weight: 800;
-    line-height: 1.05;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-  }
-  .hero h1 .accent { color: var(--mint); }
-  .hero-desc {
-    font-size: 18px;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.68);
-    max-width: 560px;
-    margin-bottom: 48px;
-  }
-  .hero-stats {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .hero-stat .num {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: white;
-    line-height: 1;
-  }
-  .hero-stat .label {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    font-weight: 400;
-  }
-  .hero-stat .num .unit {
-    font-size: 18px;
-    color: var(--mint);
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Wave divider */
-  .wave {
-    display: block;
-    width: 100%;
-    background: var(--ink);
-    line-height: 0;
-  }
-  .wave svg {
-    display: block;
-    width: 100%;
-    height: 60px;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
 
-  /* Main content */
-  .main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 64px clamp(20px, 4vw, 48px) 80px;
-  }
+/* ── HERO ── */
+.hero {
+  background: #3A3A3A;
+  color: white;
+  padding: 64px 32px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(157,184,165,0.18) 0%, transparent 60%);
+  top: -300px; right: -200px;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(212,180,106,0.12) 0%, transparent 65%);
+  bottom: -180px; left: -100px;
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: 100px;
+}
+.badge-mint { background: rgba(157,184,165,0.25); border: 1px solid rgba(157,184,165,0.50); color: #9DB8A5; }
+.badge-white { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.20); color: rgba(255,255,255,0.70); }
+.badge-amber { background: rgba(212,180,106,0.22); border: 1px solid rgba(212,180,106,0.45); color: #D4B46A; }
 
-  .section-header {
-    margin-bottom: 40px;
-  }
-  .section-header h2 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .section-header p {
-    font-size: 16px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.08;
+  margin-bottom: 20px;
+  color: white;
+}
+.hero h1 em { color: #9DB8A5; font-style: normal; }
 
-  /* Workflow Cards */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 64px;
-  }
-  @media (max-width: 620px) {
-    .cards-grid { grid-template-columns: 1fr; }
-  }
+.hero-sub {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.68);
+  max-width: 640px;
+  margin-bottom: 40px;
+}
 
-  .workflow-card {
-    display: block;
-    text-decoration: none;
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    position: relative;
-  }
-  .workflow-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: transparent;
-  }
-  .workflow-card:hover .card-arrow {
-    transform: translate(3px, -3px);
-  }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.stat .num {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+.stat .label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.50);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 
-  .card-top {
-    padding: 28px 28px 20px;
-    position: relative;
-  }
-  .card-number {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    opacity: 0.55;
-  }
-  .card-icon {
-    width: 52px; height: 52px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 16px;
-    flex-shrink: 0;
-  }
-  .card-arrow {
-    position: absolute;
-    top: 28px; right: 28px;
-    width: 32px; height: 32px;
-    background: var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, background 0.2s ease;
-    font-size: 14px;
-    color: var(--ink-soft);
-  }
-  .workflow-card:hover .card-arrow {
-    background: var(--ink);
-    color: white;
-  }
-  .card-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
-  .card-desc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin-bottom: 20px;
-  }
+/* ── MAIN LAYOUT ── */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
 
-  /* Flow chips on cards */
-  .card-flow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 20px;
-  }
-  .card-chip {
-    font-size: 11px;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 100px;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    color: var(--ink-soft);
-  }
+/* ── OVERVIEW STRIP ── */
+.overview {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 36px;
+  margin-bottom: 48px;
+  box-shadow: var(--shadow);
+}
+.overview-title {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
+}
+.timeline-strip {
+  display: flex;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.ts-block {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 6px 14px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.15s;
+}
+.ts-block:hover { transform: translateY(-2px); z-index: 2; }
+.ts-block:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 10%; bottom: 10%;
+  width: 1px;
+  background: rgba(255,255,255,0.25);
+}
+.ts-time {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+  margin-bottom: 4px;
+  color: white;
+}
+.ts-label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: white;
+}
+.ts-dur {
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.60;
+  color: white;
+}
+.ts-icon { font-size: 18px; margin-bottom: 3px; }
 
-  .card-bottom {
-    padding: 14px 28px 18px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .card-meta {
-    font-size: 12px;
-    color: var(--ink-soft);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .card-badge {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 100px;
-  }
+/* ── CAROUSEL NAV ── */
+.carousel-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--ink-soft);
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.carousel-arrow:hover { background: #f0ede8; color: var(--ink); }
+.carousel-arrow.hidden { visibility: hidden; pointer-events: none; }
+.carousel-wrapper .timeline-strip { flex: 1; }
+.b0 { background: #7A8589; }
+.b1 { background: #7A9C87; }
+.b2 { background: #6E89A4; }
+.b3 { background: #A87260; }
+.bp { background: #9BA5A9; }
+.b4 { background: #6E89A4; }
+.bwf { background: linear-gradient(135deg, #9DB8A5 0%, #8FA9C4 35%, #C8927B 68%, #D4B46A 100%); }
+.bmit { background: #9BA5A9; }
+.b5 { background: #A87260; }
+.b6 { background: #B09048; }
+.b7 { background: #7A9C87; }
 
-  /* Card color themes */
-  .card-1 .card-icon { background: var(--mint-light); }
-  .card-1 .card-number { color: var(--mint); }
-  .card-1 .card-badge { background: var(--mint-light); color: #1a8f7c; }
-  .card-1:hover { border-color: var(--mint); }
+/* ── BLOCK CARDS ── */
+.block-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.block-card:nth-child(1) { animation-delay: 0.05s; }
+.block-card:nth-child(2) { animation-delay: 0.10s; }
+.block-card:nth-child(3) { animation-delay: 0.15s; }
+.block-card:nth-child(4) { animation-delay: 0.20s; }
+.block-card:nth-child(5) { animation-delay: 0.25s; }
+.block-card:nth-child(6) { animation-delay: 0.30s; }
+.block-card:nth-child(7) { animation-delay: 0.35s; }
+.block-card:nth-child(8) { animation-delay: 0.40s; }
+.block-card:nth-child(9) { animation-delay: 0.45s; }
+.block-card:nth-child(10) { animation-delay: 0.50s; }
 
-  .card-2 .card-icon { background: var(--yellow-light); }
-  .card-2 .card-number { color: #b8931a; }
-  .card-2 .card-badge { background: var(--yellow-light); color: #8a6d10; }
-  .card-2:hover { border-color: var(--yellow); }
+.block-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.block-header:hover { background: #F4EEE6; }
+.block-accent {
+  width: 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  align-self: stretch;
+  min-height: 48px;
+}
+.block-meta {
+  flex: 1;
+  min-width: 0;
+}
+.block-time-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.block-time {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.block-dur {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+}
+.block-method-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.block-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.block-toggle {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--ink-faint);
+  transition: all 0.2s;
+}
+.block-card.open .block-toggle { transform: rotate(180deg); background: #3A3A3A; color: white; border-color: #3A3A3A; }
 
-  .card-3 .card-icon { background: var(--coral-light); }
-  .card-3 .card-number { color: var(--coral); }
-  .card-3 .card-badge { background: var(--coral-light); color: #b84432; }
-  .card-3:hover { border-color: var(--coral); }
+.block-body {
+  display: none;
+  padding: 28px 32px 32px;
+}
+.block-card.open .block-body { display: block; }
 
-  .card-4 .card-icon { background: var(--purple-light); }
-  .card-4 .card-number { color: var(--purple); }
-  .card-4 .card-badge { background: var(--purple-light); color: #5c51a8; }
-  .card-4:hover { border-color: var(--purple); }
+/* ── PAUSE CARD ── */
+.pause-card {
+  background: var(--paper);
+  border: 1px dashed #BFC5C9;
+  border-radius: 12px;
+  padding: 14px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--ink-faint);
+  font-size: 14px;
+}
+.pause-icon { font-size: 20px; }
+.pause-time { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; color: var(--ink-soft); }
+.pause-label { font-weight: 500; }
 
-  /* Ecosystem section */
-  .ecosystem {
-    background: var(--ink);
-    color: white;
-    border-radius: 10px;
-    padding: 40px;
-    margin-bottom: 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .ecosystem::before {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(46,196,169,0.15) 0%, transparent 70%);
-    top: -150px; right: -100px;
-    pointer-events: none;
-  }
-  .ecosystem-inner { position: relative; z-index: 1; }
-  .ecosystem h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .ecosystem h3 span { color: var(--mint); }
-  .ecosystem p {
-    font-size: 15px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.65;
-    margin-bottom: 28px;
-    max-width: 520px;
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
-  }
-  .service-item {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 12px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    transition: background 0.15s ease, border-color 0.15s ease;
-  }
-  .service-item:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(46,196,169,0.4);
-  }
-  .service-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--mint);
-    flex-shrink: 0;
-  }
-  .service-name {
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.82);
-  }
+/* ── PHASE ROWS ── */
+.phases {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.phase-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.phase-row:last-child { border-bottom: none; }
+.phase-row:hover { background: #F4EEE6; }
+.phase-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  margin-top: 1px;
+  margin-right: 14px;
+}
+.phase-content { flex: 1; min-width: 0; }
+.phase-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.phase-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.phase-time {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+  margin-left: 12px;
+  padding-top: 4px;
+}
+.phase-method {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 100px;
+  margin-left: 10px;
+  flex-shrink: 0;
+  align-self: center;
+}
 
-  /* Footer note */
-  .footer-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 28px;
-  }
-  .footer-icon {
-    width: 40px; height: 40px;
-    background: var(--mint-light);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .footer-note h4 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .footer-note p {
-    font-size: 14px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-  .footer-note a {
-    color: var(--mint);
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .footer-note a:hover { text-decoration: underline; }
+/* ── WOW BOX ── */
+.wow-box {
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.wow-icon { font-size: 28px; flex-shrink: 0; }
+.wow-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+  opacity: 0.65;
+}
+.wow-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
 
-  /* Animations */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.5s ease forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-in:nth-child(1) { animation-delay: 0.05s; }
-  .fade-in:nth-child(2) { animation-delay: 0.12s; }
-  .fade-in:nth-child(3) { animation-delay: 0.19s; }
-  .fade-in:nth-child(4) { animation-delay: 0.26s; }
+/* ── TIPS ── */
+.tip-box {
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.tip-box .ti { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.tip-amber { background: #F2E8CF; border: 1px solid #D4B46A; color: #6A5020; }
+.tip-mint { background: #E8F1EC; border: 1px solid #9DB8A5; color: #3A6A50; }
+.tip-blue { background: #E7EEF6; border: 1px solid #8FA9C4; color: #2A4A6A; }
+.tip-purple { background: #F3E4DF; border: 1px solid #C8927B; color: #6A3020; }
+.tip-red { background: #F3E4DF; border: 1px solid #C8927B; color: #6A3020; }
 
-  @media (max-width: 480px) {
-    .hero { padding: 48px 20px 64px; }
-    .main { padding: 40px 20px 60px; }
-    .hero-stats { gap: 24px; }
-    .ecosystem { padding: 28px 20px; }
-    .footer-note { flex-direction: column; }
-  }
+/* ── WF BLOCKS (4 Workflows) ── */
+.wf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+@media(max-width: 640px) { .wf-grid { grid-template-columns: 1fr; } }
+
+.wf-block {
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.wf-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.wf1 { background: #E8F1EC; }
+.wf1::before { background: var(--wf1); }
+.wf2 { background: #E7EEF6; }
+.wf2::before { background: var(--wf2); }
+.wf3 { background: #F3E4DF; }
+.wf3::before { background: var(--wf3); }
+.wf4 { background: #F2E8CF; }
+.wf4::before { background: var(--wf4); }
+
+.wf-num {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  margin-bottom: 6px;
+}
+.wf1 .wf-num { color: var(--wf1); }
+.wf2 .wf-num { color: var(--wf2); }
+.wf3 .wf-num { color: var(--wf3); }
+.wf4 .wf-num { color: var(--wf4); }
+
+.wf-title {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.wf-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.wf-svc {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.10);
+  color: var(--ink-soft);
+}
+.wf-wow {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+.wf-dur {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  float: right;
+}
+
+/* ── NAV LINKS ── */
+.wf-block { cursor: default; }
+.wf-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+.wf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.wf-link:hover { opacity: 0.80; transform: translateY(-1px); }
+
+.wf1 .wf-link-guide  { background: rgba(157,184,165,0.25); border: 1px solid rgba(157,184,165,0.55); color: #3A6A50; }
+.wf1 .wf-link-story  { background: rgba(157,184,165,0.12); border: 1px solid rgba(157,184,165,0.35); color: #3A6A50; }
+.wf2 .wf-link-guide  { background: rgba(143,169,196,0.22); border: 1px solid rgba(143,169,196,0.50); color: #2A4A6A; }
+.wf2 .wf-link-story  { background: rgba(143,169,196,0.10); border: 1px solid rgba(143,169,196,0.32); color: #2A4A6A; }
+.wf3 .wf-link-guide  { background: rgba(200,146,123,0.20); border: 1px solid rgba(200,146,123,0.48); color: #6A3020; }
+.wf3 .wf-link-story  { background: rgba(200,146,123,0.10); border: 1px solid rgba(200,146,123,0.30); color: #6A3020; }
+.wf4 .wf-link-guide  { background: rgba(212,180,106,0.22); border: 1px solid rgba(212,180,106,0.50); color: #6A5020; }
+.wf4 .wf-link-story  { background: rgba(212,180,106,0.10); border: 1px solid rgba(212,180,106,0.32); color: #6A5020; }
+
+/* ── SITE NAV BAR ── */
+.sitenav {
+  background: #3A3A3A;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.sitenav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sitenav-inner::-webkit-scrollbar { display: none; }
+.sitenav-home {
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mint);
+  text-decoration: none;
+  padding: 14px 16px 14px 0;
+  border-right: 1px solid rgba(255,255,255,0.10);
+  margin-right: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sitenav-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.35);
+  padding: 14px 10px 14px 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sitenav-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+.sitenav-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.10);
+  margin: 0 8px;
+  flex-shrink: 0;
+}
+.snav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+  color: rgba(255,255,255,0.65);
+}
+.snav-btn:hover { background: rgba(255,255,255,0.08); color: white; }
+.snav-btn.active { background: rgba(255,255,255,0.12); color: white; }
+.snav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.snav-wf1 .snav-dot { background: var(--wf1); }
+.snav-wf2 .snav-dot { background: var(--wf2); }
+.snav-wf3 .snav-dot { background: var(--wf3); }
+.snav-wf4 .snav-dot { background: var(--wf4); }
+
+/* ── CHECKLIST ── */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.checklist li::before {
+  content: '☐';
+  font-size: 16px;
+  flex-shrink: 0;
+  color: var(--ink-faint);
+  margin-top: -1px;
+}
+
+/* ── OUTPUT TAG ── */
+.output-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.output-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #3A3A3A;
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+footer a { color: #9DB8A5; text-decoration: none; }
+footer strong { color: white; }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 640px) {
+  .hero { padding: 40px 20px 56px; }
+  .main { padding: 32px 16px 60px; }
+  .block-header { padding: 20px; gap: 14px; }
+  .block-body { padding: 20px; }
+  .timeline-strip { display: none; }
+  .hero-stats { gap: 20px; }
+}
+
+/* Print */
+@media print {
+  .block-body { display: block !important; }
+  .block-toggle { display: none; }
+  .block-card { break-inside: avoid; }
+}
 </style>
 </head>
 <body>
 
-<!-- Hero -->
-<header class="hero">
+<!-- SITE NAV -->
+<nav class="sitenav" aria-label="Seitennavigation">
+  <div class="sitenav-inner">
+    <a href="teamtag-ablauf.html" class="sitenav-home active">📅 Team-Tag</a>
+    <span class="sitenav-label">Workflows:</span>
+    <div class="sitenav-group">
+      <a href="wf1-fachwissen.html" class="snav-btn snav-wf1"><span class="snav-dot"></span>WF 1 – Fachwissen</a>
+      <a href="wf1-miriams-geschichte.html" class="snav-btn snav-wf1" title="Miriams Geschichte">✍︎ Story</a>
+    </div>
+    <div class="sitenav-sep"></div>
+    <div class="sitenav-group">
+      <a href="wf2-teamsitzung.html" class="snav-btn snav-wf2"><span class="snav-dot"></span>WF 2 – Teamsitzung</a>
+      <a href="wf2-sandras-geschichte.html" class="snav-btn snav-wf2" title="Sandras Geschichte">✍︎ Story</a>
+    </div>
+    <div class="sitenav-sep"></div>
+    <div class="sitenav-group">
+      <a href="wf3-elternabend.html" class="snav-btn snav-wf3"><span class="snav-dot"></span>WF 3 – Elternabend</a>
+      <a href="wf3-elternabend-geschichte.html" class="snav-btn snav-wf3" title="Elternabend-Geschichte">✍︎ Story</a>
+    </div>
+    <div class="sitenav-sep"></div>
+    <div class="sitenav-group">
+      <a href="wf4-einarbeiten.html" class="snav-btn snav-wf4"><span class="snav-dot"></span>WF 4 – Einarbeiten</a>
+      <a href="wf4-petras-geschichte.html" class="snav-btn snav-wf4" title="Petras Geschichte">✍︎ Story</a>
+    </div>
+  </div>
+</nav>
+<style>
+  /* Ensure nav never clips the last item */
+  .sitenav-inner { padding-right: 24px; }
+</style>
+
+<!-- HERO -->
+<div class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">
-      <span class="dot"></span>
-      Team-Tag · Pixelwerkstatt
+      <span class="badge badge-mint">🏫 Pixelwerkstatt Amberg</span>
+      <span class="badge badge-white">Team-Tag vor Ort</span>
+      <span class="badge badge-amber">KITA HUB Bayern</span>
     </div>
-    <h1>Dein Kita-Team<br>auf dem <span class="accent">KITA HUB</span></h1>
-    <p class="hero-desc">Vier praxiserprobte Workflows für den digitalen Kita-Alltag – von der Teamsitzung bis zum Onboarding neuer Kolleg:innen.</p>
+    <h1>Dein Kita-Team<br>auf dem <em>KITA HUB</em></h1>
+    <p class="hero-sub">Moderationsablauf für den Team-Tag in der Pixelwerkstatt — mit vier live erarbeiteten Workflows und echten, sofort nutzbaren Artefakten.</p>
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="num">4<span class="unit"> WF</span></div>
-        <div class="label">Workflows</div>
+      <div class="stat">
+        <span class="num">09:00</span>
+        <span class="label">Beginn</span>
       </div>
-      <div class="hero-stat">
-        <div class="num">8<span class="unit">+</span></div>
-        <div class="label">Dienste vernetzt</div>
+      <div class="stat">
+        <span class="num">16:00</span>
+        <span class="label">Ende</span>
       </div>
-      <div class="hero-stat">
-        <div class="num">1<span class="unit"> Tag</span></div>
-        <div class="label">Workshop</div>
+      <div class="stat">
+        <span class="num">4:30 h</span>
+        <span class="label">Arbeitszeit</span>
+      </div>
+      <div class="stat">
+        <span class="num">4</span>
+        <span class="label">Workflows</span>
       </div>
     </div>
   </div>
-</header>
-
-<!-- Wave -->
-<div class="wave">
-  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0 0H1440V30C1200 60 960 60 720 40C480 20 240 10 0 30V0Z" fill="#1B3929"/>
-    <path d="M0 30C240 10 480 20 720 40C960 60 1200 60 1440 30V60H0V30Z" fill="#F2EDE4"/>
-  </svg>
 </div>
 
-<!-- Main -->
-<main class="main">
+<!-- MAIN -->
+<div class="main">
 
-  <div class="section-header">
-    <h2>Die vier Workflows</h2>
-    <p>Klicke auf einen Workflow, um die ausführliche Schritt-für-Schritt-Anleitung zu öffnen.</p>
+  <!-- TAGESÜBERSICHT -->
+  <div class="overview">
+    <div class="overview-title">Tagesübersicht auf einen Blick</div>
+    <div class="carousel-wrapper">
+    <button class="carousel-arrow hidden" id="ts-prev" onclick="tsNav(-1)" aria-label="Zurück">&#8592;</button>
+    <div class="timeline-strip" id="timeline-strip">
+      <div class="ts-block b0">
+        <div class="ts-time">09:00</div>
+        <div class="ts-icon">🔧</div>
+        <div class="ts-label">Aufbau</div>
+        <div class="ts-dur">30'</div>
+      </div>
+      <div class="ts-block b1">
+        <div class="ts-time">09:30</div>
+        <div class="ts-icon">👋</div>
+        <div class="ts-label">Ankommen</div>
+        <div class="ts-dur">15'</div>
+      </div>
+      <div class="ts-block b2">
+        <div class="ts-time">09:45</div>
+        <div class="ts-icon">🗺</div>
+        <div class="ts-label">KITA HUB Tour</div>
+        <div class="ts-dur">45'</div>
+      </div>
+      <div class="ts-block b3">
+        <div class="ts-time">10:30</div>
+        <div class="ts-icon">🎫</div>
+        <div class="ts-label">Dienstepass</div>
+        <div class="ts-dur">25'</div>
+      </div>
+      <div class="ts-block bp">
+        <div class="ts-time">10:55</div>
+        <div class="ts-icon">☕</div>
+        <div class="ts-label">Pause</div>
+        <div class="ts-dur">15'</div>
+      </div>
+      <div class="ts-block b0">
+        <div class="ts-time">11:10</div>
+        <div class="ts-icon">🧩</div>
+        <div class="ts-label">Lab-Briefing</div>
+        <div class="ts-dur">10'</div>
+      </div>
+      <div class="ts-block b1">
+        <div class="ts-time">11:20</div>
+        <div class="ts-icon">🗂</div>
+        <div class="ts-label">WF 1 + 2</div>
+        <div class="ts-dur">45'</div>
+      </div>
+      <div class="ts-block b2">
+        <div class="ts-time">12:05</div>
+        <div class="ts-icon">🍽</div>
+        <div class="ts-label">Mittagspause</div>
+        <div class="ts-dur">60'</div>
+      </div>
+      <div class="ts-block b3">
+        <div class="ts-time">13:05</div>
+        <div class="ts-icon">⚙️</div>
+        <div class="ts-label">WF 3 + 4</div>
+        <div class="ts-dur">60'</div>
+      </div>
+      <div class="ts-block bp">
+        <div class="ts-time">14:05</div>
+        <div class="ts-icon">💬</div>
+        <div class="ts-label">Lab-Debrief</div>
+        <div class="ts-dur">15'</div>
+      </div>
+      <div class="ts-block b0">
+        <div class="ts-time">14:20</div>
+        <div class="ts-icon">☕</div>
+        <div class="ts-label">Pause</div>
+        <div class="ts-dur">15'</div>
+      </div>
+      <div class="ts-block b1">
+        <div class="ts-time">14:35</div>
+        <div class="ts-icon">🖼</div>
+        <div class="ts-label">Gallery Walk</div>
+        <div class="ts-dur">15'</div>
+      </div>
+      <div class="ts-block b2">
+        <div class="ts-time">14:50</div>
+        <div class="ts-icon">📅</div>
+        <div class="ts-label">Transfer</div>
+        <div class="ts-dur">30'</div>
+      </div>
+      <div class="ts-block b3">
+        <div class="ts-time">15:20</div>
+        <div class="ts-icon">🌟</div>
+        <div class="ts-label">Abschluss</div>
+        <div class="ts-dur">10'</div>
+      </div>
+      <div class="ts-block bp">
+        <div class="ts-time">15:30</div>
+        <div class="ts-icon">📦</div>
+        <div class="ts-label">Nachbereitung</div>
+        <div class="ts-dur">30'</div>
+      </div>
+    </div>
+    <button class="carousel-arrow" id="ts-next" onclick="tsNav(1)" aria-label="Weiter">&#8594;</button>
+    </div>
   </div>
 
-  <div class="cards-grid">
-
-    <!-- Workflow 1 -->
-    <a href="wf1-fachwissen.html" class="workflow-card card-1 fade-in">
-      <div class="card-top">
-        <div class="card-number">Workflow 01</div>
-        <div class="card-icon">📚</div>
-        <div class="card-arrow">↗</div>
-        <div class="card-title">Fachwissen ins Team bringen</div>
-        <div class="card-desc">Eine Fachkraft findet relevantes Material und initiiert einen strukturierten Team-Austausch darüber.</div>
-        <div class="card-flow">
-          <span class="card-chip">Medienecke</span>
-          <span class="card-chip">Kurzlink</span>
-          <span class="card-chip">Chat</span>
-          <span class="card-chip">Termine</span>
-          <span class="card-chip">Meeting</span>
+  <!-- 0. VOR DEM TAG -->
+  <div class="block-card open" id="card-0">
+    <div class="block-header" onclick="toggle('card-0')">
+      <div class="block-accent" style="background:#BFC5C9;"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">Vor dem Tag</span>
+          <span class="block-dur">Vorbereitung</span>
+          <span class="block-method-tag" style="background:#E9DFD2; color:#6A6A6A; border:1px solid #BFC5C9;">🔧 Organisation</span>
         </div>
+        <div class="block-title">Aufbau & Checkliste</div>
       </div>
-      <div class="card-bottom">
-        <div class="card-meta">🕐 ca. 30 Min.</div>
-        <div class="card-badge">Fachkraft · Team</div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="tip-box tip-amber">
+        <div class="ti">📋</div>
+        <div><strong>Vorabfrage</strong> auswerten: Welche Tools kennt das Team? Welche Erwartungen gibt es? Ergebnisse für Block 1 vorbereiten.</div>
       </div>
-    </a>
-
-    <!-- Workflow 2 -->
-    <a href="wf2-teamsitzung.html" class="workflow-card card-2 fade-in">
-      <div class="card-top">
-        <div class="card-number">Workflow 02</div>
-        <div class="card-icon">📋</div>
-        <div class="card-arrow">↗</div>
-        <div class="card-title">Teamsitzung digital vorbereiten</div>
-        <div class="card-desc">Die Leitung organisiert eine Teamsitzung kollaborativ und transparent mit digitalen Diensten.</div>
-        <div class="card-flow">
-          <span class="card-chip">Notizen</span>
-          <span class="card-chip">Kurzlink</span>
-          <span class="card-chip">Chat</span>
-          <span class="card-chip">Termine</span>
-          <span class="card-chip">Meeting</span>
-        </div>
-      </div>
-      <div class="card-bottom">
-        <div class="card-meta">🕐 ca. 25 Min.</div>
-        <div class="card-badge">Leitung · Team</div>
-      </div>
-    </a>
-
-    <!-- Workflow 3 -->
-    <a href="wf3-elternabend.html" class="workflow-card card-3 fade-in">
-      <div class="card-top">
-        <div class="card-number">Workflow 03</div>
-        <div class="card-icon">👨‍👩‍👧</div>
-        <div class="card-arrow">↗</div>
-        <div class="card-title">Elternabend hybrid organisieren</div>
-        <div class="card-desc">Das Team plant einen themenbezogenen Elternabend und bindet Eltern digital ein.</div>
-        <div class="card-flow">
-          <span class="card-chip">Medienecke</span>
-          <span class="card-chip">Notizen</span>
-          <span class="card-chip">Kurzlink</span>
-          <span class="card-chip">Termine</span>
-          <span class="card-chip">Chat</span>
-        </div>
-      </div>
-      <div class="card-bottom">
-        <div class="card-meta">🕐 ca. 35 Min.</div>
-        <div class="card-badge">Team · Eltern</div>
-      </div>
-    </a>
-
-    <!-- Workflow 4 -->
-    <a href="wf4-einarbeiten.html" class="workflow-card card-4 fade-in">
-      <div class="card-top">
-        <div class="card-number">Workflow 04</div>
-        <div class="card-icon">🤝</div>
-        <div class="card-arrow">↗</div>
-        <div class="card-title">Neue Kolleg:in einarbeiten</div>
-        <div class="card-desc">Das Team gestaltet ein strukturiertes digitales Onboarding für neue Teammitglieder.</div>
-        <div class="card-flow">
-          <span class="card-chip">Notizen</span>
-          <span class="card-chip">Kurzlink</span>
-          <span class="card-chip">Chat</span>
-          <span class="card-chip">Medienecke</span>
-          <span class="card-chip">Kurse</span>
-          <span class="card-chip">Lesezeichen</span>
-        </div>
-      </div>
-      <div class="card-bottom">
-        <div class="card-meta">🕐 ca. 30 Min.</div>
-        <div class="card-badge">Mentorin · Leitung</div>
-      </div>
-    </a>
-
+      <ul class="checklist" style="margin-top:16px;">
+        <li>KITA HUB Accounts für alle Teilnehmenden vorab angelegt und getestet</li>
+        <li>Tablets aufgeladen; eigene Geräte (Smartphone, Laptop) willkommen</li>
+        <li>WLAN-Zugang in der Pixelwerkstatt bestätigt</li>
+        <li>Browser Chrome oder Firefox auf allen Geräten</li>
+        <li>Beamer/Großbildschirm für Live-Demos einsatzbereit</li>
+        <li>Rollenkarten ausgedruckt (je Workflow 1 Set à 3–4 Karten)</li>
+        <li>Moderationskarten + Stifte für Erwartungsabfrage & Blitzlicht</li>
+        <li>Ablauf-Übersicht als Takeaway-Karte (1× pro Person)</li>
+        <li>QR-Handout mit Startpunkten aller Dienste (Florian / Katha)</li>
+        <li>Kopfhörer für Meeting-Übung bereitstellen</li>
+        <li>Kontaktkarte: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f4c4b5e4d4b575653595a7f54564b5e115d5e465a4d51">[email&#160;protected]</a> / +49 9621 96552 1991</li>
+        <li>Anreise 09:00 Uhr — Aufbau 30 Min. vor Beginn</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- Ecosystem section -->
-  <div class="ecosystem">
-    <div class="ecosystem-inner">
-      <h3>Der KITA HUB ist ein <span>Ökosystem</span></h3>
-      <p>Die Dienste entfalten ihren vollen Nutzen in der Kombination. Alle Workflows vernetzen mehrere Dienste – genau das macht sie so wirkungsvoll im Kita-Alltag.</p>
-      <div class="services-grid">
-        <a href="https://chat.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Chat</span>
-        </a>
-        <a href="https://meeting.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Meeting</span>
-        </a>
-        <a href="https://mediensuche.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Medienecke</span>
-        </a>
-        <a href="https://kurse.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Kurse</span>
-        </a>
-        <a href="https://link.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Kurzlinks & QR</span>
-        </a>
-        <a href="https://termine.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Termine</span>
-        </a>
-        <a href="https://notizen.kita.bayern/" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">Notizen</span>
-        </a>
-        <a href="https://www.kita.bayern/webapp" target="_blank" class="service-item">
-          <span class="service-dot"></span>
-          <span class="service-name">KITA HUB Start</span>
-        </a>
+  <!-- BLOCK 1 -->
+  <div class="block-card" id="card-1">
+    <div class="block-header" onclick="toggle('card-1')">
+      <div class="block-accent" style="background:var(--c1);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">09:30</span>
+          <span class="block-dur">15 Min.</span>
+          <span class="block-method-tag" style="background:#F2E8CF; color:#6A5020; border:1px solid #D4B46A;">Plenum</span>
+        </div>
+        <div class="block-title">Ankommen, Begrüßung & Erwartungsabfrage</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c1);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Begrüßung & Vorstellungsrunde</div>
+            <div class="phase-desc">Welche digitalen Tools nutzt euer Team bereits? (Zuruf oder Handzeichen) — Tagesplan wird kurz vorgestellt.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c1);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Vorabfrage-Ergebnisse zeigen</div>
+            <div class="phase-desc">2–3 interessante Ergebnisse aus der Vorabfrage benennen — Brücke zu den eigenen Alltagsproblemen schlagen.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c1);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Zielbild des Tages</div>
+            <div class="phase-desc">„Am Ende habt ihr vier Workflows mit echten Links, QR-Codes und Artefakten — sofort einsetzbar ab Montag." Tagesstruktur kurz zeigen.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-amber">
+        <div class="ti">⚡</div>
+        <div><strong>Bei Zeitdruck:</strong> Erwartungsabfrage auf Zuruf, kein Kartenaufriss. Nur Zielbild nennen.</div>
       </div>
     </div>
   </div>
 
-  <!-- Footer note -->
-  <div class="footer-note">
-    <div class="footer-icon">💬</div>
+  <!-- BLOCK 2 -->
+  <div class="block-card" id="card-2">
+    <div class="block-header" onclick="toggle('card-2')">
+      <div class="block-accent" style="background:var(--c2);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">09:45</span>
+          <span class="block-dur">45 Min.</span>
+          <span class="block-method-tag" style="background:#E8F1EC; color:#3A6A50; border:1px solid #9DB8A5;">Vortrag + Live-Demo</span>
+        </div>
+        <div class="block-title">KITA HUB Tour: Alle Dienste kennenlernen</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c2);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Was ist der KITA HUB? — Hintergrund & Philosophie</div>
+            <div class="phase-desc">IFP, Open Source, DSGVO, kostenlos — Single Sign-On erklären. Dashboard gemeinsam auf dem Beamer öffnen.</div>
+          </div>
+          <div class="phase-time">10'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c2);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Kommunikation: Chat + Meeting</div>
+            <div class="phase-desc">Kanäle, DMs, Dateiteilen — Praxisbeispiel „Sommerfest-Kanal". Dann: Videokonferenz starten/beitreten, Gastzugang ohne Account.</div>
+          </div>
+          <div class="phase-time">10'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c2);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Organisation: Termine, Kurzlink & Notizen</div>
+            <div class="phase-desc">Terminumfrage erstellen → Link teilen → Ergebnis lesen. Kurzlink + QR-Code erstellen. Kollaborative Notiz live anlegen.</div>
+          </div>
+          <div class="phase-time">10'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c2);">4</div>
+          <div class="phase-content">
+            <div class="phase-name">Inhalte: Medienecke & Kurse</div>
+            <div class="phase-desc">Materialien suchen und filtern (OER), Kurs anteasern. Abgrenzung zu kommerziellen Kita-Apps ansprechen.</div>
+          </div>
+          <div class="phase-time">10'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c2);">5</div>
+          <div class="phase-content">
+            <div class="phase-name">Erkundungstour: Jede:r klickt selbst</div>
+            <div class="phase-desc">Alle öffnen den KITA HUB auf dem eigenen Gerät. Leitfrage: „Welcher Dienst interessiert dich am meisten?" — kurzer Austausch im Plenum.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-mint">
+        <div class="ti">💡</div>
+        <div>Story als Einstieg: Beispiel aus der echten Kita-Praxis erzählen, bevor Dienste gezeigt werden — „Das Problem zuerst, dann das Tool."</div>
+      </div>
+      <div class="tip-box tip-amber">
+        <div class="ti">⚡</div>
+        <div><strong>Bei Zeitdruck:</strong> Erkundungstour kürzen oder Meeting-Demo weglassen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK 3 -->
+  <div class="block-card" id="card-3">
+    <div class="block-header" onclick="toggle('card-3')">
+      <div class="block-accent" style="background:var(--c3);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">10:30</span>
+          <span class="block-dur">25 Min.</span>
+          <span class="block-method-tag" style="background:#F3E4DF; color:#6A3020; border:1px solid #C8927B;">Einzelarbeit</span>
+        </div>
+        <div class="block-title">Dienstepass: Kernhandlungen ausprobieren</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px;">Jede Person testet alle fünf Kernhandlungen selbst — angeleitetes Ausprobieren auf dem eigenen Gerät. Der Dienstepass wird mitgenommen.</p>
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3);">A</div>
+          <div class="phase-content">
+            <div class="phase-name">Chat: Kanal anlegen & Nachricht senden</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3);">B</div>
+          <div class="phase-content">
+            <div class="phase-name">Kurzlink: Einen Link kürzen & QR-Code erstellen</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3);">C</div>
+          <div class="phase-content">
+            <div class="phase-name">Termine: Terminumfrage anlegen & teilen</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3);">D</div>
+          <div class="phase-content">
+            <div class="phase-name">Notizen: Kollaboratives Dokument anlegen</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3);">E</div>
+          <div class="phase-content">
+            <div class="phase-name">Medienecke: Material suchen & Link kopieren</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <div class="ti">🌀</div>
+        <div>Gruppen bewusst mischen: digital-affine und weniger erfahrene Personen zusammenbringen. Schnellere helfen langsamer — das stärkt den späteren Transfer.</div>
+      </div>
+      <div class="tip-box tip-amber">
+        <div class="ti">⚡</div>
+        <div><strong>Bei Zeitdruck:</strong> Aufgabe E (Medienecke) weglassen oder nur zeigen, nicht selbst ausprobieren. Der Kurzaustausch findet im anschließenden Lab-Briefing statt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAUSE 1 -->
+  <div class="pause-card">
+    <div class="pause-icon">☕</div>
     <div>
-      <h4>Starthilfe & Support</h4>
-      <p>Fragen zum KITA HUB? Das Starthilfe-Team hilft gerne weiter:<br>
-        <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a> · Tel. +49 9621 96552 1991
-      </p>
+      <div class="pause-time">10:55 – 11:10</div>
+      <div class="pause-label">Kaffeepause 1 (15 Min.) — Kaffee, Getränke, kurze Bewegung</div>
     </div>
   </div>
 
-</main>
+  <!-- BLOCK 3b: Lab-Briefing (NEU) -->
+  <div class="block-card" id="card-3b">
+    <div class="block-header" onclick="toggle('card-3b')">
+      <div class="block-accent" style="background:var(--c3b);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">11:10</span>
+          <span class="block-dur">10 Min.</span>
+          <span class="block-method-tag" style="background:#eef4ff; color:#1a3d80; border:1px solid #b8d0f8;">Team-Bildung</span>
+        </div>
+        <div class="block-title">Lab-Briefing: Gruppen bilden &amp; Alltagsbezug herstellen</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px;">Kurze Vorbereitung vor dem Workflow-Lab I: Gruppen finden sich, lesen ihre Workflow-Karte und setzen einen Alltagsanker — damit das Lab sofort greift.</p>
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3b);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Gruppen bilden &amp; Rollenkarten ziehen</div>
+            <div class="phase-desc">2–3 Personen je Gruppe. Rollenkarten ziehen: Moderator:in, Protokollant:in, Ausprobier-Person. Workshopleitung erklärt das Lab-Format in zwei Sätzen.</div>
+          </div>
+          <div class="phase-time">3'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3b);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Workflow-Karte lesen &amp; Alltagssituation finden</div>
+            <div class="phase-desc">Jede Gruppe liest das Szenario auf ihrer Workflow-Karte. Leitfrage: „Wann wäre dieser Workflow bei euch hilfreich — konkret, letzte Woche?"</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c3b);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Kurzcheck: Frage &amp; Workflow-Name im Plenum</div>
+            <div class="phase-desc">Jede Gruppe nennt in einem Satz: Workflow-Titel + eigene Alltagssituation. Kein Kommentar — nur hören.</div>
+          </div>
+          <div class="phase-time">2'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-blue">
+        <div class="ti">🧩</div>
+        <div>Das Lab-Briefing ersetzt den Kurzaustausch aus dem Dienstepass und macht ihn konkreter: statt „Was war schwer?" jetzt direkt „Wofür brauche ich es?"</div>
+      </div>
+    </div>
+  </div>
 
-</body>
-</html>
+  <!-- BLOCK 4 (WF 1 + 2) -->
+  <div class="block-card" id="card-4">
+    <div class="block-header" onclick="toggle('card-4')">
+      <div class="block-accent" style="background:var(--c5);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">11:20</span>
+          <span class="block-dur">45 Min.</span>
+          <span class="block-method-tag" style="background:#eef4ff; color:#1a3d80; border:1px solid #b8d0f8;">Angeleitete Praxis</span>
+        </div>
+        <div class="block-title">Workflow-Lab I: WF 1 & WF 2 — Geführt</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:20px;">Zwei Gruppen arbeiten parallel, je eine Gruppe pro Workflow. Workshopleitung begleitet als Moderation und wechselt zwischen den Gruppen. Die Moderationsleitfäden <a href="wf1-fachwissen.html" style="color:var(--wf1); font-weight:600; text-decoration:none;">WF 1</a> und <a href="wf2-teamsitzung.html" style="color:var(--wf2); font-weight:600; text-decoration:none;">WF 2</a> steuern den Ablauf.</p>
+
+      <div class="wf-grid">
+        <div class="wf-block wf1">
+          <div class="wf-num">Workflow 1 · 30 Min.</div>
+          <div class="wf-title">Fachwissen ins Team bringen</div>
+          <div class="wf-services">
+            <span class="wf-svc">🌿 Medienecke</span>
+            <span class="wf-svc">🔗 Kurzlink</span>
+            <span class="wf-svc">💬 Chat</span>
+            <span class="wf-svc">📅 Termine</span>
+            <span class="wf-svc">🎥 Meeting</span>
+          </div>
+          <div class="wf-wow">⭐ <strong>Wow-Moment:</strong> QR-Code wird erzeugt und direkt mit dem Handy gescannt — das Ergebnis öffnet sich sofort.</div>
+          <div class="wf-links">
+            <a href="wf1-fachwissen.html" class="wf-link wf-link-guide">📋 Moderationsleitfaden</a>
+            <a href="wf1-miriams-geschichte.html" class="wf-link wf-link-story">✍︎ Miriams Geschichte</a>
+          </div>
+        </div>
+        <div class="wf-block wf2">
+          <div class="wf-num">Workflow 2 · 30 Min.</div>
+          <div class="wf-title">Teamsitzung digital vorbereiten</div>
+          <div class="wf-services">
+            <span class="wf-svc">📝 Notizen</span>
+            <span class="wf-svc">🔗 Kurzlink</span>
+            <span class="wf-svc">💬 Chat</span>
+            <span class="wf-svc">📅 Termine</span>
+            <span class="wf-svc">🎥 Meeting</span>
+          </div>
+          <div class="wf-wow">⭐ <strong>Wow-Moment:</strong> Alle tippen gleichzeitig in dasselbe Dokument — live sichtbar am Beamer.</div>
+          <div class="wf-links">
+            <a href="wf2-teamsitzung.html" class="wf-link wf-link-guide">📋 Moderationsleitfaden</a>
+            <a href="wf2-sandras-geschichte.html" class="wf-link wf-link-story">✍︎ Sandras Geschichte</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="phases" style="margin-top:16px;">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Einstieg & Problem benennen</div>
+            <div class="phase-desc">WF1: „Kennt ihr das?" — Ein-Punkt-Abfrage. WF2: Drei-Finger-Abfrage „Was verliert ihr nach jeder Teamsitzung?"</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Rollen verteilen</div>
+            <div class="phase-desc">Rollenkarten ziehen (Materialscout / Moderator:in / Organizer). Jede Person weiß, was sie tut.</div>
+          </div>
+          <div class="phase-time">3'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Workflow Schritt für Schritt durchspielen</div>
+            <div class="phase-desc">Alle 5 Schritte werden live erarbeitet — echte Artefakte entstehen (QR, Link, Terminumfrage, Meeting-Link).</div>
+          </div>
+          <div class="phase-time">15'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5);">4</div>
+          <div class="phase-content">
+            <div class="phase-name">Poster-Runde & kurze Nachbesprechung</div>
+            <div class="phase-desc">Gruppe stellt ihren Workflow auf einem Poster dar und notiert Stolpersteine. Dot-Voting auf das Wichtigste.</div>
+          </div>
+          <div class="phase-time">7'</div>
+        </div>
+      </div>
+      <div class="output-row">
+        <span class="output-tag">📄 1 Poster je Workflow</span>
+        <span class="output-tag">🔗 Echte Links & QR-Codes</span>
+        <span class="output-tag">📅 Terminumfrage</span>
+        <span class="output-tag">🎥 Meeting-Link</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MITTAGSPAUSE -->
+  <div class="pause-card" style="border-color:#b8d0e0; background:#f0f5f8;">
+    <div class="pause-icon">🍽</div>
+    <div>
+      <div class="pause-time">12:05 – 13:05</div>
+      <div class="pause-label" style="color:var(--ink-soft);">Mittagspause (60 Min.) — Mittagessen, Erholung, informeller Austausch</div>
+    </div>
+  </div>
+
+  <!-- BLOCK 5 (WF 3 + 4) -->
+  <div class="block-card" id="card-5">
+    <div class="block-header" onclick="toggle('card-5')">
+      <div class="block-accent" style="background: linear-gradient(180deg, var(--wf3) 50%, var(--wf4) 50%);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">13:05</span>
+          <span class="block-dur">60 Min.</span>
+          <span class="block-method-tag" style="background:#fdf2ee; color:#8a3010; border:1px solid #f0c0a0;">Eigenständige Gruppen</span>
+        </div>
+        <div class="block-title">Workflow-Lab II: WF 3 & WF 4 — Selbstständig</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:20px;">Die Gruppen tauschen oder bleiben zusammen — eigenständigere Erarbeitung. Workshopleitung ist da, greift aber weniger ein. Die Moderationsleitfäden <a href="wf3-elternabend.html" style="color:var(--wf3); font-weight:600; text-decoration:none;">WF 3</a> und <a href="wf4-einarbeiten.html" style="color:var(--wf4); font-weight:600; text-decoration:none;">WF 4</a> begleiten die Gruppen.</p>
+
+      <div class="wf-grid">
+        <div class="wf-block wf3">
+          <div class="wf-num">Workflow 3 · 30 Min.</div>
+          <div class="wf-title">Elternabend hybrid organisieren</div>
+          <div class="wf-services">
+            <span class="wf-svc">🌿 Medienecke</span>
+            <span class="wf-svc">📝 Notizen</span>
+            <span class="wf-svc">🔗 Kurzlink</span>
+            <span class="wf-svc">📅 Termine</span>
+            <span class="wf-svc">🎥 Meeting</span>
+            <span class="wf-svc">💬 Chat</span>
+          </div>
+          <div class="wf-wow">⭐ <strong>Wow-Moment:</strong> Eine Person spielt „Elternteil" und tritt ohne Account direkt per Meeting-Link bei — live am Beamer.</div>
+          <div class="wf-links">
+            <a href="wf3-elternabend.html" class="wf-link wf-link-guide">📋 Moderationsleitfaden</a>
+            <a href="wf3-elternabend-geschichte.html" class="wf-link wf-link-story">✍︎ Drei Stimmen</a>
+          </div>
+        </div>
+        <div class="wf-block wf4">
+          <div class="wf-num">Workflow 4 · 33 Min.</div>
+          <div class="wf-title">Neue Kolleg:in einarbeiten</div>
+          <div class="wf-services">
+            <span class="wf-svc">📝 Notizen</span>
+            <span class="wf-svc">🌿 Medienecke</span>
+            <span class="wf-svc">🔗 Kurzlink</span>
+            <span class="wf-svc">💬 Chat</span>
+            <span class="wf-svc">📚 Kurse</span>
+            <span class="wf-svc">🔖 Lesezeichen</span>
+          </div>
+          <div class="wf-wow">⭐ <strong>Wow-Moment:</strong> „Lena" öffnet unscripted ihren QR-Code, die Chat-Nachricht und das Dashboard — alles wartet schon.</div>
+          <div class="wf-links">
+            <a href="wf4-einarbeiten.html" class="wf-link wf-link-guide">📋 Moderationsleitfaden</a>
+            <a href="wf4-petras-geschichte.html" class="wf-link wf-link-story">✍︎ Petras Geschichte</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="phases" style="margin-top:16px;">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf3);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 3: Einstieg & Elternperson-Rolle</div>
+            <div class="phase-desc">Schulter-Abfrage: „Was macht ihr, wenn Eltern nicht kommen können?" — 4 Rollenkarten, darunter eine Elternperson.</div>
+          </div>
+          <div class="phase-time">8'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf3);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 3: Schritte 1–6 + Elternperson-Test</div>
+            <div class="phase-desc">Medienecke → Notizen → Kurzlink → Terminumfrage (Elternperson stimmt ab) → Meeting-Beitritt live → Chat bündeln.</div>
+          </div>
+          <div class="phase-time">15'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf3);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 3: Nachbesprechung & Poster</div>
+            <div class="phase-desc">Elternperson berichtet: Was war einfach, was nicht? Gallery Walk vorbereiten.</div>
+          </div>
+          <div class="phase-time">7'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf4);">4</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 4: Einstieg & Lena-Rolle</div>
+            <div class="phase-desc">Blitzlicht im Stehen: „Wie war euer erster Tag — was habt ihr vermisst?" — Rollenkarte „Lena" (neue Kollegin) wartet am Rand.</div>
+          </div>
+          <div class="phase-time">8'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf4);">5</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 4: Paket bauen (Schritte 1–6)</div>
+            <div class="phase-desc">Notizen → Medienecke → QR-Code → Chat-DM → Kursempfehlung → Lesezeichen. Lena sitzt daneben und schaut zu — noch ohne Gerät.</div>
+          </div>
+          <div class="phase-time">13'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf4);">⭐</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 4: Das Unboxing — Lena öffnet ihr Paket</div>
+            <div class="phase-desc">Lena bekommt zum ersten Mal ein Gerät und öffnet nacheinander: QR-Code, Chat-Nachricht, Dashboard. Unscripted, echte Reaktion.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--wf4);">6</div>
+          <div class="phase-content">
+            <div class="phase-name">WF 4: Nachbesprechung & Poster</div>
+            <div class="phase-desc">Was kam an — was fehlt noch — wie geht es weiter? Selbstwirksamkeit als pädagogisches Prinzip benennen.</div>
+          </div>
+          <div class="phase-time">7'</div>
+        </div>
+      </div>
+      <div class="output-row">
+        <span class="output-tag">📄 2 Poster (WF 3 & 4)</span>
+        <span class="output-tag">🔗 QR-Codes für Eltern</span>
+        <span class="output-tag">📋 Willkommensdokument</span>
+        <span class="output-tag">💬 Chat-Kanal + DM</span>
+        <span class="output-tag">🔖 Lesezeichen-Setup</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK 5b: Lab-Debrief (NEU) -->
+  <div class="block-card" id="card-5b">
+    <div class="block-header" onclick="toggle('card-5b')">
+      <div class="block-accent" style="background:var(--c5b);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">14:05</span>
+          <span class="block-dur">15 Min.</span>
+          <span class="block-method-tag" style="background:#eef2ff; color:#2a3580; border:1px solid #b8c0f0;">Gruppen-Debrief</span>
+        </div>
+        <div class="block-title">Lab-Debrief: Erkenntnisse &amp; Querverbindungen sichtbar machen</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px;">Alle vier Workflow-Gruppen kommen zusammen: Artefakte zeigen, Überraschungen benennen, Stolpersteine sichern — bevor die Kaffeepause alles verwischt.</p>
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5b);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Lieblings-Artefakt je Gruppe (alle vier)</div>
+            <div class="phase-desc">Jede Gruppe hält kurz ihr bestes Ergebnis hoch oder zeigt es am Bildschirm: QR-Code, Chat-Kanal, Protokolldokument, Willkommenspaket. Je 1–2 Sätze — keine Diskussion.</div>
+          </div>
+          <div class="phase-time">6'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5b);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Querverbindungen: Der KITA HUB als Ökosystem</div>
+            <div class="phase-desc">Workshopleitung markiert auf dem Übersichts-Poster: Chat, Kurzlink und Termine tauchen in allen vier Workflows auf. „Nicht vier isolierte Tools — ein durchgängiges Ökosystem."</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c5b);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Stolpersteine sichern</div>
+            <div class="phase-desc">Jede Gruppe notiert blitzschnell 1 Hürde auf eine Karte (z. B. „Account-Einladung", „QR-Code drucken"). Karten werden sichtbar aufgehängt — Kaffeepause als Frage-Zeit.</div>
+          </div>
+          <div class="phase-time">4'</div>
+        </div>
+      </div>
+      <div class="output-row">
+        <span class="output-tag">🗺 Ökosystem-Poster</span>
+        <span class="output-tag">📌 Stolpersteine-Karten</span>
+        <span class="output-tag">💡 WF-Highlights aller Gruppen</span>
+      </div>
+      <div class="tip-box tip-purple">
+        <div class="ti">🔗</div>
+        <div>Der Lab-Debrief macht sichtbar, was im Gallery Walk sonst erst mühsam rekonstruiert werden muss. Der Gallery Walk kann dadurch schlanker und fokussierter werden.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAUSE 2 -->
+  <div class="pause-card">
+    <div class="pause-icon">☕</div>
+    <div>
+      <div class="pause-time">14:20 – 14:35</div>
+      <div class="pause-label">Kaffeepause 2 (15 Min.) — Erholung &amp; informelle Fragen zu den Stolpersteinen</div>
+    </div>
+  </div>
+
+  <!-- BLOCK 6: Gallery Walk -->
+  <div class="block-card" id="card-6">
+    <div class="block-header" onclick="toggle('card-6')">
+      <div class="block-accent" style="background:var(--c6);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">14:35</span>
+          <span class="block-dur">15 Min.</span>
+          <span class="block-method-tag" style="background:#F3E4DF; color:#6A3020; border:1px solid #C8927B;">Gallery Walk</span>
+        </div>
+        <div class="block-title">Gallery Walk: Alle vier Workflows im Überblick</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px;">Alle vier Workflow-Poster hängen im Raum. Jede Person geht durch — mit Stift und Dot-Voting-Punkten.</p>
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c6);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Stille Runde: Poster lesen</div>
+            <div class="phase-desc">Alle laufen durch den Raum, lesen alle vier Poster. Kein Kommentieren — nur beobachten.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c6);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Dot-Voting: Was nehme ich mit?</div>
+            <div class="phase-desc">Jede Person bekommt 3 Punkte und klebt sie auf: „Was ist für mein Team am relevantesten?" und „Was würde ich heute noch ausprobieren?"</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c6);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Kurze Auswertung im Plenum</div>
+            <div class="phase-desc">Welche Workflows haben die meisten Punkte? Workshopleitung moderiert 2–3 knappe Statements — die Tiefe kommt bereits aus dem Lab-Debrief.</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-purple">
+        <div class="ti">🎯</div>
+        <div>Die Querverbindungen sichtbar machen: Chat, Kurzlink und Termine tauchen in <em>allen vier</em> Workflows auf — der KITA HUB ist ein Ökosystem, kein Einzeltool-Sammlung.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK 7: Transfer -->
+  <div class="block-card" id="card-7">
+    <div class="block-header" onclick="toggle('card-7')">
+      <div class="block-accent" style="background:var(--c7);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">14:50</span>
+          <span class="block-dur">30 Min.</span>
+          <span class="block-method-tag" style="background:#F2E8CF; color:#6A5020; border:1px solid #D4B46A;">Transfer + Commitment</span>
+        </div>
+        <div class="block-title">„Ab Montag" — Team-Commitment & Pilotplanung</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c7);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Einzelreflexion: Mein Transfer-Plan</div>
+            <div class="phase-desc">Jede Person schreibt auf eine Karte: „Einen Workflow, den ich nächste Woche erstmals nutze." — Stille Arbeit. Die Erkenntnisse aus dem Lab-Debrief sind noch frisch.</div>
+          </div>
+          <div class="phase-time">8'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c7);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Paar-Austausch: Pläne vorstellen</div>
+            <div class="phase-desc">Zu zweit: Pläne gegenseitig vorstellen und Feedback geben. „Was brauche ich noch dafür?"</div>
+          </div>
+          <div class="phase-time">7'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c7);">3</div>
+          <div class="phase-content">
+            <div class="phase-name">Team-Commitment &amp; erster Pilotschritt</div>
+            <div class="phase-desc">Das Team benennt gemeinsam: 1 Pilot-Workflow für 14 Tage · Wer / Was / Bis wann. Direkt im Anschluss: Terminumfrage für den Folgetermin live erstellen — erste echte Nutzung sofort.</div>
+          </div>
+          <div class="phase-time">15'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-mint">
+        <div class="ti">💡</div>
+        <div>Team-Entscheid direkt als kollaborative Notiz anlegen und per Kurzlink im Chat fixieren — Übung und erstes echtes Produktivitäts-Artefakt in einem.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK 8: Abschluss -->
+  <div class="block-card" id="card-8">
+    <div class="block-header" onclick="toggle('card-8')">
+      <div class="block-accent" style="background:var(--c8);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">15:20</span>
+          <span class="block-dur">10 Min.</span>
+          <span class="block-method-tag" style="background:#E8F1EC; color:#3A6A50; border:1px solid #9DB8A5;">Plenum</span>
+        </div>
+        <div class="block-title">Abschluss, offene Fragen & Blitzlicht</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="phases">
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c8);">1</div>
+          <div class="phase-content">
+            <div class="phase-name">Offene Fragen & Starthilfe</div>
+            <div class="phase-desc">Letzte Fragen aus dem Lab beantworten. Starthilfe-Kontakt nochmal deutlich zeigen: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91e2e5f0e3e5f9f8fdf7f4d1faf8e5f0bff3f0e8f4e3ff">[email&#160;protected]</a> / +49 9621 96552 1991</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num" style="background:var(--c8);">2</div>
+          <div class="phase-content">
+            <div class="phase-name">Blitzlicht: Ein Wort, das den Tag beschreibt</div>
+            <div class="phase-desc">Jede Person sagt ein Wort. Workshopleitung schließt mit einem kurzen Ausblick: „In 14 Tagen habt ihr erste Praxis-Erfahrungen — meldet euch gerne."</div>
+          </div>
+          <div class="phase-time">5'</div>
+        </div>
+      </div>
+      <div class="tip-box tip-mint">
+        <div class="ti">🌱</div>
+        <div>Hinweis auf Evaluierung mit Paul und LimeSurvey — kurze Info, dass Feedback den nächsten Durchlauf verbessert.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NACHBEREITUNG -->
+  <div class="block-card" id="card-nach">
+    <div class="block-header" onclick="toggle('card-nach')">
+      <div class="block-accent" style="background:var(--c9);"></div>
+      <div class="block-meta">
+        <div class="block-time-row">
+          <span class="block-time">15:30</span>
+          <span class="block-dur">30 Min.</span>
+          <span class="block-method-tag" style="background:#E9DFD2; color:#6A6A6A; border:1px solid #BFC5C9;">🔧 Organisation</span>
+        </div>
+        <div class="block-title">Nachbereitung & Abbau</div>
+      </div>
+      <div class="block-toggle">▾</div>
+    </div>
+    <div class="block-body">
+      <div class="tip-box tip-amber">
+        <div class="ti">📋</div>
+        <div><strong>Für nach dem Tag:</strong> Kurzprotokoll, Materialien einsammeln, Evaluierung starten.</div>
+      </div>
+      <ul class="checklist" style="margin-top:16px;">
+        <li>Stolpersteine-Karten fotografieren und in Chat-Kanal posten (Dokumentation)</li>
+        <li>Team-Commitment-Notiz per Kurzlink im Chat fixieren (falls noch nicht geschehen)</li>
+        <li>Evaluierungslink (LimeSurvey) per Chat an alle Teilnehmenden senden</li>
+        <li>Poster abfotografieren und in geteiltem Notizen-Dokument ablegen</li>
+        <li>Geräte einsammeln, Raum aufräumen, Beamer ausschalten</li>
+        <li>Kurznotiz für Paul: Was lief gut, was anpassen — sofort während die Eindrücke frisch sind</li>
+        <li>Folgetermin-Terminumfrage prüfen (wurde im Transfer-Block erstellt)</li>
+        <li>Handouts und Kontaktkarten bei Teilnehmenden gelassen?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <div class="overview" style="margin-top: 40px;">
+    <div class="overview-title">Direkte Links zu allen Diensten</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 4px;">
+      <a href="https://kita.bayern/webapp" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">Start</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">kita.bayern/webapp</div>
+      </a>
+      <a href="https://chat.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">💬 Chat</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">chat.kita.bayern</div>
+      </a>
+      <a href="https://meeting.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">🎥 Meeting</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">meeting.kita.bayern</div>
+      </a>
+      <a href="https://termine.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">📅 Termine</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">termine.kita.bayern</div>
+      </a>
+      <a href="https://link.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">🔗 Kurzlink & QR</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">link.kita.bayern</div>
+      </a>
+      <a href="https://notizen.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">📝 Notizen</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">notizen.kita.bayern</div>
+      </a>
+      <a href="https://mediensuche.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">🌿 Medienecke</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">mediensuche.kita.bayern</div>
+      </a>
+      <a href="https://kurse.kita.bayern" target="_blank" style="background:var(--paper); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-decoration:none; display:block;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:4px;">📚 Kurse</div>
+        <div style="font-size:13px; font-family:monospace; color:var(--ink);">kurse.kita.bayern</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggle(id) {
+  const card = document.getElementById(id);
+  if (card) card.classList.toggle('open');
+}
+
+// ── TIMELINE CAROUSEL ──
+(function() {
+  const PAGE_SIZE = 5;
+  let page = 0;
+
+  function render() {
+    const strip = document.getElementById('timeline-strip');
+    if (!strip) return;
+    const blocks = Array.from(strip.querySelectorAll('.ts-block'));
+    const totalPages = Math.ceil(blocks.length / PAGE_SIZE);
+    const start = page * PAGE_SIZE;
+    blocks.forEach(function(b, i) {
+      b.style.display = (i >= start && i < start + PAGE_SIZE) ? '' : 'none';
+    });
+    const prev = document.getElementById('ts-prev');
+    const next = document.getElementById('ts-next');
+    if (prev) prev.classList.toggle('hidden', page === 0);
+    if (next) next.classList.toggle('hidden', page >= totalPages - 1);
+  }
+
+  window.tsNav = function(dir) {
+    const strip = document.getElementById('timeline-strip');
+    if (!strip) return;
+    const blocks = strip.querySelectorAll('.ts-block');
+    const totalPages = Math.ceil(blocks.length / PAGE_SIZE);
+    page = Math.max(0, Math.min(page + dir, totalPages - 1));
+    render();
+  };
+
+  document.addEventListener('DOMContentLoaded', render);
+})();
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <p>Erstellt für die <strong>Pixelwerkstatt Amberg</strong> · Team-Tag KITA HUB · Stand März 2026<br>
+  <a href="https://www.kita.bayern">kita.bayern</a> 

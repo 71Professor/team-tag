@@ -8,32 +8,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --forest:      #1b4332;
-    --forest-mid:  #2d6a4f;
-    --sage:        #40916c;
-    --sage-light:  #f0f7f3;
-    --sage-mid:    #74c69d;
-    --sage-border: #b7e4c7;
-    --moss:        #52b788;
-    --gold:        #b45309;
-    --gold-light:  #fffbeb;
-    --gold-border: #fde68a;
-    --plum:        #5b21b6;
-    --plum-light:  #f5f3ff;
-    --plum-border: #ddd6fe;
-    --teal:        #0f766e;
-    --teal-light:  #f0fdfa;
-    --teal-border: #99f6e4;
-    --rose:        #be185d;
-    --rose-light:  #fdf2f8;
-    --ink:         #0d1f13;
-    --ink-soft:    #3d5a47;
-    --ink-muted:   #7a9e87;
-    --paper:       #f4f8f5;
+    --forest:      #3A3A3A;
+    --forest-mid:  #4A4A4A;
+    --sage:        #9DB8A5;
+    --sage-light:  #E8F1EC;
+    --sage-mid:    #9DB8A5;
+    --sage-border: #9DB8A5;
+    --moss:        #9DB8A5;
+    --gold:        #D4B46A;
+    --gold-light:  #F2E8CF;
+    --gold-border: #D4B46A;
+    --plum:        #C8927B;
+    --plum-light:  #F3E4DF;
+    --plum-border: #C8927B;
+    --teal:        #9DB8A5;
+    --teal-light:  #E8F1EC;
+    --teal-border: #9DB8A5;
+    --rose:        #C8927B;
+    --rose-light:  #F3E4DF;
+    --ink:         #3A3A3A;
+    --ink-soft:    #6A6A6A;
+    --ink-muted:   #9A9A9A;
+    --paper:       #F4EEE6;
     --white:       #ffffff;
-    --border:      #d8eade;
-    --shadow:      0 4px 24px rgba(13,31,19,.10);
-    --shadow-lg:   0 16px 56px rgba(13,31,19,.16);
+    --border:      #BFC5C9;
+    --shadow:      0 4px 24px rgba(58,58,58,.10);
+    --shadow-lg:   0 16px 56px rgba(58,58,58,.16);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,7 +47,7 @@
 
   /* ── HERO ── */
   .hero {
-    background: linear-gradient(155deg, #0b2618 0%, #1b4332 45%, #0d3320 100%);
+    background: #3A3A3A;
     color: white;
     padding: 72px 32px 100px;
     position: relative;
@@ -62,7 +62,7 @@
     position: absolute;
     width: 800px; height: 800px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(64,145,108,.28) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(157,184,165,.22) 0%, transparent 60%);
     top: -350px; right: -200px;
     pointer-events: none;
   }
@@ -70,7 +70,7 @@
     position: absolute;
     width: 500px; height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(91,33,182,.18) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(143,169,196,.15) 0%, transparent 65%);
     bottom: -220px; left: -120px;
     pointer-events: none;
   }
@@ -187,7 +187,7 @@
     animation: fadeUp .4s ease both;
   }
   .intro-card-head {
-    background: linear-gradient(135deg, #0b2618, #1b4332);
+    background: linear-gradient(135deg, #4A4A4A, #3A3A3A);
     padding: 30px 32px;
     position: relative; overflow: hidden;
   }
@@ -300,6 +300,21 @@
   }
   .thought p { padding-left: 18px; color: rgba(255,255,255,.9); font-weight: 300; }
 
+  /* ── BACK LINK ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 36px;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .back-link:hover { color: #9DB8A5; }
+
   /* ── TIP / WARN / INSIGHT ── */
   .callout {
     display: flex; gap: 10px;
@@ -308,11 +323,11 @@
     margin: 12px 0;
   }
   .callout .ico { flex-shrink: 0; }
-  .c-tip  { background: var(--sage-light);  border: 1px solid var(--sage-border); color: #1a4028; }
-  .c-warn { background: #fef2f2;             border: 1px solid #fecaca;             color: #7f1d1d; }
-  .c-gold { background: var(--gold-light);   border: 1px solid var(--gold-border);  color: #78350f; }
-  .c-plum { background: var(--plum-light);   border: 1px solid var(--plum-border);  color: #3b0764; }
-  .c-teal { background: var(--teal-light);   border: 1px solid var(--teal-border);  color: #134e4a; }
+  .c-tip  { background: #fffbe8; border: 1px solid #f0d870; color: #7a6200; }
+  .c-warn { background: #fffbe8; border: 1px solid #f0d870; color: #7a6200; }
+  .c-gold { background: #fffbe8; border: 1px solid #f0d870; color: #7a6200; }
+  .c-plum { background: #fffbe8; border: 1px solid #f0d870; color: #7a6200; }
+  .c-teal { background: #fffbe8; border: 1px solid #f0d870; color: #7a6200; }
 
   /* ── DIVIDER ── */
   hr.div {
@@ -322,7 +337,7 @@
 
   /* ── CODA ── */
   .coda {
-    background: linear-gradient(135deg, #0b2618 0%, #1b4332 100%);
+    background: linear-gradient(135deg, #4A4A4A 0%, #3A3A3A 100%);
     color: white; border-radius: 22px;
     padding: 40px 36px; margin-top: 44px;
     position: relative; overflow: hidden;
@@ -441,6 +456,24 @@
 </style>
 </head>
 <body>
+<nav style="background:#3A3A3A; border-bottom:1px solid rgba(255,255,255,0.08); padding:0 32px; position:sticky; top:0; z-index:100; font-family:'DM Sans',sans-serif;">
+  <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding-right:24px;">
+    <a href="index-team.html" style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.50); text-decoration:none; padding:14px 16px 14px 0; border-right:1px solid rgba(255,255,255,0.10); margin-right:8px; white-space:nowrap; flex-shrink:0; font-family:'Fraunces',serif;">📅 Team-Tag</a>
+    <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); padding:14px 10px 14px 4px; white-space:nowrap; flex-shrink:0;">Workflows:</span>
+    <a href="wf1-fachwissen.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#9DB8A5;display:inline-block;"></span>WF 1 – Fachwissen</a>
+    <a href="wf1-miriams-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.50); margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:18px;background:rgba(255,255,255,0.10);margin:0 6px;flex-shrink:0;"></span>
+    <a href="wf2-teamsitzung.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#8FA9C4;display:inline-block;"></span>WF 2 – Teamsitzung</a>
+    <a href="wf2-sandras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.50); margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:18px;background:rgba(255,255,255,0.10);margin:0 6px;flex-shrink:0;"></span>
+    <a href="wf3-elternabend.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#C8927B;display:inline-block;"></span>WF 3 – Elternabend</a>
+    <a href="wf3-elternabend-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.50); margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:18px;background:rgba(255,255,255,0.10);margin:0 6px;flex-shrink:0;"></span>
+    <a href="wf4-einarbeiten.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#D4B46A;display:inline-block;"></span>WF 4 – Einarbeiten</a>
+    <a href="wf4-petras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:#a8d8b8; background:rgba(58,140,90,0.18); margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+  </div>
+</nav>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -501,6 +534,8 @@
 <!-- MAIN -->
 <div class="main">
 
+  <a class="back-link" href="wf4-einarbeiten.html">← Zurück zu Workflow 4</a>
+
   <!-- INTRO -->
   <div class="intro-card">
     <div class="intro-card-head">
@@ -535,7 +570,7 @@
       </div>
       <p>Den Link zum Dokument kopiere ich sofort. Der ist mein Rohstoff für alles, was danach kommt.</p>
       <div class="callout c-warn">
-        <div class="ico">⚠️</div>
+        <div class="ico">💡</div>
         <div>Den Bearbeitungslink <strong>sofort nach dem Anlegen sichern</strong> – zum Beispiel direkt in den Teamchat posten. Ohne Account und ohne gesicherten Link wäre das Dokument beim nächsten Öffnen des Browsers weg.</div>
       </div>
     </div>
@@ -554,7 +589,7 @@
       <p>Ich suche nach <em>„Einarbeitung"</em>, dann nach <em>„Grundlagen Kita"</em>, dann nach <em>„Eingewöhnung"</em> – weil das Lenas erster Tätigkeitsbereich sein wird. Ich wähle vier, fünf Materialien aus: einen Grundlagentext über Beobachtung und Dokumentation, ein Praxisheft zur Eingewöhnung nach dem Berliner Modell, und einen Kurzimpuls zu Übergabegesprächen.</p>
       <p>Die Links kopiere ich direkt in die Linksammlung im Willkommensdokument. <strong>Lena findet dort nicht nur Hausregeln – sie findet auch Fachliteratur, die sie sofort lesen kann.</strong> Das ist ein anderes Ankommen als ein Ordner, der irgendwo im Schrank steht.</p>
       <div class="callout c-gold">
-        <div class="ico">🎯</div>
+        <div class="ico">💡</div>
         <div>Tipp für die Materialauswahl: Medien wählen, die für <strong>verschiedene Qualifikationsstufen</strong> verständlich sind – so bleibt das Dokument flexibel einsetzbar, egal ob die nächste neue Kraft eine ausgebildete Fachkraft oder eine Ergänzungskraft ist.</div>
       </div>
     </div>
@@ -575,11 +610,11 @@
         <p>Sandra meinte beim Ausdrucken: „Den hängen wir jetzt einmal auf – und beim nächsten Onboarding ändern wir einfach das Dokument. Der QR-Code bleibt derselbe." Das ist der Unterschied zu allem, was wir vorher gemacht haben.</p>
       </div>
       <div class="callout c-plum">
-        <div class="ico">📌</div>
+        <div class="ico">💡</div>
         <div>Der QR-Code ist dauerhaft. Wenn die nächste neue Kollegin startet, aktualisieren wir nur das Notizen-Dokument – der Kurzlink und der QR-Code bleiben unverändert. Einmal drucken, dauerhaft nutzen.</div>
       </div>
       <div class="callout c-warn">
-        <div class="ico">⚠️</div>
+        <div class="ico">💡</div>
         <div>Kurzlinks für das Onboarding <strong>immer mit Account anlegen</strong>. Wer einen Gast-Link anlegt, kann das Linkziel später nicht mehr ändern – beim nächsten Onboarding müsste ein neuer QR-Code gedruckt werden.</div>
       </div>
     </div>
@@ -597,14 +632,14 @@
       <p>Sobald Sandra Lenas KITA HUB Account eingerichtet hat, schreibe ich ihr auf <strong>chat.kita.bayern</strong> eine Direktnachricht. Keine E-Mail. Keine SMS. Sondern eine Nachricht auf der Plattform, auf der wir als Team sowieso kommunizieren.</p>
       <p>Die Nachricht habe ich mir vorher in Ruhe überlegt: ein herzlicher Willkommenstext mit ihrem Namen, dann der direkte Link zum Willkommensdokument mit einer kurzen Erklärung, was sie dort findet. Dann die Links zu den Medienecke-Materialien, die ich ausgewählt habe. Und am Ende die Kursempfehlung, die Sandra herausgesucht hat – dazu gleich mehr. Und ein Angebot: <em>„Schreib mir einfach hier, wenn du Fragen hast."</em></p>
       <div class="callout c-teal">
-        <div class="ico">✨</div>
+        <div class="ico">💡</div>
         <div>Wir haben Lena außerdem in unseren Team-Kanal eingeladen und sie dort kurz vorgestellt. So war sie schon Teil des Teams, bevor sie das erste Mal die Tür aufgemacht hat.</div>
       </div>
       <div class="thought">
         <p>Lena hat uns erzählt, dass sie sich an diesem Abend noch alles durchgelesen hat. Sie kam am Montag und kannte die Namen, die Abläufe, die Hausregeln. Die erste Frage, die sie gestellt hat, war eine Fachfrage. Keine Orientierungsfrage. Das war ein anderes Ankommen.</p>
       </div>
       <div class="callout c-warn">
-        <div class="ico">⚠️</div>
+        <div class="ico">💡</div>
         <div>Die Chat-Direktnachricht funktioniert erst, wenn Lena ihren Account hat. Den Account-Antragsprozess deshalb <strong>frühzeitig kommunizieren</strong> – idealerweise schon vor dem ersten Arbeitstag. Schritte 1–3 können Lena aber schon vorher per Link erreichen.</div>
       </div>
     </div>
@@ -640,7 +675,7 @@
       <p>Wir wollten nicht, dass Lena am ersten Tag fünf Tabs offen hat und sucht. Also zeigen wir ihr gemeinsam an ihrem ersten Tag, wie sie ihr KITA HUB Dashboard mit Lesezeichen personalisiert: das Willkommensdokument direkt erreichbar, die Medienecke mit voreingestellter Suche, den Team-Chat-Kanal, und den empfohlenen Einführungskurs.</p>
       <p>Das dauert fünf Minuten. Und Lena lernt dabei gleichzeitig, dass sie das Dashboard selbst weiterentwickeln kann – dass der KITA HUB nicht statisch ist, sondern ein Werkzeug, das sie sich nach und nach zu eigen macht.</p>
       <div class="callout c-teal">
-        <div class="ico">🔖</div>
+        <div class="ico">💡</div>
         <div>Lesezeichen erscheinen nur auf Lenas eigenem Dashboard und brauchen einen Account. Wir zeigen ihr das einmal – danach kann sie es selbst erweitern. Das ist bewusst so gedacht: nicht alles vorgeben, sondern befähigen.</div>
       </div>
       <div class="thought">
@@ -700,8 +735,6 @@
 
 <div class="footer">
   <p>Erstellt für die <strong>Pixelwerkstatt</strong> · Team-Tag KITA HUB · Stand März 2026<br>
-  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a></p>
-</div>
-
+  <a href="https://www.kita.bayern">kita.bayern</a> · <a href="/cdn-cgi/l/email-protection#582b2c392a2c3031343e3d1833312c39763a39213d2a36"><span clas
 </body>
 </html>

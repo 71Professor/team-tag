@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rollenkarten – KITA HUB Team-Tag</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 10.5pt;
+    color: #000;
+    background: #fff;
+    padding: 14mm 16mm;
+    width: 210mm;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 13pt;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+  .intro {
+    font-size: 9pt;
+    color: #444;
+    margin-bottom: 14px;
+  }
+
+  /* 3 cards per row, A6-ish, with cut lines */
+  .cards-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .card {
+    border: 1.5px dashed #999; /* dashed = cut line */
+    padding: 10px 12px;
+    min-height: 120mm;
+    position: relative;
+  }
+
+  .card-badge {
+    font-size: 8pt;
+    font-weight: 700;
+    border: 1.5px solid #000;
+    border-radius: 2px;
+    padding: 1px 6px;
+    display: inline-block;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+  }
+
+  .card h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    margin-bottom: 8px;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 4px;
+  }
+
+  .card .task-title {
+    font-size: 9pt;
+    font-weight: 700;
+    margin: 8px 0 3px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .card ul {
+    padding-left: 14px;
+    font-size: 8.5pt;
+  }
+  .card ul li {
+    margin-bottom: 4px;
+  }
+
+  .card .tip {
+    margin-top: 10px;
+    font-size: 8pt;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 4px 6px;
+    color: #333;
+  }
+  .card .tip strong { font-size: 8.5pt; }
+
+  /* Second set (same 3 roles for second group) */
+  .cut-hint {
+    font-size: 8pt;
+    color: #888;
+    margin: 10px 0 12px 0;
+    text-align: center;
+  }
+
+  @media print {
+    body { padding: 8mm 10mm; width: 210mm; }
+    @page { size: A4; margin: 0; }
+    .cut-hint { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Rollenkarten — Block 3b (Lab-Briefing)</h1>
+<div class="intro">
+  Ausschneiden und an die Gruppen verteilen. Jede Gruppe bekommt 1 Set mit 3 Karten.
+  Die Rollen gelten für Block 4 (Workflow-Lab I) und Block 5 (Workflow-Lab II).
+</div>
+
+<!-- SET 1 -->
+<div class="cards-row">
+
+  <div class="card">
+    <div class="card-badge">GRUPPE ____</div>
+    <h2>Moderator:in</h2>
+    <div class="task-title">Deine Aufgaben</div>
+    <ul>
+      <li>Gibt das Tempo vor und achtet auf die Zeit</li>
+      <li>Stellt sicher, dass alle zu Wort kommen</li>
+      <li>Fasst Zwischenergebnisse zusammen</li>
+      <li>Präsentiert den Workflow beim Gallery Walk</li>
+    </ul>
+    <div class="task-title">Im Lab-Briefing</div>
+    <ul>
+      <li>Liest die Workflow-Karte vor</li>
+      <li>Formuliert den Alltagsanker für den Plenum-Check</li>
+    </ul>
+    <div class="tip"><strong>Tipp:</strong> „Wir haben noch 10 Minuten — was fehlt noch?" ist deine wichtigste Frage.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-badge">GRUPPE ____</div>
+    <h2>Protokollant:in</h2>
+    <div class="task-title">Deine Aufgaben</div>
+    <ul>
+      <li>Schreibt alle erzeugten Links und QR-Codes auf die Workflow-Karte</li>
+      <li>Notiert Stolpersteine und offene Fragen</li>
+      <li>Formuliert den „Nutzen in einem Satz" am Ende</li>
+      <li>Sichert den Notiz-Link sofort nach dem Anlegen</li>
+    </ul>
+    <div class="task-title">Im Lab-Debrief (Block 5b)</div>
+    <ul>
+      <li>Trägt einen Stolperstein auf einer Karte ein</li>
+    </ul>
+    <div class="tip"><strong>Tipp:</strong> Kopiere jeden Link sofort — ein verlorener Notiz-Link ist wirklich weg.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-badge">GRUPPE ____</div>
+    <h2>Ausprobier-Person</h2>
+    <div class="task-title">Deine Aufgaben</div>
+    <ul>
+      <li>Führt die Schritte am Gerät aus</li>
+      <li>Teilt Bildschirm oder zeigt das Ergebnis der Gruppe</li>
+      <li>Spricht laut, was gerade passiert (Thinking aloud)</li>
+      <li>Fragt sofort, wenn etwas unklar ist</li>
+    </ul>
+    <div class="task-title">Im Gallery Walk (Block 6)</div>
+    <ul>
+      <li>Zeigt die echten Artefakte (QR, Link, Notiz) auf dem Gerät</li>
+    </ul>
+    <div class="tip"><strong>Tipp:</strong> Kein Fehler ist schlimm — Stolpersteine sind wertvolle Lernergebnisse.</div>
+  </div>
+
+</div>
+
+<div class="cut-hint">✂ — — — schneiden — — — ✂</div>
+
+<!-- SET 2 (identical, for second group) -->
+<div class="cards-row">
+
+  <div class="card">
+    <div class="card-badge">GRUPPE ____</div>
+    <h2>Moderator:in</h2>
+    <div class="task-title">Deine Aufgaben</div>
+    <ul>
+      <li>Gibt das Tempo vor und achtet auf die Zeit</li>
+      <li>Stellt sicher, dass alle zu Wort kommen</li>
+      <li>Fasst Zwischenergebnisse zusammen</li>
+      <li>Präsentiert den Workflow beim Gallery Walk</li>
+    </ul>
+    <div class="task-title">Im Lab-Briefing</div>
+    <ul>
+      <li>Liest die Workflow-Karte vor</li>
+      <li>Formuliert den Alltagsanker für den Plenum-Check</li>
+    </ul>
+    <div class="tip"><strong>Tipp:</strong> „Wir haben noch 10 Minuten — was fehlt noch?" ist deine wichtigste Frage.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-badge">GRUPPE ____</div>
+    <h2>Protokollant:in</h2>
+    <div class="task-title">Deine Aufgaben</div>
+    <ul>
+      <li>Schreibt alle erzeugten Links und QR-Codes auf die Workflow-Karte</li>
+      <li>Notiert Stolpersteine und offene Fragen</li>
+      <li>Formuliert den „Nutzen in einem Satz" am Ende</li>
+      <li>Sichert den Notiz-Link sofort nach dem Anlegen</li>
+    </ul>
+    <div class="task-title">Im Lab-Debrief (Block 5b)</div>
+    <ul>
+      <li>Trägt einen Stolperstein auf einer Karte ein</li>
+    </ul>
+    <div class="tip"><strong>Tipp:</strong> Kopiere jeden Link sofort — ein verlorener Notiz-Link ist wirklich weg.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-badge">GRUPPE ____</div>
+    <h2>Ausprobier-Person</h2>
+    <div class="task-title">Deine Aufgaben</div>
+    <ul>
+      <li>Führt die Schritte am Gerät aus</li>
+      <li>Teilt Bildschirm oder zeigt das Ergebnis der Gruppe</li>
+      <li>Spricht laut, was gerade passiert (Thinking aloud)</li>
+      <li>Fragt sofort, wenn etwas unklar ist</li>
+    </ul>
+    <div class="task-title">Im Gallery Walk (Block 6)</div>
+    <ul>
+      <li>Zeigt die echten Artefakte (QR, Link, Notiz) auf dem Gerät</li>
+    </ul>
+    <div class="tip"><strong>Tipp:</strong> Kein Fehler ist schlimm — Stolpersteine sind wertvolle Lernergebnisse.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

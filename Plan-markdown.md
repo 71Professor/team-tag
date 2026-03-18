@@ -34,7 +34,7 @@
 
 | Zeit | Dauer | Block | Inhalt | Methode |
 |---:|---:|---|---|---|
-| 09:00–09:30 | 30' | *Aufbau* | Vorbereitung | Organisation |
+| 09:00–09:30 | 30' | *Aufbau* | Vorbereitung (Tanja) | Organisation |
 | 09:30–09:45 | 15' | **Block 1** | Ankommen & Erwartungsabfrage | Plenum |
 | 09:45–10:30 | 45' | **Block 2** | KITA HUB: Alle Dienste kennenlernen | Vortrag + Live-Demo |
 | 10:30–10:55 | 25' | **Block 3** | Dienstepass: Kernhandlungen ausprobieren | Einzelarbeit |
@@ -48,7 +48,7 @@
 | 14:35–14:50 | 15' | **Block 6** | Gallery Walk | Galerie |
 | 14:50–15:20 | 30' | **Block 7** | Transfer: „Ab Montag" + Team-Commitment | Plenum |
 | 15:20–15:30 | 10' | **Block 8** | Abschluss, Fragen, Blitzlicht | Plenum |
-| 15:30–16:00 | 30' | *Nachbereitung* | Abbau & Auswertung | Organisation |
+| 15:30–16:00 | 30' | *Nachbereitung* | Abbau & Auswertung (Tanja) | Organisation |
 
 ⭐ = neu hinzugefügte Phasen
 
@@ -133,14 +133,14 @@
 ## Block 4 — Workflow-Lab I: WF 1 & WF 2 (geführt)
 **Zeit:** 11:20–12:05 | **Dauer:** 45 Min. | **Methode:** Angeleitete Praxis
 
-Zwei Gruppen arbeiten parallel, je eine Gruppe pro Workflow. Workshopleitung begleitet als Moderation und wechselt zwischen den Gruppen.
+Zwei Gruppen arbeiten parallel, je eine Gruppe pro Workflow. Tanja begleitet als Moderation und wechselt zwischen den Gruppen.
 
 ---
 
 ## Block 5 — Workflow-Lab II: WF 3 & WF 4 (eigenständig)
 **Zeit:** 13:05–14:05 | **Dauer:** 60 Min. | **Methode:** Kleingruppen
 
-> Jede Gruppe produziert **echte Artefakte**: funktionierende Links, QR-Codes, Notizen, Terminumfragen – keine Ideen, sondern Dinge, die am Montag sofort nutzbar sind. Gruppen arbeiten in dieser Phase selbstständiger; Workshopleitung ist da, greift aber weniger ein.
+> Jede Gruppe produziert **echte Artefakte**: funktionierende Links, QR-Codes, Notizen, Terminumfragen – keine Ideen, sondern Dinge, die am Montag sofort nutzbar sind. Gruppen arbeiten in dieser Phase selbstständiger; Tanja ist da, greift aber weniger ein.
 
 **Workflow-Karte (Template für jede Gruppe):**
 ```
@@ -240,7 +240,7 @@ Nutzen in einem Satz:
 | Phase | Inhalt | Zeit |
 |---|---|---|
 | 1 | Lieblings-Artefakt je Gruppe zeigen (QR-Code, Chat-Kanal, Dokument, Willkommenspaket) — je 1–2 Sätze, keine Diskussion | 6' |
-| 2 | Querverbindungen: Workshopleitung markiert am Poster — Chat, Kurzlink & Termine verbinden alle vier Workflows. „Der KITA HUB ist ein Ökosystem." | 5' |
+| 2 | Querverbindungen: Tanja markiert am Poster — Chat, Kurzlink & Termine verbinden alle vier Workflows. „Der KITA HUB ist ein Ökosystem." | 5' |
 | 3 | Stolpersteine sichern: je 1 Hürde auf Karte notieren, aufhängen, Kaffeepause als informelle Frage-Zeit nutzen | 4' |
 
 **Output:** Ökosystem-Poster · Stolpersteine-Karten · WF-Highlights aller Gruppen
@@ -256,7 +256,7 @@ Nutzen in einem Satz:
 - Alle vier Workflow-Poster hängen im Raum. Jede Person geht durch — mit Stift und Dot-Voting-Punkten.
 - Stille Runde (5 Min.): Alle laufen durch, lesen alle vier Poster.
 - Dot-Voting (5 Min.): 3 Punkte pro Person — „Was ist für mein Team am relevantesten?"
-- Kurze Auswertung (5 Min.): Workshopleitung moderiert 2–3 knappe Statements. Die Tiefe kommt bereits aus dem Lab-Debrief.
+- Kurze Auswertung (5 Min.): Tanja moderiert 2–3 knappe Statements. Die Tiefe kommt bereits aus dem Lab-Debrief.
 
 **⚡ Bei Zeitdruck:** Auf stille Runde + Dot-Voting (10 Min.) reduzieren, Plenumsauswertung weglassen.
 
@@ -294,7 +294,7 @@ Das Team benennt gemeinsam:
 
 ---
 
-## Nachbereitung & Abbau
+## Nachbereitung & Abbau (Tanja)
 **Zeit:** 15:30–16:00 | **Dauer:** 30 Min.
 
 - Stolpersteine-Karten fotografieren und im Chat-Kanal posten

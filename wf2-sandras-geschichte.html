@@ -8,28 +8,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue: #2563eb;
-    --blue-light: #eff6ff;
-    --blue-mid: #bfdbfe;
-    --indigo: #4f46e5;
-    --indigo-light: #eef2ff;
-    --teal: #0d9488;
-    --teal-light: #f0fdfa;
-    --teal-mid: #99f6e4;
-    --amber: #d97706;
-    --amber-light: #fffbeb;
-    --rose: #e11d48;
-    --rose-light: #fff1f2;
-    --violet: #7c3aed;
-    --violet-light: #f5f3ff;
-    --slate: #1e293b;
-    --slate-soft: #475569;
-    --slate-muted: #94a3b8;
-    --paper: #f8fafc;
+    --blue: #8FA9C4;
+    --blue-light: #E7EEF6;
+    --blue-mid: #8FA9C4;
+    --indigo: #8FA9C4;
+    --indigo-light: #E7EEF6;
+    --teal: #9DB8A5;
+    --teal-light: #E8F1EC;
+    --teal-mid: #9DB8A5;
+    --amber: #D4B46A;
+    --amber-light: #F2E8CF;
+    --rose: #C8927B;
+    --rose-light: #F3E4DF;
+    --violet: #C8927B;
+    --violet-light: #F3E4DF;
+    --slate: #3A3A3A;
+    --slate-soft: #6A6A6A;
+    --slate-muted: #9A9A9A;
+    --paper: #F4EEE6;
     --white: #ffffff;
-    --border: #e2e8f0;
-    --shadow: 0 4px 24px rgba(30,41,59,0.10);
-    --shadow-lg: 0 12px 48px rgba(30,41,59,0.16);
+    --border: #BFC5C9;
+    --shadow: 0 4px 24px rgba(58,58,58,0.10);
+    --shadow-lg: 0 12px 48px rgba(58,58,58,0.16);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,7 +44,7 @@
 
   /* ─── HERO ─── */
   .hero {
-    background: linear-gradient(135deg, #1e3a5f 0%, #1e293b 60%, #0f172a 100%);
+    background: #3A3A3A;
     color: white;
     padding: 64px 32px 80px;
     position: relative;
@@ -61,7 +61,7 @@
     content: '';
     position: absolute;
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(37,99,235,0.28) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(143,169,196,0.22) 0%, transparent 70%);
     top: -200px; right: -100px;
     pointer-events: none;
   }
@@ -69,7 +69,7 @@
     content: '';
     position: absolute;
     width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(79,70,229,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(157,184,165,0.15) 0%, transparent 70%);
     bottom: -150px; left: -80px;
     pointer-events: none;
   }
@@ -162,7 +162,7 @@
     text-decoration: none;
     margin-bottom: 36px;
     transition: color 0.2s;
-    cursor: default;
+    cursor: pointer;
   }
   .back-link:hover { color: var(--blue); }
 
@@ -334,7 +334,7 @@
   .service-2 { background: var(--indigo-light); color: #4338ca; }
   .service-3 { background: var(--teal-light); color: var(--teal); }
   .service-4 { background: var(--amber-light); color: var(--amber); }
-  .service-5 { background: var(--violet-light); color: #6d28d9; }
+  .service-5 { background: var(--violet-light); color: #6A3020; }
   .service-6 { background: var(--rose-light); color: var(--rose); }
 
   /* ─── QUOTE / THOUGHT ─── */
@@ -363,13 +363,13 @@
   .tip-box {
     display: flex;
     gap: 10px;
-    background: var(--blue-light);
-    border: 1px solid var(--blue-mid);
+    background: #fffbe8;
+    border: 1px solid #f0d870;
     border-radius: 12px;
     padding: 13px 16px;
     font-size: 13px;
     line-height: 1.6;
-    color: #1e40af;
+    color: #7a6200;
     margin: 14px 0;
   }
   .tip-box .tip-icon { flex-shrink: 0; font-size: 16px; }
@@ -377,13 +377,13 @@
   .insight-box {
     display: flex;
     gap: 10px;
-    background: var(--teal-light);
-    border: 1px solid var(--teal-mid);
+    background: #fffbe8;
+    border: 1px solid #f0d870;
     border-radius: 12px;
     padding: 13px 16px;
     font-size: 13px;
     line-height: 1.6;
-    color: #0f5449;
+    color: #7a6200;
     margin: 14px 0;
   }
   .insight-box .tip-icon { flex-shrink: 0; font-size: 16px; }
@@ -391,13 +391,13 @@
   .warn-box {
     display: flex;
     gap: 10px;
-    background: var(--amber-light);
-    border: 1px solid #fde68a;
+    background: #fffbe8;
+    border: 1px solid #f0d870;
     border-radius: 12px;
     padding: 13px 16px;
     font-size: 13px;
     line-height: 1.6;
-    color: #78350f;
+    color: #7a6200;
     margin: 14px 0;
   }
   .warn-box .tip-icon { flex-shrink: 0; font-size: 16px; }
@@ -527,13 +527,13 @@
   .fp2 { background: var(--indigo-light); color: #4338ca; border-color: #c7d2fe; }
   .fp3 { background: var(--teal-light); color: var(--teal); border-color: var(--teal-mid); }
   .fp4 { background: var(--amber-light); color: var(--amber); border-color: #fde68a; }
-  .fp5 { background: var(--violet-light); color: #6d28d9; border-color: #ddd6fe; }
+  .fp5 { background: var(--violet-light); color: #6A3020; border-color: #C8927B; }
   .fp6 { background: var(--rose-light); color: var(--rose); border-color: #fecdd3; }
   .flow-arrow { color: var(--slate-muted); font-size: 18px; }
 
   /* ─── FOOTER ─── */
   .footer {
-    background: var(--slate);
+    background: #3A3A3A;
     color: rgba(255,255,255,0.45);
     text-align: center;
     padding: 32px 24px;
@@ -541,7 +541,7 @@
     line-height: 1.7;
     margin-top: 80px;
   }
-  .footer a { color: #93c5fd; text-decoration: none; }
+  .footer a { color: #8FA9C4; text-decoration: none; }
   .footer strong { color: white; }
 
   /* ─── ANIMATIONS ─── */
@@ -571,6 +571,24 @@
 </style>
 </head>
 <body>
+<nav class="sitenav" aria-label="Seitennavigation" style="background:#3A3A3A; border-bottom:1px solid rgba(255,255,255,0.08); padding:0 32px; position:sticky; top:0; z-index:100; font-family:'DM Sans',sans-serif;">
+  <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:0; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding-right:24px;">
+    <a href="index-team.html" style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.50); text-decoration:none; padding:14px 16px 14px 0; border-right:1px solid rgba(255,255,255,0.10); margin-right:8px; white-space:nowrap; flex-shrink:0; font-family:'Fraunces',serif;">📅 Team-Tag</a>
+    <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); padding:14px 10px 14px 4px; white-space:nowrap; flex-shrink:0;">Workflows:</span>
+    <a href="wf1-fachwissen.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#9DB8A5;flex-shrink:0;display:inline-block;"></span>WF 1 – Fachwissen</a>
+    <a href="wf1-miriams-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf2-teamsitzung.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#8FA9C4;flex-shrink:0;display:inline-block;"></span>WF 2 – Teamsitzung</a>
+    <a href="wf2-sandras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:#a8c0f0; background:rgba(58,95,168,0.18); margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf3-elternabend.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#C8927B;flex-shrink:0;display:inline-block;"></span>WF 3 – Elternabend</a>
+    <a href="wf3-elternabend-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf4-einarbeiten.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#D4B46A;flex-shrink:0;display:inline-block;"></span>WF 4 – Einarbeiten</a>
+    <a href="wf4-petras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+  </div>
+</nav>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -598,7 +616,7 @@
 <!-- MAIN -->
 <div class="main">
 
-  <a class="back-link">← Zurück zu Workflow 2</a>
+  <a class="back-link" href="wf2-teamsitzung.html">← Zurück zu Workflow 2</a>
 
   <!-- Intro card -->
   <div class="intro-card">
@@ -658,7 +676,7 @@
       <p>Fünf Tage vor der Sitzung öffne ich <strong>notizen.kita.bayern</strong>, logge mich mit meinem KITA HUB Account ein und lege ein neues Dokument an: „Teamsitzung 18.03.2026". Ich richte die Struktur ein – Tagesordnungspunkte, einen Block für Entscheidungen, eine Aufgabentabelle mit den Spalten <em>Wer / Was / Bis wann</em> und eine kleine Linksammlung am Ende.</p>
       <p>Das dauert sieben Minuten. Kein Word, kein E-Mail-Anhang, kein „Wer hat denn zuletzt die Vorlage?" Ich kopiere den Bearbeitungslink sofort. Der ist entscheidend – er ist das Tor, durch das alle ins Dokument kommen.</p>
       <div class="warn-box">
-        <div class="tip-icon">⚠️</div>
+        <div class="tip-icon">💡</div>
         <div><strong>Wichtiger Hinweis:</strong> Den Bearbeitungslink sofort sichern! Wer ohne Account arbeitet, verliert ihn beim Schließen des Browsers – der KITA HUB Account verhindert genau das.</div>
       </div>
     </div>
@@ -695,7 +713,7 @@
       <p>Im Teamkanal auf <strong>chat.kita.bayern</strong> poste ich den Kurzlink mit einem einzigen Satz: <em>„Hier ist die Agenda zur nächsten Sitzung – tragt bis Freitag eure Themenvorschläge ein!"</em> Die Nachricht pinne ich an. So verschwindet sie nicht im Chatverlauf.</p>
       <p>Meine Kollegin Jule fragt kurz nach, ob sie auch ohne Account mitschreiben kann. Ja, kann sie – als Gast. Das ist genau der Punkt: Der KITA HUB zwingt niemanden zu einem Account, wenn es nicht notwendig ist. Niedrigschwellig von Anfang an.</p>
       <div class="insight-box">
-        <div class="tip-icon">✨</div>
+        <div class="tip-icon">💡</div>
         <div>Eine angepinnte Nachricht in Element/Matrix ist für alle im Kanal dauerhaft sichtbar – ideal für wiederkehrende Dokumente wie Protokolle oder Dienstpläne.</div>
       </div>
     </div>
@@ -747,7 +765,7 @@
       <p>Miriam braucht keinen Account. Sie klickt auf den Link, Chrome ist offen, und sie ist dabei. Kein Zoom, kein Teams, keine DSGVO-Grauzone. Die Infrastruktur gehört dem Freistaat Bayern und läuft vollständig datenschutzkonform.</p>
       <p>Miriam hatte uns öfter gefehlt bei solchen Terminen – wegen Schicht, wegen Teilzeit, wegen „ich hab keinen Zugang". Jetzt hat sie einen. Nämlich diesen Link.</p>
       <div class="insight-box">
-        <div class="tip-icon">✔️</div>
+        <div class="tip-icon">💡</div>
         <div><strong>Praxistipp:</strong> Chrome oder Firefox für das Meeting empfehlen – kein Safari, kein Edge. Auf iPads geht's am besten über die Element-App oder den Browser direkt.</div>
       </div>
     </div>

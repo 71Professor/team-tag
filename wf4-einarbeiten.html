@@ -5,36 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workflow 4 – Neue Kolleg:in einarbeiten</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sage:       #4d7c5f;
-    --sage-light: #f0f7f3;
-    --sage-mid:   #a3c9b0;
-    --sage-border:#c6e0ce;
-    --teal:       #0f766e;
-    --teal-light: #f0fdfa;
-    --teal-border:#99f6e4;
-    --plum:       #6d28d9;
-    --plum-light: #f5f3ff;
-    --plum-border:#ddd6fe;
-    --gold:       #b45309;
-    --gold-light: #fffbeb;
-    --gold-border:#fde68a;
-    --rose:       #be185d;
-    --rose-light: #fdf2f8;
-    --rose-border:#fbcfe8;
-    --sky:        #0369a1;
-    --sky-light:  #f0f9ff;
-    --sky-border: #bae6fd;
-    --ink:        #1B3929;
-    --ink-soft:   #3D5245;
-    --ink-muted:  #a0aec0;
-    --canvas:     #F2EDE4;
+    --sage:       #9DB8A5;
+    --sage-light: #E8F1EC;
+    --sage-mid:   #9DB8A5;
+    --sage-border:#9DB8A5;
+    --teal:       #9DB8A5;
+    --teal-light: #E8F1EC;
+    --teal-border:#9DB8A5;
+    --plum:       #C8927B;
+    --plum-light: #F3E4DF;
+    --plum-border:#C8927B;
+    --gold:       #D4B46A;
+    --gold-light: #F2E8CF;
+    --gold-border:#D4B46A;
+    --rose:       #C8927B;
+    --rose-light: #F3E4DF;
+    --rose-border:#C8927B;
+    --sky:        #8FA9C4;
+    --sky-light:  #E7EEF6;
+    --sky-border: #8FA9C4;
+    --ink:        #3A3A3A;
+    --ink-soft:   #6A6A6A;
+    --ink-muted:  #9A9A9A;
+    --canvas:     #F4EEE6;
     --white:      #ffffff;
-    --border:     #DDD8CF;
-    --sh:         0 4px 20px rgba(27,57,41,.09);
-    --sh-lg:      0 20px 60px rgba(27,57,41,.14);
+    --border:     #BFC5C9;
+    --sh:         0 4px 20px rgba(58,58,58,.09);
+    --sh-lg:      0 20px 60px rgba(58,58,58,.14);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +48,7 @@
 
   /* ── HERO ── */
   .hero {
-    background: linear-gradient(140deg, #0d2818 0%, #1a3d28 55%, #0d2818 100%);
+    background: #3A3A3A;
     color: white;
     padding: 72px 32px 108px;
     position: relative;
@@ -66,12 +66,12 @@
   }
   .arc1 {
     width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(77,124,95,.35) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(157,184,165,.25) 0%, transparent 60%);
     top: -300px; right: -200px;
   }
   .arc2 {
     width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(109,40,217,.2) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(143,169,196,.15) 0%, transparent 60%);
     bottom: -180px; left: -80px;
   }
   .hero-inner {
@@ -80,30 +80,23 @@
   }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(77,124,95,.28);
-    border: 1px solid rgba(163,201,176,.4);
+    background: rgba(157,184,165,.25);
+    border: 1px solid rgba(157,184,165,.5);
     padding: 6px 16px; border-radius: 100px;
     font-size: 11px; font-weight: 700;
     letter-spacing: .1em; text-transform: uppercase;
-    color: var(--sage-mid);
+    color: #9DB8A5;
     margin-bottom: 28px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease;
-  }
-  .hero-tag:hover {
-    background: rgba(77,124,95,.40);
-    border-color: rgba(163,201,176,.65);
   }
   .hero h1 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: clamp(38px, 6.5vw, 66px);
-    line-height: 1.08; font-weight: 800;
+    line-height: 1.08; font-weight: 400;
     margin-bottom: 22px;
   }
   .hero h1 i {
     font-style: italic;
-    color: var(--sage-mid);
+    color: #9DB8A5;
   }
   .hero-lead {
     font-size: 17px; line-height: 1.72;
@@ -212,7 +205,7 @@
     color: var(--sage); margin-bottom: 6px;
   }
   .panel-h {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 30px; font-weight: 400;
     margin-bottom: 8px;
   }
@@ -245,7 +238,7 @@
     color: var(--sage-mid); margin-bottom: 12px;
   }
   .sc-head h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 21px; color: white;
     margin-bottom: 14px; line-height: 1.3;
   }
@@ -264,19 +257,6 @@
   }
   .sc-body p + p { margin-top: 12px; }
   .sc-body strong { color: rgba(255,255,255,.9); font-weight: 600; }
-  .story-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: var(--sage);
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .story-link:hover { background: #3d6349; transform: translateY(-1px); }
 
   .why-cards {
     display: grid;
@@ -372,7 +352,7 @@
     margin-bottom: 7px;
   }
   .tl-body h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 19px; font-weight: 400;
     cursor: pointer; transition: color .15s; margin-bottom: 5px;
   }
@@ -465,12 +445,12 @@
   #success {
     display: none;
     background: linear-gradient(135deg, var(--sage), var(--teal));
-    border-radius: 12px; padding: 32px;
+    border-radius: 20px; padding: 32px;
     text-align: center; color: white;
     margin-top: 20px; animation: popIn .4s ease;
   }
   #success .sic { font-size: 48px; margin-bottom: 12px; }
-  #success h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; margin-bottom: 8px; }
+  #success h3 { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 8px; }
   #success p { font-size: 15px; opacity: .85; font-weight: 300; }
 
   /* ── ROLLEN ── */
@@ -492,7 +472,7 @@
   .rc2::before { background: var(--plum); }
   .role-card:hover { box-shadow: var(--sh); transform: translateY(-3px); }
   .rem { font-size: 34px; margin-bottom: 12px; }
-  .role-card h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; margin-bottom: 8px; }
+  .role-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 8px; }
   .role-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
   .rb {
     display: inline-block; margin-top: 12px;
@@ -527,7 +507,7 @@
     background: var(--sage-light);
     border-radius: 0 12px 12px 0;
     padding: 18px 24px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 17px; font-style: italic;
     line-height: 1.6; color: #1a4028;
   }
@@ -598,7 +578,7 @@
     right: -10px; bottom: -30px; opacity: .05;
   }
   .commit h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 24px; color: var(--sage-mid);
     margin-bottom: 6px;
   }
@@ -686,7 +666,6 @@
   .wf-tile.current .wf-badge {
     background: var(--sage); color: white;
   }
-  a.wf-tile { text-decoration: none; color: inherit; display: block; cursor: pointer; }
 
   /* ── FOOTER ── */
   .footer {
@@ -716,6 +695,24 @@
 </style>
 </head>
 <body>
+<nav class="sitenav" aria-label="Seitennavigation" style="background:#3A3A3A; border-bottom:1px solid rgba(255,255,255,0.08); padding:0 32px; position:sticky; top:0; z-index:100; font-family:'DM Sans',sans-serif;">
+  <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:0; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding-right:24px;">
+    <a href="index-team.html" style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.50); text-decoration:none; padding:14px 16px 14px 0; border-right:1px solid rgba(255,255,255,0.10); margin-right:8px; white-space:nowrap; flex-shrink:0; font-family:'Fraunces',serif;">📅 Team-Tag</a>
+    <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); padding:14px 10px 14px 4px; white-space:nowrap; flex-shrink:0;">Workflows:</span>
+    <a href="wf1-fachwissen.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#9DB8A5;flex-shrink:0;display:inline-block;"></span>WF 1 – Fachwissen</a>
+    <a href="wf1-miriams-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf2-teamsitzung.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#8FA9C4;flex-shrink:0;display:inline-block;"></span>WF 2 – Teamsitzung</a>
+    <a href="wf2-sandras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf3-elternabend.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#C8927B;flex-shrink:0;display:inline-block;"></span>WF 3 – Elternabend</a>
+    <a href="wf3-elternabend-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf4-einarbeiten.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:white; background:rgba(157,184,165,0.22); margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#D4B46A;flex-shrink:0;display:inline-block;"></span>WF 4 – Einarbeiten</a>
+    <a href="wf4-petras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+  </div>
+</nav>
+
 
 <!-- ════ HERO ════ -->
 <div class="hero">
@@ -723,7 +720,7 @@
   <div class="hero-arc arc1"></div>
   <div class="hero-arc arc2"></div>
   <div class="hero-inner">
-    <a href="index-team.html" class="hero-tag">← Zur Übersicht · Workflow 4 von 4 · KITA HUB</a>
+    <div class="hero-tag">🌱 Workflow 4 von 4 · KITA HUB</div>
     <h1>Neue Kolleg:in<br><i>einarbeiten</i></h1>
     <p class="hero-lead">Digitales Onboarding statt Zettelstapel – alle wichtigen Infos, Materialien und Kontakte an einem Ort. Die neue Kraft findet sich selbstständig zurecht.</p>
     <div class="service-chain">
@@ -763,6 +760,8 @@
   <div class="panel-h">Die Geschichte dahinter</div>
   <p class="panel-sub">Warum lohnt sich dieser Workflow – und was macht er anders als eine normale Einführung?</p>
 
+  <a href="wf4-petras-geschichte.html" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;background:#3A3A3A;color:white;text-decoration:none;padding:9px 20px;border-radius:100px;font-size:13px;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#555555'" onmouseout="this.style.background='#3A3A3A'">📖 Hier geht's zur ganzen Geschichte →</a>
+
   <div class="scenario">
     <div class="sc-head">
       <div class="lbl">Szenario</div>
@@ -772,9 +771,6 @@
     <div class="sc-body">
       <p>Statt Lena am ersten Tag mit einem ausgedruckten Zettelstapel zu empfangen oder sie durch mündliche Erklärungen zu überfordern, baut Mentorin Petra in 20 Minuten ein digitales Willkommenspaket: ein Dokument mit allem Wichtigen, ein QR-Code an der Garderobe, eine persönliche Nachricht im Chat und eine Kursliste für die ersten Wochen.</p>
       <p><strong>Das Ergebnis:</strong> Lena findet sich selbstständig zurecht. Weniger Erklärungsaufwand im Alltag. Und das Onboarding-Dokument ist beim nächsten Neuzugang sofort wieder nutzbar.</p>
-      <p>Willst du mehr über Petras Workflow wissen?
-        <a class="story-link" href="wf4-petras-geschichte.html" target="_blank" rel="noopener">Klicke hier</a>
-      </p>
     </div>
   </div>
 
@@ -1366,24 +1362,24 @@
   <p class="panel-sub">Der KITA HUB ist ein Ökosystem – der Nutzen entsteht in der Kombination der Dienste. Hier alle vier Workflows auf einen Blick.</p>
 
   <div class="wf-overview">
-    <a href="wf1-fachwissen.html" class="wf-tile">
-      <div class="wf-num" style="background:#2ec4a9">1</div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#9DB8A5">1</div>
       <h4>Fachwissen ins Team bringen</h4>
       <p>Medienecke → Kurzlink → Chat → Termine → Meeting</p>
       <span class="wf-badge">~15 Min.</span>
-    </a>
-    <a href="wf2-teamsitzung.html" class="wf-tile">
-      <div class="wf-num" style="background:#2563eb">2</div>
+    </div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#8FA9C4">2</div>
       <h4>Teamsitzung digital vorbereiten</h4>
       <p>Notizen → Kurzlink → Chat → Termine → (Meeting)</p>
       <span class="wf-badge">~20 Min.</span>
-    </a>
-    <a href="wf3-elternabend.html" class="wf-tile">
-      <div class="wf-num" style="background:#c2410c">3</div>
+    </div>
+    <div class="wf-tile">
+      <div class="wf-num" style="background:#C8927B">3</div>
       <h4>Elternabend hybrid organisieren</h4>
       <p>Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat</p>
       <span class="wf-badge">~20 Min.</span>
-    </a>
+    </div>
     <div class="wf-tile current">
       <div class="wf-num" style="background:var(--sage)">4</div>
       <h4>Neue Kolleg:in einarbeiten</h4>
@@ -1395,7 +1391,7 @@
   <div style="background:var(--ink); border-radius:20px; padding:32px 36px; color:white; position:relative; overflow:hidden;">
     <div style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:100px; opacity:.05;">🌐</div>
     <div class="kicker" style="color:var(--sage-mid)">Gemeinsamer Kern</div>
-    <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:20px; line-height:1.5; color:white; margin-bottom:16px;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
+    <p style="font-family:'DM Serif Display',serif; font-size:20px; line-height:1.5; color:white; margin-bottom:16px;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
     <p style="font-size:14px; color:rgba(255,255,255,.55); line-height:1.7; font-weight:300;">Ein Team, das Workflow 1 beherrscht, hat Chat und Kurzlink bereits im Griff. Wer Workflow 2 umsetzt, kennt Notizen und Termine. So baut jeder Workflow auf dem vorherigen auf – und nach Workflow 4 nutzt das Team alle zehn Dienste des KITA HUB sicher und regelmäßig.</p>
 
     <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);">
@@ -1405,10 +1401,6 @@
         <a href="tel:+4996219655219910" style="color:var(--sage-mid); font-weight:700; text-decoration:none;">+49 9621 96552 1991</a>
       </p>
     </div>
-  </div>
-
-  <div style="text-align:center; margin-top:32px;">
-    <a href="index-team.html" style="display:inline-block; background:var(--sage); color:white; text-decoration:none; font-weight:700; font-size:14px; padding:12px 28px; border-radius:100px;">← Zurück zur Übersicht</a>
   </div>
 </div>
 

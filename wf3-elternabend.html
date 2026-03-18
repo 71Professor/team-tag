@@ -5,39 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workflow 3 – Elternabend hybrid organisieren</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --warm: #c2410c;
-    --warm-mid: #ea580c;
-    --warm-light: #fff7ed;
-    --warm-border: #fed7aa;
-    --amber: #d97706;
-    --amber-light: #fffbeb;
-    --amber-border: #fde68a;
-    --forest: #15803d;
-    --forest-light: #f0fdf4;
-    --forest-border: #bbf7d0;
-    --sky: #0369a1;
-    --sky-light: #f0f9ff;
-    --sky-border: #bae6fd;
-    --violet: #7c3aed;
-    --violet-light: #f5f3ff;
-    --ink: #1B3929;
-    --ink-soft: #3D5245;
-    --ink-muted: #a8a29e;
-    --surface: #F2EDE4;
+    --warm: #C8927B;
+    --warm-mid: #C8927B;
+    --warm-light: #F3E4DF;
+    --warm-border: #C8927B;
+    --amber: #D4B46A;
+    --amber-light: #F2E8CF;
+    --amber-border: #D4B46A;
+    --forest: #9DB8A5;
+    --forest-light: #E8F1EC;
+    --forest-border: #9DB8A5;
+    --sky: #8FA9C4;
+    --sky-light: #E7EEF6;
+    --sky-border: #8FA9C4;
+    --violet: #C8927B;
+    --violet-light: #F3E4DF;
+    --ink: #3A3A3A;
+    --ink-soft: #6A6A6A;
+    --ink-muted: #9A9A9A;
+    --surface: #F4EEE6;
     --white: #ffffff;
-    --border: #DDD8CF;
-    --shadow: 0 4px 20px rgba(27,57,41,0.09);
-    --shadow-lg: 0 16px 56px rgba(27,57,41,0.14);
+    --border: #BFC5C9;
+    --shadow: 0 4px 20px rgba(58,58,58,0.09);
+    --shadow-lg: 0 16px 56px rgba(58,58,58,0.14);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     background: var(--surface);
     color: var(--ink);
     min-height: 100vh;
@@ -46,7 +45,7 @@
 
   /* ── HERO ── */
   .hero {
-    background: var(--warm);
+    background: #3A3A3A;
     color: white;
     padding: 68px 32px 100px;
     position: relative;
@@ -69,11 +68,11 @@
   }
   .blob2 {
     width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(234,88,12,0.6) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(200,146,123,0.3) 0%, transparent 65%);
     bottom: -120px; left: -60px;
   }
   .hero-inner {
-    max-width: 1100px;
+    max-width: 820px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -92,18 +91,11 @@
     text-transform: uppercase;
     margin-bottom: 26px;
     color: rgba(255,255,255,0.9);
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease;
-  }
-  .hero-pill:hover {
-    background: rgba(255,255,255,0.25);
-    border-color: rgba(255,255,255,0.45);
   }
   .hero h1 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Lora', serif;
     font-size: clamp(36px, 6vw, 62px);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.1;
     margin-bottom: 20px;
     letter-spacing: -0.01em;
@@ -171,7 +163,7 @@
     box-shadow: 0 1px 6px rgba(0,0,0,0.07);
   }
   .nav-scroll {
-    max-width: 1100px;
+    max-width: 820px;
     margin: 0 auto;
     display: flex;
     overflow-x: auto;
@@ -183,7 +175,7 @@
     padding: 15px 18px;
     border: none;
     background: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 13px;
     font-weight: 600;
     color: var(--ink-soft);
@@ -198,7 +190,7 @@
   /* ── SECTIONS ── */
   .sec {
     display: none;
-    max-width: 1100px;
+    max-width: 820px;
     margin: 0 auto;
     padding: 52px 24px 88px;
     animation: rise 0.32s ease;
@@ -218,7 +210,7 @@
     margin-bottom: 6px;
   }
   .sec-h {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Lora', serif;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -234,7 +226,7 @@
   /* ── STORY ── */
   .story-card {
     background: var(--ink);
-    border-radius: 16px;
+    border-radius: 24px;
     overflow: hidden;
     margin-bottom: 32px;
     box-shadow: var(--shadow-lg);
@@ -260,7 +252,7 @@
     margin-bottom: 12px;
   }
   .story-top h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Lora', serif;
     font-size: 21px; color: white;
     margin-bottom: 14px;
   }
@@ -280,19 +272,6 @@
   }
   .story-bottom p + p { margin-top: 12px; }
   .story-bottom strong { color: rgba(255,255,255,0.88); font-weight: 600; }
-  .story-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: var(--warm-mid);
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .story-link:hover { background: var(--warm); transform: translateY(-1px); }
 
   .why-row {
     display: grid;
@@ -405,7 +384,7 @@
     margin-bottom: 7px;
   }
   .t-body h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Lora', serif;
     font-size: 18px; font-weight: 700;
     cursor: pointer; transition: color 0.15s;
     margin-bottom: 5px;
@@ -417,7 +396,7 @@
   }
   .t-toggle {
     background: none; border: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 13px; font-weight: 700;
     color: var(--warm); cursor: pointer;
     padding: 0; margin-top: 6px;
@@ -471,7 +450,7 @@
     background: transparent;
     border: 1.5px solid var(--warm);
     color: var(--warm);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 13px; font-weight: 700;
     padding: 7px 18px; border-radius: 8px;
     cursor: pointer; transition: all .2s;
@@ -501,13 +480,13 @@
   #done-msg {
     display: none;
     background: linear-gradient(135deg, var(--forest), var(--sky));
-    border-radius: 12px; padding: 32px;
+    border-radius: 20px; padding: 32px;
     text-align: center; color: white;
     margin-top: 20px;
     animation: rise .4s ease;
   }
   #done-msg .de { font-size: 48px; margin-bottom: 12px; }
-  #done-msg h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; margin-bottom: 8px; }
+  #done-msg h3 { font-family: 'Lora', serif; font-size: 22px; margin-bottom: 8px; }
   #done-msg p { font-size: 15px; opacity: .85; font-weight: 300; }
 
   /* ── ROLLEN ── */
@@ -531,7 +510,7 @@
   .rt3::after { background: var(--amber); }
   .role-tile:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
   .re { font-size: 34px; margin-bottom: 12px; }
-  .role-tile h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; margin-bottom: 8px; }
+  .role-tile h3 { font-family: 'Lora', serif; font-size: 17px; margin-bottom: 8px; }
   .role-tile p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
   .rs-badge {
     display: inline-block;
@@ -567,7 +546,7 @@
     background: var(--warm-light);
     border-radius: 0 12px 12px 0;
     padding: 18px 24px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Lora', serif;
     font-size: 17px; font-style: italic;
     line-height: 1.6; color: #7c2d12;
     margin-top: 4px;
@@ -646,7 +625,7 @@
     right: -10px; bottom: -30px; opacity: .05;
   }
   .commit-wrap h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Lora', serif;
     font-size: 22px; color: #fed7aa;
     margin-bottom: 6px;
   }
@@ -659,7 +638,7 @@
     background: rgba(255,255,255,.08);
     border: 1px solid rgba(255,255,255,.18);
     border-radius: 8px; padding: 10px 13px;
-    color: white; font-family: 'Plus Jakarta Sans', sans-serif;
+    color: white; font-family: 'Nunito', sans-serif;
     font-size: 14px; outline: none;
     transition: border-color .15s;
   }
@@ -686,7 +665,7 @@
     position: absolute; top: 13px; right: 13px;
     background: none; border: 1px solid var(--border);
     border-radius: 5px; padding: 3px 8px;
-    font-size: 11px; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px; font-family: 'Nunito', sans-serif;
     font-weight: 700; color: var(--ink-soft);
     cursor: pointer; transition: all .15s;
   }
@@ -719,40 +698,27 @@
     .persona-grid { grid-template-columns: 1fr 1fr; }
     .flow-chain { gap: 6px; }
   }
-
-  /* ── Overview tab ── */
-  .wf-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px; margin-bottom: 32px;
-  }
-  .wf-tile {
-    background: white; border: 1.5px solid var(--border);
-    border-radius: 16px; padding: 20px 18px;
-    transition: box-shadow 0.2s;
-  }
-  .wf-tile:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-  .wf-tile.current { border-color: var(--warm); background: var(--warm-light); }
-  .wf-num {
-    width: 28px; height: 28px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 800; color: white;
-    margin-bottom: 10px;
-  }
-  .wf-tile h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-  .wf-tile p { font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
-  .wf-tile-badge {
-    display: inline-block; margin-top: 10px;
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .06em;
-    padding: 2px 8px; border-radius: 100px;
-    background: var(--warm-light); color: var(--warm);
-  }
-  .wf-tile.current .wf-tile-badge { background: var(--warm); color: white; }
-  a.wf-tile { text-decoration: none; color: inherit; display: block; cursor: pointer; }
 </style>
 </head>
 <body>
+<nav class="sitenav" aria-label="Seitennavigation" style="background:#3A3A3A; border-bottom:1px solid rgba(255,255,255,0.08); padding:0 32px; position:sticky; top:0; z-index:100; font-family:'DM Sans',sans-serif;">
+  <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:0; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding-right:24px;">
+    <a href="index-team.html" style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.50); text-decoration:none; padding:14px 16px 14px 0; border-right:1px solid rgba(255,255,255,0.10); margin-right:8px; white-space:nowrap; flex-shrink:0; font-family:'Fraunces',serif;">📅 Team-Tag</a>
+    <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); padding:14px 10px 14px 4px; white-space:nowrap; flex-shrink:0;">Workflows:</span>
+    <a href="wf1-fachwissen.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#9DB8A5;flex-shrink:0;display:inline-block;"></span>WF 1 – Fachwissen</a>
+    <a href="wf1-miriams-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf2-teamsitzung.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#8FA9C4;flex-shrink:0;display:inline-block;"></span>WF 2 – Teamsitzung</a>
+    <a href="wf2-sandras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf3-elternabend.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:white; background:rgba(200,146,123,0.22); margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#C8927B;flex-shrink:0;display:inline-block;"></span>WF 3 – Elternabend</a>
+    <a href="wf3-elternabend-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+    <span style="width:1px;height:20px;background:rgba(255,255,255,0.10);margin:0 8px;flex-shrink:0;"></span>
+    <a href="wf4-einarbeiten.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 1px; flex-shrink:0;"><span style="width:6px;height:6px;border-radius:50%;background:#D4B46A;flex-shrink:0;display:inline-block;"></span>WF 4 – Einarbeiten</a>
+    <a href="wf4-petras-geschichte.html" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:5px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; color:rgba(255,255,255,0.65); background:transparent; margin:4px 0; flex-shrink:0;">✍︎ Story</a>
+  </div>
+</nav>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -760,7 +726,7 @@
   <div class="hero-blob blob1"></div>
   <div class="hero-blob blob2"></div>
   <div class="hero-inner">
-    <a href="index-team.html" class="hero-pill">← Zur Übersicht · Workflow 3 von 4 · KITA HUB</a>
+    <div class="hero-pill">🏠 Workflow 3 von 4 · KITA HUB</div>
     <h1>Elternabend<br><em>hybrid organisieren</em></h1>
     <p class="hero-sub">Eltern einbinden, die nicht kommen können – inkl. getrennt lebender Elternteile, schüchterner Personen oder Schichtarbeiter:innen. Alles auf dem KITA HUB, kostenlos und datenschutzkonform.</p>
     <div class="flow-chain">
@@ -793,7 +759,6 @@
     <button class="nb" onclick="show('pitfalls',this)">⚠️ Stolpersteine</button>
     <button class="nb" onclick="show('transfer',this)">🚀 Ab Montag</button>
     <button class="nb" onclick="show('cheat',this)">📋 Cheat-Sheet</button>
-    <button class="nb" onclick="show('overview',this)">🗺️ Alle 4 Workflows</button>
   </div>
 </nav>
 
@@ -802,6 +767,8 @@
   <div class="eyebrow">Kontext</div>
   <div class="sec-h">Die Geschichte dahinter</div>
   <p class="sec-p">Warum ist dieser Workflow so wichtig – und für wen?</p>
+
+  <a href="wf3-elternabend-geschichte.html" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;background:#3A3A3A;color:white;text-decoration:none;padding:9px 20px;border-radius:100px;font-size:13px;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#555555'" onmouseout="this.style.background='#3A3A3A'">📖 Hier geht's zur ganzen Geschichte →</a>
 
   <div class="story-card">
     <div class="story-top">
@@ -812,9 +779,6 @@
     <div class="story-bottom">
       <p>Statt einen Brief zu drucken, eine E-Mail-Kette zu starten und am Ende doch in der WhatsApp-Gruppe zu landen, nutzt das Team sechs Dienste des KITA HUB: Material finden, Agenda anlegen, QR-Code erstellen, Termin abstimmen, Meeting-Raum öffnen – und alles im Team-Chat bündeln.</p>
       <p><strong>Das Ergebnis:</strong> Ein stabiler Link und ein QR-Code, der bleibt. Eltern können per Handy abstimmen und per Link am Abend teilnehmen – ganz ohne Account. Informationen gehen nicht mehr im Postfach unter.</p>
-      <p>Willst du mehr über diesen Workflow wissen?
-        <a class="story-link" href="wf3-elternabend-geschichte.html" target="_blank" rel="noopener">Klicke hier</a>
-      </p>
     </div>
   </div>
 
@@ -1418,57 +1382,6 @@
       E-Mail: <a href="mailto:starthilfe@kita.bayern">starthilfe@kita.bayern</a><br>
       Telefon: <a href="tel:+4996219655219910">+49 9621 96552 1991</a>
     </p>
-  </div>
-</div>
-
-<div id="tab-overview" class="sec">
-  <div class="eyebrow">Abschluss</div>
-  <div class="sec-h">Alle vier Workflows im Überblick</div>
-  <p class="sec-p">Der KITA HUB ist ein Ökosystem – der Nutzen entsteht in der Kombination der Dienste. Hier alle vier Workflows auf einen Blick.</p>
-
-  <div class="wf-overview">
-    <a href="wf1-fachwissen.html" class="wf-tile">
-      <div class="wf-num" style="background:#2ec4a9">1</div>
-      <h4>Fachwissen ins Team bringen</h4>
-      <p>Medienecke → Kurzlink → Chat → Termine → Meeting</p>
-      <span class="wf-tile-badge">~15 Min.</span>
-    </a>
-    <a href="wf2-teamsitzung.html" class="wf-tile">
-      <div class="wf-num" style="background:#2563eb">2</div>
-      <h4>Teamsitzung digital vorbereiten</h4>
-      <p>Notizen → Kurzlink → Chat → Termine → (Meeting)</p>
-      <span class="wf-tile-badge">~20 Min.</span>
-    </a>
-    <div class="wf-tile current">
-      <div class="wf-num" style="background:#c2410c">3</div>
-      <h4>Elternabend hybrid organisieren</h4>
-      <p>Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat</p>
-      <span class="wf-tile-badge">~20 Min.</span>
-    </div>
-    <a href="wf4-einarbeiten.html" class="wf-tile">
-      <div class="wf-num" style="background:#4d7c5f">4</div>
-      <h4>Neue Kolleg:in einarbeiten</h4>
-      <p>Notizen → Medienecke → Kurzlink → Chat → Kurse → Lesezeichen</p>
-      <span class="wf-tile-badge">~20 Min.</span>
-    </a>
-  </div>
-
-  <div style="background:var(--ink); border-radius:20px; padding:32px 36px; color:white; position:relative; overflow:hidden; margin-bottom:32px;">
-    <div style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:100px; opacity:.05;">🌐</div>
-    <div style="font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--warm-mid); margin-bottom:12px;">Gemeinsamer Kern</div>
-    <p style="font-size:20px; line-height:1.5; color:white; margin-bottom:16px; font-weight:600;">Alle vier Workflows greifen auf dieselben Dienste zurück – und verstärken sich gegenseitig.</p>
-    <p style="font-size:14px; color:rgba(255,255,255,.55); line-height:1.7; font-weight:300;">Ein Team, das Workflow 1 beherrscht, hat Chat und Kurzlink bereits im Griff. Wer Workflow 2 umsetzt, kennt Notizen und Termine. So baut jeder Workflow auf dem vorherigen auf – und nach Workflow 4 nutzt das Team alle Dienste des KITA HUB sicher und regelmäßig.</p>
-    <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);">
-      <div style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:10px;">Starthilfe</div>
-      <p style="font-size:14px; color:rgba(255,255,255,.65);">
-        <a href="mailto:starthilfe@kita.bayern" style="color:var(--warm-mid); font-weight:700; text-decoration:none;">starthilfe@kita.bayern</a> &nbsp;·&nbsp;
-        <a href="tel:+4996219655219910" style="color:var(--warm-mid); font-weight:700; text-decoration:none;">+49 9621 96552 1991</a>
-      </p>
-    </div>
-  </div>
-
-  <div style="text-align:center;">
-    <a href="index-team.html" style="display:inline-block; background:var(--warm); color:white; text-decoration:none; font-weight:700; font-size:14px; padding:12px 28px; border-radius:100px;">← Zurück zur Übersicht</a>
   </div>
 </div>
 
