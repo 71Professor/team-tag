@@ -6,179 +6,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laufzettel – Team-Tag KITA HUB</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #3A3A3A; --ink-soft: #6A6A6A; --ink-faint: #9A9A9A;
+  --paper: #F4EEE6; --white: #ffffff; --border: #BFC5C9;
+  --wf1: #9DB8A5; --wf2: #8FA9C4; --wf3: #C8927B; --wf4: #D4B46A;
+}
 
-  body {
-    font-family: 'IBM Plex Sans', Arial, sans-serif;
-    font-size: 11pt;
-    color: #000;
-    background: #fff;
-    padding: 16mm 16mm 12mm 16mm;
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  h1 {
-    font-size: 16pt;
-    font-weight: 700;
-    border-bottom: 2px solid #000;
-    padding-bottom: 4px;
-    margin-bottom: 10px;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11pt;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 16mm 16mm 12mm 16mm;
+}
 
-  .meta {
-    font-size: 9.5pt;
-    color: #444;
-    margin-bottom: 14px;
-    display: flex;
-    gap: 24px;
-  }
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 16pt;
+  font-weight: 900;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
 
-  /* ── TAGESPLAN ── */
-  table.agenda {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 14px;
-  }
-  table.agenda th {
-    background: #000;
-    color: #fff;
-    font-size: 9pt;
-    font-weight: 600;
-    padding: 4px 6px;
-    text-align: left;
-  }
-  table.agenda td {
-    border: 1px solid #bbb;
-    vertical-align: top;
-    padding: 4px 6px;
-    font-size: 9.5pt;
-  }
-  table.agenda tr.pause td {
-    background: #f4f4f4;
-    color: #555;
-    font-style: italic;
-    font-size: 9pt;
-  }
-  table.agenda tr.highlight td {
-    font-weight: 600;
-  }
-  .note-cell {
-    height: 18px; /* space to write */
-    min-width: 120px;
-    border-left: 1px solid #bbb;
-  }
-  .col-time  { width: 13%; }
-  .col-block { width: 12%; }
-  .col-inhalt{ width: 40%; }
-  .col-notiz { width: 35%; }
+.meta {
+  font-size: 9.5pt;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  display: flex;
+  gap: 24px;
+}
 
-  /* ── DIENSTEPASS ── */
-  .section-title {
-    font-size: 12pt;
-    font-weight: 700;
-    border-bottom: 1.5px solid #000;
-    margin: 14px 0 8px 0;
-    padding-bottom: 3px;
-  }
+/* ── TAGESPLAN ── */
+table.agenda {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 14px;
+}
 
-  .pass-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-  .pass-item {
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    padding: 5px 7px;
-    font-size: 9pt;
-  }
-  .pass-item .check {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid #000;
-    border-radius: 2px;
-    vertical-align: middle;
-    margin-right: 5px;
-  }
-  .pass-item .service {
-    font-weight: 600;
-  }
-  .pass-item .task {
-    font-size: 8.5pt;
-    color: #333;
-    margin-top: 2px;
-  }
-  .pass-item .link-line {
-    border-bottom: 1px solid #aaa;
-    margin-top: 5px;
-    height: 1px;
-  }
-  .pass-item .link-label {
-    font-size: 7.5pt;
-    color: #666;
-  }
+table.agenda th {
+  background: var(--ink);
+  color: var(--white);
+  font-size: 9pt;
+  font-weight: 600;
+  padding: 4px 6px;
+  text-align: left;
+}
 
-  /* ── TRANSFER ── */
-  .transfer-box {
-    border: 1.5px solid #000;
-    border-radius: 4px;
-    padding: 8px 10px;
-    margin-bottom: 10px;
-  }
-  .transfer-box .label {
-    font-size: 9pt;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .transfer-box .wf-options {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-  }
-  .transfer-box .wf-opt {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 9pt;
-  }
-  .transfer-box .wf-opt .check {
-    display: inline-block;
-    width: 13px;
-    height: 13px;
-    border: 1.5px solid #000;
-    border-radius: 2px;
-  }
-  .write-line {
-    border-bottom: 1px solid #aaa;
-    height: 20px;
-    margin-bottom: 6px;
-  }
-  .write-label {
-    font-size: 8pt;
-    color: #555;
-    margin-bottom: 2px;
-  }
+table.agenda td {
+  border: 1px solid var(--border);
+  vertical-align: top;
+  padding: 4px 6px;
+  font-size: 9.5pt;
+}
 
-  /* ── FOOTER ── */
-  .footer {
-    font-size: 8pt;
-    color: #555;
-    border-top: 1px solid #ccc;
-    padding-top: 5px;
-    margin-top: 8px;
-    display: flex;
-    justify-content: space-between;
-  }
+table.agenda tr.pause td {
+  background: #F0EDE8;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 9pt;
+}
 
-  /* ── PRINT ── */
-  @media print {
-    body { padding: 12mm 14mm 10mm 14mm; }
-    @page { size: A4; margin: 0; }
-  }
+table.agenda tr.highlight td { font-weight: 600; }
+
+/* Farbstreifen links für Workflow-Blöcke */
+table.agenda tr.wf1 td:first-child { border-left: 3px solid var(--wf1); }
+table.agenda tr.wf2 td:first-child { border-left: 3px solid var(--wf2); }
+table.agenda tr.wf3 td:first-child { border-left: 3px solid var(--wf3); }
+table.agenda tr.wf4 td:first-child { border-left: 3px solid var(--wf4); }
+
+.note-cell {
+  height: 18px;
+  min-width: 120px;
+  border-left: 1px solid var(--border);
+}
+
+.col-time  { width: 13%; }
+.col-block { width: 12%; }
+.col-inhalt{ width: 40%; }
+.col-notiz { width: 35%; }
+
+/* ── DIENSTEPASS ── */
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 12pt;
+  font-weight: 700;
+  border-bottom: 1.5px solid var(--ink);
+  margin: 14px 0 8px 0;
+  padding-bottom: 3px;
+}
+
+.pass-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.pass-item {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 7px;
+  font-size: 9pt;
+  background: var(--white);
+}
+
+.pass-item .check {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.pass-item .service { font-weight: 600; }
+.pass-item .task { font-size: 8.5pt; color: var(--ink-soft); margin-top: 2px; }
+.pass-item .link-line { border-bottom: 1px solid var(--border); margin-top: 5px; height: 1px; }
+.pass-item .link-label { font-size: 7.5pt; color: var(--ink-faint); }
+
+/* ── TRANSFER ── */
+.transfer-box {
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background: var(--white);
+}
+
+.transfer-box .label { font-size: 9pt; font-weight: 600; margin-bottom: 4px; }
+
+.transfer-box .wf-options {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.transfer-box .wf-opt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9pt;
+}
+
+.transfer-box .wf-opt .check {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+}
+
+.write-line { border-bottom: 1px solid var(--border); height: 20px; margin-bottom: 6px; }
+.write-label { font-size: 8pt; color: var(--ink-soft); margin-bottom: 2px; }
+
+/* ── FOOTER ── */
+.footer {
+  font-size: 8pt;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--border);
+  padding-top: 5px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media print {
+  body { background: white; padding: 12mm 14mm 10mm 14mm; }
+  @page { size: A4; margin: 0; }
+}
 </style>
 </head>
 <body>
@@ -201,84 +203,45 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="highlight">
-      <td>09:30–09:45</td>
-      <td>Block 1</td>
-      <td>Ankommen &amp; Erwartungsabfrage</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr>
-      <td>09:45–10:30</td>
-      <td>Block 2</td>
-      <td>KITA HUB: Alle Dienste kennenlernen (Demo)</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr>
-      <td>10:30–10:55</td>
-      <td>Block 3</td>
-      <td>Dienstepass: Kernhandlungen ausprobieren <em>(→ unten)</em></td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr class="pause">
-      <td>10:55–11:10</td>
-      <td></td>
-      <td>☕ Kaffeepause</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>11:10–11:20</td>
-      <td>Block 3b</td>
-      <td>Lab-Briefing: Gruppen bilden, Alltagsanker setzen</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr class="highlight">
-      <td>11:20–12:05</td>
-      <td>Block 4</td>
-      <td>Workflow-Lab I — WF 1 &amp; WF 2 (geführt)</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr class="pause">
-      <td>12:05–13:05</td>
-      <td></td>
-      <td>🍽 Mittagspause</td>
-      <td></td>
-    </tr>
-    <tr class="highlight">
-      <td>13:05–14:05</td>
-      <td>Block 5</td>
-      <td>Workflow-Lab II — WF 3 &amp; WF 4 (eigenständig)</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr>
-      <td>14:05–14:20</td>
-      <td>Block 5b</td>
-      <td>Lab-Debrief: Erkenntnisse &amp; Querverbindungen</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr class="pause">
-      <td>14:20–14:35</td>
-      <td></td>
-      <td>☕ Kaffeepause</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>14:35–14:50</td>
-      <td>Block 6</td>
-      <td>Gallery Walk — Dot-Voting</td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr class="highlight">
-      <td>14:50–15:20</td>
-      <td>Block 7</td>
-      <td>Transfer: „Ab Montag" + Team-Commitment <em>(→ unten)</em></td>
-      <td class="note-cell"></td>
-    </tr>
-    <tr>
-      <td>15:20–15:30</td>
-      <td>Block 8</td>
-      <td>Abschluss, Fragen &amp; Blitzlicht</td>
-      <td class="note-cell"></td>
-    </tr>
+  <tr class="highlight wf1">
+    <td>09:30–09:45</td><td>Block 1</td><td>Ankommen &amp; Erwartungsabfrage</td><td class="note-cell"></td>
+  </tr>
+  <tr class="wf2">
+    <td>09:45–10:30</td><td>Block 2</td><td>KITA HUB: Alle Dienste kennenlernen (Demo)</td><td class="note-cell"></td>
+  </tr>
+  <tr class="wf3">
+    <td>10:30–10:55</td><td>Block 3</td><td>Dienstepass: Kernhandlungen ausprobieren <em>(→ unten)</em></td><td class="note-cell"></td>
+  </tr>
+  <tr class="pause">
+    <td>10:55–11:10</td><td></td><td>☕ Kaffeepause</td><td></td>
+  </tr>
+  <tr class="wf2">
+    <td>11:10–11:20</td><td>Block 3b</td><td>Gruppen-Briefing: Gruppen bilden, Alltagsanker setzen</td><td class="note-cell"></td>
+  </tr>
+  <tr class="highlight wf4">
+    <td>11:20–12:05</td><td>Block 4</td><td>Workflow-Labor I — WF 1 &amp; WF 2 (geführt)</td><td class="note-cell"></td>
+  </tr>
+  <tr class="pause">
+    <td>12:05–13:05</td><td></td><td>🍽 Mittagspause</td><td></td>
+  </tr>
+  <tr class="highlight wf1">
+    <td>13:05–14:05</td><td>Block 5</td><td>Workflow-Labor II — WF 3 &amp; WF 4 (eigenständig)</td><td class="note-cell"></td>
+  </tr>
+  <tr class="wf2">
+    <td>14:05–14:20</td><td>Block 5b</td><td>Gruppen-Auswertung: Erkenntnisse &amp; Querverbindungen</td><td class="note-cell"></td>
+  </tr>
+  <tr class="pause">
+    <td>14:20–14:35</td><td></td><td>☕ Kaffeepause</td><td></td>
+  </tr>
+  <tr class="wf3">
+    <td>14:35–14:50</td><td>Block 6</td><td>Rundgang — Punktabstimmung</td><td class="note-cell"></td>
+  </tr>
+  <tr class="highlight wf4">
+    <td>14:50–15:20</td><td>Block 7</td><td>Transfer: „Ab Montag" + Team-Commitment <em>(→ unten)</em></td><td class="note-cell"></td>
+  </tr>
+  <tr class="wf1">
+    <td>15:20–15:30</td><td>Block 8</td><td>Abschluss, Fragen &amp; Blitzlicht</td><td class="note-cell"></td>
+  </tr>
   </tbody>
 </table>
 
