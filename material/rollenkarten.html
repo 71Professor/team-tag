@@ -6,105 +6,108 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rollenkarten – KITA HUB Team-Tag</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #3A3A3A; --ink-soft: #6A6A6A; --ink-faint: #9A9A9A;
+  --paper: #F4EEE6; --white: #ffffff; --border: #BFC5C9;
+}
 
-  body {
-    font-family: 'IBM Plex Sans', Arial, sans-serif;
-    font-size: 10.5pt;
-    color: #000;
-    background: #fff;
-    padding: 14mm 16mm;
-    width: 210mm;
-    margin: 0 auto;
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  h1 {
-    font-size: 13pt;
-    font-weight: 700;
-    border-bottom: 2px solid #000;
-    padding-bottom: 4px;
-    margin-bottom: 6px;
-  }
-  .intro {
-    font-size: 9pt;
-    color: #444;
-    margin-bottom: 14px;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5pt;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 14mm 16mm;
+  width: 210mm;
+  margin: 0 auto;
+}
 
-  /* 3 cards per row, A6-ish, with cut lines */
-  .cards-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-  }
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 13pt;
+  font-weight: 900;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
 
-  .card {
-    border: 1.5px dashed #999; /* dashed = cut line */
-    padding: 10px 12px;
-    min-height: 120mm;
-    position: relative;
-  }
+.intro { font-size: 9pt; color: var(--ink-soft); margin-bottom: 14px; }
 
-  .card-badge {
-    font-size: 8pt;
-    font-weight: 700;
-    border: 1.5px solid #000;
-    border-radius: 2px;
-    padding: 1px 6px;
-    display: inline-block;
-    margin-bottom: 5px;
-    letter-spacing: 0.5px;
-  }
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
 
-  .card h2 {
-    font-size: 13pt;
-    font-weight: 700;
-    margin-bottom: 8px;
-    border-bottom: 1.5px solid #000;
-    padding-bottom: 4px;
-  }
+.card {
+  border: 1.5px dashed var(--border);
+  padding: 10px 12px;
+  min-height: 120mm;
+  position: relative;
+  background: var(--white);
+}
 
-  .card .task-title {
-    font-size: 9pt;
-    font-weight: 700;
-    margin: 8px 0 3px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
+.card-badge {
+  font-size: 8pt;
+  font-weight: 700;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 3px;
+  padding: 2px 7px;
+  display: inline-block;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
 
-  .card ul {
-    padding-left: 14px;
-    font-size: 8.5pt;
-  }
-  .card ul li {
-    margin-bottom: 4px;
-  }
+.card h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 13pt;
+  font-weight: 900;
+  margin-bottom: 8px;
+  border-bottom: 1.5px solid var(--border);
+  padding-bottom: 4px;
+}
 
-  .card .tip {
-    margin-top: 10px;
-    font-size: 8pt;
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 4px 6px;
-    color: #333;
-  }
-  .card .tip strong { font-size: 8.5pt; }
+.card .task-title {
+  font-size: 9pt;
+  font-weight: 700;
+  margin: 8px 0 3px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--ink-soft);
+}
 
-  /* Second set (same 3 roles for second group) */
-  .cut-hint {
-    font-size: 8pt;
-    color: #888;
-    margin: 10px 0 12px 0;
-    text-align: center;
-  }
+.card ul { padding-left: 14px; font-size: 8.5pt; }
+.card ul li { margin-bottom: 4px; }
 
-  @media print {
-    body { padding: 8mm 10mm; width: 210mm; }
-    @page { size: A4; margin: 0; }
-    .cut-hint { display: block; }
-  }
+.card .tip {
+  margin-top: 10px;
+  font-size: 8pt;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  color: var(--ink-soft);
+  background: var(--paper);
+}
+.card .tip strong { font-size: 8.5pt; color: var(--ink); }
+
+.cut-hint {
+  font-size: 8pt;
+  color: var(--ink-faint);
+  margin: 10px 0 12px 0;
+  text-align: center;
+}
+
+@media print {
+  body { background: white; padding: 8mm 10mm; width: 210mm; }
+  .card { background: white; }
+  .card .tip { background: #F4EEE6; }
+  @page { size: A4; margin: 0; }
+  .cut-hint { display: block; }
+}
 </style>
 </head>
 <body>
@@ -128,7 +131,7 @@
       <li>Fasst Zwischenergebnisse zusammen</li>
       <li>Präsentiert den Workflow beim Gallery Walk</li>
     </ul>
-    <div class="task-title">Im Lab-Briefing</div>
+    <div class="task-title">Im Gruppen-Briefing</div>
     <ul>
       <li>Liest die Workflow-Karte vor</li>
       <li>Formuliert den Alltagsanker für den Plenum-Check</li>
@@ -146,7 +149,7 @@
       <li>Formuliert den „Nutzen in einem Satz" am Ende</li>
       <li>Sichert den Notiz-Link sofort nach dem Anlegen</li>
     </ul>
-    <div class="task-title">Im Lab-Debrief (Block 5b)</div>
+    <div class="task-title">In der Gruppen-Auswertung (Block 5b)</div>
     <ul>
       <li>Trägt einen Stolperstein auf einer Karte ein</li>
     </ul>
@@ -160,10 +163,10 @@
     <ul>
       <li>Führt die Schritte am Gerät aus</li>
       <li>Teilt Bildschirm oder zeigt das Ergebnis der Gruppe</li>
-      <li>Spricht laut, was gerade passiert (Thinking aloud)</li>
+      <li>Spricht laut, was gerade passiert (laut denken)</li>
       <li>Fragt sofort, wenn etwas unklar ist</li>
     </ul>
-    <div class="task-title">Im Gallery Walk (Block 6)</div>
+    <div class="task-title">Im Rundgang (Block 6)</div>
     <ul>
       <li>Zeigt die echten Artefakte (QR, Link, Notiz) auf dem Gerät</li>
     </ul>
@@ -187,7 +190,7 @@
       <li>Fasst Zwischenergebnisse zusammen</li>
       <li>Präsentiert den Workflow beim Gallery Walk</li>
     </ul>
-    <div class="task-title">Im Lab-Briefing</div>
+    <div class="task-title">Im Gruppen-Briefing</div>
     <ul>
       <li>Liest die Workflow-Karte vor</li>
       <li>Formuliert den Alltagsanker für den Plenum-Check</li>
@@ -205,7 +208,7 @@
       <li>Formuliert den „Nutzen in einem Satz" am Ende</li>
       <li>Sichert den Notiz-Link sofort nach dem Anlegen</li>
     </ul>
-    <div class="task-title">Im Lab-Debrief (Block 5b)</div>
+    <div class="task-title">In der Gruppen-Auswertung (Block 5b)</div>
     <ul>
       <li>Trägt einen Stolperstein auf einer Karte ein</li>
     </ul>
@@ -219,10 +222,10 @@
     <ul>
       <li>Führt die Schritte am Gerät aus</li>
       <li>Teilt Bildschirm oder zeigt das Ergebnis der Gruppe</li>
-      <li>Spricht laut, was gerade passiert (Thinking aloud)</li>
+      <li>Spricht laut, was gerade passiert (laut denken)</li>
       <li>Fragt sofort, wenn etwas unklar ist</li>
     </ul>
-    <div class="task-title">Im Gallery Walk (Block 6)</div>
+    <div class="task-title">Im Rundgang (Block 6)</div>
     <ul>
       <li>Zeigt die echten Artefakte (QR, Link, Notiz) auf dem Gerät</li>
     </ul>
