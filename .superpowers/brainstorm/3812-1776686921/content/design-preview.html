@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design-Vorschau Materialien</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #3A3A3A;
+  --ink-soft: #6A6A6A;
+  --ink-faint: #9A9A9A;
+  --paper: #F4EEE6;
+  --white: #ffffff;
+  --border: #BFC5C9;
+  --wf1: #9DB8A5;
+  --wf2: #8FA9C4;
+  --wf3: #C8927B;
+  --wf4: #D4B46A;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #e8e0d8;
+  color: var(--ink);
+  padding: 32px 24px;
+}
+h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.subtitle {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.preview-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(58,58,58,0.12);
+}
+.preview-label {
+  background: var(--ink);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+}
+.preview-body {
+  background: var(--paper);
+  padding: 16px;
+  min-height: 280px;
+}
+
+/* ── DIENSTEPASS PREVIEW ── */
+.dp-header {
+  border-bottom: 2px solid var(--wf3);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.dp-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--ink);
+}
+.dp-badge {
+  background: var(--wf3);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dp-sub {
+  font-size: 9px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.dp-nameline {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+  font-size: 9px;
+  padding-bottom: 3px;
+  color: var(--ink-faint);
+}
+.dp-task {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  background: var(--white);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.dp-check {
+  width: 13px; height: 13px;
+  border: 1.5px solid var(--wf3);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.dp-task-title {
+  font-weight: 600;
+  font-size: 10px;
+  color: var(--ink);
+}
+.dp-task-url {
+  font-size: 8px;
+  color: var(--ink-faint);
+}
+
+/* ── WORKFLOW-KARTE PREVIEW ── */
+.wk-pages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.wk-page {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(58,58,58,0.10);
+}
+.wk-header {
+  padding: 8px 10px;
+  color: white;
+}
+.wk-badge {
+  font-size: 8px;
+  font-weight: 700;
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.wk-title {
+  font-family: 'Fraunces', serif;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.wk-body {
+  background: var(--white);
+  padding: 8px 10px;
+}
+.wk-szenario {
+  font-size: 8px;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--border);
+  padding-left: 6px;
+  margin-bottom: 8px;
+  font-style: italic;
+  line-height: 1.4;
+}
+.wk-steps {
+  font-size: 8px;
+  color: var(--ink);
+}
+.wk-step {
+  display: flex;
+  gap: 6px;
+  padding: 3px 0;
+  border-bottom: 1px solid #f0ede8;
+}
+.wk-nr {
+  font-weight: 700;
+  flex-shrink: 0;
+  width: 12px;
+}
+.wk-dienst {
+  font-weight: 600;
+  flex-shrink: 0;
+  width: 48px;
+}
+.wk-aktion {
+  color: var(--ink-soft);
+}
+
+/* ── LAUFZETTEL PREVIEW ── */
+.lz-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+.lz-title {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--ink);
+}
+.lz-meta {
+  font-size: 9px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.lz-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8px;
+}
+.lz-table th {
+  background: var(--ink);
+  color: white;
+  padding: 4px 5px;
+  text-align: left;
+  font-weight: 600;
+}
+.lz-table td {
+  border: 1px solid var(--border);
+  padding: 3px 5px;
+  vertical-align: top;
+}
+.lz-table tr.pause td {
+  background: #f0ede8;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.lz-table tr.highlight td {
+  font-weight: 600;
+}
+.lz-table tr.wf1 td:nth-child(2) { border-left: 3px solid var(--wf1); }
+.lz-table tr.wf2 td:nth-child(2) { border-left: 3px solid var(--wf2); }
+.lz-table tr.wf3 td:nth-child(2) { border-left: 3px solid var(--wf3); }
+.lz-table tr.wf4 td:nth-child(2) { border-left: 3px solid var(--wf4); }
+
+/* ── TRANSFER-PLANER PREVIEW ── */
+.tp-header {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 900;
+  border-bottom: 2px solid var(--wf4);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.tp-badge {
+  background: var(--wf4);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+.tp-section-title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+.tp-wf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.tp-wf-opt {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 7px;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  font-size: 8.5px;
+  background: var(--white);
+}
+.tp-wf-opt .check {
+  width: 11px; height: 11px;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.tp-wf-opt .label { font-weight: 700; display: block; }
+.tp-wf-opt.wf1 { border-left: 3px solid var(--wf1); }
+.tp-wf-opt.wf2 { border-left: 3px solid var(--wf2); }
+.tp-wf-opt.wf3 { border-left: 3px solid var(--wf3); }
+.tp-wf-opt.wf4 { border-left: 3px solid var(--wf4); }
+.tp-write-label { font-size: 8.5px; font-weight: 600; margin-bottom: 2px; }
+.tp-write-line { border-bottom: 1px solid var(--border); height: 16px; margin-bottom: 5px; }
+
+.legend {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.legend-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 8px;
+  width: 100%;
+  color: var(--ink);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink);
+}
+.swatch {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<h2>Design-Vorschau — Materialien überarbeitet</h2>
+<p class="subtitle">Fraunces + DM Sans · Warme Palette · WF-Farbcodierung · Anglizismen bereinigt</p>
+
+<div class="preview-grid">
+
+  <!-- DIENSTEPASS -->
+  <div class="preview-card">
+    <div class="preview-label">Dienstepass (A5)</div>
+    <div class="preview-body">
+      <div class="dp-header">
+        <div class="dp-title">Dienstepass</div>
+        <div class="dp-badge">Block 3</div>
+      </div>
+      <div class="dp-sub">Block 3 (10:30–10:55) · Ziel: 5 von 6 Aufgaben schaffen</div>
+      <div class="dp-nameline">Name: _______________________</div>
+      <div class="dp-task">
+        <div class="dp-check"></div>
+        <div>
+          <div class="dp-task-title">1 · Medienecke</div>
+          <div class="dp-task-url">mediensuche.kita.bayern</div>
+        </div>
+      </div>
+      <div class="dp-task">
+        <div class="dp-check"></div>
+        <div>
+          <div class="dp-task-title">2 · Kurzlink &amp; QR-Code</div>
+          <div class="dp-task-url">link.kita.bayern</div>
+        </div>
+      </div>
+      <div class="dp-task">
+        <div class="dp-check"></div>
+        <div>
+          <div class="dp-task-title">3 · Termine</div>
+          <div class="dp-task-url">termine.kita.bayern</div>
+        </div>
+      </div>
+      <div class="dp-task">
+        <div class="dp-check"></div>
+        <div>
+          <div class="dp-task-title">4 · Notizen</div>
+          <div class="dp-task-url">notizen.kita.bayern</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKFLOW-KARTEN -->
+  <div class="preview-card">
+    <div class="preview-label">Workflow-Karten (A4, 4 Seiten)</div>
+    <div class="preview-body">
+      <div class="wk-pages">
+        <!-- WF1 -->
+        <div class="wk-page">
+          <div class="wk-header" style="background:var(--wf1)">
+            <div class="wk-badge">WF 1</div>
+            <div class="wk-title">Fachwissen ins Team bringen</div>
+          </div>
+          <div class="wk-body">
+            <div class="wk-szenario">Eine Fachkraft teilt Material aus der Medienecke mit dem Team.</div>
+            <div class="wk-steps">
+              <div class="wk-step"><span class="wk-nr">1</span><span class="wk-dienst">Medienecke</span><span class="wk-aktion">Material suchen</span></div>
+              <div class="wk-step"><span class="wk-nr">2</span><span class="wk-dienst">Kurzlink</span><span class="wk-aktion">QR-Code erstellen</span></div>
+              <div class="wk-step"><span class="wk-nr">3</span><span class="wk-dienst">Chat</span><span class="wk-aktion">Kanal anlegen</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- WF2 -->
+        <div class="wk-page">
+          <div class="wk-header" style="background:var(--wf2)">
+            <div class="wk-badge">WF 2</div>
+            <div class="wk-title">Teamsitzung digital vorbereiten</div>
+          </div>
+          <div class="wk-body">
+            <div class="wk-szenario">Die Leitung bereitet die Sitzung digital vor und sammelt Themen.</div>
+            <div class="wk-steps">
+              <div class="wk-step"><span class="wk-nr">1</span><span class="wk-dienst">Notizen</span><span class="wk-aktion">Tagesordnung anlegen</span></div>
+              <div class="wk-step"><span class="wk-nr">2</span><span class="wk-dienst">Kurzlink</span><span class="wk-aktion">QR-Code erstellen</span></div>
+              <div class="wk-step"><span class="wk-nr">3</span><span class="wk-dienst">Chat</span><span class="wk-aktion">Link posten</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- WF3 -->
+        <div class="wk-page">
+          <div class="wk-header" style="background:var(--wf3)">
+            <div class="wk-badge">WF 3</div>
+            <div class="wk-title">Elternabend hybrid organisieren</div>
+          </div>
+          <div class="wk-body">
+            <div class="wk-szenario">Das Team plant einen Elternabend mit Online-Beteiligung.</div>
+            <div class="wk-steps">
+              <div class="wk-step"><span class="wk-nr">1</span><span class="wk-dienst">Medienecke</span><span class="wk-aktion">Material recherchieren</span></div>
+              <div class="wk-step"><span class="wk-nr">2</span><span class="wk-dienst">Notizen</span><span class="wk-aktion">Planung anlegen</span></div>
+              <div class="wk-step"><span class="wk-nr">3</span><span class="wk-dienst">Termine</span><span class="wk-aktion">Terminumfrage erstellen</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- WF4 -->
+        <div class="wk-page">
+          <div class="wk-header" style="background:var(--wf4)">
+            <div class="wk-badge">WF 4</div>
+            <div class="wk-title">Neue Kolleg:in einarbeiten</div>
+          </div>
+          <div class="wk-body">
+            <div class="wk-szenario">Das Team bündelt Infos für eine neue Ergänzungskraft.</div>
+            <div class="wk-steps">
+              <div class="wk-step"><span class="wk-nr">1</span><span class="wk-dienst">Notizen</span><span class="wk-aktion">Willkommensdokument</span></div>
+              <div class="wk-step"><span class="wk-nr">2</span><span class="wk-dienst">Kurzlink</span><span class="wk-aktion">QR-Code aushängen</span></div>
+              <div class="wk-step"><span class="wk-nr">3</span><span class="wk-dienst">Chat</span><span class="wk-aktion">Direktnachricht senden</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUFZETTEL -->
+  <div class="preview-card">
+    <div class="preview-label">Laufzettel (A4)</div>
+    <div class="preview-body">
+      <div class="lz-header">
+        <div class="lz-title">Laufzettel — Team-Tag KITA HUB</div>
+      </div>
+      <div class="lz-meta">📅 Pixelwerkstatt &nbsp;·&nbsp; 09:30–15:30 Uhr &nbsp;·&nbsp; Name: ___________________</div>
+      <table class="lz-table">
+        <thead>
+          <tr><th>Zeit</th><th>Block</th><th>Inhalt</th><th>Notiz</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight wf1"><td>09:30–09:45</td><td>Block 1</td><td>Ankommen &amp; Erwartungsabfrage</td><td></td></tr>
+          <tr class="wf2"><td>09:45–10:30</td><td>Block 2</td><td>KITA HUB: Alle Dienste kennenlernen</td><td></td></tr>
+          <tr class="wf3"><td>10:30–10:55</td><td>Block 3</td><td>Dienstepass: Kernhandlungen ausprobieren</td><td></td></tr>
+          <tr class="pause"><td>10:55–11:10</td><td></td><td>☕ Kaffeepause</td><td></td></tr>
+          <tr class="highlight wf4"><td>11:20–12:05</td><td>Block 4</td><td>Workflow-Labor I — WF 1 &amp; WF 2</td><td></td></tr>
+          <tr class="pause"><td>12:05–13:05</td><td></td><td>🍽 Mittagspause</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANSFER-PLANER -->
+  <div class="preview-card">
+    <div class="preview-label">Transferplaner (A5)</div>
+    <div class="preview-body">
+      <div class="tp-header">
+        <span>Transferplaner</span>
+        <span class="tp-badge">Block 7</span>
+      </div>
+      <div class="tp-section-title">Mein Pilot-Workflow</div>
+      <div class="tp-wf-grid">
+        <div class="tp-wf-opt wf1">
+          <div class="check"></div>
+          <div><span class="label">WF 1</span>Fachwissen ins Team bringen</div>
+        </div>
+        <div class="tp-wf-opt wf2">
+          <div class="check"></div>
+          <div><span class="label">WF 2</span>Teamsitzung digital vorbereiten</div>
+        </div>
+        <div class="tp-wf-opt wf3">
+          <div class="check"></div>
+          <div><span class="label">WF 3</span>Elternabend hybrid organisieren</div>
+        </div>
+        <div class="tp-wf-opt wf4">
+          <div class="check"></div>
+          <div><span class="label">WF 4</span>Neue Kolleg:in einarbeiten</div>
+        </div>
+      </div>
+      <div class="tp-write-label">Wann setze ich ihn ein?</div>
+      <div class="tp-write-line"></div>
+      <div class="tp-write-label">Was brauche ich dafür?</div>
+      <div class="tp-write-line"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="legend">
+  <div class="legend-title">Farbcodierung der 4 Workflows</div>
+  <div class="legend-item"><div class="swatch" style="background:#9DB8A5"></div> WF 1 — Salbeigrün</div>
+  <div class="legend-item"><div class="swatch" style="background:#8FA9C4"></div> WF 2 — Staubiges Blau</div>
+  <div class="legend-item"><div class="swatch" style="background:#C8927B"></div> WF 3 — Terrakotta</div>
+  <div class="legend-item"><div class="swatch" style="background:#D4B46A"></div> WF 4 — Senf</div>
+  <div class="legend-item"><div class="swatch" style="background:#F4EEE6;border:1px solid #BFC5C9"></div> Papierton (Hintergrund)</div>
+</div>
+
+</body>
+</html>
