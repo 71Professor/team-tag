@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kita-Kommunikationsapp (Simulation)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* KITA HUB Primary Palette */
+      --dark-green:    #1a3d22;
+      --mid-green:     #2d6b3f;
+      --lime:          #8bc34a;
+      --yellow:        #f5c518;
+      --teal:          #4db6ac;
+
+      /* Surfaces */
+      --bg:            #f9f7f2;
+      --surface:       #ffffff;
+      --surface-alt:   #f2f5f0;
+
+      /* Text */
+      --text-primary:  #1a3d22;
+      --text-secondary:#4a5e50;
+      --text-muted:    #7a9080;
+
+      /* Borders */
+      --border:        #d4e2d8;
+      --border-focus:  #2d6b3f;
+
+      /* Status */
+      --danger:        #c0392b;
+      --success:       #2d6b3f;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+
+      --shadow-sm: 0 2px 8px rgba(26,61,34,0.06);
+      --shadow-md: 0 8px 28px rgba(26,61,34,0.10);
+      --shadow-lg: 0 20px 50px rgba(26,61,34,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+
+    /* ─── App Shell ─── */
+    .app {
+      width: min(720px, 100%);
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      padding: 28px 32px 24px;
+      background: var(--dark-green);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      background: var(--lime);
+      opacity: 0.12;
+      border-radius: 50%;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      right: 60px;
+      bottom: -20px;
+      width: 80px;
+      height: 80px;
+      background: var(--teal);
+      opacity: 0.18;
+      border-radius: 50%;
+    }
+
+    .header-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .sub {
+      margin-top: 6px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.58);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* ─── Form Body ─── */
+    form {
+      padding: 28px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* ─── Field Labels ─── */
+    .field-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    /* ─── Radio Chips ─── */
+    .mode-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .radio-chip {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .radio-chip:hover {
+      border-color: var(--mid-green);
+      color: var(--mid-green);
+    }
+
+    .radio-chip:has(input:checked) {
+      border-color: var(--mid-green);
+      background: #e8f5e9;
+      color: var(--mid-green);
+    }
+
+    .radio-chip input[type="radio"] {
+      width: 15px;
+      height: 15px;
+      accent-color: var(--mid-green);
+    }
+
+    /* ─── Text Inputs & Select ─── */
+    input[type="text"],
+    select {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 11px 14px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: var(--surface);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(45,107,63,0.12);
+    }
+
+    input[type="text"]::placeholder {
+      color: var(--text-muted);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%237a9080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    /* ─── Rich-text Toolbar + Editor ─── */
+    .editor-wrap { display: flex; flex-direction: column; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+      padding: 8px 10px;
+      border: 1.5px solid var(--border);
+      border-bottom: none;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      background: var(--surface-alt);
+    }
+
+    .toolbar button {
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      min-width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: inherit;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 0 8px;
+      transition: background 0.12s, color 0.12s, border-color 0.12s;
+    }
+
+    .toolbar button:hover {
+      background: #fff;
+      border-color: var(--border);
+      color: var(--mid-green);
+    }
+
+    .toolbar-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 2px;
+    }
+
+    .editor {
+      min-height: 150px;
+      border: 1.5px solid var(--border);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      padding: 14px;
+      line-height: 1.6;
+      outline: none;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-primary);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .editor:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(45,107,63,0.12);
+    }
+
+    .editor:empty:before {
+      content: attr(data-placeholder);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ─── File Upload ─── */
+    .upload-area {
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: var(--surface-alt);
+      transition: border-color 0.15s;
+    }
+
+    .upload-area:hover {
+      border-color: var(--mid-green);
+    }
+
+    .upload-icon {
+      width: 36px;
+      height: 36px;
+      background: #e8f5e9;
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      color: var(--mid-green);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .upload-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .upload-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    input[type="file"] {
+      font-size: 0.85rem;
+      font-family: inherit;
+      color: var(--text-secondary);
+    }
+
+    input[type="file"]::file-selector-button {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--mid-green);
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background 0.12s;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      background: #e8f5e9;
+    }
+
+    .preview {
+      display: none;
+      margin-top: 10px;
+      max-width: 200px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ─── Divider ─── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    /* ─── Actions ─── */
+    .actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+
+    .send {
+      background: var(--mid-green);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+      box-shadow: 0 4px 14px rgba(45,107,63,0.28);
+    }
+
+    .send:hover {
+      background: var(--dark-green);
+      box-shadow: 0 6px 20px rgba(45,107,63,0.35);
+      transform: translateY(-1px);
+    }
+
+    .send:active {
+      transform: translateY(0);
+    }
+
+    .hint {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* ─── Status ─── */
+    .status-wrap {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .status {
+      display: none;
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.875rem;
+      width: 100%;
+    }
+
+    .status.error {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fdf0f0;
+      color: var(--danger);
+      border: 1px solid #f5c6c6;
+    }
+
+    .status.success {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #e8f5e9;
+      color: var(--success);
+      border: 1px solid #c3e2c5;
+    }
+
+    .status-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .hidden { display: none; }
+
+    /* ─── Tag badge for group select area ─── */
+    .tag-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .tag.mint   { background: #e0f7f1; color: #00796b; }
+    .tag.peach  { background: #fde9dd; color: #bf5424; }
+    .tag.lav    { background: #ede7f6; color: #5e35b1; }
+    .tag.sky    { background: #e1f0fb; color: #1565c0; }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="header">
+      <div class="header-eyebrow">Kita Hub · Demo</div>
+      <h1>Kita-Kommunikationsapp</h1>
+      <p class="sub">Simulation für Workshops: Nachricht erstellen, senden, Erfolg sehen, alles zurücksetzen.</p>
+    </div>
+
+    <form id="composer" novalidate>
+
+      <!-- Empfängerauswahl -->
+      <div>
+        <span class="field-label">Empfängerauswahl</span>
+        <div class="mode-wrap" role="radiogroup" aria-label="Versandart">
+          <label class="radio-chip">
+            <input type="radio" name="mode" value="direct" checked />
+            Direkte Adressaten
+          </label>
+          <label class="radio-chip">
+            <input type="radio" name="mode" value="group" />
+            Kita-Gruppenchat
+          </label>
+        </div>
+      </div>
+
+      <!-- Direkt -->
+      <div id="directField">
+        <span class="field-label">Adressatenfeld</span>
+        <input id="recipient" type="text" placeholder="z. B. Elternbeirat, Familie Müller …" />
+      </div>
+
+      <!-- Gruppe -->
+      <div id="groupField" class="hidden">
+        <span class="field-label">Kita-Gruppe auswählen</span>
+        <select id="group">
+          <option value="">Bitte auswählen …</option>
+          <option value="Sonnenkäfer">Sonnenkäfer</option>
+          <option value="Regenbogen">Regenbogen</option>
+          <option value="Waldwichtel">Waldwichtel</option>
+          <option value="Vorschule">Vorschule</option>
+        </select>
+        <div class="tag-row">
+          <span class="tag mint">Sonnenkäfer</span>
+          <span class="tag peach">Regenbogen</span>
+          <span class="tag lav">Waldwichtel</span>
+          <span class="tag sky">Vorschule</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Nachricht -->
+      <div>
+        <span class="field-label">Nachricht</span>
+        <div class="editor-wrap">
+          <div class="toolbar" aria-label="Textformatierung">
+            <button type="button" data-cmd="bold" title="Fett"><strong>B</strong></button>
+            <button type="button" data-cmd="italic" title="Kursiv"><em>I</em></button>
+            <button type="button" data-cmd="underline" title="Unterstrichen"><u>U</u></button>
+            <div class="toolbar-divider"></div>
+            <button type="button" data-cmd="insertUnorderedList" title="Liste">≡ Liste</button>
+            <button type="button" data-cmd="removeFormat" title="Formatierung entfernen">Tx</button>
+          </div>
+          <div id="editor" class="editor" contenteditable="true"
+               data-placeholder="Inhalt einfügen: Text, Link, Hinweise, Informationen …"></div>
+        </div>
+      </div>
+
+      <!-- Bild -->
+      <div>
+        <span class="field-label">Bild anhängen</span>
+        <div class="upload-area">
+          <div class="upload-icon">📎</div>
+          <div style="flex:1">
+            <div class="upload-label">Bild auswählen</div>
+            <div class="upload-hint">Wird nur lokal als Vorschau angezeigt (Simulation)</div>
+            <input id="imageInput" type="file" accept="image/*" style="margin-top:8px" />
+          </div>
+        </div>
+        <img id="preview" class="preview" alt="Bildvorschau" />
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="send" type="submit">Senden</button>
+        <span class="hint">Felder werden nach dem Senden automatisch geleert.</span>
+      </div>
+
+      <div class="status-wrap">
+        <div id="status" class="status" aria-live="polite">
+          <span class="status-icon"></span>
+          <span class="status-text"></span>
+        </div>
+      </div>
+
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('composer');
+    const editor = document.getElementById('editor');
+    const statusEl = document.getElementById('status');
+    const statusIcon = statusEl.querySelector('.status-icon');
+    const statusText = statusEl.querySelector('.status-text');
+    const recipient = document.getElementById('recipient');
+    const group = document.getElementById('group');
+    const directField = document.getElementById('directField');
+    const groupField = document.getElementById('groupField');
+    const modeInputs = document.querySelectorAll('input[name="mode"]');
+    const toolbarButtons = document.querySelectorAll('.toolbar button[data-cmd]');
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
+
+    function getMode() {
+      return document.querySelector('input[name="mode"]:checked').value;
+    }
+
+    function updateModeFields() {
+      const mode = getMode();
+      directField.classList.toggle('hidden', mode !== 'direct');
+      groupField.classList.toggle('hidden', mode !== 'group');
+    }
+
+    function setStatus(message, type) {
+      statusEl.className = `status ${type || ''}`.trim();
+      statusIcon.textContent = type === 'error' ? '✕' : type === 'success' ? '✓' : '';
+      statusText.textContent = message;
+    }
+
+    modeInputs.forEach(input => {
+      input.addEventListener('change', () => { updateModeFields(); setStatus('', ''); });
+    });
+
+    toolbarButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        document.execCommand(button.dataset.cmd, false, null);
+        editor.focus();
+      });
+    });
+
+    imageInput.addEventListener('change', (event) => {
+      const [file] = event.target.files;
+      if (!file) { preview.style.display = 'none'; preview.removeAttribute('src'); return; }
+      const reader = new FileReader();
+      reader.onload = (e) => { preview.src = e.target.result; preview.style.display = 'block'; };
+      reader.readAsDataURL(file);
+      setStatus('', '');
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const mode = getMode();
+      const hasRecipient = mode === 'direct' ? recipient.value.trim().length > 0 : group.value.trim().length > 0;
+      const textContent = editor.textContent.trim();
+      const hasImage = imageInput.files.length > 0;
+
+      if (!hasRecipient) { setStatus('Bitte Empfänger oder Kita-Gruppe auswählen.', 'error'); return; }
+      if (!textContent && !hasImage) { setStatus('Bitte Nachrichtentext eingeben oder ein Bild einfügen.', 'error'); return; }
+
+      setStatus('Nachricht erfolgreich versendet.', 'success');
+      form.reset();
+      editor.innerHTML = '';
+      preview.style.display = 'none';
+      preview.removeAttribute('src');
+      updateModeFields();
+    });
+
+    updateModeFields();
+  </script>
+</body>
+</html>
