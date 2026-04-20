@@ -12,6 +12,7 @@
   --ink: #3A3A3A; --ink-soft: #6A6A6A; --ink-faint: #9A9A9A;
   --paper: #F4EEE6; --white: #ffffff; --border: #BFC5C9;
   --wf1: #9DB8A5; --wf2: #8FA9C4; --wf3: #C8927B; --wf4: #D4B46A;
+  --paper-tint: var(--paper-tint);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,13 +31,14 @@ body {
   page-break-after: always;
   position: relative;
   background: var(--white);
+  margin: 0 auto;
 }
 .page:last-child { page-break-after: avoid; }
 
 /* ── WF-FARBKOPF ── */
 .wf-header {
   padding: 14mm 16mm 12mm 16mm;
-  color: white;
+  color: var(--white);
 }
 .page.wf1 .wf-header { background: var(--wf1); }
 .page.wf2 .wf-header { background: var(--wf2); }
@@ -51,7 +53,7 @@ body {
   border-radius: 4px;
   padding: 2px 9px;
   margin-bottom: 5px;
-  color: white;
+  color: var(--white);
   letter-spacing: 0.05em;
 }
 
@@ -59,7 +61,7 @@ h1 {
   font-family: 'Fraunces', serif;
   font-size: 15pt;
   font-weight: 900;
-  color: white;
+  color: var(--white);
   line-height: 1.2;
 }
 
@@ -115,7 +117,7 @@ table.steps td {
   vertical-align: top;
 }
 
-table.steps tr:nth-child(even) td { background: #F0EDE8; }
+table.steps tr:nth-child(even) td { background: var(--paper-tint); }
 
 .col-nr    { width: 6%; text-align: center; font-weight: 700; }
 .col-dienst{ width: 22%; font-weight: 600; }
@@ -140,7 +142,7 @@ table.steps tr:nth-child(even) td { background: #F0EDE8; }
 .rolle strong { display: block; font-size: 9.5pt; }
 
 .output-box {
-  background: #F0EDE8;
+  background: var(--paper-tint);
   border: 1px solid var(--border);
   border-radius: 5px;
   padding: 6px 10px;
