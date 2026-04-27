@@ -28,14 +28,14 @@ Ein ganztägiger Präsenz-Workshop für Kita-Teams (Leitungen, Fachkräfte, Erg�
        │ Block 2  │ KITA HUB Dienste – Überblick   │  45 min
        ├──────────┤ ☕ Kaffeepause                 │  15 min
        │ Block 3  │ Dienstepass (Einzelübung)       │  25 min
-       │ Block 3b │ Lab-Briefing ⭐ NEU             │  10 min
+       │ Block 3b │ Einstieg ⭐ NEU             │  10 min
        │ Block 4  │ Workflow-Lab I (WF1 & WF2)      │  45 min
        ├──────────┤ 🍽 Mittagspause                │  60 min
        │ Block 5  │ Workflow-Lab II (WF3 & WF4)     │  60 min
-       │ Block 5b │ Lab-Debrief ⭐ NEU              │  15 min
-       │ Block 6  │ Gallery Walk & Dot-Voting        │  15 min
+       │ Block 5b │ Auswertungsrunde ⭐ NEU              │  15 min
+       │ Block 6  │ Rundgang & Dot-Voting        │  15 min
        │ Block 7  │ Transfer-Planung & Commitment    │  30 min
-       │ Block 8  │ Abschluss, Q&A, Feedback         │  10 min
+       │ Block 8  │ Abschluss, Fragen & Rückmeldung  │  10 min
 15:30  └─────────────────────────────────────────┘
 15:30–16:00    Abbau & Nachbereitung
 ```
@@ -62,8 +62,8 @@ Das Herzstück des Tag sind vier praxisnahe **Workflows** – typische Alltagssi
 
 ---
 
-### WF3 – Elternabend hybrid organisieren
-> Das Team plant einen Elternabend zum Thema „Medienbildung" in hybrider Form.
+### WF3 – Elternabend vor Ort und online organisieren
+> Das Team plant einen Elternabend zum Thema „Medienbildung" vor Ort und online.
 
 **Dienste:** Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat
 **Ergebnis:** 1 Umfragelink + 1 Agenda-Notiz + 1 Meeting-Link + 2 Kurzlinks + 2 QR-Codes
@@ -86,7 +86,7 @@ Das Herzstück des Tag sind vier praxisnahe **Workflows** – typische Alltagssi
 | **Meeting** | meeting.kita.bayern | Videokonferenzen (BigBlueButton) | Erstellen: Ja / Beitreten: Nein |
 | **Termine** | termine.kita.bayern | Terminabstimmung & Umfragen | Nein |
 | **Kurzlink** | link.kita.bayern | URL-Shortener + QR-Code-Generator | Verwalten: Ja / Erstellen: Nein |
-| **Notizen** | notizen.kita.bayern | Kollaborative Dokumente | Speichern: Ja / Gast: Nein |
+| **Notizen** | notizen.kita.bayern | Gemeinsame Dokumente | Speichern: Ja / Gast: Nein |
 | **Medienecke** | mediensuche.kita.bayern | OER-Materialsuche | Nein |
 | **Kurse** | kurse.kita.bayern | Online-Fortbildungen | Teils offen |
 | **Lesezeichen** | (Dashboard) | Persönliche Link-Sammlung | Ja |
@@ -122,7 +122,7 @@ Das Repository bildet den gesamten Workshop digital ab. Jede Datei hat eine klar
 ### Druckfertige Materialien (`material/`)
 | Datei | Format | Inhalt |
 |---|---|---|
-| `dienstepass.html` | A5 | Checkliste: 6 Kernaufgaben zum Üben der Dienste |
+| `dienstepass.html` | A5 | Prüfliste: 6 Kernaufgaben zum Üben der Dienste |
 | `laufzettel.html` | A4 | Tagesablauf-Tracking mit Checkboxen |
 | `qr-handout.html` | A5 | QR-Codes & URLs aller Dienste als Schnellreferenz |
 | `rollenkarten.html` | A6 | Rollenkarten: Moderation, Protokoll, Praxis |
@@ -141,9 +141,9 @@ Phase 2: Geleitete Praxis      → Lab I: Workflows 1 & 2 mit Anleitung (Block 4
 Phase 3: Selbstständige Praxis → Lab II: Workflows 3 & 4 in Gruppen (Block 5)
 ```
 
-**Neu eingeführt: Lab-Briefing & Lab-Debrief**
-- **Lab-Briefing (3b):** Gruppen finden sich, lesen Workflow-Karten, verorten Alltags-Bezug
-- **Lab-Debrief (5b):** Gruppen teilen ihre Artefakte, Verbindungen zwischen Workflows werden sichtbar, Hindernisse werden benannt
+**Neu eingeführt: Einstieg & Auswertungsrunde**
+- **Einstieg (3b):** Gruppen finden sich, lesen Workflow-Karten, verorten Alltags-Bezug
+- **Auswertungsrunde (5b):** Gruppen teilen ihre Artefakte, Verbindungen zwischen Workflows werden sichtbar, Hindernisse werden benannt
 
 ---
 
@@ -152,7 +152,7 @@ Phase 3: Selbstständige Praxis → Lab II: Workflows 3 & 4 in Gruppen (Block 5)
 Der Workshop ist von Grund auf **anpassbar** konzipiert:
 
 - **Minimale Version:** 2 Workflows (Blöcke 4 & 5 können gestrafft werden)
-- **Maximale Version:** alle 4 Workflows mit vollständigem Lab-Zyklus
+- **Maximale Version:** alle 4 Workflows mit vollständigem Übungszyklus
 - **Heterogene Gruppen:** Rollenkarten ermöglichen differenzierte Aufgabenverteilung
 - **Eingeschränkte Konten:** Anleitungen zeigen, welche Schritte ohne Konto möglich sind
 - **Schnelle vs. langsame Gruppen:** Workflow-Karten enthalten Vertiefungs-Optionen
