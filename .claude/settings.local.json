@@ -3,7 +3,8 @@
     "allow": [
       "Bash(/home/mike/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/brainstorming/scripts/start-server.sh *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(grep -n '#[0-9A-Fa-f]\\\\{3,6\\\\}' material/workflow-karte.html)"
     ]
   }
 }
