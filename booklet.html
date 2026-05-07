@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booklet – Dein Tag auf dem KITA HUB</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --ink: #3A3A3A; --ink-soft: #6A6A6A; --ink-faint: #9A9A9A;
+  --paper: #F4EEE6; --paper-tint: #F0EDE8; --white: #ffffff; --border: #BFC5C9;
+  --wf1: #9DB8A5; --wf1-light: #E8F1EC;
+  --wf2: #8FA9C4; --wf2-light: #E7EEF6;
+  --wf3: #C8927B; --wf3-light: #F3E4DF;
+  --wf4: #D4B46A; --wf4-light: #F2E8CF;
+  --beige: #E9DFD2;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page {
+  size: A4 portrait;
+  /* top right bottom left — left has +5mm Bundsteg */
+  margin: 22mm 22mm 22mm 27mm;
+  @top-left {
+    content: "Dein Kita-Team auf dem KITA HUB";
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8pt;
+    color: #9A9A9A;
+  }
+  @top-right {
+    content: "Datum: ____________";
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8pt;
+    color: #9A9A9A;
+  }
+  @bottom-left {
+    content: "Pixelwerkstatt · KITA HUB Bayern";
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    color: #9A9A9A;
+  }
+  @bottom-right {
+    content: "Seite " counter(page) " / " counter(pages);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    color: #9A9A9A;
+  }
+}
+@page :first {
+  margin: 0;
+  @top-left { content: ""; }
+  @top-right { content: ""; }
+  @bottom-left { content: ""; }
+  @bottom-right { content: ""; }
+}
+@page back {
+  margin: 0;
+  @top-left { content: ""; }
+  @top-right { content: ""; }
+  @bottom-left { content: ""; }
+  @bottom-right { content: ""; }
+}
+
+html { background: var(--paper); }
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.page {
+  page-break-after: always;
+}
+.page:last-child { page-break-after: auto; }
+
+/* === HEADINGS === */
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', serif;
+  color: var(--ink);
+  font-weight: 700;
+}
+h1 { font-size: 26pt; font-weight: 900; line-height: 1.1; }
+h2 {
+  font-size: 18pt;
+  font-weight: 900;
+  margin-bottom: 6mm;
+  padding-bottom: 3mm;
+  border-bottom: 2px solid var(--ink);
+}
+h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 12pt;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  margin: 6mm 0 3mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 1px solid var(--border);
+}
+h3:first-of-type { margin-top: 0; }
+h4 { font-size: 11pt; margin: 4mm 0 2mm; }
+
+p { margin-bottom: 3mm; }
+ul, ol { margin: 0 0 3mm 5mm; }
+li { margin-bottom: 1.5mm; }
+
+strong { font-weight: 700; }
+em { font-style: italic; color: var(--ink-soft); }
+
+/* === SCHREIBLINIEN & CHECKBOX === */
+.linie {
+  border-bottom: 1px solid var(--border);
+  height: 9mm;
+  margin: 0 0 2mm 0;
+}
+.linie-kurz { height: 7mm; }
+.checkbox {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  vertical-align: -3px;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+/* === WORKFLOW BLOCKS === */
+.wf {
+  --wf-color: var(--ink);
+  --wf-light: var(--paper-tint);
+}
+.wf.wf1 { --wf-color: var(--wf1); --wf-light: var(--wf1-light); }
+.wf.wf2 { --wf-color: var(--wf2); --wf-light: var(--wf2-light); }
+.wf.wf3 { --wf-color: var(--wf3); --wf-light: var(--wf3-light); }
+.wf.wf4 { --wf-color: var(--wf4); --wf-light: var(--wf4-light); }
+
+.wf h2 { border-bottom-color: var(--wf-color); border-bottom-width: 4px; }
+.wf-stripe {
+  position: relative;
+  padding-left: 6mm;
+  border-left: 4mm solid var(--wf-color);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--white);
+  margin-bottom: 4mm;
+}
+.wf .badge { background: var(--wf-color); }
+
+/* === BOX-COMPONENTS === */
+.lernziele, .reflexion, .uebung, .notizfeld, .infobox {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4mm 5mm;
+  margin: 3mm 0;
+  background: var(--white);
+}
+.lernziele { background: var(--wf-light, var(--paper-tint)); border-color: var(--wf-color, var(--border)); }
+.lernziele h3 { color: var(--ink); border: none; margin-top: 0; padding-bottom: 0; }
+.lernziele ul { margin: 1mm 0 0 5mm; }
+
+.uebung { border-left: 4px solid var(--wf-color, var(--ink)); }
+.uebung h3 { color: var(--wf-color, var(--ink)); border: none; margin-top: 0; padding-bottom: 0; }
+
+.reflexion { background: var(--paper); }
+.reflexion h3 { color: var(--ink); border: none; margin-top: 0; padding-bottom: 0; }
+.reflexion .frage { font-weight: 600; margin-top: 2.5mm; margin-bottom: 1mm; font-size: 10pt; }
+.reflexion .frage:first-of-type { margin-top: 1mm; }
+.reflexion .linie { height: 7mm; margin: 0 0 1.5mm 0; }
+.uebung .linie { height: 7mm; margin: 0 0 1.5mm 0; }
+
+.infobox { background: var(--wf-light, var(--paper-tint)); border-color: var(--wf-color, var(--border)); border-left: 3mm solid var(--wf-color, var(--ink)); }
+
+/* === TABELLE === */
+table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 3mm 0; }
+th { background: var(--ink); color: var(--white); padding: 2.5mm 3mm; text-align: left; font-weight: 600; font-size: 9pt; }
+td { border: 1px solid var(--border); padding: 2.5mm 3mm; vertical-align: top; }
+tr:nth-child(even) td { background: var(--paper-tint); }
+
+table.workflow-steps td:first-child { width: 8%; text-align: center; font-weight: 700; }
+table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
+
+/* === TITELSEITE === */
+.cover {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  position: relative;
+  page-break-after: always;
+  /* The first page has @page margin: 0 — so cover fills the full A4 */
+  height: 297mm;
+  width: 210mm;
+}
+.cover-band {
+  height: 65mm;
+  background: linear-gradient(135deg, var(--wf1) 0%, var(--wf2) 33%, var(--wf3) 66%, var(--wf4) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 27mm 10mm 27mm;
+}
+.cover-band .eyebrow {
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 10pt;
+}
+.cover-body {
+  padding: 15mm 27mm 27mm 27mm;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cover h1 {
+  font-size: 36pt;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 6mm;
+}
+.cover .tagline {
+  font-family: 'Fraunces', serif;
+  font-size: 14pt;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-bottom: auto;
+  max-width: 130mm;
+}
+.cover .meta {
+  border-top: 1px solid var(--ink);
+  padding-top: 6mm;
+  margin-top: 12mm;
+  font-size: 11pt;
+}
+.cover .meta-row { margin-bottom: 4mm; display: flex; align-items: baseline; }
+.cover .meta-row .label {
+  width: 35mm;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.cover .meta-row .value { flex: 1; border-bottom: 1px solid var(--border); padding-bottom: 1mm; min-height: 7mm; }
+.cover .footer-text {
+  font-size: 9pt;
+  color: var(--ink-faint);
+  margin-top: 8mm;
+}
+
+/* === TOC === */
+.toc-list { list-style: none; margin: 0; }
+.toc-list li {
+  display: flex;
+  align-items: baseline;
+  font-size: 11pt;
+  margin-bottom: 2.5mm;
+  gap: 3mm;
+}
+.toc-list .num {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 12pt;
+  width: 14mm;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+}
+.toc-list .title { flex: 1; }
+.toc-list .dots { flex: 1; border-bottom: 1px dotted var(--border); margin: 0 2mm; transform: translateY(-2px); }
+.toc-list .seite {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9.5pt;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.toc-list .wf-tag {
+  display: inline-block;
+  width: 4mm;
+  height: 4mm;
+  border-radius: 2px;
+  margin-right: 2mm;
+  vertical-align: middle;
+}
+
+/* === DIENSTE-ÜBERSICHT === */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm;
+  margin: 3mm 0;
+}
+.service-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5mm 3.5mm;
+  background: var(--white);
+}
+.service-card .name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 11.5pt; }
+.service-card .url { font-family: 'DM Sans', monospace; font-size: 8.5pt; color: var(--ink-soft); }
+.service-card .func { font-size: 8.5pt; margin: 1mm 0; line-height: 1.3; }
+.service-card .acc { font-size: 7.5pt; color: var(--ink-faint); border-top: 1px solid var(--border); padding-top: 1mm; margin-top: 1mm; }
+.service-card .notiz-line { border-bottom: 1px solid var(--border); height: 5mm; margin-top: 1mm; }
+.service-card .notiz-label { font-size: 7pt; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* === DIENSTEPASS === */
+.pass-task {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3mm 4mm;
+  margin-bottom: 3mm;
+  background: var(--white);
+  display: flex;
+  gap: 4mm;
+  align-items: flex-start;
+}
+.pass-task .check { flex-shrink: 0; margin-top: 1mm; }
+.pass-task .body { flex: 1; }
+.pass-task .head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+.pass-task .head .title { font-weight: 700; font-size: 11pt; }
+.pass-task .head .url { font-size: 8.5pt; color: var(--ink-soft); font-family: monospace; }
+.pass-task .desc { font-size: 9.5pt; color: var(--ink-soft); margin: 1mm 0 2mm; }
+.pass-task .write-label { font-size: 8pt; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5mm; }
+.pass-task .write-line { border-bottom: 1px solid var(--border); height: 6mm; }
+.pass-task.optional { border-style: dashed; }
+.pass-task .opt-tag { font-size: 7.5pt; color: var(--ink-soft); border: 1px solid var(--border); border-radius: 10px; padding: 0 5px; margin-left: 4mm; }
+
+/* === TAGESPLAN === */
+.zeitplan { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+.zeitplan th { background: var(--ink); color: var(--white); padding: 2mm 2.5mm; text-align: left; font-size: 9pt; font-weight: 600; }
+.zeitplan td { border: 1px solid var(--border); padding: 1.8mm 2.5mm; vertical-align: middle; }
+.zeitplan .col-haken { width: 8mm; text-align: center; }
+.zeitplan .col-zeit { width: 22mm; font-variant-numeric: tabular-nums; font-size: 9.5pt; color: var(--ink-soft); }
+.zeitplan .col-block { width: 22mm; font-weight: 600; }
+.zeitplan tr.pause td { background: var(--paper-tint); color: var(--ink-soft); font-style: italic; font-size: 9pt; }
+.zeitplan .check-cell { display: inline-block; width: 12px; height: 12px; border: 1.5px solid var(--ink); border-radius: 2px; }
+.zeitplan tr.wf1 td:nth-child(3) { border-left: 3px solid var(--wf1); }
+.zeitplan tr.wf2 td:nth-child(3) { border-left: 3px solid var(--wf2); }
+.zeitplan tr.wf3 td:nth-child(3) { border-left: 3px solid var(--wf3); }
+.zeitplan tr.wf4 td:nth-child(3) { border-left: 3px solid var(--wf4); }
+
+/* === PERSONA === */
+.persona {
+  border-left: 4mm solid var(--wf-color, var(--ink));
+  padding: 2mm 0 2mm 5mm;
+  margin: 4mm 0 5mm;
+  font-family: 'Fraunces', serif;
+  font-size: 11.5pt;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.persona .name {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--wf-color, var(--ink));
+  display: block;
+  margin-bottom: 2mm;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* === QR-ANHANG === */
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4mm;
+  margin: 3mm 0;
+}
+.qr-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3mm;
+  background: var(--white);
+  display: flex;
+  gap: 4mm;
+  align-items: center;
+}
+.qr-card img.qr { width: 28mm; height: 28mm; flex-shrink: 0; }
+.qr-card .qr-info { flex: 1; }
+.qr-card .qr-name { font-family: 'Fraunces', serif; font-size: 12pt; font-weight: 700; }
+.qr-card .qr-url { font-size: 8.5pt; color: var(--ink-soft); font-family: monospace; word-break: break-all; }
+.qr-card .qr-func { font-size: 8.5pt; color: var(--ink-soft); margin-top: 1.5mm; line-height: 1.3; }
+
+.qr-start {
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  padding: 4mm;
+  margin-bottom: 4mm;
+  background: var(--white);
+  display: flex;
+  gap: 5mm;
+  align-items: center;
+}
+.qr-start img.qr { width: 32mm; height: 32mm; }
+.qr-start .name { font-family: 'Fraunces', serif; font-size: 14pt; font-weight: 900; }
+.qr-start .url { font-family: monospace; font-size: 11pt; }
+.qr-start .desc { font-size: 9.5pt; color: var(--ink-soft); margin-top: 1mm; }
+
+/* === GLOSSAR === */
+.glossar dt { font-weight: 700; font-family: 'Fraunces', serif; font-size: 11pt; margin-top: 3mm; }
+.glossar dd { font-size: 10pt; color: var(--ink-soft); margin-left: 0; line-height: 1.4; }
+
+.notiz-raster {
+  border: 1px solid var(--border);
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 6.5mm, var(--border) 6.5mm, var(--border) 7mm);
+  min-height: 60mm;
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+/* === RÜCKSEITE === */
+.rueckseite {
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 297mm;
+  width: 210mm;
+  padding: 30mm 27mm 22mm 27mm;
+  page-break-after: auto;
+  page: back;
+}
+.rueckseite .kontakt {
+  border-top: 2px solid var(--ink);
+  padding-top: 6mm;
+}
+.rueckseite .kontakt h2 { border-bottom: none; padding-bottom: 0; }
+
+/* === UTILITY === */
+.zwei-spalten { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.tipp {
+  background: var(--wf3-light);
+  border-left: 3mm solid var(--wf3);
+  padding: 3mm 4mm;
+  margin: 3mm 0;
+  font-size: 10pt;
+}
+.tipp::before { content: "💡 "; }
+.warn {
+  background: var(--wf4-light);
+  border-left: 3mm solid var(--wf4);
+  padding: 3mm 4mm;
+  margin: 3mm 0;
+  font-size: 10pt;
+}
+.warn::before { content: "⚠ "; font-weight: 700; }
+
+.no-break { page-break-inside: avoid; }
+
+/* Print */
+@media print {
+  html, body { background: var(--white); }
+  .page, .cover, .rueckseite { page-break-after: always; }
+  .rueckseite { page-break-after: auto; }
+}
+
+/* Screen — show pages with subtle separation, simulating A4 */
+@media screen {
+  body { background: #ddd; padding: 10mm 0; }
+  .page {
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 0 auto 10mm;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 22mm 22mm 22mm 27mm;
+    box-sizing: border-box;
+  }
+  .cover, .rueckseite {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 0 auto 10mm;
+    width: 210mm;
+    height: 297mm;
+  }
+  .cover { padding-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-band">
+    <div class="eyebrow">Team-Tag · Workshop-Booklet</div>
+  </div>
+  <div class="cover-body">
+    <h1>Dein Kita-Team<br>auf dem KITA HUB</h1>
+    <div class="tagline">Vier Workflows. Ein Tag. Ergebnisse, die ab Montag funktionieren.</div>
+    <div class="meta">
+      <div class="meta-row"><span class="label">Mein Name</span><span class="value"></span></div>
+      <div class="meta-row"><span class="label">Datum</span><span class="value"></span></div>
+      <div class="meta-row"><span class="label">Ort</span><span class="value">Pixelwerkstatt · Amberg</span></div>
+      <div class="meta-row"><span class="label">Zeitrahmen</span><span class="value">09:30 – 15:30 Uhr</span></div>
+    </div>
+    <div class="footer-text">
+      Veranstaltet im Rahmen des KITA HUB Bayern · kita.bayern · Starthilfe: starthilfe@kita.bayern · +49 9621 96552 1991
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <h2>Inhalt</h2>
+  <ul class="toc-list">
+    <li><span class="num">01</span><span class="title">Willkommen &amp; Tagesziele</span><span class="dots"></span><span class="seite">3</span></li>
+    <li><span class="num">02</span><span class="title">Tagesablauf</span><span class="dots"></span><span class="seite">4</span></li>
+    <li><span class="num">03</span><span class="title">Block 1 — Begrüßung &amp; Erwartungen</span><span class="dots"></span><span class="seite">5</span></li>
+    <li><span class="num">04</span><span class="title">Block 2 — Die Dienste des KITA HUB</span><span class="dots"></span><span class="seite">6</span></li>
+    <li><span class="num">05</span><span class="title">Block 3 — Dienstepass</span><span class="dots"></span><span class="seite">7</span></li>
+    <li><span class="num">06</span><span class="title">Block 3b — Mein Workflow-Anker</span><span class="dots"></span><span class="seite">8</span></li>
+    <li><span class="num">07</span><span class="wf-tag" style="background:var(--wf1);"></span><span class="title">Workflow 1 — Fachwissen ins Team bringen</span><span class="dots"></span><span class="seite">9</span></li>
+    <li><span class="num">08</span><span class="wf-tag" style="background:var(--wf2);"></span><span class="title">Workflow 2 — Teamsitzung digital vorbereiten</span><span class="dots"></span><span class="seite">12</span></li>
+    <li><span class="num">09</span><span class="wf-tag" style="background:var(--wf3);"></span><span class="title">Workflow 3 — Elternabend hybrid organisieren</span><span class="dots"></span><span class="seite">15</span></li>
+    <li><span class="num">10</span><span class="wf-tag" style="background:var(--wf4);"></span><span class="title">Workflow 4 — Neue Kolleg:in einarbeiten</span><span class="dots"></span><span class="seite">18</span></li>
+    <li><span class="num">11</span><span class="title">Block 5b — Auswertungsrunde</span><span class="dots"></span><span class="seite">21</span></li>
+    <li><span class="num">12</span><span class="title">Block 6 — Gallery Walk</span><span class="dots"></span><span class="seite">22</span></li>
+    <li><span class="num">13</span><span class="title">Block 7 — Transfer „Ab Montag“</span><span class="dots"></span><span class="seite">23</span></li>
+    <li><span class="num">14</span><span class="title">Block 8 — Abschluss &amp; Blitzlicht</span><span class="dots"></span><span class="seite">25</span></li>
+    <li><span class="num">A</span><span class="title">Anhang — QR-Codes &amp; Schnellreferenz</span><span class="dots"></span><span class="seite">26</span></li>
+    <li><span class="num">B</span><span class="title">Anhang — Glossar &amp; Notizen</span><span class="dots"></span><span class="seite">27</span></li>
+  </ul>
+  <div class="tipp" style="margin-top:18mm;">
+    <strong>So nutzen Sie dieses Booklet:</strong> Hier finden Sie Inhalte, Aufgaben und Schreibplatz für den ganzen Tag. Notieren Sie Ihre Kurzlinks, Kanal-Namen und Erkenntnisse direkt auf den Linien — am Ende des Tages haben Sie alles an einem Ort.
+  </div>
+</div>
+
+<div class="page">
+  <span class="badge">01 · Willkommen</span>
+  <h2>Willkommen &amp; Tagesziele</h2>
+
+  <p>Dieser Tag dreht sich um <strong>echte Workflows aus Ihrem Kita-Alltag</strong> — und um die digitalen Werkzeuge des <em>KITA HUB Bayern</em>, die diese Workflows unterstützen. Ziel ist nicht, möglichst viele Tools zu zeigen, sondern dass Sie ab Montag mit konkreten Lösungen arbeiten können.</p>
+
+  <div class="lernziele wf">
+    <h3>Am Ende des Tages können Sie …</h3>
+    <ul>
+      <li>die zentralen Dienste des KITA HUB sicher bedienen (Chat, Meeting, Termine, Kurzlink, Notizen, Medienecke, Kurse)</li>
+      <li>vier konkrete Workflows aus dem Kita-Alltag digital umsetzen</li>
+      <li>echte Artefakte mitnehmen: Kurzlinks, QR-Codes, Notizen, Termine, Meeting-Räume</li>
+      <li>einschätzen, welche Workflows in Ihrer Einrichtung als Erstes Sinn ergeben</li>
+      <li>einen ersten Pilot-Schritt für die nächsten 14 Tage benennen</li>
+    </ul>
+  </div>
+
+  <h3>Worum es heute <em>nicht</em> geht</h3>
+  <ul>
+    <li>Tool-Show: Wir starten immer mit der Aufgabe, nie mit dem Dienst.</li>
+    <li>Vollständigkeit: Sie müssen heute nicht alles einmal angefasst haben.</li>
+    <li>Fehlerfrei: Stolpersteine sind willkommen — sie zeigen, wo wir nachbessern.</li>
+  </ul>
+
+  <h3>Meine Erwartung an heute</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Was möchte ich heute mitnehmen? Welches Problem aus meinem Kita-Alltag soll heute eine Lösung bekommen?</p>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+</div>
+
+<div class="page">
+  <span class="badge">02 · Tagesablauf</span>
+  <h2>Der Tag im Überblick</h2>
+  <p style="color:var(--ink-soft);font-size:10pt;">Haken Sie ab, was hinter Ihnen liegt — so behalten Sie Ihren eigenen Rhythmus im Blick.</p>
+  <table class="zeitplan">
+    <thead>
+      <tr>
+        <th class="col-haken">✓</th>
+        <th class="col-zeit">Zeit</th>
+        <th class="col-block">Block</th>
+        <th>Inhalt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-haken"><span class="check-cell"></span></td><td>09:30 – 09:45</td><td>1</td><td>Ankommen &amp; Erwartungsabfrage</td></tr>
+      <tr><td class="col-haken"><span class="check-cell"></span></td><td>09:45 – 10:30</td><td>2</td><td>KITA HUB: Alle Dienste kennenlernen (Demo)</td></tr>
+      <tr class="wf3"><td class="col-haken"><span class="check-cell"></span></td><td>10:30 – 10:55</td><td>3</td><td><strong>Dienstepass</strong> — Kernhandlungen ausprobieren</td></tr>
+      <tr class="pause"><td></td><td>10:55 – 11:10</td><td>—</td><td>☕ Kaffeepause</td></tr>
+      <tr><td class="col-haken"><span class="check-cell"></span></td><td>11:10 – 11:20</td><td>3b</td><td>Lab-Briefing: Gruppen &amp; Alltagsanker</td></tr>
+      <tr class="wf1"><td class="col-haken"><span class="check-cell"></span></td><td>11:20 – 12:05</td><td>4</td><td><strong>Workflow-Lab I</strong> — WF 1 &amp; WF 2 (geführt)</td></tr>
+      <tr class="pause"><td></td><td>12:05 – 13:05</td><td>—</td><td>🍽 Mittagspause</td></tr>
+      <tr class="wf3"><td class="col-haken"><span class="check-cell"></span></td><td>13:05 – 14:05</td><td>5</td><td><strong>Workflow-Lab II</strong> — WF 3 &amp; WF 4 (eigenständig)</td></tr>
+      <tr class="wf2"><td class="col-haken"><span class="check-cell"></span></td><td>14:05 – 14:20</td><td>5b</td><td>Auswertungsrunde &amp; Querverbindungen</td></tr>
+      <tr class="pause"><td></td><td>14:20 – 14:35</td><td>—</td><td>☕ Kaffeepause</td></tr>
+      <tr><td class="col-haken"><span class="check-cell"></span></td><td>14:35 – 14:50</td><td>6</td><td>Gallery Walk &amp; Dot-Voting</td></tr>
+      <tr class="wf4"><td class="col-haken"><span class="check-cell"></span></td><td>14:50 – 15:20</td><td>7</td><td><strong>Transfer</strong> „Ab Montag“ + Team-Commitment</td></tr>
+      <tr><td class="col-haken"><span class="check-cell"></span></td><td>15:20 – 15:30</td><td>8</td><td>Abschluss, Fragen, Blitzlicht</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tipp">
+    <strong>Pausenzeiten sind heilig.</strong> Bei Fragen, die nicht zwischen Tür und Angel passen: notieren — wir nehmen sie im Plenum oder in den Pausen auf.
+  </div>
+</div>
+
+<div class="page">
+  <span class="badge">03 · Block 1</span>
+  <h2>Begrüßung &amp; Erwartungen</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">09:30 – 09:45 · 15 Minuten · Plenum</p>
+
+  <h3>Worum geht's?</h3>
+  <p>Sie kommen an, lernen einander kurz kennen und benennen, was Sie heute erleben wollen. Anschließend richten wir gemeinsam den Tag aus: <em>„Am Ende des Tages haben Sie vier Workflows mit echten Links, QR-Codes und Artefakten — sofort einsetzbar ab Montag.“</em></p>
+
+  <h3>Übung — Mein Team-Steckbrief</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Notieren Sie kurz, womit Ihr Team digital schon arbeitet:</p>
+  <div style="font-size:9.5pt;font-weight:600;margin-top:3mm;">Welche digitalen Tools nutzt unser Team heute schon?</div>
+  <div class="linie-kurz linie"></div>
+  <div class="linie-kurz linie"></div>
+  <div style="font-size:9.5pt;font-weight:600;margin-top:2mm;">Was funktioniert gut?</div>
+  <div class="linie-kurz linie"></div>
+  <div class="linie-kurz linie"></div>
+  <div style="font-size:9.5pt;font-weight:600;margin-top:2mm;">Wo hakt es?</div>
+  <div class="linie-kurz linie"></div>
+  <div class="linie-kurz linie"></div>
+
+  <h3>Meine drei Erwartungen an heute</h3>
+  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:14pt;font-weight:700;color:var(--wf2);width:8mm;flex-shrink:0;">1</span><div style="flex:1;"><div class="linie linie-kurz"></div><div class="linie linie-kurz"></div></div></div>
+  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:14pt;font-weight:700;color:var(--wf2);width:8mm;flex-shrink:0;">2</span><div style="flex:1;"><div class="linie linie-kurz"></div><div class="linie linie-kurz"></div></div></div>
+  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:14pt;font-weight:700;color:var(--wf2);width:8mm;flex-shrink:0;">3</span><div style="flex:1;"><div class="linie linie-kurz"></div><div class="linie linie-kurz"></div></div></div>
+</div>
+
+<div class="page">
+  <span class="badge">04 · Block 2</span>
+  <h2>Die Dienste des KITA HUB</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">09:45 – 10:30 · 45 Minuten · Vortrag + Live-Demo</p>
+
+  <p><strong>Prinzip:</strong> Einmal anmelden auf <code style="font-family:monospace;background:var(--paper-tint);padding:1px 5px;border-radius:3px;">kita.bayern/webapp</code> — alle Dienste nutzen (Single Sign-On). Während der Demo notieren Sie pro Dienst, wo dieser in <em>Ihrer</em> Kita Sinn macht.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="name">Chat</div>
+      <div class="url">chat.kita.bayern</div>
+      <div class="func">Teamkommunikation in Kanälen &amp; Direktnachrichten.</div>
+      <div class="acc">Account: <strong>ja</strong></div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Meeting</div>
+      <div class="url">meeting.kita.bayern</div>
+      <div class="func">Videokonferenzen (BigBlueButton). Eltern/Externe per Link.</div>
+      <div class="acc">Erstellen: ja · Beitreten: nein</div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Termine</div>
+      <div class="url">termine.kita.bayern</div>
+      <div class="func">Terminumfragen &amp; Abstimmungen, auch für Eltern.</div>
+      <div class="acc">Account: <strong>nein</strong></div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Kurzlink</div>
+      <div class="url">link.kita.bayern</div>
+      <div class="func">Links kürzen + QR-Codes erstellen.</div>
+      <div class="acc">Verwalten: ja · Kürzen: nein</div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Notizen</div>
+      <div class="url">notizen.kita.bayern</div>
+      <div class="func">Kollaborative Dokumente &amp; Protokolle.</div>
+      <div class="acc">Speichern: ja · Gast: nein</div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Medienecke</div>
+      <div class="url">mediensuche.kita.bayern</div>
+      <div class="func">Geprüfte OER-Materialien finden &amp; teilen.</div>
+      <div class="acc">Account: <strong>nein</strong></div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Kurse</div>
+      <div class="url">kurse.kita.bayern</div>
+      <div class="func">Online-Fortbildungen, teils ohne Registrierung.</div>
+      <div class="acc">Teils ohne Account</div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+    <div class="service-card">
+      <div class="name">Lesezeichen</div>
+      <div class="url">— im Dashboard —</div>
+      <div class="func">Persönliche Link-Sammlung im KITA HUB.</div>
+      <div class="acc">Account: <strong>ja</strong></div>
+      <div class="notiz-label">passt bei uns für …</div>
+      <div class="notiz-line"></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>Stolpersteine:</strong> Notiz-Link sofort kopieren &amp; sichern · Kurzlink ohne Account = nicht nachbearbeitbar · Meeting-Browser: Chrome oder Firefox.
+  </div>
+</div>
+
+<div class="page wf wf3">
+  <span class="badge">05 · Block 3</span>
+  <h2>Dienstepass — Kernhandlungen ausprobieren</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">10:30 – 10:55 · 25 Minuten · Einzelarbeit · Ziel: 5 von 6 Aufgaben</p>
+
+  <p>Sechs kleine Aufgaben, eine pro Dienst. Sie sammeln dabei <strong>echte Links und einen QR-Code</strong>, die Sie später in den Workflows wieder einsetzen können. Notieren Sie alles in den Linien — auch wenn der Link lang ist.</p>
+
+  <div class="pass-task">
+    <span class="checkbox check"></span>
+    <div class="body">
+      <div class="head"><span class="title">1 · Medienecke</span><span class="url">mediensuche.kita.bayern</span></div>
+      <div class="desc">Material zum eigenen Kita-Thema suchen → Link kopieren.</div>
+      <div class="write-label">mein Link</div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+
+  <div class="pass-task">
+    <span class="checkbox check"></span>
+    <div class="body">
+      <div class="head"><span class="title">2 · Kurzlink &amp; QR-Code</span><span class="url">link.kita.bayern</span></div>
+      <div class="desc">Den Medienecke-Link kürzen → QR-Code als PNG herunterladen.</div>
+      <div class="write-label">mein Kurzlink</div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+
+  <div class="pass-task">
+    <span class="checkbox check"></span>
+    <div class="body">
+      <div class="head"><span class="title">3 · Termine</span><span class="url">termine.kita.bayern</span></div>
+      <div class="desc">Mini-Terminabfrage mit drei Optionen erstellen → Link teilen.</div>
+      <div class="write-label">mein Terminlink</div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+
+  <div class="pass-task">
+    <span class="checkbox check"></span>
+    <div class="body">
+      <div class="head"><span class="title">4 · Notizen</span><span class="url">notizen.kita.bayern</span></div>
+      <div class="desc">Gastnotiz anlegen → Link einfügen und <strong>sofort sichern</strong>.</div>
+      <div class="write-label">mein Notiz-Link</div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+
+  <div class="pass-task">
+    <span class="checkbox check"></span>
+    <div class="body">
+      <div class="head"><span class="title">5 · Meeting</span><span class="url">meeting.kita.bayern</span></div>
+      <div class="desc">Per Test-Link einem Meeting beitreten → Audio &amp; Chat kurz testen.</div>
+      <div class="write-label">Browser: Chrome oder Firefox</div>
+    </div>
+  </div>
+
+  <div class="pass-task optional">
+    <span class="checkbox check"></span>
+    <div class="body">
+      <div class="head"><span class="title">6 · Chat <span class="opt-tag">nur mit Account</span></span><span class="url">chat.kita.bayern</span></div>
+      <div class="desc">Kanal finden oder beitreten → eine Nachricht senden.</div>
+      <div class="write-label">Kanal-Name</div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <span class="badge">06 · Block 3b</span>
+  <h2>Mein Workflow-Anker</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">11:10 – 11:20 · 10 Minuten · Team-Bildung</p>
+
+  <p>Bevor wir in die Workflow-Labs gehen: Welcher der vier Workflows passt zu einer <strong>echten Situation</strong>, die Sie kürzlich erlebt haben? Diese Verortung macht das Lab sofort konkret — aus „theoretisch hilfreich“ wird „genau das brauche ich Montag“.</p>
+
+  <h3>Welche Situation der letzten Wochen wäre einfacher gewesen?</h3>
+
+  <div class="zwei-spalten" style="gap:4mm;">
+    <div class="infobox wf wf1">
+      <strong style="color:var(--wf1);font-size:11pt;">WF 1 — Fachwissen ins Team</strong>
+      <p style="font-size:9.5pt;margin-top:1mm;">Eine Fachkraft entdeckt Material und will es teilen &amp; besprechen.</p>
+      <div style="font-size:8.5pt;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;margin-top:2mm;">Meine Situation:</div>
+      <div class="linie linie-kurz" style="border-color:var(--wf1);"></div>
+      <div class="linie linie-kurz" style="border-color:var(--wf1);"></div>
+    </div>
+    <div class="infobox wf wf2">
+      <strong style="color:var(--wf2);font-size:11pt;">WF 2 — Teamsitzung digital</strong>
+      <p style="font-size:9.5pt;margin-top:1mm;">Die Leitung bereitet eine Sitzung vor und sammelt Themen kollaborativ.</p>
+      <div style="font-size:8.5pt;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;margin-top:2mm;">Meine Situation:</div>
+      <div class="linie linie-kurz" style="border-color:var(--wf2);"></div>
+      <div class="linie linie-kurz" style="border-color:var(--wf2);"></div>
+    </div>
+    <div class="infobox wf wf3">
+      <strong style="color:var(--wf3);font-size:11pt;">WF 3 — Elternabend hybrid</strong>
+      <p style="font-size:9.5pt;margin-top:1mm;">Das Team plant einen Elternabend mit Vor-Ort- und Online-Teil.</p>
+      <div style="font-size:8.5pt;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;margin-top:2mm;">Meine Situation:</div>
+      <div class="linie linie-kurz" style="border-color:var(--wf3);"></div>
+      <div class="linie linie-kurz" style="border-color:var(--wf3);"></div>
+    </div>
+    <div class="infobox wf wf4">
+      <strong style="color:var(--wf4);font-size:11pt;">WF 4 — Onboarding neuer Kolleg:in</strong>
+      <p style="font-size:9.5pt;margin-top:1mm;">Eine neue Kollegin kommt — die Einarbeitung soll digital strukturiert sein.</p>
+      <div style="font-size:8.5pt;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;margin-top:2mm;">Meine Situation:</div>
+      <div class="linie linie-kurz" style="border-color:var(--wf4);"></div>
+      <div class="linie linie-kurz" style="border-color:var(--wf4);"></div>
+    </div>
+  </div>
+
+  <h3>Meine Rolle in der Gruppe</h3>
+  <div style="display:flex;gap:5mm;flex-wrap:wrap;margin-top:2mm;">
+    <span style="display:flex;align-items:center;gap:2mm;font-size:10pt;"><span class="checkbox"></span>Moderation</span>
+    <span style="display:flex;align-items:center;gap:2mm;font-size:10pt;"><span class="checkbox"></span>Protokoll</span>
+    <span style="display:flex;align-items:center;gap:2mm;font-size:10pt;"><span class="checkbox"></span>Praxis (Ausprobieren)</span>
+  </div>
+</div>
+
+<div class="page wf wf1">
+  <span class="badge">Workflow 1</span>
+  <h2>Fachwissen ins Team bringen</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Block 4 · geführt in Kleingruppen</p>
+
+  <div class="persona">
+    <span class="name">Miriam (Fachkraft, U3-Gruppe) erzählt</span>
+    „Ich habe in der Medienecke ein richtig gutes Heft zu Inklusion gefunden — und stand dann da: Wie zeige ich das dem Team, ohne dass es im E-Mail-Postfach versumpft? Heute baue ich einen kleinen Pfad: Material → Kurzlink → Kanal → Termin → Treffen. Wenn das funktioniert, kann ich es immer wieder so machen.“
+  </div>
+
+  <div class="lernziele"><h3>Lernziele</h3><p style="margin-bottom:1mm;">Nach diesem Workflow können Sie …</p><ul><li>ein Material aus der Medienecke teilen, ohne dass es im Postfach untergeht</li><li>einen Kurzlink &amp; QR-Code für Materialien erstellen</li><li>einen Chat-Kanal als zentrale Anlaufstelle für ein Thema einrichten</li><li>ein kurzes Austauschtreffen per Terminumfrage und Meeting-Link organisieren</li></ul></div>
+
+  <h3>Beteiligte Dienste</h3>
+  <p style="font-size:10pt;">Medienecke → Kurzlink → Chat → Termine → Meeting</p>
+
+  <h3>Mein Ergebnis am Ende dieses Workflows</h3>
+  <p style="font-size:10pt;color:var(--ink-soft);">1 Chat-Kanal · 1 Kurzlink · 1 QR-Code · 1 Terminumfrage · 1 Meeting-Link — alles aus einem Material entstanden.</p>
+</div>
+
+<div class="page wf wf1">
+  <span class="badge">Workflow 1 · Schritte</span>
+  <h2>So gehen wir vor</h2>
+  <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
+
+  <table class="workflow-steps"><thead><tr><th>#</th><th>Dienst</th><th>Aktion</th><th>Mein Ergebnis (Link / Notiz)</th></tr></thead><tbody><tr><td>1</td><td>Medienecke</td><td>Material zu „Inklusion“ suchen → Link kopieren</td><td></td></tr><tr><td>2</td><td>Kurzlink</td><td>Sprechenden Kurzlink + QR-Code erstellen (z. B. <code>link.kita.bayern/inklusion</code>)</td><td></td></tr><tr><td>3</td><td>Chat</td><td>Kanal „Inklusion im Kita-Alltag“ anlegen → QR + Link + kurze Beschreibung posten</td><td></td></tr><tr><td>4</td><td>Termine</td><td>Terminumfrage für 30-Min-Austausch → Link im Kanal teilen</td><td></td></tr><tr><td>5</td><td>Meeting</td><td>Meeting-Link erstellen → im Kanal fixieren</td><td></td></tr></tbody></table>
+
+  <div class="tipp">
+    <strong>Rollen in der Gruppe:</strong> Materialscout · Moderator:in · Organizer
+  </div>
+
+  <h3>Stolpersteine im Auge behalten</h3>
+  <ul>
+    <li>Kurzlink ohne Account → kein nachträgliches Bearbeiten möglich</li><li>Beim Chat-Kanal sinnvoll benennen (Thema, nicht Datum)</li><li>Meeting-Link erst kurz vor dem Termin erstellen, sonst wird er unübersichtlich</li>
+  </ul>
+</div>
+
+<div class="page wf wf1">
+  <span class="badge">Workflow 1 · Übung &amp; Reflexion</span>
+  <h2>Was haben wir produziert?</h2>
+
+  <div class="uebung">
+    <h3>Unsere echten Artefakte</h3>
+    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
+    
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Material-Link aus der Medienecke</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Mein Kurzlink (link.kita.bayern/…)</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">QR-Code: ☐ heruntergeladen ☐ ausgedruckt ☐ aufgehängt</div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kanal-Name im Chat</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Terminumfrage-Link</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Meeting-Link</div>
+        <div class="linie"></div>
+        
+  </div>
+
+  <div class="reflexion"><h3>Reflexion</h3><div class="frage">Was war für mich der wichtigste Schritt — und warum?</div><div class="linie"></div><div class="linie"></div><div class="frage">Wo bin ich gestolpert? Was hat geholfen?</div><div class="linie"></div><div class="linie"></div><div class="frage">Wo in meinem Kita-Alltag würde ich genau diesen Workflow als Nächstes einsetzen?</div><div class="linie"></div><div class="linie"></div></div>
+</div>
+
+<div class="page wf wf2">
+  <span class="badge">Workflow 2</span>
+  <h2>Teamsitzung digital vorbereiten</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Block 4 · geführt in Kleingruppen</p>
+
+  <div class="persona">
+    <span class="name">Sandra (Kitaleitung) erzählt</span>
+    „Unsere Teamsitzungen waren ewig auf E-Mail-Listen verteilt — Tagesordnung im einen Postfach, Themenvorschläge im anderen, das Protokoll danach im dritten. Heute baue ich ein <em>lebendes</em> Notizen-Dokument: Tagesordnung, Themenvorschläge, Aufgabenliste — alles an einem Ort, alle dürfen rein. Den Link fixiere ich im Chat. Bei Bedarf hängt ein Meeting-Raum mit dran.“
+  </div>
+
+  <div class="lernziele"><h3>Lernziele</h3><p style="margin-bottom:1mm;">Nach diesem Workflow können Sie …</p><ul><li>ein kollaboratives Sitzungsdokument anlegen, das Tagesordnung, Themen &amp; Aufgaben bündelt</li><li>einen QR-Code für das Dokument erstellen — zum Ausdrucken oder Aushängen</li><li>Kolleg:innen über den Chat in das Dokument einladen, ohne weitere Tools</li><li>den Sitzungstermin per Termine-Umfrage und ggf. Meeting absichern</li></ul></div>
+
+  <h3>Beteiligte Dienste</h3>
+  <p style="font-size:10pt;">Notizen → Kurzlink → Chat → Notizen → Termine → Meeting</p>
+
+  <h3>Mein Ergebnis am Ende dieses Workflows</h3>
+  <p style="font-size:10pt;color:var(--ink-soft);">1 lebendes Sitzungs-Protokoll · Aufgabenliste · Link-Hub im Chat — keine E-Mail-Schnitzeljagd mehr.</p>
+</div>
+
+<div class="page wf wf2">
+  <span class="badge">Workflow 2 · Schritte</span>
+  <h2>So gehen wir vor</h2>
+  <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
+
+  <table class="workflow-steps"><thead><tr><th>#</th><th>Dienst</th><th>Aktion</th><th>Mein Ergebnis (Link / Notiz)</th></tr></thead><tbody><tr><td>1</td><td>Notizen</td><td>Dokument „Teamsitzung [Datum]“ anlegen: Tagesordnung, Aufgabenliste (Wer/Was/Bis), Linksammlung</td><td></td></tr><tr><td>2</td><td>Kurzlink</td><td>Sprechenden Kurzlink + QR-Code zum Notizen-Dokument</td><td></td></tr><tr><td>3</td><td>Chat</td><td>Link im Team-Kanal posten → Bitte um Themenvorschläge</td><td></td></tr><tr><td>4</td><td>Notizen</td><td>Kolleg:innen ergänzen Themenvorschläge direkt im Dokument</td><td></td></tr><tr><td>5</td><td>Termine</td><td>Terminumfrage für die Sitzung → Link im Chat</td><td></td></tr><tr><td>6</td><td>Meeting</td><td>(optional) Meeting-Link für Teilzeit/Schicht → in Notiz + Chat ergänzen</td><td></td></tr></tbody></table>
+
+  <div class="tipp">
+    <strong>Rollen in der Gruppe:</strong> Orga (Leitung) · alle kommentieren / editieren mit
+  </div>
+
+  <h3>Stolpersteine im Auge behalten</h3>
+  <ul>
+    <li>Gastnotiz-Link verlieren = Zugriff weg → sofort kopieren &amp; sichern</li><li>Lieber ein gemeinsames Dokument als drei parallele</li><li>Aufgaben in Wer/Was/Bis-Format halten — sonst werden sie nicht erledigt</li>
+  </ul>
+</div>
+
+<div class="page wf wf2">
+  <span class="badge">Workflow 2 · Übung &amp; Reflexion</span>
+  <h2>Was haben wir produziert?</h2>
+
+  <div class="uebung">
+    <h3>Unsere echten Artefakte</h3>
+    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
+    
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Notizen-Dokument-Link (sofort sichern!)</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Sprechender Kurzlink</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kanal-Name im Chat</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Terminumfrage-Link</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">3 Themen, die schon im Dokument stehen</div>
+        <div class="linie linie-kurz"></div>
+        <div class="linie linie-kurz"></div>
+        <div class="linie linie-kurz"></div>
+        
+  </div>
+
+  <div class="reflexion"><h3>Reflexion</h3><div class="frage">Welcher Schritt ersetzt bei uns eine bisherige E-Mail-Kette?</div><div class="linie"></div><div class="linie"></div><div class="frage">Wer in unserem Team braucht eine kurze Einführung, damit das Dokument lebt?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche Sitzung können wir <em>diese Woche</em> schon so vorbereiten?</div><div class="linie"></div><div class="linie"></div></div>
+</div>
+
+<div class="page wf wf3">
+  <span class="badge">Workflow 3</span>
+  <h2>Elternabend hybrid organisieren</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Block 5 · eigenständig in Kleingruppen</p>
+
+  <div class="persona">
+    <span class="name">Das Team (Elternabend „Medienerziehung“) erzählt</span>
+    „Wir wollen einen Elternabend zur Medienerziehung machen — vor Ort <em>und</em> online, weil wir wissen: nicht alle Eltern können kommen. Wir bauen ein Paket, das auch für Eltern <em>ohne</em> KITA-HUB-Account funktioniert: eine Terminumfrage, einen QR-Code mit dem Material, einen Meeting-Link. Wer da ist, ist da. Wer dazu kommt, kommt dazu — beides ist ok.“
+  </div>
+
+  <div class="lernziele"><h3>Lernziele</h3><p style="margin-bottom:1mm;">Nach diesem Workflow können Sie …</p><ul><li>Materialien für Eltern recherchieren und teilbar machen</li><li>ein Planungsdokument anlegen, das das gesamte Team mitführt</li><li>Eltern <em>ohne Account</em> per Terminumfrage und Meeting-Link einbinden</li><li>alle Bausteine im Chat-Kanal zu einem klaren Eltern-Paket bündeln</li></ul></div>
+
+  <h3>Beteiligte Dienste</h3>
+  <p style="font-size:10pt;">Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat</p>
+
+  <h3>Mein Ergebnis am Ende dieses Workflows</h3>
+  <p style="font-size:10pt;color:var(--ink-soft);">1 Terminlink · 1 Agenda-Notiz · 1 Meeting-Link · 2 Kurzlinks · 2 QR-Codes — ein vollständiges Eltern-Paket, das auch ohne Account funktioniert.</p>
+</div>
+
+<div class="page wf wf3">
+  <span class="badge">Workflow 3 · Schritte</span>
+  <h2>So gehen wir vor</h2>
+  <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
+
+  <table class="workflow-steps"><thead><tr><th>#</th><th>Dienst</th><th>Aktion</th><th>Mein Ergebnis (Link / Notiz)</th></tr></thead><tbody><tr><td>1</td><td>Medienecke</td><td>Material zu „Medienerziehung“ für Eltern recherchieren</td><td></td></tr><tr><td>2</td><td>Notizen</td><td>Planungsdokument anlegen: Ablauf, Verantwortlichkeiten, Materialliste, Agenda</td><td></td></tr><tr><td>3</td><td>Kurzlink</td><td>QR-Code zu einer Eltern-Ressource (Medienecke)</td><td></td></tr><tr><td>4</td><td>Termine</td><td>Terminumfrage für den Elternabend (kein Account nötig)</td><td></td></tr><tr><td>5</td><td>Meeting</td><td>Meeting-Link erstellen — Eltern nehmen per Link teil</td><td></td></tr><tr><td>6</td><td>Chat</td><td>Alles im Team-Kanal bündeln: QR, Termin, Notiz, Meeting</td><td></td></tr></tbody></table>
+
+  <div class="tipp">
+    <strong>Rollen in der Gruppe:</strong> Elternkommunikation · Moderator:in · Technikbegleitung
+  </div>
+
+  <h3>Stolpersteine im Auge behalten</h3>
+  <ul>
+    <li>Eltern brauchen <em>keinen</em> Account — das vorab klar kommunizieren</li><li>Den Meeting-Link nicht zu früh teilen, sonst geht er verloren</li><li>QR-Codes auf Aushängen mit kurzer Erklärung versehen („Hier scannen für …“)</li>
+  </ul>
+</div>
+
+<div class="page wf wf3">
+  <span class="badge">Workflow 3 · Übung &amp; Reflexion</span>
+  <h2>Was haben wir produziert?</h2>
+
+  <div class="uebung">
+    <h3>Unsere echten Artefakte</h3>
+    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
+    
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Planungs-Notiz-Link</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kurzlink Eltern-Material</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Terminumfrage (für Eltern)</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Meeting-Link</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Sammel-Post im Chat: ☐ erstellt ☐ angepinnt</div>
+        
+  </div>
+
+  <div class="reflexion"><h3>Reflexion</h3><div class="frage">Was würde unser nächster Elternabend brauchen, um diesen Workflow 1:1 zu verwenden?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche Eltern-Gruppe profitiert am meisten von der hybriden Lösung?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welcher Schritt ist bei uns am aufwendigsten — und wie können wir ihn erleichtern?</div><div class="linie"></div><div class="linie"></div></div>
+</div>
+
+<div class="page wf wf4">
+  <span class="badge">Workflow 4</span>
+  <h2>Neue Kolleg:in einarbeiten</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Block 5 · eigenständig in Kleingruppen</p>
+
+  <div class="persona">
+    <span class="name">Petra (Mentorin für die Einarbeitung) erzählt</span>
+    „Bei uns fängt nächste Woche eine neue Ergänzungskraft an. Bisher habe ich Onboarding immer in 30-Minuten-Gesprächen gemacht — und jedes Mal war wieder etwas vergessen. Heute baue ich ein digitales Willkommenspaket: Eine Notiz mit allem Wichtigen, ein QR-Code für den Spind, eine kurze Direktnachricht im Chat, ein passender Kurs aus dem Angebot. Sie kann sich selbstständig zurechtfinden — ich entlaste die Kolleg:innen.“
+  </div>
+
+  <div class="lernziele"><h3>Lernziele</h3><p style="margin-bottom:1mm;">Nach diesem Workflow können Sie …</p><ul><li>ein digitales Willkommensdokument für neue Kolleg:innen anlegen</li><li>den Zugang per QR-Code &amp; Direktnachricht so leicht wie möglich machen</li><li>passende Materialien aus Medienecke und Kurse-Angebot bündeln</li><li>wichtige Seiten als Lesezeichen auf dem Dashboard anlegen</li></ul></div>
+
+  <h3>Beteiligte Dienste</h3>
+  <p style="font-size:10pt;">Notizen → Kurzlink → Chat → Medienecke → Kurse → Lesezeichen</p>
+
+  <h3>Mein Ergebnis am Ende dieses Workflows</h3>
+  <p style="font-size:10pt;color:var(--ink-soft);">1 Willkommensdokument · 1 QR-Code · 1 Direktnachricht im Chat · Kursliste · Lesezeichen — ein selbsttragendes Onboarding.</p>
+</div>
+
+<div class="page wf wf4">
+  <span class="badge">Workflow 4 · Schritte</span>
+  <h2>So gehen wir vor</h2>
+  <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
+
+  <table class="workflow-steps"><thead><tr><th>#</th><th>Dienst</th><th>Aktion</th><th>Mein Ergebnis (Link / Notiz)</th></tr></thead><tbody><tr><td>1</td><td>Notizen</td><td>Willkommensdokument: Infos, Ansprechpersonen, Abläufe, Hausregeln</td><td></td></tr><tr><td>2</td><td>Kurzlink</td><td>QR-Code zum Willkommensdokument (Tipp: für den Spind ausdrucken)</td><td></td></tr><tr><td>3</td><td>Chat</td><td>Direktnachricht: Willkommensgruß + alle Links + kurze Erklärungen</td><td></td></tr><tr><td>4</td><td>Medienecke</td><td>Relevante Einarbeitungsmaterialien zusammenstellen</td><td></td></tr><tr><td>5</td><td>Kurse</td><td>Passenden Einführungskurs empfehlen → Link teilen</td><td></td></tr><tr><td>6</td><td>Lesezeichen</td><td>Wichtige Seiten als Lesezeichen auf dem Dashboard anlegen</td><td></td></tr></tbody></table>
+
+  <div class="tipp">
+    <strong>Rollen in der Gruppe:</strong> Mentor:in · Leitung (Erstzugang) · evtl. IT-Pat:in
+  </div>
+
+  <h3>Stolpersteine im Auge behalten</h3>
+  <ul>
+    <li>Direktnachricht mit zu vielen Links auf einmal überfordert — lieber strukturiert</li><li>Notizen-Dokument muss <em>angemeldet</em> erstellt werden, sonst geht es nach 24 h verloren</li><li>Lesezeichen sind persönlich — kurz erklären, wie sie eingerichtet werden</li>
+  </ul>
+</div>
+
+<div class="page wf wf4">
+  <span class="badge">Workflow 4 · Übung &amp; Reflexion</span>
+  <h2>Was haben wir produziert?</h2>
+
+  <div class="uebung">
+    <h3>Unsere echten Artefakte</h3>
+    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
+    
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Willkommens-Notiz-Link</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Sprechender Kurzlink + QR</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Direktnachricht: ☐ vorbereitet ☐ versendet</div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kurs-Empfehlung (Link)</div>
+        <div class="linie"></div>
+        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">3 Lesezeichen, die <em>jede:r</em> braucht</div>
+        <div class="linie linie-kurz"></div>
+        <div class="linie linie-kurz"></div>
+        <div class="linie linie-kurz"></div>
+        
+  </div>
+
+  <div class="reflexion"><h3>Reflexion</h3><div class="frage">Wer in unserem Team könnte als Mentor:in für dieses Onboarding zuständig sein?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche drei Informationen <em>müssen</em> auf jeden Fall im Willkommensdokument stehen?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche Stelle dieses Workflows entlastet uns am meisten?</div><div class="linie"></div><div class="linie"></div></div>
+</div>
+
+<div class="page">
+  <span class="badge">11 · Block 5b</span>
+  <h2>Auswertungsrunde — was haben wir gelernt?</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">14:05 – 14:20 · 15 Minuten · Gruppen-Debrief</p>
+
+  <p>Vier Workflows, vier Gruppen — jetzt teilen wir, was entstanden ist. Notieren Sie für sich, was bei <em>anderen</em> Gruppen aufgefallen ist — das macht Querverbindungen sichtbar.</p>
+
+  <h3>Mein Lieblings-Artefakt unserer Gruppe</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Was nehme ich aus unserer Gruppe besonders mit?</p>
+  <div class="linie"></div>
+  <div class="linie"></div>
+
+  <h3>Querverbindungen — was taucht in <em>mehreren</em> Workflows auf?</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Welche Dienste sind quer durch alle vier Workflows gelaufen?</p>
+  <div class="zwei-spalten">
+    <div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Chat</div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Kurzlink</div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Termine</div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Meeting</div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Notizen</div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Medienecke</div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Kurse</div>
+      <div style="display:flex;align-items:center;gap:2mm;font-size:10pt;margin:1.5mm 0;"><span class="checkbox"></span>Lesezeichen</div>
+    </div>
+  </div>
+  <div class="tipp" style="margin-top:3mm;"><em>Der KITA HUB ist ein Ökosystem.</em> Welche Dienste haben Sie häufiger als gedacht eingesetzt?</div>
+
+  <h3>Stolpersteine — was war schwerer als erwartet?</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+</div>
+
+<div class="page">
+  <span class="badge">12 · Block 6</span>
+  <h2>Gallery Walk &amp; Dot-Voting</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">14:35 – 14:50 · 15 Minuten · Galerie</p>
+
+  <p>Alle vier Workflow-Poster hängen im Raum. Sie laufen still durch, lesen — und vergeben drei Punkte: <em>„Was ist für mein Team am relevantesten?“</em></p>
+
+  <h3>Meine drei Punkte gehen an …</h3>
+  <div class="zwei-spalten">
+    <div class="infobox wf wf1"><strong style="color:var(--wf1);">WF 1 — Fachwissen ins Team</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
+    <div class="infobox wf wf2"><strong style="color:var(--wf2);">WF 2 — Teamsitzung digital</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
+    <div class="infobox wf wf3"><strong style="color:var(--wf3);">WF 3 — Elternabend hybrid</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
+    <div class="infobox wf wf4"><strong style="color:var(--wf4);">WF 4 — Neue Kolleg:in einarbeiten</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
+  </div>
+
+  <h3>Was hat mich beim Rundgang überrascht?</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+
+  <h3>Welcher Workflow einer <em>anderen</em> Gruppe hat mir eine Idee gegeben?</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+</div>
+
+<div class="page wf wf4">
+  <span class="badge">13 · Block 7</span>
+  <h2>Transfer „Ab Montag“</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">14:50 – 15:20 · 30 Minuten · Einzelarbeit → Partner → Plenum</p>
+
+  <h3>Schritt 1 — Mein Pilot-Workflow (Einzelarbeit, 8 Min.)</h3>
+  <p style="font-size:10pt;">Welchen Workflow setze ich als <strong>Erstes</strong> in meiner Kita um?</p>
+
+  <div class="zwei-spalten">
+    <div class="infobox wf wf1" style="border-left:3mm solid var(--wf1);"><span style="display:flex;align-items:flex-start;gap:3mm;"><span class="checkbox"></span><span><strong style="color:var(--wf1);">WF 1</strong> — Fachwissen ins Team bringen</span></span></div>
+    <div class="infobox wf wf2" style="border-left:3mm solid var(--wf2);"><span style="display:flex;align-items:flex-start;gap:3mm;"><span class="checkbox"></span><span><strong style="color:var(--wf2);">WF 2</strong> — Teamsitzung digital vorbereiten</span></span></div>
+    <div class="infobox wf wf3" style="border-left:3mm solid var(--wf3);"><span style="display:flex;align-items:flex-start;gap:3mm;"><span class="checkbox"></span><span><strong style="color:var(--wf3);">WF 3</strong> — Elternabend hybrid organisieren</span></span></div>
+    <div class="infobox wf wf4" style="border-left:3mm solid var(--wf4);"><span style="display:flex;align-items:flex-start;gap:3mm;"><span class="checkbox"></span><span><strong style="color:var(--wf4);">WF 4</strong> — Neue Kolleg:in einarbeiten</span></span></div>
+  </div>
+
+  <h3>Wann setze ich ihn ein? (konkrete Situation)</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+
+  <h3>Was brauche ich dafür? (Account, Kolleg:in, Zeit …)</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+
+  <h3>Wer hilft mir dabei?</h3>
+  <div class="linie"></div>
+</div>
+
+<div class="page wf wf4">
+  <span class="badge">13 · Block 7 · Fortsetzung</span>
+  <h2>Schritt 2 &amp; 3 — Austausch und Team-Plan</h2>
+
+  <h3>Schritt 2 — Partneraustausch (7 Min.)</h3>
+  <p style="font-size:10pt;">Zu zweit: Pläne vorstellen, Feedback geben.</p>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Was rät meine Partnerin / mein Partner?</p>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+
+  <h3>Schritt 3 — Team-Commitment (15 Min., Plenum)</h3>
+  <p style="font-size:10pt;">Gemeinsamer Pilot-Workflow für die nächsten 14 Tage:</p>
+
+  <div style="border:2px solid var(--ink);border-radius:4px;padding:4mm;background:var(--white);">
+    <table style="margin:0;">
+      <thead>
+        <tr><th style="width:30%;">Pilot-Workflow</th><th style="width:25%;">Wer?</th><th style="width:30%;">Erster Schritt</th><th style="width:15%;">Bis wann?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="height:9mm;"></td><td></td><td></td><td></td></tr>
+        <tr><td style="height:9mm;"></td><td></td><td></td><td></td></tr>
+        <tr><td style="height:9mm;"></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Sofort-Aktion: Folgetermin per Termine-Umfrage erstellen</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Erste echte Nutzung — direkt jetzt im Plenum.</p>
+  <div style="border:1.5px dashed var(--border);border-radius:4px;padding:4mm;background:var(--white);">
+    <div style="font-size:9pt;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;">Kurz-URL unserer Folgetermin-Umfrage</div>
+    <div class="linie"></div>
+  </div>
+
+  <div class="tipp" style="margin-top:4mm;">
+    Den Team-Entscheid direkt als Notiz anlegen und per Kurzlink im Chat fixieren — Übung und erstes echtes Produktivitäts-Artefakt in einem.
+  </div>
+</div>
+
+<div class="page">
+  <span class="badge">14 · Block 8</span>
+  <h2>Abschluss, Fragen &amp; Blitzlicht</h2>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">15:20 – 15:30 · 10 Minuten · Plenum</p>
+
+  <h3>Letzte Fragen — was ist offen?</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+
+  <h3>Mein Wort für den Tag (Blitzlicht)</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Ein Wort, das den heutigen Tag für mich beschreibt:</p>
+  <div style="border:1.5px solid var(--ink);border-radius:4px;padding:8mm;text-align:center;font-family:'Fraunces',serif;font-size:18pt;font-style:italic;color:var(--ink-soft);min-height:20mm;">
+  </div>
+
+  <h3>Starthilfe — bei Fragen melden Sie sich</h3>
+  <div class="infobox" style="background:var(--paper-tint);border:1px solid var(--border);border-left:3mm solid var(--ink);">
+    <strong>starthilfe@kita.bayern</strong><br>
+    <strong>Tel.</strong> +49 9621 96552 1991<br>
+    <em style="font-size:9.5pt;">In 14 Tagen haben Sie erste Praxis-Erfahrungen — melden Sie sich gerne.</em>
+  </div>
+
+  <h3>Mein Ergebnis heute — was nehme ich mit?</h3>
+  <p style="font-size:9.5pt;color:var(--ink-soft);">Drei konkrete Dinge, die ich heute geschaffen habe:</p>
+  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:13pt;font-weight:700;width:7mm;flex-shrink:0;">1</span><div style="flex:1;"><div class="linie linie-kurz"></div></div></div>
+  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:13pt;font-weight:700;width:7mm;flex-shrink:0;">2</span><div style="flex:1;"><div class="linie linie-kurz"></div></div></div>
+  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:13pt;font-weight:700;width:7mm;flex-shrink:0;">3</span><div style="flex:1;"><div class="linie linie-kurz"></div></div></div>
+</div>
+
+<div class="page">
+  <span class="badge">Anhang A</span>
+  <h2>QR-Codes &amp; Schnellreferenz</h2>
+  <p style="font-size:10pt;">Alle Dienste auf einer Seite. Scannen mit dem Smartphone — oder Adresse direkt im Browser eingeben.</p>
+
+  <div class="qr-start">
+    <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABmUlEQVR4nO2ZwW7DMAxDySL//8tvB0mOV2Doqaow10FTR+GBFWibUo1ejMcrwBfxjxGX5JghWRhZEnd0CtO2fAhJsiwkHJ8VHcO0EWGXJuyVh4zOYtqKAEsy4i9ED49PIq576thDyEkvjymIS6pfX+oQjq9OHlMQoqTA01WvpzDtQXhbGXG0bKdLI49BCOclkJFJzTiOmUFMexC4ttESiyW7tDKIaQPCqJaIhCs3+fI8f/qQhAS5RkhxpF9lFtMehHN9RARHKSN8pl9HEN40ZbFSIWYxbULkSjEi6jmJdcSMYtqCsJdVj02jyru4DWLagBDlRkFh0st/xPNh/vSRLQ89lXGoDt5BTHsQBjmSYhnWvhr1/yCmPQjsUIhvmSBKMIOYNiCcNUvII+xpdU9p5DEFsdW3Dr/uZck40K9766RHoHrKUc6dlo+tv57/PJClbS+PKYhLWp3TUMV6SDsyhWljPmKQHaA7JWf6jxp22NTsJTv3loFM342I6i1Muo2J8h/5uPXyq78ePowVO7B+2fvrn+TxRcxE/ACa6cvjF460rAAAAABJRU5ErkJggg==" alt="QR-Code KITA HUB Start">
+    <div>
+      <div class="name">KITA HUB Start</div>
+      <div class="url">www.kita.bayern/webapp</div>
+      <div class="desc">Einmal anmelden — alle Dienste nutzen.</div>
+    </div>
+  </div>
+
+  <div class="qr-grid">
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQAAAADN0pXVAAABM0lEQVR4nO2YsXLDMAxDH3L9/19GB5KS0yGLGlnhxRkiE4OBIwWRknnxPF6BX/QD0B9QrIwsy1wiZ3Je1IshNVoIPCJncl7VGxoR8ecROZTzst56ZO367hF6M7fTss/kvKw3BRqRjuV7Wb0PxZVNX34Fncl5Bb0Ub3qUaF7P6VKex1K838jqvflV9RrUgaQ8l87kvKi38lsRjMBq2V89wEqTklTJtpvWMzZ29ZCOQL019OdAbZVskGNuaLl/q7+ysJx7VwhQx/075oVIrpFzcHDf+QhHl5F5BUBuWc9/+isN5b6T1Zb7jTBoWSiquev+zUZStYwmSzey2nK/AdYw5xgLz+T8X+gcfI1QS39+QuWwZeOu89HlfsM1Lc2dfCbn1f45F7WckYb98+X83frdL7oH/QVD35KrZX0OWwAAAABJRU5ErkJggg==" alt="QR Chat"><div class="qr-info"><div class="qr-name">Chat</div><div class="qr-url">chat.kita.bayern</div><div class="qr-func">Kanäle &amp; Direktnachrichten · Account: ja</div></div></div>
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABk0lEQVR4nO2YvZKEMAyDPzG8/yvrCv/AXbMVwXNZtoFEhTbjSJZlPjzHJ8AX8Y8RJyjeDMgCI3CvTmG67DwwgPpgZHxbncJ0IUISIIMwzuKI1VlMH0ect3eZqBPfRXYK0xcQItVDepXHi4gTUioAx3WJQqnVKUzXIOi74T+/2p7CdFl93MUi3sN1l/KYgpCj6QAjp6JaJtfmMF2nH/HXw1WqHwtpRbv1YwcYO+pB2YO5L4xHMV2DUBwBKKrDgG3F9ySmixDGkixSSzq6aD/9wMZptlEYlwXb3s5v5Uy1OI0lQszG/qLOsk7TFe3Ac5guzPs177i1610nY5i+oB/ZnfYW++nHAXEmQlRLZnOdzSimjyNi/tES4ujVsz/zfvoR96Xmg3l3aov98q2udFuRhSyM9JgpTFf6LYCtrJFoUqtmpjBd6LcQ4cXCGfrj4uynHydcclrqIccAVd4u75+/vpStmUpJ9qyPemIYJJxRf8P7kv1YRlv3fOyasI9i+jii54UVV2iH2XL+ces/XuXxRcxE/ADTgc3VDv9DlwAAAABJRU5ErkJggg==" alt="QR Meeting"><div class="qr-info"><div class="qr-name">Meeting</div><div class="qr-url">meeting.kita.bayern</div><div class="qr-func">Videokonferenzen (BBB) · erstellen mit Account</div></div></div>
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABh0lEQVR4nO2ZwXLCQAxDnzr5/19WD7aXHdoOJxxPFwiQLDoIjeOVjMyLx9crwAfxjxEXKM4sy8SlH6tjmLbpgQFUIoQqa3UM00aEJEAyNkIhTKzOYtqJsHF8CP+K6OExByEhhP0noofHjYgLslUgY1yNtFbHMO1BPIrBT8/6egrTHoSe/ZjAYmsgU5i2IZS7CVT3cPoQnbffysuBQVRHrKYfOdGPAQjLoYHlVASfWB/CwqRZr/JYTWQK00a/HsUQGiDslAh02v2SCDl/vbcsFyfDmDYhlFFOpYXrbRrTtyMqzspKf2qXMfEopk0Ira6KtInBqXnf0UQ3EfI4r3+EF13Nwna+cEwATswv8rIcy6iucpnCtDXf2rAdKYXxkfVRp2nV06wqnNoUpm3+dE3SS4yYJFeVTGHa6NchAh0y0h54j/MfF6yUXzE/UkzdS1OY3oDIEBdbrY/0HxtCzpGYY/AR/zxMZPpuhJcpywRj5VTkyP6RG4zA0tN2c9p++2O+fhOPD2Im4huZ2b3qljhrGQAAAABJRU5ErkJggg==" alt="QR Termine"><div class="qr-info"><div class="qr-name">Termine</div><div class="qr-url">termine.kita.bayern</div><div class="qr-func">Terminumfragen · ohne Account</div></div></div>
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQAAAADN0pXVAAABN0lEQVR4nO2YSxKDMAxDnzrc/8rqwk5SuuiioeCmhRk+0QJp7NgyMi+O2yvwj34Bit0fTDvbSk3OM+gGoU/IgGCsFOU8qxeFQhncZftCVuegBgurFqtj0W08WsC+XNfkPK03RWZOe6zU5HxQfeZH6vM+hR+iW5XzpF5F9zFYFiCcBbom5+n4ysh5EW5duCrneVQgS7GJBc57Zc7voVt6i/AZwnLzWKvqxWJ4DJM5fSWrz+qV5ZbOgnQeWrJeYWcLTqPR+pHX7L83AMUomN6KMTYU5vwmmvG1d64SjL1ifDXclVqRdl+uyXm+H0HsXFltEAa5KOfpfgShWo9DoS5k9eF5UH3zalzWrFfb03v8zMk/HUU5H4c6nLRBK8e3D/jqab1wfW4FWvRpIe1GUc4H9d9Tv/tHz0HvYCySp0WKBnkAAAAASUVORK5CYII=" alt="QR Kurzlink"><div class="qr-info"><div class="qr-name">Kurzlink</div><div class="qr-url">link.kita.bayern</div><div class="qr-func">Links kürzen + QR-Codes</div></div></div>
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABj0lEQVR4nO2YwY7CMBBDn1H//5fNYWZSulrEiWFEoKiU1AfLSmwnMi8+t1eAH+KLEQcongyycN1rdArTNj0wgJAto5BljY5h2oiQHgQwjjkTo7OYtiKEBTLC/yN6eAxBqGaH/ATRw+OjiANypWDpooU7eUxB4BLAf656PYVp2/w4BclkUf7r5DEIobwqcI0F6SejmDYgsNcCMcSPbVPfKUx7EDK5TBx5u9ZJpO+O/TRUUSZtiBMeIs9h2ugfIKn6uYUt4rZnXyesIjTQ2uGFo8xi2oIwVsrgpcWe+XLUgzkVCVsNOx3DtA+RbSOqB4p1o+ogk5i+HyFXH82dSyTuyt/d8vYGMg4jjY4aYlTMTGLagMC5oaty+thWjTfsp+u8NKvpJW3nMG3s6+sx61iYiDbt63WS7jLX3NPk7n8K077+UU2d6uta+7rt+scBma51eKqzmTXyGIiwiRJWWRMLZyDTHoTCM8JVy0JGMn0j4nK+nqXd6yxov/OPgxUwMkhV3F0pM4Vpe//4KI8fYibiDocgxPBM6CqUAAAAAElFTkSuQmCC" alt="QR Notizen"><div class="qr-info"><div class="qr-name">Notizen</div><div class="qr-url">notizen.kita.bayern</div><div class="qr-func">Kollaborative Dokumente · Gastlink sichern!</div></div></div>
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABiElEQVR4nO2YQY5CMQxDnxH3v7Jn4aZ8ZsNq8qMpIKE29cJEqeNU5sPn8QnwRfxjBK4CMa6IYUc9hWkP4sn67wKBZZRIRacw7cvHyoABJRPyjo5h2o5IhUjWvTxuRTxfSyv35D0dY5g25mP3XFVW9JLUKUzv6C/Xbx1PYdqDkC/LlAZwKZkxTPvqw9VgYzyMbdfBgfWRGtl9ZQtqjqYwbdNT8UqAMPK6OQjPYdqKMLaMoq7JhbCP86dxolZcqbCwvG7Qgf6UqgjXzsu82+Y8PX1knhWK6yhVffXhQUx7EIJVGNFSLIOkVM0gpj0ICywhSezK2M5sENMGROa59BbqCWRlROrjMQWBy5Zml5+SVftEPUXVX5IVgcqKjGLagHiydEK/Tyowhekt8209Gqrk9Mj5BVgmTFtW5cjsGKZ9CNslFhZKGry2o5j+PeLtfX0NLnVZfO58C6CkRbksBh04314RTlXUg5B9oB8rY5rF0o7sjtTT6/s6NemvuM1x/vTiP27l8UXMRPwAmpfeqzVC+2gAAAAASUVORK5CYII=" alt="QR Medienecke"><div class="qr-info"><div class="qr-name">Medienecke</div><div class="qr-url">mediensuche.kita.bayern</div><div class="qr-func">OER-Materialien · ohne Account</div></div></div>
+    <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQAAAADN0pXVAAABOUlEQVR4nO1Yyw7DMAizp/7/L3sHIGTStMNoGxath4riw8wcXqHw4Xl8Av/oD6BQCCykFVBPzhX0gMdHiBAIpacp5zJKEoBHy8nTmPOX6JGmy8sGrO5BRUAE36OrWJ2LHsAoULTUZXp6cq7GG4KK8qDD05NzBWXOGy8Vei2rS/U1Vb1CAwiTasq5fJ5Fmc4Uo06D6sq5ep4tW+Mwh0cLWV2KEpCNlWbZG1zL6iI0S3I0InobBnbMXw9ztGDYB7Vx/noSu6apblfOZdRXIkkAZSFvmr9HDlN+sOn2nvrO85VV5ixhXTmfo6/GK/+Enpyr89W43/BmhDFx9ORc3gcZIVqhiqbUlXM5XnvidkMR9Y76zqidYVE2cGw5b8z3G2ZQviUtZHXxPmjmWJM8m7fcf6f+e+vv/tF70Ce7O3jSN6u79gAAAABJRU5ErkJggg==" alt="QR Kurse"><div class="qr-info"><div class="qr-name">Kurse</div><div class="qr-url">kurse.kita.bayern</div><div class="qr-func">Online-Fortbildungen</div></div></div>
+    <div class="qr-card" style="background:var(--paper-tint);"><div style="width:28mm;height:28mm;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32pt;color:var(--ink-faint);font-weight:900;">★</div><div class="qr-info"><div class="qr-name">Lesezeichen</div><div class="qr-url">— im Dashboard —</div><div class="qr-func">Persönliche Link-Sammlung im KITA HUB</div></div></div>
+  </div>
+</div>
+
+<div class="page">
+  <span class="badge">Anhang B</span>
+  <h2>Glossar &amp; Notizen</h2>
+
+  <div class="zwei-spalten">
+    <div>
+      <h3>Wichtige Begriffe</h3>
+      <dl class="glossar">
+        <dt>Kanal</dt>
+        <dd>Themenraum im Chat (z. B. „Sommerfest“). Mehrere Personen tauschen sich dort gebündelt aus.</dd>
+        <dt>Direktnachricht (DM)</dt>
+        <dd>1-zu-1-Nachricht zwischen zwei Personen im Chat — privat, nicht im Kanal.</dd>
+        <dt>Kurzlink</dt>
+        <dd>Verkürzte Webadresse (z. B. <code>link.kita.bayern/inklusion</code>) — leichter zu merken und teilen.</dd>
+        <dt>QR-Code</dt>
+        <dd>Quadratisches Muster, das per Smartphone gescannt einen Link öffnet.</dd>
+        <dt>Gastnotiz</dt>
+        <dd>Notizen-Dokument ohne Anmeldung. <em>Wichtig:</em> Link sofort sichern — sonst kein Zugriff mehr.</dd>
+        <dt>OER</dt>
+        <dd>Open Educational Resources — frei verwendbare Bildungsmaterialien (Creative-Commons-Lizenz).</dd>
+        <dt>BBB</dt>
+        <dd>BigBlueButton — die Software hinter Meeting.</dd>
+        <dt>SSO</dt>
+        <dd>Single Sign-On: einmal anmelden, alle Dienste nutzen.</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>Mein Notizraster</h3>
+      <p style="font-size:9pt;color:var(--ink-soft);">Platz für freie Gedanken, Skizzen, Fragen.</p>
+      <div class="notiz-raster"></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:6mm;">Fragen, die ich noch geklärt haben möchte</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+</div>
+
+<div class="rueckseite">
+  <div>
+    <div class="cover-band" style="margin-left:-27mm;margin-right:-27mm;height:25mm;align-items:center;">
+      <div class="eyebrow">KITA HUB Bayern · Team-Tag</div>
+    </div>
+  </div>
+  <div style="flex:1;padding:8mm 0;">
+    <h2 style="border:none;padding:0;font-size:22pt;">Bis zum nächsten Mal —<br>und ab Montag mit Plan.</h2>
+    <p style="font-size:11pt;color:var(--ink-soft);max-width:130mm;margin-top:4mm;line-height:1.5;">
+      Dieses Booklet bleibt Ihres. Es wächst weiter, wenn Sie Ihre Pilot-Workflows umsetzen — schreiben Sie hinein, was funktioniert, und auch, was nicht.
+    </p>
+  </div>
+  <div class="kontakt">
+    <h2>Kontakt &amp; Starthilfe</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6mm;font-size:10.5pt;margin-top:4mm;">
+      <div>
+        <strong>Starthilfe</strong><br>
+        starthilfe@kita.bayern<br>
+        Tel. +49 9621 96552 1991
+      </div>
+      <div>
+        <strong>Weiterführendes Material</strong><br>
+        kita.bayern/webapp<br>
+        Pixelwerkstatt · Amberg
+      </div>
+    </div>
+    <p style="font-size:8.5pt;color:var(--ink-faint);border-top:1px solid var(--border);padding-top:4mm;margin-top:6mm;">
+      Veranstaltet im Rahmen des KITA HUB Bayern. Inhalte CC BY 4.0 — frei nutzbar &amp; teilbar mit Quellenangabe.
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
