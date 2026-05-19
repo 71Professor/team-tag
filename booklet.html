@@ -535,7 +535,8 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
     <li><span class="num">13</span><span class="title">Block 7 — Transfer „Ab Montag“</span><span class="dots"></span><span class="seite">23</span></li>
     <li><span class="num">14</span><span class="title">Block 8 — Abschluss &amp; Blitzlicht</span><span class="dots"></span><span class="seite">25</span></li>
     <li><span class="num">A</span><span class="title">Anhang — QR-Codes &amp; Schnellreferenz</span><span class="dots"></span><span class="seite">26</span></li>
-    <li><span class="num">B</span><span class="title">Anhang — Glossar &amp; Notizen</span><span class="dots"></span><span class="seite">27</span></li>
+    <li><span class="num">B</span><span class="title">Anhang — Glossar</span><span class="dots"></span><span class="seite">27</span></li>
+    <li><span class="num">C</span><span class="title">Anhang — Meine Notizen &amp; Fragen</span><span class="dots"></span><span class="seite">28</span></li>
   </ul>
   <div class="tipp" style="margin-top:18mm;">
     <strong>So nutzen Sie dieses Booklet:</strong> Hier finden Sie Inhalte, Aufgaben und Schreibplatz für den ganzen Tag. Notieren Sie Ihre Kurzlinks, Kanal-Namen und Erkenntnisse direkt auf den Linien — am Ende des Tages haben Sie alles an einem Ort.
@@ -1252,48 +1253,51 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
   </div>
 </div>
 
-<div class="page">
-  <span class="badge">Anhang B</span>
-  <h2>Glossar &amp; Notizen</h2>
+<div class=”page”>
+  <span class=”badge”>Anhang B</span>
+  <h2>Glossar</h2>
 
-  <div class="zwei-spalten">
-    <div>
-      <h3>Wichtige Begriffe</h3>
-      <dl class="glossar">
-        <dt>Kanal</dt>
-        <dd>Themenraum im Chat (z. B. „Sommerfest“). Mehrere Personen tauschen sich dort gebündelt aus.</dd>
-        <dt>Direktnachricht (DM)</dt>
-        <dd>1-zu-1-Nachricht zwischen zwei Personen im Chat — privat, nicht im Kanal.</dd>
-        <dt>Kurzlink</dt>
-        <dd>Verkürzte Webadresse (z. B. <code>link.kita.bayern/inklusion</code>) — leichter zu merken und teilen.</dd>
-        <dt>QR-Code</dt>
-        <dd>Quadratisches Muster, das per Smartphone gescannt einen Link öffnet.</dd>
-        <dt>Gastnotiz</dt>
-        <dd>Notizen-Dokument ohne Anmeldung. <em>Wichtig:</em> Link sofort sichern — sonst kein Zugriff mehr.</dd>
-        <dt>Hybrid (Veranstaltung)</dt>
-        <dd>Eine Veranstaltung, die gleichzeitig vor Ort und online stattfindet — z. B. ein Elternabend, bei dem manche Eltern im Raum sitzen und andere per Video zugeschaltet sind.</dd>
-        <dt>Einarbeitung</dt>
-        <dd>Strukturierter Start für neue Kolleg:innen — alles, was sie in den ersten Wochen wissen und ausprobieren sollen (auch „Onboarding“ genannt).</dd>
-        <dt>Einheitliche Anmeldung (SSO)</dt>
-        <dd>Einmal anmelden auf <code>kita.bayern/webapp</code>, danach sind alle Dienste freigeschaltet — kein zweites Passwort nötig.</dd>
-        <dt>OER</dt>
-        <dd>Open Educational Resources — frei verwendbare Bildungsmaterialien (Creative-Commons-Lizenz).</dd>
-        <dt>BBB</dt>
-        <dd>BigBlueButton — die Software hinter Meeting.</dd>
-      </dl>
-    </div>
-    <div>
-      <h3>Mein Notizraster</h3>
-      <p style="font-size:9pt;color:var(--ink-soft);">Platz für freie Gedanken, Skizzen, Fragen.</p>
-      <div class="notiz-raster"></div>
-    </div>
-  </div>
+  <h3>Wichtige Begriffe</h3>
+  <dl class=”glossar”>
+    <dt>Kanal</dt>
+    <dd>Themenraum im Chat (z. B. „Sommerfest”). Mehrere Personen tauschen sich dort gebündelt aus.</dd>
+    <dt>Direktnachricht (DM)</dt>
+    <dd>1-zu-1-Nachricht zwischen zwei Personen im Chat — privat, nicht im Kanal.</dd>
+    <dt>Kurzlink</dt>
+    <dd>Verkürzte Webadresse (z. B. <code>link.kita.bayern/inklusion</code>) — leichter zu merken und teilen.</dd>
+    <dt>QR-Code</dt>
+    <dd>Quadratisches Muster, das per Smartphone gescannt einen Link öffnet.</dd>
+    <dt>Gastnotiz</dt>
+    <dd>Notizen-Dokument ohne Anmeldung. <em>Wichtig:</em> Link sofort sichern — sonst kein Zugriff mehr.</dd>
+    <dt>Hybrid (Veranstaltung)</dt>
+    <dd>Eine Veranstaltung, die gleichzeitig vor Ort und online stattfindet — z. B. ein Elternabend, bei dem manche Eltern im Raum sitzen und andere per Video zugeschaltet sind.</dd>
+    <dt>Einarbeitung</dt>
+    <dd>Strukturierter Start für neue Kolleg:innen — alles, was sie in den ersten Wochen wissen und ausprobieren sollen (auch „Onboarding” genannt).</dd>
+    <dt>Einheitliche Anmeldung (SSO)</dt>
+    <dd>Einmal anmelden auf <code>kita.bayern/webapp</code>, danach sind alle Dienste freigeschaltet — kein zweites Passwort nötig.</dd>
+    <dt>OER</dt>
+    <dd>Open Educational Resources — frei verwendbare Bildungsmaterialien (Creative-Commons-Lizenz).</dd>
+    <dt>BBB</dt>
+    <dd>BigBlueButton — die Software hinter Meeting.</dd>
+  </dl>
+</div>
 
-  <h3 style="margin-top:6mm;">Fragen, die ich noch geklärt haben möchte</h3>
-  <div class="linie"></div>
-  <div class="linie"></div>
-  <div class="linie"></div>
-  <div class="linie"></div>
+<div class=”page”>
+  <span class=”badge”>Anhang C</span>
+  <h2>Meine Notizen &amp; Fragen</h2>
+
+  <h3>Mein Notizraster</h3>
+  <p style=”font-size:9pt;color:var(--ink-soft);”>Platz für freie Gedanken, Skizzen, Erkenntnisse.</p>
+  <div class=”notiz-raster” style=”min-height:90mm;”></div>
+
+  <h3 style=”margin-top:8mm;”>Fragen, die noch zu klären sind</h3>
+  <div class=”linie”></div>
+  <div class=”linie”></div>
+  <div class=”linie”></div>
+  <div class=”linie”></div>
+  <div class=”linie”></div>
+  <div class=”linie”></div>
+  <div class=”linie”></div>
 </div>
 
 <div class="rueckseite">
