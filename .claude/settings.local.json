@@ -9,7 +9,8 @@
       "Bash(sed -i 's|<span class=\"badge\">Workflow 1 · Schritte</span>|<span class=\"badge\">08 · Workflow 1 · Schritte</span>|g' /mnt/c/Git/team-tag/booklet.html)",
       "Bash(sed -i 's|<span class=\"badge\">Workflow 1 · Reflexion</span>|<span class=\"badge\">09 · Workflow 1 · Reflexion</span>|g' /mnt/c/Git/team-tag/booklet.html)",
       "Bash(sed -i 's|<span class=\"badge\">Workflow 2</span>|<span class=\"badge\">10 · Workflow 2</span>|g' /mnt/c/Git/team-tag/booklet.html)",
-      "Bash(sed -i 's|<span class=\"badge\">Workflow 2 · Schritte</span>|<span class=\"badge\">11 · Workflow 2 · Schritte</span>|g' /mnt/c/Git/team-tag/booklet.html)"
+      "Bash(sed -i 's|<span class=\"badge\">Workflow 2 · Schritte</span>|<span class=\"badge\">11 · Workflow 2 · Schritte</span>|g' /mnt/c/Git/team-tag/booklet.html)",
+      "Bash(python3 *)"
     ]
   }
 }
