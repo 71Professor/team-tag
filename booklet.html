@@ -467,6 +467,25 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 
 .no-break { page-break-inside: avoid; }
 
+/* === PIXELCHEN === */
+.pixelchen { width: 72px; float: right; margin: 0 0 4mm 4mm; opacity: 0.9; }
+
+/* === MERKE-GRID (Wissen in Aktion) === */
+.merke-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 4mm 0; }
+.merke-grid .merke-col { display: flex; flex-direction: column; gap: 0.3rem; }
+.merke-label {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--wf-color, var(--ink));
+  color: #fff;
+  font-size: 7pt; font-weight: 700; text-align: center;
+  display: flex; align-items: center; justify-content: center;
+  padding: 5px; line-height: 1.2;
+  margin-bottom: 2mm; flex-shrink: 0;
+}
+
+/* Tipp-Box in Workflow-Seiten nutzt WF-Farbe */
+.wf .tipp { background: var(--wf-light); border-left-color: var(--wf-color); }
+
 /* Print */
 @media print {
   html, body { background: var(--white); }
@@ -531,12 +550,8 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
     <li><span class="num">09</span><span class="wf-tag" style="background:var(--wf3);"></span><span class="title">Workflow 3 — Elternabend hybrid organisieren</span><span class="dots"></span><span class="seite">15</span></li>
     <li><span class="num">10</span><span class="wf-tag" style="background:var(--wf4);"></span><span class="title">Workflow 4 — Neue Kolleg:in einarbeiten</span><span class="dots"></span><span class="seite">18</span></li>
     <li><span class="num">11</span><span class="title">Block 5b — Auswertungsrunde</span><span class="dots"></span><span class="seite">21</span></li>
-    <li><span class="num">12</span><span class="title">Block 6 — Rundgang &amp; Punkte verteilen</span><span class="dots"></span><span class="seite">22</span></li>
-    <li><span class="num">13</span><span class="title">Block 7 — Transfer „Ab Montag“</span><span class="dots"></span><span class="seite">23</span></li>
-    <li><span class="num">14</span><span class="title">Block 8 — Abschluss &amp; Blitzlicht</span><span class="dots"></span><span class="seite">25</span></li>
-    <li><span class="num">A</span><span class="title">Anhang — QR-Codes &amp; Schnellreferenz</span><span class="dots"></span><span class="seite">26</span></li>
-    <li><span class="num">B</span><span class="title">Anhang — Glossar</span><span class="dots"></span><span class="seite">27</span></li>
-    <li><span class="num">C</span><span class="title">Anhang — Meine Notizen &amp; Fragen</span><span class="dots"></span><span class="seite">28</span></li>
+    <li><span class="num">12</span><span class="title">Block 7 — Transfer „Ab Montag”</span><span class="dots"></span><span class="seite">22</span></li>
+    <li><span class="num">A</span><span class="title">Anhang — QR-Codes &amp; Schnellreferenz</span><span class="dots"></span><span class="seite">24</span></li>
   </ul>
   <div class="tipp" style="margin-top:18mm;">
     <strong>So nutzen Sie dieses Booklet:</strong> Hier finden Sie Inhalte, Aufgaben und Schreibplatz für den ganzen Tag. Notieren Sie Ihre Kurzlinks, Kanal-Namen und Erkenntnisse direkt auf den Linien — am Ende des Tages haben Sie alles an einem Ort.
@@ -545,13 +560,17 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 
 <div class="page">
   <span class="badge">01 · Willkommen</span>
+  <img class="pixelchen" src="pixelchen/SVG/Herzlich_Willkommen.svg" alt="">
   <h2>Willkommen &amp; Tagesziele</h2>
 
   <p>Dieser Tag dreht sich um <strong>echte Workflows aus Ihrem Kita-Alltag</strong> — und um die digitalen Werkzeuge des <em>KITA HUB Bayern</em>, die diese Workflows unterstützen. Ziel ist nicht, möglichst viele Tools zu zeigen, sondern dass Sie ab Montag mit konkreten Lösungen arbeiten können.</p>
 
+  <div class="tipp" style="margin-bottom:3mm;"><strong>Leitfrage für den Tag:</strong> Was bringen mir die Dienste — und wie nutze ich das für mich und meine Einrichtung konkret?</div>
+
   <div class="lernziele wf">
     <h3>Am Ende des Tages können Sie …</h3>
     <ul>
+      <li>erkennen, was jeder Dienst konkret für Sie und Ihre Einrichtung leisten kann</li>
       <li>die zentralen Dienste des KITA HUB sicher bedienen (Chat, Meeting, Termine, Kurzlink, Notizen, Medienecke, Kurse)</li>
       <li>vier konkrete Workflows aus dem Kita-Alltag digital umsetzen</li>
       <li>echte Artefakte mitnehmen: Kurzlinks, QR-Codes, Notizen, Termine, Meeting-Räume</li>
@@ -598,9 +617,7 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
       <tr class="wf3"><td class="col-haken"><span class="check-cell"></span></td><td>13:05 – 14:05</td><td>5</td><td><strong>Workflow-Werkstatt II</strong> — WF 3 &amp; WF 4 (eigenständig)</td></tr>
       <tr class="wf2"><td class="col-haken"><span class="check-cell"></span></td><td>14:05 – 14:20</td><td>5b</td><td>Auswertungsrunde &amp; Querverbindungen</td></tr>
       <tr class="pause"><td></td><td>14:20 – 14:35</td><td>—</td><td>☕ Kaffeepause</td></tr>
-      <tr><td class="col-haken"><span class="check-cell"></span></td><td>14:35 – 14:50</td><td>6</td><td>Rundgang &amp; Punkte verteilen</td></tr>
-      <tr class="wf4"><td class="col-haken"><span class="check-cell"></span></td><td>14:50 – 15:20</td><td>7</td><td><strong>Transfer</strong> „Ab Montag“ + Team-Commitment</td></tr>
-      <tr><td class="col-haken"><span class="check-cell"></span></td><td>15:20 – 15:30</td><td>8</td><td>Abschluss, Fragen, Blitzlicht</td></tr>
+      <tr class="wf4"><td class="col-haken"><span class="check-cell"></span></td><td>14:35 – 15:05</td><td>7</td><td><strong>Transfer</strong> „Ab Montag” + Team-Commitment</td></tr>
     </tbody>
   </table>
 
@@ -830,7 +847,8 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page wf wf1">
-  <span class="badge">Workflow 1</span>
+  <span class="badge">07 · Workflow 1</span>
+  <img class="pixelchen" src="pixelchen/SVG/Inhalte_erstellen.svg" alt="">
   <h2>Fachwissen ins Team bringen</h2>
   <p style="font-size:9.5pt;color:var(--ink-soft);">Block 4 · geführt in Kleingruppen</p>
 
@@ -849,7 +867,7 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page wf wf1">
-  <span class="badge">Workflow 1 · Schritte</span>
+  <span class="badge">08 · Workflow 1 · Schritte</span>
   <h2>So gehen wir vor</h2>
   <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
 
@@ -866,32 +884,15 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page wf wf1">
-  <span class="badge">Workflow 1 · Übung &amp; Reflexion</span>
-  <h2>Was haben wir produziert?</h2>
-
-  <div class="uebung">
-    <h3>Unsere echten Artefakte</h3>
-    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
-    
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Material-Link aus der Medienecke</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Mein Kurzlink (link.kita.bayern/…)</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">QR-Code: ☐ heruntergeladen ☐ ausgedruckt ☐ aufgehängt</div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kanal-Name im Chat</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Terminumfrage-Link</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Meeting-Link</div>
-        <div class="linie"></div>
-        
-  </div>
+  <span class="badge">09 · Workflow 1 · Reflexion</span>
+  <h2>Reflexion</h2>
 
   <div class="reflexion"><h3>Reflexion</h3><div class="frage">Was war für mich der wichtigste Schritt — und warum?</div><div class="linie"></div><div class="linie"></div><div class="frage">Wo bin ich gestolpert? Was hat geholfen?</div><div class="linie"></div><div class="linie"></div><div class="frage">Wo in meinem Kita-Alltag würde ich genau diesen Workflow als Nächstes einsetzen?</div><div class="linie"></div><div class="linie"></div></div>
 </div>
 
 <div class="page wf wf2">
-  <span class="badge">Workflow 2</span>
+  <span class="badge">10 · Workflow 2</span>
+  <img class="pixelchen" src="pixelchen/SVG/Diskussion.svg" alt="">
   <h2>Teamsitzung digital vorbereiten</h2>
   <p style="font-size:9.5pt;color:var(--ink-soft);">Block 4 · geführt in Kleingruppen</p>
 
@@ -910,7 +911,7 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page wf wf2">
-  <span class="badge">Workflow 2 · Schritte</span>
+  <span class="badge">11 · Workflow 2 · Schritte</span>
   <h2>So gehen wir vor</h2>
   <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
 
@@ -927,56 +928,42 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page wf wf2">
-  <span class="badge">Workflow 2 · Übung &amp; Reflexion</span>
-  <h2>Was haben wir produziert?</h2>
-
-  <div class="uebung">
-    <h3>Unsere echten Artefakte</h3>
-    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
-    
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Notizen-Dokument-Link (sofort sichern!)</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Sprechender Kurzlink</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kanal-Name im Chat</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Terminumfrage-Link</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">3 Themen, die schon im Dokument stehen</div>
-        <div class="linie linie-kurz"></div>
-        <div class="linie linie-kurz"></div>
-        <div class="linie linie-kurz"></div>
-        
-  </div>
+  <span class="badge">12 · Workflow 2 · Reflexion</span>
+  <h2>Reflexion</h2>
 
   <div class="reflexion"><h3>Reflexion</h3><div class="frage">Welcher Schritt ersetzt bei uns eine bisherige E-Mail-Kette?</div><div class="linie"></div><div class="linie"></div><div class="frage">Wer in unserem Team braucht eine kurze Einführung, damit das Dokument lebt?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche Sitzung können wir <em>diese Woche</em> schon so vorbereiten?</div><div class="linie"></div><div class="linie"></div></div>
 </div>
 
 <div class="page wf wf3">
-  <span class="badge">Workflow 3</span>
+  <span class="badge">13 · Workflow 3</span>
+  <img class="pixelchen" src="pixelchen/SVG/Videokonferenz.svg" alt="">
   <h2>Elternabend hybrid organisieren</h2>
   <p style="font-size:9.5pt;color:var(--ink-soft);">Block 5 · eigenständig in Kleingruppen</p>
 
   <div class="persona">
-    <span class="name">Das Team (Elternabend „Medienerziehung“) erzählt</span>
-    „Wir wollen einen Elternabend zur Medienerziehung machen — vor Ort <em>und</em> online, weil wir wissen: nicht alle Eltern können kommen. Wir bauen ein Paket, das auch für Eltern <em>ohne</em> KITA-HUB-Account funktioniert: eine Terminumfrage, einen QR-Code mit dem Material, einen Meeting-Link. Wer da ist, ist da. Wer dazu kommt, kommt dazu — beides ist ok.“
+    <span class="name">Das Team (Elternabend „Medienerziehung”) erzählt</span>
+    „Wir wollen einen Elternabend zur Medienerziehung machen — vor Ort <em>und</em> online, weil wir wissen: nicht alle Eltern können kommen. Wir bauen ein Paket, das auch für Eltern <em>ohne</em> KITA-HUB-Account funktioniert: eine Terminumfrage, einen QR-Code mit dem Material, einen Meeting-Link. Wer da ist, ist da. Wer dazu kommt, kommt dazu — beides ist ok.”
   </div>
 
   <div class="lernziele"><h3>Lernziele</h3><p style="margin-bottom:1mm;">Nach diesem Workflow können Sie …</p><ul><li>Materialien für Eltern recherchieren und teilbar machen</li><li>ein Planungsdokument anlegen, das das gesamte Team mitführt</li><li>Eltern <em>ohne Account</em> per Terminumfrage und Meeting-Link einbinden</li><li>alle Bausteine im Chat-Kanal zu einem klaren Eltern-Paket bündeln</li></ul></div>
 
-  <h3>Beteiligte Dienste</h3>
-  <p style="font-size:10pt;">Medienecke → Notizen → Kurzlink → Termine → Meeting → Chat</p>
-
-  <h3>Mein Ergebnis am Ende dieses Workflows</h3>
-  <p style="font-size:10pt;color:var(--ink-soft);">1 Terminlink · 1 Agenda-Notiz · 1 Meeting-Link · 2 Kurzlinks · 2 QR-Codes — ein vollständiges Eltern-Paket, das auch ohne Account funktioniert.</p>
+  <div class="tipp"><strong>Leitfrage:</strong> Was bringen mir diese Dienste — für mich und meine Einrichtung? Welche Bausteine davon passen zu unserem nächsten Elternabend?</div>
 </div>
 
 <div class="page wf wf3">
-  <span class="badge">Workflow 3 · Schritte</span>
+  <span class="badge">14 · Workflow 3 · Schritte</span>
   <h2>So gehen wir vor</h2>
-  <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
+  <p style="font-size:10pt;">Notieren Sie Ihre Schritte, die genutzten Dienste und Ihre Ergebnisse — so wie Ihre Gruppe vorgeht.</p>
 
-  <table class="workflow-steps"><thead><tr><th>#</th><th>Dienst</th><th>Aktion</th><th>Mein Ergebnis (Link / Notiz)</th></tr></thead><tbody><tr><td>1</td><td>Medienecke</td><td>Material zu „Medienerziehung“ für Eltern recherchieren</td><td></td></tr><tr><td>2</td><td>Notizen</td><td>Planungsdokument anlegen: Ablauf, Verantwortlichkeiten, Materialliste, Agenda</td><td></td></tr><tr><td>3</td><td>Kurzlink</td><td>QR-Code zu einer Eltern-Ressource (Medienecke)</td><td></td></tr><tr><td>4</td><td>Termine</td><td>Terminumfrage für den Elternabend (kein Account nötig)</td><td></td></tr><tr><td>5</td><td>Meeting</td><td>Meeting-Link erstellen — Eltern nehmen per Link teil</td><td></td></tr><tr><td>6</td><td>Chat</td><td>Alles im Team-Kanal bündeln: QR, Termin, Notiz, Meeting</td><td></td></tr></tbody></table>
+  <h3>Unsere Schritte &amp; Ergebnisse</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
 
   <div class="tipp">
     <strong>Rollen in der Gruppe:</strong> Elternkommunikation · Moderator:in · Technikbegleitung
@@ -984,58 +971,70 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 
   <h3>Stolpersteine im Auge behalten</h3>
   <ul>
-    <li>Eltern brauchen <em>keinen</em> Account — das vorab klar kommunizieren</li><li>Den Meeting-Link nicht zu früh teilen, sonst geht er verloren</li><li>QR-Codes auf Aushängen mit kurzer Erklärung versehen („Hier scannen für …“)</li>
+    <li>Eltern brauchen <em>keinen</em> Account — das vorab klar kommunizieren</li>
+    <li>Den Meeting-Link nicht zu früh teilen, sonst geht er verloren</li>
+    <li>QR-Codes auf Aushängen mit kurzer Erklärung versehen</li>
   </ul>
 </div>
 
 <div class="page wf wf3">
-  <span class="badge">Workflow 3 · Übung &amp; Reflexion</span>
-  <h2>Was haben wir produziert?</h2>
-
-  <div class="uebung">
-    <h3>Unsere echten Artefakte</h3>
-    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
-    
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Planungs-Notiz-Link</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kurzlink Eltern-Material</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Terminumfrage (für Eltern)</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Meeting-Link</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Sammel-Post im Chat: ☐ erstellt ☐ angepinnt</div>
-        
-  </div>
+  <span class="badge">15 · Workflow 3 · Reflexion</span>
+  <h2>Reflexion</h2>
 
   <div class="reflexion"><h3>Reflexion</h3><div class="frage">Was würde unser nächster Elternabend brauchen, um diesen Workflow 1:1 zu verwenden?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche Eltern-Gruppe profitiert am meisten von der hybriden Lösung?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welcher Schritt ist bei uns am aufwendigsten — und wie können wir ihn erleichtern?</div><div class="linie"></div><div class="linie"></div></div>
+
+  <div class="merke-grid">
+    <div class="merke-col">
+      <div class="merke-label" style="background:var(--wf3);">Ich nehme mit</div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+    </div>
+    <div class="merke-col">
+      <div class="merke-label" style="background:var(--wf3);">Das nützt mir für</div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+    </div>
+    <div class="merke-col">
+      <div class="merke-label" style="background:var(--wf3);">Mein erster Schritt</div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+      <div style="display:flex;align-items:center;gap:2mm;margin-top:3mm;font-size:9.5pt;"><span class="checkbox"></span>Geschafft!</div>
+    </div>
+  </div>
 </div>
 
 <div class="page wf wf4">
-  <span class="badge">Workflow 4</span>
+  <span class="badge">16 · Workflow 4</span>
+  <img class="pixelchen" src="pixelchen/SVG/Kooperation.svg" alt="">
   <h2>Neue Kolleg:in einarbeiten</h2>
   <p style="font-size:9.5pt;color:var(--ink-soft);">Block 5 · eigenständig in Kleingruppen</p>
 
   <div class="persona">
     <span class="name">Petra (Mentorin für die Einarbeitung) erzählt</span>
-    „Bei uns fängt nächste Woche eine neue Ergänzungskraft an. Bisher habe ich die Einarbeitung immer in 30-Minuten-Gesprächen gemacht — und jedes Mal war wieder etwas vergessen. Heute baue ich ein digitales Willkommenspaket: Eine Notiz mit allem Wichtigen, ein QR-Code für den Spind, eine kurze Direktnachricht im Chat, ein passender Kurs aus dem Angebot. Sie kann sich selbstständig zurechtfinden — ich entlaste die Kolleg:innen.“
+    „Bei uns fängt nächste Woche eine neue Ergänzungskraft an. Bisher habe ich die Einarbeitung immer in 30-Minuten-Gesprächen gemacht — und jedes Mal war wieder etwas vergessen. Heute baue ich ein digitales Willkommenspaket: Eine Notiz mit allem Wichtigen, ein QR-Code für den Spind, eine kurze Direktnachricht im Chat, ein passender Kurs aus dem Angebot. Sie kann sich selbstständig zurechtfinden — ich entlaste die Kolleg:innen.”
   </div>
 
   <div class="lernziele"><h3>Lernziele</h3><p style="margin-bottom:1mm;">Nach diesem Workflow können Sie …</p><ul><li>ein digitales Willkommensdokument für neue Kolleg:innen anlegen</li><li>den Zugang per QR-Code &amp; Direktnachricht so leicht wie möglich machen</li><li>passende Materialien aus Medienecke und Kurse-Angebot bündeln</li><li>wichtige Seiten als Lesezeichen auf dem Dashboard anlegen</li></ul></div>
 
-  <h3>Beteiligte Dienste</h3>
-  <p style="font-size:10pt;">Notizen → Kurzlink → Chat → Medienecke → Kurse → Lesezeichen</p>
-
-  <h3>Mein Ergebnis am Ende dieses Workflows</h3>
-  <p style="font-size:10pt;color:var(--ink-soft);">1 Willkommensdokument · 1 QR-Code · 1 Direktnachricht im Chat · Kursliste · Lesezeichen — eine selbsttragende Einarbeitung.</p>
+  <div class="tipp"><strong>Leitfrage:</strong> Was bringen mir diese Dienste — für mich und meine Einrichtung? Welche dieser Bausteine erleichtern uns die nächste Einarbeitung konkret?</div>
 </div>
 
 <div class="page wf wf4">
-  <span class="badge">Workflow 4 · Schritte</span>
+  <span class="badge">17 · Workflow 4 · Schritte</span>
   <h2>So gehen wir vor</h2>
-  <p style="font-size:10pt;">Arbeiten Sie die Schritte in der Gruppe nacheinander durch. Tragen Sie Ihre fertigen Links / Notizen direkt in die rechte Spalte ein — diese Tabelle ist Ihr Beleg, dass alles funktioniert hat.</p>
+  <p style="font-size:10pt;">Notieren Sie Ihre Schritte, die genutzten Dienste und Ihre Ergebnisse — so wie Ihre Gruppe vorgeht.</p>
 
-  <table class="workflow-steps"><thead><tr><th>#</th><th>Dienst</th><th>Aktion</th><th>Mein Ergebnis (Link / Notiz)</th></tr></thead><tbody><tr><td>1</td><td>Notizen</td><td>Willkommensdokument: Infos, Ansprechpersonen, Abläufe, Hausregeln</td><td></td></tr><tr><td>2</td><td>Kurzlink</td><td>QR-Code zum Willkommensdokument (Tipp: für den Spind ausdrucken)</td><td></td></tr><tr><td>3</td><td>Chat</td><td>Direktnachricht: Willkommensgruß + alle Links + kurze Erklärungen</td><td></td></tr><tr><td>4</td><td>Medienecke</td><td>Relevante Einarbeitungsmaterialien zusammenstellen</td><td></td></tr><tr><td>5</td><td>Kurse</td><td>Passenden Einführungskurs empfehlen → Link teilen</td><td></td></tr><tr><td>6</td><td>Lesezeichen</td><td>Wichtige Seiten als Lesezeichen auf dem Dashboard anlegen</td><td></td></tr></tbody></table>
+  <h3>Unsere Schritte &amp; Ergebnisse</h3>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
+  <div class="linie"></div>
 
   <div class="tipp">
     <strong>Rollen in der Gruppe:</strong> Mentor:in · Leitung (Erstzugang) · evtl. IT-Pat:in
@@ -1043,37 +1042,43 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 
   <h3>Stolpersteine im Auge behalten</h3>
   <ul>
-    <li>Direktnachricht mit zu vielen Links auf einmal überfordert — lieber strukturiert</li><li>Notizen-Dokument muss <em>angemeldet</em> erstellt werden, sonst geht es nach 24 h verloren</li><li>Lesezeichen sind persönlich — kurz erklären, wie sie eingerichtet werden</li>
+    <li>Direktnachricht mit zu vielen Links auf einmal überfordert — lieber strukturiert</li>
+    <li>Notizen-Dokument muss <em>angemeldet</em> erstellt werden, sonst geht es nach 24 h verloren</li>
+    <li>Lesezeichen sind persönlich — kurz erklären, wie sie eingerichtet werden</li>
   </ul>
 </div>
 
 <div class="page wf wf4">
-  <span class="badge">Workflow 4 · Übung &amp; Reflexion</span>
-  <h2>Was haben wir produziert?</h2>
-
-  <div class="uebung">
-    <h3>Unsere echten Artefakte</h3>
-    <p style="font-size:9.5pt;color:var(--ink-soft);margin-bottom:3mm;">Sammeln Sie hier die Links, QR-Code-Hinweise und Kanal-Namen, die in Ihrer Gruppe entstanden sind.</p>
-    
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:2mm;">Willkommens-Notiz-Link</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Sprechender Kurzlink + QR</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Direktnachricht: ☐ vorbereitet ☐ versendet</div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">Kurs-Empfehlung (Link)</div>
-        <div class="linie"></div>
-        <div style="font-size:9pt;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-top:3mm;">3 Lesezeichen, die <em>jede:r</em> braucht</div>
-        <div class="linie linie-kurz"></div>
-        <div class="linie linie-kurz"></div>
-        <div class="linie linie-kurz"></div>
-        
-  </div>
+  <span class="badge">18 · Workflow 4 · Reflexion</span>
+  <h2>Reflexion</h2>
 
   <div class="reflexion"><h3>Reflexion</h3><div class="frage">Wer in unserem Team könnte als Mentor:in für diese Einarbeitung zuständig sein?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche drei Informationen <em>müssen</em> auf jeden Fall im Willkommensdokument stehen?</div><div class="linie"></div><div class="linie"></div><div class="frage">Welche Stelle dieses Workflows entlastet uns am meisten?</div><div class="linie"></div><div class="linie"></div></div>
+
+  <div class="merke-grid">
+    <div class="merke-col">
+      <div class="merke-label" style="background:var(--wf4);">Ich nehme mit</div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+    </div>
+    <div class="merke-col">
+      <div class="merke-label" style="background:var(--wf4);">Das nützt mir für</div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+    </div>
+    <div class="merke-col">
+      <div class="merke-label" style="background:var(--wf4);">Mein erster Schritt</div>
+      <div class="linie"></div>
+      <div class="linie"></div>
+      <div style="display:flex;align-items:center;gap:2mm;margin-top:3mm;font-size:9.5pt;"><span class="checkbox"></span>Geschafft!</div>
+    </div>
+  </div>
 </div>
 
 <div class="page">
-  <span class="badge">11 · Block 5b</span>
+  <span class="badge">19 · Block 5b</span>
+  <img class="pixelchen" src="pixelchen/SVG/Reflexion.svg" alt="">
   <h2>Auswertungsrunde — was haben wir gelernt?</h2>
   <p style="font-size:9.5pt;color:var(--ink-soft);">14:05 – 14:20 · 15 Minuten · Gruppen-Auswertung</p>
 
@@ -1084,7 +1089,7 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
   <div class="linie"></div>
   <div class="linie"></div>
 
-  <h3>Querverbindungen — was taucht in <em>mehreren</em> Workflows auf?</h3>
+  <h3><img style="float:right;width:38px;margin:0 0 2mm 3mm;opacity:0.85;" src="pixelchen/SVG/Pixelchen_Aha.svg" alt="">Querverbindungen — was taucht in <em>mehreren</em> Workflows auf?</h3>
   <p style="font-size:9.5pt;color:var(--ink-soft);">Welche Dienste sind quer durch alle vier Workflows gelaufen?</p>
   <div class="zwei-spalten">
     <div>
@@ -1108,33 +1113,10 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
   <div class="linie"></div>
 </div>
 
-<div class="page">
-  <span class="badge">12 · Block 6</span>
-  <h2>Rundgang &amp; Punkte verteilen</h2>
-  <p style="font-size:9.5pt;color:var(--ink-soft);">14:35 – 14:50 · 15 Minuten · Galerie</p>
-
-  <p>Alle vier Workflow-Poster hängen im Raum. Sie laufen still durch, lesen — und vergeben drei Punkte (Klebepunkte): <em>„Was ist für mein Team am relevantesten?“</em></p>
-
-  <h3>Meine drei Punkte gehen an …</h3>
-  <div class="zwei-spalten">
-    <div class="infobox wf wf1"><strong style="color:var(--wf1);">WF 1 — Fachwissen ins Team</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
-    <div class="infobox wf wf2"><strong style="color:var(--wf2);">WF 2 — Teamsitzung digital</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
-    <div class="infobox wf wf3"><strong style="color:var(--wf3);">WF 3 — Elternabend hybrid</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
-    <div class="infobox wf wf4"><strong style="color:var(--wf4);">WF 4 — Neue Kolleg:in einarbeiten</strong><br><span style="font-size:9.5pt;color:var(--ink-soft);">Punkte: ☐ ☐ ☐</span></div>
-  </div>
-
-  <h3>Was hat mich beim Rundgang überrascht?</h3>
-  <div class="linie"></div>
-  <div class="linie"></div>
-
-  <h3>Welcher Workflow einer <em>anderen</em> Gruppe hat mir eine Idee gegeben?</h3>
-  <div class="linie"></div>
-  <div class="linie"></div>
-</div>
-
 <div class="page wf wf4">
-  <span class="badge">13 · Block 7</span>
-  <h2>Transfer „Ab Montag“</h2>
+  <span class="badge">20 · Block 7</span>
+  <img class="pixelchen" src="pixelchen/SVG/Sternchen_sammeln.svg" alt="">
+  <h2>Transfer „Ab Montag”</h2>
   <p style="font-size:9.5pt;color:var(--ink-soft);">14:50 – 15:20 · 30 Minuten · Einzelarbeit → Partner → Plenum</p>
 
   <h3>Schritt 1 — Mein Pilot-Workflow (Einzelarbeit, 8 Min.)</h3>
@@ -1160,7 +1142,7 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page wf wf4">
-  <span class="badge">13 · Block 7 · Fortsetzung</span>
+  <span class="badge">21 · Block 7 · Fortsetzung</span>
   <h2>Schritt 2 &amp; 3 — Austausch und Team-Plan</h2>
 
   <h3>Schritt 2 — Partneraustausch (7 Min.)</h3>
@@ -1199,35 +1181,6 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
 </div>
 
 <div class="page">
-  <span class="badge">14 · Block 8</span>
-  <h2>Abschluss, Fragen &amp; Blitzlicht</h2>
-  <p style="font-size:9.5pt;color:var(--ink-soft);">15:20 – 15:30 · 10 Minuten · Plenum</p>
-
-  <h3>Letzte Fragen — was ist offen?</h3>
-  <div class="linie"></div>
-  <div class="linie"></div>
-  <div class="linie"></div>
-
-  <h3>Mein Wort für den Tag (Blitzlicht)</h3>
-  <p style="font-size:9.5pt;color:var(--ink-soft);">Ein Wort, das den heutigen Tag für mich beschreibt:</p>
-  <div style="border:1.5px solid var(--ink);border-radius:4px;padding:8mm;text-align:center;font-family:'Fraunces',serif;font-size:18pt;font-style:italic;color:var(--ink-soft);min-height:20mm;">
-  </div>
-
-  <h3>Starthilfe — bei Fragen melden Sie sich</h3>
-  <div class="infobox" style="background:var(--paper-tint);border:1px solid var(--border);border-left:3mm solid var(--ink);">
-    <strong>starthilfe@kita.bayern</strong><br>
-    <strong>Tel.</strong> +49 9621 96552 1991<br>
-    <em style="font-size:9.5pt;">In 14 Tagen haben Sie erste Praxis-Erfahrungen — melden Sie sich gerne.</em>
-  </div>
-
-  <h3>Mein Ergebnis heute — was nehme ich mit?</h3>
-  <p style="font-size:9.5pt;color:var(--ink-soft);">Drei konkrete Dinge, die ich heute geschaffen habe:</p>
-  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:13pt;font-weight:700;width:7mm;flex-shrink:0;">1</span><div style="flex:1;"><div class="linie linie-kurz"></div></div></div>
-  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:13pt;font-weight:700;width:7mm;flex-shrink:0;">2</span><div style="flex:1;"><div class="linie linie-kurz"></div></div></div>
-  <div style="display:flex;gap:3mm;align-items:flex-start;margin:2mm 0;"><span style="font-family:'Fraunces',serif;font-size:13pt;font-weight:700;width:7mm;flex-shrink:0;">3</span><div style="flex:1;"><div class="linie linie-kurz"></div></div></div>
-</div>
-
-<div class="page">
   <span class="badge">Anhang A</span>
   <h2>QR-Codes &amp; Schnellreferenz</h2>
   <p style="font-size:10pt;">Alle Dienste auf einer Seite. Scannen mit dem Smartphone — oder Adresse direkt im Browser eingeben.</p>
@@ -1250,64 +1203,6 @@ table.workflow-steps td:nth-child(2) { width: 22%; font-weight: 600; }
     <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQAAAACLjVdSAAABiElEQVR4nO2YQY5CMQxDnxH3v7Jn4aZ8ZsNq8qMpIKE29cJEqeNU5sPn8QnwRfxjBK4CMa6IYUc9hWkP4sn67wKBZZRIRacw7cvHyoABJRPyjo5h2o5IhUjWvTxuRTxfSyv35D0dY5g25mP3XFVW9JLUKUzv6C/Xbx1PYdqDkC/LlAZwKZkxTPvqw9VgYzyMbdfBgfWRGtl9ZQtqjqYwbdNT8UqAMPK6OQjPYdqKMLaMoq7JhbCP86dxolZcqbCwvG7Qgf6UqgjXzsu82+Y8PX1knhWK6yhVffXhQUx7EIJVGNFSLIOkVM0gpj0ICywhSezK2M5sENMGROa59BbqCWRlROrjMQWBy5Zml5+SVftEPUXVX5IVgcqKjGLagHiydEK/Tyowhekt8209Gqrk9Mj5BVgmTFtW5cjsGKZ9CNslFhZKGry2o5j+PeLtfX0NLnVZfO58C6CkRbksBh04314RTlXUg5B9oB8rY5rF0o7sjtTT6/s6NemvuM1x/vTiP27l8UXMRPwAmpfeqzVC+2gAAAAASUVORK5CYII=" alt="QR Medienecke"><div class="qr-info"><div class="qr-name">Medienecke</div><div class="qr-url">mediensuche.kita.bayern</div><div class="qr-func">OER-Materialien · ohne Account</div></div></div>
     <div class="qr-card"><img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQAAAADN0pXVAAABOUlEQVR4nO1Yyw7DMAizp/7/L3sHIGTStMNoGxath4riw8wcXqHw4Xl8Av/oD6BQCCykFVBPzhX0gMdHiBAIpacp5zJKEoBHy8nTmPOX6JGmy8sGrO5BRUAE36OrWJ2LHsAoULTUZXp6cq7GG4KK8qDD05NzBWXOGy8Vei2rS/U1Vb1CAwiTasq5fJ5Fmc4Uo06D6sq5ep4tW+Mwh0cLWV2KEpCNlWbZG1zL6iI0S3I0InobBnbMXw9ztGDYB7Vx/noSu6apblfOZdRXIkkAZSFvmr9HDlN+sOn2nvrO85VV5ixhXTmfo6/GK/+Enpyr89W43/BmhDFx9ORc3gcZIVqhiqbUlXM5XnvidkMR9Y76zqidYVE2cGw5b8z3G2ZQviUtZHXxPmjmWJM8m7fcf6f+e+vv/tF70Ce7O3jSN6u79gAAAABJRU5ErkJggg==" alt="QR Kurse"><div class="qr-info"><div class="qr-name">Kurse</div><div class="qr-url">kurse.kita.bayern</div><div class="qr-func">Online-Fortbildungen</div></div></div>
     <div class="qr-card" style="background:var(--paper-tint);"><div style="width:28mm;height:28mm;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32pt;color:var(--ink-faint);font-weight:900;">★</div><div class="qr-info"><div class="qr-name">Lesezeichen</div><div class="qr-url">— im Dashboard —</div><div class="qr-func">Persönliche Link-Sammlung im KITA HUB</div></div></div>
-  </div>
-</div>
-
-<div class="page">
-  <span class="badge">Anhang B</span>
-  <h2>Glossar</h2>
-
-  <h3>Wichtige Begriffe</h3>
-  <dl class="glossar" style="column-count:2;column-gap:8mm;">
-    <dt>Kanal</dt>
-    <dd>Themenraum im Chat (z. B. „Sommerfest”). Mehrere Personen tauschen sich dort gebündelt aus.</dd>
-    <dt>Direktnachricht (DM)</dt>
-    <dd>1-zu-1-Nachricht zwischen zwei Personen im Chat — privat, nicht im Kanal.</dd>
-    <dt>Kurzlink</dt>
-    <dd>Verkürzte Webadresse (z. B. <code>link.kita.bayern/inklusion</code>) — leichter zu merken und teilen.</dd>
-    <dt>QR-Code</dt>
-    <dd>Quadratisches Muster, das per Smartphone gescannt einen Link öffnet.</dd>
-    <dt>Gastnotiz</dt>
-    <dd>Notizen-Dokument ohne Anmeldung. <em>Wichtig:</em> Link sofort sichern — sonst kein Zugriff mehr.</dd>
-    <dt>Hybrid (Veranstaltung)</dt>
-    <dd>Eine Veranstaltung, die gleichzeitig vor Ort und online stattfindet — z. B. ein Elternabend, bei dem manche Eltern im Raum sitzen und andere per Video zugeschaltet sind.</dd>
-    <dt>Einarbeitung</dt>
-    <dd>Strukturierter Start für neue Kolleg:innen — alles, was sie in den ersten Wochen wissen und ausprobieren sollen (auch „Onboarding” genannt).</dd>
-    <dt>Einheitliche Anmeldung (SSO)</dt>
-    <dd>Einmal anmelden auf <code>kita.bayern/webapp</code>, danach sind alle Dienste freigeschaltet — kein zweites Passwort nötig.</dd>
-    <dt>OER</dt>
-    <dd>Open Educational Resources — frei verwendbare Bildungsmaterialien (Creative-Commons-Lizenz).</dd>
-    <dt>BBB</dt>
-    <dd>BigBlueButton — die Software hinter Meeting.</dd>
-  </dl>
-</div>
-
-<div class="page">
-  <span class="badge">Anhang C</span>
-  <h2>Meine Notizen &amp; Fragen</h2>
-
-  <div class="zwei-spalten">
-    <div>
-      <h3>Meine Notizen</h3>
-      <p style="font-size:9pt;color:var(--ink-soft);">Platz für freie Gedanken, Skizzen, Erkenntnisse.</p>
-      <div class="notiz-raster" style="min-height:140mm;"></div>
-    </div>
-    <div>
-      <h3>Fragen, die noch zu klären sind</h3>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-      <div class="linie"></div>
-    </div>
   </div>
 </div>
 

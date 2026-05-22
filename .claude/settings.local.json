@@ -4,7 +4,12 @@
       "Bash(/home/mike/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/brainstorming/scripts/start-server.sh *)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(grep -n '#[0-9A-Fa-f]\\\\{3,6\\\\}' material/workflow-karte.html)"
+      "Bash(grep -n '#[0-9A-Fa-f]\\\\{3,6\\\\}' material/workflow-karte.html)",
+      "Bash(sed -i 's|<span class=\"badge\">Workflow 1</span>|<span class=\"badge\">07 · Workflow 1</span>|g' /mnt/c/Git/team-tag/booklet.html)",
+      "Bash(sed -i 's|<span class=\"badge\">Workflow 1 · Schritte</span>|<span class=\"badge\">08 · Workflow 1 · Schritte</span>|g' /mnt/c/Git/team-tag/booklet.html)",
+      "Bash(sed -i 's|<span class=\"badge\">Workflow 1 · Reflexion</span>|<span class=\"badge\">09 · Workflow 1 · Reflexion</span>|g' /mnt/c/Git/team-tag/booklet.html)",
+      "Bash(sed -i 's|<span class=\"badge\">Workflow 2</span>|<span class=\"badge\">10 · Workflow 2</span>|g' /mnt/c/Git/team-tag/booklet.html)",
+      "Bash(sed -i 's|<span class=\"badge\">Workflow 2 · Schritte</span>|<span class=\"badge\">11 · Workflow 2 · Schritte</span>|g' /mnt/c/Git/team-tag/booklet.html)"
     ]
   }
 }
